@@ -1,0 +1,1024 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		13065B8E1FA70FAE009BC964 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 13065B8D1FA70FAE009BC964 /* UIBarButtonItem+Item.m */; };
+		1307A2BB1FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2BA1FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.m */; };
+		1307A2C51FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2BD1FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.m */; };
+		1307A2C61FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1307A2BE1FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.xib */; };
+		1307A2C71FAD4ABB0019D8F5 /* ZDXStoreFiltratePushView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2C01FAD4ABB0019D8F5 /* ZDXStoreFiltratePushView.m */; };
+		1307A2C81FAD4ABB0019D8F5 /* ZDXStoreFiltrateTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2C21FAD4ABB0019D8F5 /* ZDXStoreFiltrateTableViewHeaderView.m */; };
+		1307A2C91FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2C41FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.m */; };
+		1307A2CC1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2CB1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.m */; };
+		1307A2CF1FAD4B200019D8F5 /* ZDXStoreClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2CE1FAD4B200019D8F5 /* ZDXStoreClassifyViewController.m */; };
+		1307A2D81FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2D11FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.m */; };
+		1307A2D91FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2D31FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.m */; };
+		1307A2DA1FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1307A2D41FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.xib */; };
+		1307A2DB1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2D61FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.m */; };
+		1307A2DC1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1307A2D71FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib */; };
+		1307A2DF1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2DE1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m */; };
+		1315AABE1FA99D5F00360F83 /* ZDXStoreFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315AABD1FA99D5F00360F83 /* ZDXStoreFooterView.m */; };
+		1315AACB1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315AACA1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m */; };
+		131FC0E41FA06FF200476D63 /* ZDXStoreTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC0E31FA06FF200476D63 /* ZDXStoreTabBarViewController.m */; };
+		131FC0E71FA0700A00476D63 /* ZDXStoreTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC0E61FA0700A00476D63 /* ZDXStoreTabBar.m */; };
+		131FC0EA1FA0702A00476D63 /* ZDXStoreTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC0E91FA0702A00476D63 /* ZDXStoreTabBarButton.m */; };
+		131FC0F11FA0704F00476D63 /* ZDXStoreShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC0EE1FA0704F00476D63 /* ZDXStoreShareViewController.m */; };
+		131FC10A1FA0707900476D63 /* ZDXStoreShoppingCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC0F51FA0707900476D63 /* ZDXStoreShoppingCarViewController.m */; };
+		131FC10B1FA0707900476D63 /* ZDXStoreShopCarFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC0F81FA0707900476D63 /* ZDXStoreShopCarFormat.m */; };
+		131FC10C1FA0707900476D63 /* ZDXStoreBrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC0FB1FA0707900476D63 /* ZDXStoreBrandModel.m */; };
+		131FC10D1FA0707900476D63 /* ZDXStoreProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC0FD1FA0707900476D63 /* ZDXStoreProductModel.m */; };
+		131FC10E1FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1001FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.m */; };
+		131FC10F1FA0707900476D63 /* ZDXStoreShopCarBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1031FA0707900476D63 /* ZDXStoreShopCarBottomView.m */; };
+		131FC1101FA0707900476D63 /* ZDXStoreShopCarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1051FA0707900476D63 /* ZDXStoreShopCarCell.m */; };
+		131FC1111FA0707900476D63 /* ZDXStoreShopCarCountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1071FA0707900476D63 /* ZDXStoreShopCarCountView.m */; };
+		131FC1121FA0707900476D63 /* ZDXStoreShopCarHearView.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1091FA0707900476D63 /* ZDXStoreShopCarHearView.m */; };
+		131FC1151FA070E300476D63 /* ZDXStoreClassifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1141FA070E300476D63 /* ZDXStoreClassifyView.m */; };
+		131FC1181FA070EF00476D63 /* ZDXStoreCommodityClassifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1171FA070EF00476D63 /* ZDXStoreCommodityClassifyCell.m */; };
+		131FC11C1FA0718300476D63 /* ZDXStoreBrandChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC11A1FA0718300476D63 /* ZDXStoreBrandChooseCell.m */; };
+		131FC11D1FA0718300476D63 /* ZDXStoreBrandChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 131FC11B1FA0718300476D63 /* ZDXStoreBrandChooseCell.xib */; };
+		131FC12F1FA072BC00476D63 /* ZDXStoreChooseBrandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC12E1FA072BC00476D63 /* ZDXStoreChooseBrandView.m */; };
+		131FC1321FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1311FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m */; };
+		131FC1351FA07F2700476D63 /* ZDXStoreCommodityShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1341FA07F2700476D63 /* ZDXStoreCommodityShowCell.m */; };
+		131FC1381FA07F4800476D63 /* ZDXStoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1371FA07F4800476D63 /* ZDXStoreCollectionViewCell.m */; };
+		13949B8A1F9883C50027CA84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13949B891F9883C50027CA84 /* Assets.xcassets */; };
+		13949BA21F988AE10027CA84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949B9F1F988AE10027CA84 /* AppDelegate.m */; };
+		13949BA31F988AE10027CA84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BA01F988AE10027CA84 /* main.m */; };
+		13949BA61F9895480027CA84 /* ZDXStoreNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BA51F9895480027CA84 /* ZDXStoreNavigationViewController.m */; };
+		13949BB01F9897D90027CA84 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BAB1F9897D90027CA84 /* NSDate+Extension.m */; };
+		13949BB11F9897D90027CA84 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BAD1F9897D90027CA84 /* NSString+Extension.m */; };
+		13949BB21F9897D90027CA84 /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BAF1F9897D90027CA84 /* NSData+Extension.m */; };
+		13949BB71F9897ED0027CA84 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BB41F9897ED0027CA84 /* UIView+Frame.m */; };
+		13949BB81F9897ED0027CA84 /* UIColor+ColorChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BB61F9897ED0027CA84 /* UIColor+ColorChange.m */; };
+		13949BBB1F9897FC0027CA84 /* UIImage+ZDXImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BBA1F9897FC0027CA84 /* UIImage+ZDXImage.m */; };
+		13D53F5E1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D53F5D1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.m */; };
+		13D53F621FA86F520080B563 /* ZDXStoreCommdityCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D53F601FA86F520080B563 /* ZDXStoreCommdityCommentCell.m */; };
+		13D53F631FA86F520080B563 /* ZDXStoreCommdityCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13D53F611FA86F520080B563 /* ZDXStoreCommdityCommentCell.xib */; };
+		13FDBB6C1F9EE485005A68B8 /* shopcart.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13FDBB6B1F9EE485005A68B8 /* shopcart.plist */; };
+		13FEDBD31F99980300538177 /* ZDXStoreRecylingInNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FEDBD21F99980300538177 /* ZDXStoreRecylingInNewViewController.m */; };
+		13FEDBD61F99980E00538177 /* ZDXStoreMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FEDBD51F99980E00538177 /* ZDXStoreMeViewController.m */; };
+		13FEDBD91F9998D400538177 /* ZDXStoreHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FEDBD81F9998D400538177 /* ZDXStoreHomeViewController.m */; };
+		13FEDBDF1F99C1AE00538177 /* ZDXStoreMainTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FEDBDE1F99C1AE00538177 /* ZDXStoreMainTopView.m */; };
+		13FEDBE21F99C8D100538177 /* ZDXStoreChoosePlaceBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FEDBE11F99C8D100538177 /* ZDXStoreChoosePlaceBtn.m */; };
+		13FEDBE51F99D63100538177 /* ZDXStoreTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FEDBE41F99D63100538177 /* ZDXStoreTableViewHeaderView.m */; };
+		A429925974CF0F834000A3FD /* libPods-GeLiStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 256339442F21EDE3FB1E09E7 /* libPods-GeLiStore.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		13065B8C1FA70FAE009BC964 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
+		13065B8D1FA70FAE009BC964 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
+		1307A2B91FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFiltrateViewController.h; sourceTree = "<group>"; };
+		1307A2BA1FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFiltrateViewController.m; sourceTree = "<group>"; };
+		1307A2BC1FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFiltrateCollectionViewCell.h; sourceTree = "<group>"; };
+		1307A2BD1FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFiltrateCollectionViewCell.m; sourceTree = "<group>"; };
+		1307A2BE1FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreFiltrateCollectionViewCell.xib; sourceTree = "<group>"; };
+		1307A2BF1FAD4ABB0019D8F5 /* ZDXStoreFiltratePushView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFiltratePushView.h; sourceTree = "<group>"; };
+		1307A2C01FAD4ABB0019D8F5 /* ZDXStoreFiltratePushView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFiltratePushView.m; sourceTree = "<group>"; };
+		1307A2C11FAD4ABB0019D8F5 /* ZDXStoreFiltrateTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFiltrateTableViewHeaderView.h; sourceTree = "<group>"; };
+		1307A2C21FAD4ABB0019D8F5 /* ZDXStoreFiltrateTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFiltrateTableViewHeaderView.m; sourceTree = "<group>"; };
+		1307A2C31FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFiltratePushViewTypeCell.h; sourceTree = "<group>"; };
+		1307A2C41FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFiltratePushViewTypeCell.m; sourceTree = "<group>"; };
+		1307A2CA1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFiltrateTopView.h; sourceTree = "<group>"; };
+		1307A2CB1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFiltrateTopView.m; sourceTree = "<group>"; };
+		1307A2CD1FAD4B200019D8F5 /* ZDXStoreClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreClassifyViewController.h; sourceTree = "<group>"; };
+		1307A2CE1FAD4B200019D8F5 /* ZDXStoreClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreClassifyViewController.m; sourceTree = "<group>"; };
+		1307A2D01FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreClassifyLeftCell.h; sourceTree = "<group>"; };
+		1307A2D11FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreClassifyLeftCell.m; sourceTree = "<group>"; };
+		1307A2D21FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCommdityClassifyBannerCell.h; sourceTree = "<group>"; };
+		1307A2D31FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommdityClassifyBannerCell.m; sourceTree = "<group>"; };
+		1307A2D41FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreCommdityClassifyBannerCell.xib; sourceTree = "<group>"; };
+		1307A2D51FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCommdoityClassifyCollectionCell.h; sourceTree = "<group>"; };
+		1307A2D61FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommdoityClassifyCollectionCell.m; sourceTree = "<group>"; };
+		1307A2D71FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreCommdoityClassifyCollectionCell.xib; sourceTree = "<group>"; };
+		1307A2DD1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCommdityDetailController.h; sourceTree = "<group>"; };
+		1307A2DE1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommdityDetailController.m; sourceTree = "<group>"; };
+		1315AABC1FA99D5F00360F83 /* ZDXStoreFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFooterView.h; sourceTree = "<group>"; };
+		1315AABD1FA99D5F00360F83 /* ZDXStoreFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFooterView.m; sourceTree = "<group>"; };
+		1315AAC91FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreTitleLeftImageRight.h; sourceTree = "<group>"; };
+		1315AACA1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreTitleLeftImageRight.m; sourceTree = "<group>"; };
+		131FC0E21FA06FF200476D63 /* ZDXStoreTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreTabBarViewController.h; sourceTree = "<group>"; };
+		131FC0E31FA06FF200476D63 /* ZDXStoreTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreTabBarViewController.m; sourceTree = "<group>"; };
+		131FC0E51FA0700A00476D63 /* ZDXStoreTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreTabBar.h; sourceTree = "<group>"; };
+		131FC0E61FA0700A00476D63 /* ZDXStoreTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreTabBar.m; sourceTree = "<group>"; };
+		131FC0E81FA0702A00476D63 /* ZDXStoreTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreTabBarButton.h; sourceTree = "<group>"; };
+		131FC0E91FA0702A00476D63 /* ZDXStoreTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreTabBarButton.m; sourceTree = "<group>"; };
+		131FC0ED1FA0704F00476D63 /* ZDXStoreShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShareViewController.h; sourceTree = "<group>"; };
+		131FC0EE1FA0704F00476D63 /* ZDXStoreShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShareViewController.m; sourceTree = "<group>"; };
+		131FC0F41FA0707900476D63 /* ZDXStoreShoppingCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShoppingCarViewController.h; sourceTree = "<group>"; };
+		131FC0F51FA0707900476D63 /* ZDXStoreShoppingCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShoppingCarViewController.m; sourceTree = "<group>"; };
+		131FC0F71FA0707900476D63 /* ZDXStoreShopCarFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopCarFormat.h; sourceTree = "<group>"; };
+		131FC0F81FA0707900476D63 /* ZDXStoreShopCarFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopCarFormat.m; sourceTree = "<group>"; };
+		131FC0FA1FA0707900476D63 /* ZDXStoreBrandModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreBrandModel.h; sourceTree = "<group>"; };
+		131FC0FB1FA0707900476D63 /* ZDXStoreBrandModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreBrandModel.m; sourceTree = "<group>"; };
+		131FC0FC1FA0707900476D63 /* ZDXStoreProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreProductModel.h; sourceTree = "<group>"; };
+		131FC0FD1FA0707900476D63 /* ZDXStoreProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreProductModel.m; sourceTree = "<group>"; };
+		131FC0FF1FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopCarTableViewProxy.h; sourceTree = "<group>"; };
+		131FC1001FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopCarTableViewProxy.m; sourceTree = "<group>"; };
+		131FC1021FA0707900476D63 /* ZDXStoreShopCarBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopCarBottomView.h; sourceTree = "<group>"; };
+		131FC1031FA0707900476D63 /* ZDXStoreShopCarBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopCarBottomView.m; sourceTree = "<group>"; };
+		131FC1041FA0707900476D63 /* ZDXStoreShopCarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopCarCell.h; sourceTree = "<group>"; };
+		131FC1051FA0707900476D63 /* ZDXStoreShopCarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopCarCell.m; sourceTree = "<group>"; };
+		131FC1061FA0707900476D63 /* ZDXStoreShopCarCountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopCarCountView.h; sourceTree = "<group>"; };
+		131FC1071FA0707900476D63 /* ZDXStoreShopCarCountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopCarCountView.m; sourceTree = "<group>"; };
+		131FC1081FA0707900476D63 /* ZDXStoreShopCarHearView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopCarHearView.h; sourceTree = "<group>"; };
+		131FC1091FA0707900476D63 /* ZDXStoreShopCarHearView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopCarHearView.m; sourceTree = "<group>"; };
+		131FC1131FA070E300476D63 /* ZDXStoreClassifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreClassifyView.h; sourceTree = "<group>"; };
+		131FC1141FA070E300476D63 /* ZDXStoreClassifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreClassifyView.m; sourceTree = "<group>"; };
+		131FC1161FA070EF00476D63 /* ZDXStoreCommodityClassifyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCommodityClassifyCell.h; sourceTree = "<group>"; };
+		131FC1171FA070EF00476D63 /* ZDXStoreCommodityClassifyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommodityClassifyCell.m; sourceTree = "<group>"; };
+		131FC1191FA0718300476D63 /* ZDXStoreBrandChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreBrandChooseCell.h; sourceTree = "<group>"; };
+		131FC11A1FA0718300476D63 /* ZDXStoreBrandChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreBrandChooseCell.m; sourceTree = "<group>"; };
+		131FC11B1FA0718300476D63 /* ZDXStoreBrandChooseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreBrandChooseCell.xib; sourceTree = "<group>"; };
+		131FC12D1FA072BC00476D63 /* ZDXStoreChooseBrandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreChooseBrandView.h; sourceTree = "<group>"; };
+		131FC12E1FA072BC00476D63 /* ZDXStoreChooseBrandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreChooseBrandView.m; sourceTree = "<group>"; };
+		131FC1301FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreBrandCollectionViewCell.h; sourceTree = "<group>"; };
+		131FC1311FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreBrandCollectionViewCell.m; sourceTree = "<group>"; };
+		131FC1331FA07F2700476D63 /* ZDXStoreCommodityShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCommodityShowCell.h; sourceTree = "<group>"; };
+		131FC1341FA07F2700476D63 /* ZDXStoreCommodityShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommodityShowCell.m; sourceTree = "<group>"; };
+		131FC1361FA07F4800476D63 /* ZDXStoreCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCollectionViewCell.h; sourceTree = "<group>"; };
+		131FC1371FA07F4800476D63 /* ZDXStoreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCollectionViewCell.m; sourceTree = "<group>"; };
+		13949B7A1F9883C50027CA84 /* GeLiStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeLiStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13949B891F9883C50027CA84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		13949B8E1F9883C50027CA84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13949B9E1F988AE10027CA84 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		13949B9F1F988AE10027CA84 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		13949BA01F988AE10027CA84 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		13949BA41F9895480027CA84 /* ZDXStoreNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreNavigationViewController.h; sourceTree = "<group>"; };
+		13949BA51F9895480027CA84 /* ZDXStoreNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreNavigationViewController.m; sourceTree = "<group>"; };
+		13949BAA1F9897D90027CA84 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		13949BAB1F9897D90027CA84 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		13949BAC1F9897D90027CA84 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		13949BAD1F9897D90027CA84 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		13949BAE1F9897D90027CA84 /* NSData+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Extension.h"; sourceTree = "<group>"; };
+		13949BAF1F9897D90027CA84 /* NSData+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Extension.m"; sourceTree = "<group>"; };
+		13949BB31F9897ED0027CA84 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		13949BB41F9897ED0027CA84 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		13949BB51F9897ED0027CA84 /* UIColor+ColorChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorChange.h"; sourceTree = "<group>"; };
+		13949BB61F9897ED0027CA84 /* UIColor+ColorChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorChange.m"; sourceTree = "<group>"; };
+		13949BB91F9897FC0027CA84 /* UIImage+ZDXImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZDXImage.h"; sourceTree = "<group>"; };
+		13949BBA1F9897FC0027CA84 /* UIImage+ZDXImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZDXImage.m"; sourceTree = "<group>"; };
+		13949BE01F98A4210027CA84 /* ZDXComnous.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDXComnous.h; sourceTree = "<group>"; };
+		13D53F5C1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCommdityDetailInfoCell.h; sourceTree = "<group>"; };
+		13D53F5D1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommdityDetailInfoCell.m; sourceTree = "<group>"; };
+		13D53F5F1FA86F520080B563 /* ZDXStoreCommdityCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCommdityCommentCell.h; sourceTree = "<group>"; };
+		13D53F601FA86F520080B563 /* ZDXStoreCommdityCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommdityCommentCell.m; sourceTree = "<group>"; };
+		13D53F611FA86F520080B563 /* ZDXStoreCommdityCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreCommdityCommentCell.xib; sourceTree = "<group>"; };
+		13FDBB6B1F9EE485005A68B8 /* shopcart.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shopcart.plist; sourceTree = "<group>"; };
+		13FEDBD11F99980300538177 /* ZDXStoreRecylingInNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreRecylingInNewViewController.h; sourceTree = "<group>"; };
+		13FEDBD21F99980300538177 /* ZDXStoreRecylingInNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreRecylingInNewViewController.m; sourceTree = "<group>"; };
+		13FEDBD41F99980E00538177 /* ZDXStoreMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreMeViewController.h; sourceTree = "<group>"; };
+		13FEDBD51F99980E00538177 /* ZDXStoreMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreMeViewController.m; sourceTree = "<group>"; };
+		13FEDBD71F9998D400538177 /* ZDXStoreHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreHomeViewController.h; sourceTree = "<group>"; };
+		13FEDBD81F9998D400538177 /* ZDXStoreHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreHomeViewController.m; sourceTree = "<group>"; };
+		13FEDBDD1F99C1AE00538177 /* ZDXStoreMainTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreMainTopView.h; sourceTree = "<group>"; };
+		13FEDBDE1F99C1AE00538177 /* ZDXStoreMainTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreMainTopView.m; sourceTree = "<group>"; };
+		13FEDBE01F99C8D100538177 /* ZDXStoreChoosePlaceBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreChoosePlaceBtn.h; sourceTree = "<group>"; };
+		13FEDBE11F99C8D100538177 /* ZDXStoreChoosePlaceBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreChoosePlaceBtn.m; sourceTree = "<group>"; };
+		13FEDBE31F99D63100538177 /* ZDXStoreTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreTableViewHeaderView.h; sourceTree = "<group>"; };
+		13FEDBE41F99D63100538177 /* ZDXStoreTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreTableViewHeaderView.m; sourceTree = "<group>"; };
+		256339442F21EDE3FB1E09E7 /* libPods-GeLiStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GeLiStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28CB8413E97D93807CABF612 /* Pods-GeLiStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeLiStore.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeLiStore/Pods-GeLiStore.release.xcconfig"; sourceTree = "<group>"; };
+		E1CC3692F0CAD76520FE936A /* Pods-GeLiStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeLiStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GeLiStore/Pods-GeLiStore.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		13949B771F9883C50027CA84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A429925974CF0F834000A3FD /* libPods-GeLiStore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		13065B8F1FA7113B009BC964 /* Classify(分类) */ = {
+			isa = PBXGroup;
+			children = (
+				13065B901FA7113B009BC964 /* Controller */,
+				13065B911FA7113B009BC964 /* Model */,
+				13065B921FA7113B009BC964 /* View */,
+			);
+			path = "Classify(分类)";
+			sourceTree = "<group>";
+		};
+		13065B901FA7113B009BC964 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1307A2CD1FAD4B200019D8F5 /* ZDXStoreClassifyViewController.h */,
+				1307A2CE1FAD4B200019D8F5 /* ZDXStoreClassifyViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		13065B911FA7113B009BC964 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13065B921FA7113B009BC964 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1307A2D01FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.h */,
+				1307A2D11FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.m */,
+				1307A2D21FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.h */,
+				1307A2D31FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.m */,
+				1307A2D41FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.xib */,
+				1307A2D51FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.h */,
+				1307A2D61FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.m */,
+				1307A2D71FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1315AABF1FA9BA2C00360F83 /* filtrate(筛选) */ = {
+			isa = PBXGroup;
+			children = (
+				1315AAC01FA9BA2C00360F83 /* Controller */,
+				1315AAC11FA9BA2C00360F83 /* Model */,
+				1315AAC21FA9BA2C00360F83 /* View */,
+			);
+			path = "filtrate(筛选)";
+			sourceTree = "<group>";
+		};
+		1315AAC01FA9BA2C00360F83 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1307A2B91FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.h */,
+				1307A2BA1FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1315AAC11FA9BA2C00360F83 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1315AAC21FA9BA2C00360F83 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1307A2CA1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.h */,
+				1307A2CB1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.m */,
+				1307A2BC1FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.h */,
+				1307A2BD1FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.m */,
+				1307A2BE1FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.xib */,
+				1307A2BF1FAD4ABB0019D8F5 /* ZDXStoreFiltratePushView.h */,
+				1307A2C01FAD4ABB0019D8F5 /* ZDXStoreFiltratePushView.m */,
+				1307A2C11FAD4ABB0019D8F5 /* ZDXStoreFiltrateTableViewHeaderView.h */,
+				1307A2C21FAD4ABB0019D8F5 /* ZDXStoreFiltrateTableViewHeaderView.m */,
+				1307A2C31FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.h */,
+				1307A2C41FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		131FC0EB1FA0704F00476D63 /* Share(共享) */ = {
+			isa = PBXGroup;
+			children = (
+				131FC0EC1FA0704F00476D63 /* Controller */,
+				131FC0EF1FA0704F00476D63 /* Model */,
+				131FC0F01FA0704F00476D63 /* View */,
+			);
+			path = "Share(共享)";
+			sourceTree = "<group>";
+		};
+		131FC0EC1FA0704F00476D63 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				131FC0ED1FA0704F00476D63 /* ZDXStoreShareViewController.h */,
+				131FC0EE1FA0704F00476D63 /* ZDXStoreShareViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		131FC0EF1FA0704F00476D63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		131FC0F01FA0704F00476D63 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		131FC0F21FA0707900476D63 /* ShoppingCar(购物车) */ = {
+			isa = PBXGroup;
+			children = (
+				131FC0F31FA0707900476D63 /* Controller */,
+				131FC0F61FA0707900476D63 /* Format */,
+				131FC0F91FA0707900476D63 /* Model */,
+				131FC0FE1FA0707900476D63 /* TableViewProxy */,
+				131FC1011FA0707900476D63 /* View */,
+			);
+			path = "ShoppingCar(购物车)";
+			sourceTree = "<group>";
+		};
+		131FC0F31FA0707900476D63 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				131FC0F41FA0707900476D63 /* ZDXStoreShoppingCarViewController.h */,
+				131FC0F51FA0707900476D63 /* ZDXStoreShoppingCarViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		131FC0F61FA0707900476D63 /* Format */ = {
+			isa = PBXGroup;
+			children = (
+				131FC0F71FA0707900476D63 /* ZDXStoreShopCarFormat.h */,
+				131FC0F81FA0707900476D63 /* ZDXStoreShopCarFormat.m */,
+			);
+			path = Format;
+			sourceTree = "<group>";
+		};
+		131FC0F91FA0707900476D63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				131FC0FA1FA0707900476D63 /* ZDXStoreBrandModel.h */,
+				131FC0FB1FA0707900476D63 /* ZDXStoreBrandModel.m */,
+				131FC0FC1FA0707900476D63 /* ZDXStoreProductModel.h */,
+				131FC0FD1FA0707900476D63 /* ZDXStoreProductModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		131FC0FE1FA0707900476D63 /* TableViewProxy */ = {
+			isa = PBXGroup;
+			children = (
+				131FC0FF1FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.h */,
+				131FC1001FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.m */,
+			);
+			path = TableViewProxy;
+			sourceTree = "<group>";
+		};
+		131FC1011FA0707900476D63 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				131FC1021FA0707900476D63 /* ZDXStoreShopCarBottomView.h */,
+				131FC1031FA0707900476D63 /* ZDXStoreShopCarBottomView.m */,
+				131FC1041FA0707900476D63 /* ZDXStoreShopCarCell.h */,
+				131FC1051FA0707900476D63 /* ZDXStoreShopCarCell.m */,
+				131FC1061FA0707900476D63 /* ZDXStoreShopCarCountView.h */,
+				131FC1071FA0707900476D63 /* ZDXStoreShopCarCountView.m */,
+				131FC1081FA0707900476D63 /* ZDXStoreShopCarHearView.h */,
+				131FC1091FA0707900476D63 /* ZDXStoreShopCarHearView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13949B711F9883C50027CA84 = {
+			isa = PBXGroup;
+			children = (
+				13949B7C1F9883C50027CA84 /* GeLiStore */,
+				13949B7B1F9883C50027CA84 /* Products */,
+				25955D67B3A05CCA90442270 /* Pods */,
+				9CC3C4FB1B0B37128E438A11 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		13949B7B1F9883C50027CA84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13949B7A1F9883C50027CA84 /* GeLiStore.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		13949B7C1F9883C50027CA84 /* GeLiStore */ = {
+			isa = PBXGroup;
+			children = (
+				13949B941F988AE10027CA84 /* Classes */,
+				13949B7D1F9883C50027CA84 /* Supporting Files */,
+			);
+			path = GeLiStore;
+			sourceTree = "<group>";
+		};
+		13949B7D1F9883C50027CA84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				13FDBB6B1F9EE485005A68B8 /* shopcart.plist */,
+				13949B891F9883C50027CA84 /* Assets.xcassets */,
+				13949B8E1F9883C50027CA84 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13949B941F988AE10027CA84 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1315AABF1FA9BA2C00360F83 /* filtrate(筛选) */,
+				13D53F551FA8246B0080B563 /* CommdityDetail(商品详情) */,
+				13065B8F1FA7113B009BC964 /* Classify(分类) */,
+				131FC0F21FA0707900476D63 /* ShoppingCar(购物车) */,
+				131FC0EB1FA0704F00476D63 /* Share(共享) */,
+				13FEDBB91F99878F00538177 /* Me(我的) */,
+				13FEDBBD1F99878F00538177 /* RecyclingInNew(回收换新) */,
+				13949B951F988AE10027CA84 /* Home首页 */,
+				13949B991F988AE10027CA84 /* Main(主要) */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		13949B951F988AE10027CA84 /* Home首页 */ = {
+			isa = PBXGroup;
+			children = (
+				13949B961F988AE10027CA84 /* Controller */,
+				13949B971F988AE10027CA84 /* Model */,
+				13949B981F988AE10027CA84 /* View */,
+			);
+			path = "Home首页";
+			sourceTree = "<group>";
+		};
+		13949B961F988AE10027CA84 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				13FEDBD71F9998D400538177 /* ZDXStoreHomeViewController.h */,
+				13FEDBD81F9998D400538177 /* ZDXStoreHomeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		13949B971F988AE10027CA84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13949B981F988AE10027CA84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				131FC1161FA070EF00476D63 /* ZDXStoreCommodityClassifyCell.h */,
+				131FC1171FA070EF00476D63 /* ZDXStoreCommodityClassifyCell.m */,
+				131FC1131FA070E300476D63 /* ZDXStoreClassifyView.h */,
+				131FC1141FA070E300476D63 /* ZDXStoreClassifyView.m */,
+				13FEDBDD1F99C1AE00538177 /* ZDXStoreMainTopView.h */,
+				13FEDBDE1F99C1AE00538177 /* ZDXStoreMainTopView.m */,
+				13FEDBE01F99C8D100538177 /* ZDXStoreChoosePlaceBtn.h */,
+				13FEDBE11F99C8D100538177 /* ZDXStoreChoosePlaceBtn.m */,
+				13FEDBE31F99D63100538177 /* ZDXStoreTableViewHeaderView.h */,
+				13FEDBE41F99D63100538177 /* ZDXStoreTableViewHeaderView.m */,
+				131FC1191FA0718300476D63 /* ZDXStoreBrandChooseCell.h */,
+				131FC11A1FA0718300476D63 /* ZDXStoreBrandChooseCell.m */,
+				131FC11B1FA0718300476D63 /* ZDXStoreBrandChooseCell.xib */,
+				131FC12D1FA072BC00476D63 /* ZDXStoreChooseBrandView.h */,
+				131FC12E1FA072BC00476D63 /* ZDXStoreChooseBrandView.m */,
+				131FC1301FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.h */,
+				131FC1311FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m */,
+				131FC1331FA07F2700476D63 /* ZDXStoreCommodityShowCell.h */,
+				131FC1341FA07F2700476D63 /* ZDXStoreCommodityShowCell.m */,
+				131FC1361FA07F4800476D63 /* ZDXStoreCollectionViewCell.h */,
+				131FC1371FA07F4800476D63 /* ZDXStoreCollectionViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13949B991F988AE10027CA84 /* Main(主要) */ = {
+			isa = PBXGroup;
+			children = (
+				13949B9A1F988AE10027CA84 /* Category */,
+				13949B9B1F988AE10027CA84 /* Controller */,
+				13949B9C1F988AE10027CA84 /* Model */,
+				13949B9D1F988AE10027CA84 /* Other */,
+				13949BA11F988AE10027CA84 /* View */,
+			);
+			path = "Main(主要)";
+			sourceTree = "<group>";
+		};
+		13949B9A1F988AE10027CA84 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				13065B8C1FA70FAE009BC964 /* UIBarButtonItem+Item.h */,
+				13065B8D1FA70FAE009BC964 /* UIBarButtonItem+Item.m */,
+				13949BB91F9897FC0027CA84 /* UIImage+ZDXImage.h */,
+				13949BBA1F9897FC0027CA84 /* UIImage+ZDXImage.m */,
+				13949BB31F9897ED0027CA84 /* UIView+Frame.h */,
+				13949BB41F9897ED0027CA84 /* UIView+Frame.m */,
+				13949BB51F9897ED0027CA84 /* UIColor+ColorChange.h */,
+				13949BB61F9897ED0027CA84 /* UIColor+ColorChange.m */,
+				13949BAA1F9897D90027CA84 /* NSDate+Extension.h */,
+				13949BAB1F9897D90027CA84 /* NSDate+Extension.m */,
+				13949BAC1F9897D90027CA84 /* NSString+Extension.h */,
+				13949BAD1F9897D90027CA84 /* NSString+Extension.m */,
+				13949BAE1F9897D90027CA84 /* NSData+Extension.h */,
+				13949BAF1F9897D90027CA84 /* NSData+Extension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		13949B9B1F988AE10027CA84 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				13949BA41F9895480027CA84 /* ZDXStoreNavigationViewController.h */,
+				13949BA51F9895480027CA84 /* ZDXStoreNavigationViewController.m */,
+				131FC0E21FA06FF200476D63 /* ZDXStoreTabBarViewController.h */,
+				131FC0E31FA06FF200476D63 /* ZDXStoreTabBarViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		13949B9C1F988AE10027CA84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13949B9D1F988AE10027CA84 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				13949B9E1F988AE10027CA84 /* AppDelegate.h */,
+				13949B9F1F988AE10027CA84 /* AppDelegate.m */,
+				13949BE01F98A4210027CA84 /* ZDXComnous.h */,
+				13949BA01F988AE10027CA84 /* main.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		13949BA11F988AE10027CA84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				131FC0E51FA0700A00476D63 /* ZDXStoreTabBar.h */,
+				131FC0E61FA0700A00476D63 /* ZDXStoreTabBar.m */,
+				131FC0E81FA0702A00476D63 /* ZDXStoreTabBarButton.h */,
+				131FC0E91FA0702A00476D63 /* ZDXStoreTabBarButton.m */,
+				1315AAC91FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.h */,
+				1315AACA1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13D53F551FA8246B0080B563 /* CommdityDetail(商品详情) */ = {
+			isa = PBXGroup;
+			children = (
+				13D53F561FA8246B0080B563 /* Controller */,
+				13D53F571FA8246B0080B563 /* Model */,
+				13D53F581FA8246B0080B563 /* View */,
+			);
+			path = "CommdityDetail(商品详情)";
+			sourceTree = "<group>";
+		};
+		13D53F561FA8246B0080B563 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1307A2DD1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.h */,
+				1307A2DE1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		13D53F571FA8246B0080B563 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13D53F581FA8246B0080B563 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				13D53F5C1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.h */,
+				13D53F5D1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.m */,
+				13D53F5F1FA86F520080B563 /* ZDXStoreCommdityCommentCell.h */,
+				13D53F601FA86F520080B563 /* ZDXStoreCommdityCommentCell.m */,
+				13D53F611FA86F520080B563 /* ZDXStoreCommdityCommentCell.xib */,
+				1315AABC1FA99D5F00360F83 /* ZDXStoreFooterView.h */,
+				1315AABD1FA99D5F00360F83 /* ZDXStoreFooterView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13FEDBB91F99878F00538177 /* Me(我的) */ = {
+			isa = PBXGroup;
+			children = (
+				13FEDBBA1F99878F00538177 /* Controller */,
+				13FEDBBB1F99878F00538177 /* Model */,
+				13FEDBBC1F99878F00538177 /* View */,
+			);
+			path = "Me(我的)";
+			sourceTree = "<group>";
+		};
+		13FEDBBA1F99878F00538177 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				13FEDBD41F99980E00538177 /* ZDXStoreMeViewController.h */,
+				13FEDBD51F99980E00538177 /* ZDXStoreMeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		13FEDBBB1F99878F00538177 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13FEDBBC1F99878F00538177 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13FEDBBD1F99878F00538177 /* RecyclingInNew(回收换新) */ = {
+			isa = PBXGroup;
+			children = (
+				13FEDBBE1F99878F00538177 /* Controller */,
+				13FEDBBF1F99878F00538177 /* Model */,
+				13FEDBC01F99878F00538177 /* View */,
+			);
+			path = "RecyclingInNew(回收换新)";
+			sourceTree = "<group>";
+		};
+		13FEDBBE1F99878F00538177 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				13FEDBD11F99980300538177 /* ZDXStoreRecylingInNewViewController.h */,
+				13FEDBD21F99980300538177 /* ZDXStoreRecylingInNewViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		13FEDBBF1F99878F00538177 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13FEDBC01F99878F00538177 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25955D67B3A05CCA90442270 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1CC3692F0CAD76520FE936A /* Pods-GeLiStore.debug.xcconfig */,
+				28CB8413E97D93807CABF612 /* Pods-GeLiStore.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9CC3C4FB1B0B37128E438A11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				256339442F21EDE3FB1E09E7 /* libPods-GeLiStore.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		13949B791F9883C50027CA84 /* GeLiStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13949B911F9883C50027CA84 /* Build configuration list for PBXNativeTarget "GeLiStore" */;
+			buildPhases = (
+				1FC29770CD0D7AA2DAF155B7 /* [CP] Check Pods Manifest.lock */,
+				13949B761F9883C50027CA84 /* Sources */,
+				13949B771F9883C50027CA84 /* Frameworks */,
+				13949B781F9883C50027CA84 /* Resources */,
+				09DD853CBC224AEBE3F2F473 /* [CP] Embed Pods Frameworks */,
+				6EC1103AD83A2542F280FD0F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GeLiStore;
+			productName = GeLiStore;
+			productReference = 13949B7A1F9883C50027CA84 /* GeLiStore.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		13949B721F9883C50027CA84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ZDXStore;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = user99;
+				TargetAttributes = {
+					13949B791F9883C50027CA84 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = NWTRGVJ32U;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 13949B751F9883C50027CA84 /* Build configuration list for PBXProject "GeLiStore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 13949B711F9883C50027CA84;
+			productRefGroup = 13949B7B1F9883C50027CA84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13949B791F9883C50027CA84 /* GeLiStore */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		13949B781F9883C50027CA84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1307A2C61FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.xib in Resources */,
+				13FDBB6C1F9EE485005A68B8 /* shopcart.plist in Resources */,
+				131FC11D1FA0718300476D63 /* ZDXStoreBrandChooseCell.xib in Resources */,
+				13D53F631FA86F520080B563 /* ZDXStoreCommdityCommentCell.xib in Resources */,
+				1307A2DA1FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.xib in Resources */,
+				13949B8A1F9883C50027CA84 /* Assets.xcassets in Resources */,
+				1307A2DC1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09DD853CBC224AEBE3F2F473 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeLiStore/Pods-GeLiStore-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1FC29770CD0D7AA2DAF155B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GeLiStore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6EC1103AD83A2542F280FD0F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GeLiStore/Pods-GeLiStore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		13949B761F9883C50027CA84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				131FC1321FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m in Sources */,
+				13065B8E1FA70FAE009BC964 /* UIBarButtonItem+Item.m in Sources */,
+				13FEDBD91F9998D400538177 /* ZDXStoreHomeViewController.m in Sources */,
+				1307A2DF1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m in Sources */,
+				13FEDBD31F99980300538177 /* ZDXStoreRecylingInNewViewController.m in Sources */,
+				1307A2C51FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.m in Sources */,
+				131FC1121FA0707900476D63 /* ZDXStoreShopCarHearView.m in Sources */,
+				13FEDBDF1F99C1AE00538177 /* ZDXStoreMainTopView.m in Sources */,
+				131FC0E41FA06FF200476D63 /* ZDXStoreTabBarViewController.m in Sources */,
+				131FC10C1FA0707900476D63 /* ZDXStoreBrandModel.m in Sources */,
+				131FC1351FA07F2700476D63 /* ZDXStoreCommodityShowCell.m in Sources */,
+				1307A2DB1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.m in Sources */,
+				13949BB21F9897D90027CA84 /* NSData+Extension.m in Sources */,
+				131FC0E71FA0700A00476D63 /* ZDXStoreTabBar.m in Sources */,
+				13949BB81F9897ED0027CA84 /* UIColor+ColorChange.m in Sources */,
+				131FC0EA1FA0702A00476D63 /* ZDXStoreTabBarButton.m in Sources */,
+				13FEDBD61F99980E00538177 /* ZDXStoreMeViewController.m in Sources */,
+				131FC10D1FA0707900476D63 /* ZDXStoreProductModel.m in Sources */,
+				13949BA21F988AE10027CA84 /* AppDelegate.m in Sources */,
+				131FC11C1FA0718300476D63 /* ZDXStoreBrandChooseCell.m in Sources */,
+				131FC12F1FA072BC00476D63 /* ZDXStoreChooseBrandView.m in Sources */,
+				13FEDBE21F99C8D100538177 /* ZDXStoreChoosePlaceBtn.m in Sources */,
+				13949BB71F9897ED0027CA84 /* UIView+Frame.m in Sources */,
+				13949BB01F9897D90027CA84 /* NSDate+Extension.m in Sources */,
+				131FC1381FA07F4800476D63 /* ZDXStoreCollectionViewCell.m in Sources */,
+				13949BA31F988AE10027CA84 /* main.m in Sources */,
+				1307A2C71FAD4ABB0019D8F5 /* ZDXStoreFiltratePushView.m in Sources */,
+				13D53F621FA86F520080B563 /* ZDXStoreCommdityCommentCell.m in Sources */,
+				1307A2BB1FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.m in Sources */,
+				1307A2D81FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.m in Sources */,
+				13949BA61F9895480027CA84 /* ZDXStoreNavigationViewController.m in Sources */,
+				131FC0F11FA0704F00476D63 /* ZDXStoreShareViewController.m in Sources */,
+				131FC10E1FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.m in Sources */,
+				131FC1181FA070EF00476D63 /* ZDXStoreCommodityClassifyCell.m in Sources */,
+				131FC1101FA0707900476D63 /* ZDXStoreShopCarCell.m in Sources */,
+				1307A2C91FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.m in Sources */,
+				13949BBB1F9897FC0027CA84 /* UIImage+ZDXImage.m in Sources */,
+				1307A2CC1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.m in Sources */,
+				131FC10F1FA0707900476D63 /* ZDXStoreShopCarBottomView.m in Sources */,
+				131FC1111FA0707900476D63 /* ZDXStoreShopCarCountView.m in Sources */,
+				13FEDBE51F99D63100538177 /* ZDXStoreTableViewHeaderView.m in Sources */,
+				131FC1151FA070E300476D63 /* ZDXStoreClassifyView.m in Sources */,
+				1315AABE1FA99D5F00360F83 /* ZDXStoreFooterView.m in Sources */,
+				131FC10A1FA0707900476D63 /* ZDXStoreShoppingCarViewController.m in Sources */,
+				1315AACB1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m in Sources */,
+				131FC10B1FA0707900476D63 /* ZDXStoreShopCarFormat.m in Sources */,
+				1307A2C81FAD4ABB0019D8F5 /* ZDXStoreFiltrateTableViewHeaderView.m in Sources */,
+				1307A2CF1FAD4B200019D8F5 /* ZDXStoreClassifyViewController.m in Sources */,
+				1307A2D91FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.m in Sources */,
+				13949BB11F9897D90027CA84 /* NSString+Extension.m in Sources */,
+				13D53F5E1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		13949B8F1F9883C50027CA84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		13949B901F9883C50027CA84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		13949B921F9883C50027CA84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1CC3692F0CAD76520FE936A /* Pods-GeLiStore.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = NWTRGVJ32U;
+				INFOPLIST_FILE = GeLiStore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wuliuhangjia.ZDXStore.GeLiStore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		13949B931F9883C50027CA84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28CB8413E97D93807CABF612 /* Pods-GeLiStore.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = NWTRGVJ32U;
+				INFOPLIST_FILE = GeLiStore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wuliuhangjia.ZDXStore.GeLiStore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		13949B751F9883C50027CA84 /* Build configuration list for PBXProject "GeLiStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13949B8F1F9883C50027CA84 /* Debug */,
+				13949B901F9883C50027CA84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13949B911F9883C50027CA84 /* Build configuration list for PBXNativeTarget "GeLiStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13949B921F9883C50027CA84 /* Debug */,
+				13949B931F9883C50027CA84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 13949B721F9883C50027CA84 /* Project object */;
+}
