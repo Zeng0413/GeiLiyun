@@ -45,6 +45,21 @@
 		131FC1321FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1311FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m */; };
 		131FC1351FA07F2700476D63 /* ZDXStoreCommodityShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1341FA07F2700476D63 /* ZDXStoreCommodityShowCell.m */; };
 		131FC1381FA07F4800476D63 /* ZDXStoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1371FA07F4800476D63 /* ZDXStoreCollectionViewCell.m */; };
+		13236C7A1FB000B600619C6B /* ZDXStoreMeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C791FB000B600619C6B /* ZDXStoreMeHeaderView.m */; };
+		13236C7E1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C7C1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.m */; };
+		13236C7F1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13236C7D1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.xib */; };
+		13236C831FB047C200619C6B /* ZDXStoreMeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C811FB047C200619C6B /* ZDXStoreMeInfoViewController.m */; };
+		13236C841FB047C200619C6B /* ZDXStoreMeInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13236C821FB047C200619C6B /* ZDXStoreMeInfoViewController.xib */; };
+		13236C871FB04FEF00619C6B /* ZDXStoreSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C861FB04FEF00619C6B /* ZDXStoreSettingViewController.m */; };
+		13236C8B1FB051DA00619C6B /* ZDXStoreSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C891FB051DA00619C6B /* ZDXStoreSettingCell.m */; };
+		13236C8C1FB051DA00619C6B /* ZDXStoreSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13236C8A1FB051DA00619C6B /* ZDXStoreSettingCell.xib */; };
+		135446481FADA57400974CE9 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1354463B1FADA57400974CE9 /* TAAbstractDotView.m */; };
+		135446491FADA57400974CE9 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1354463D1FADA57400974CE9 /* TAAnimatedDotView.m */; };
+		1354464A1FADA57400974CE9 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1354463F1FADA57400974CE9 /* TADotView.m */; };
+		1354464B1FADA57400974CE9 /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 135446411FADA57400974CE9 /* TAPageControl.m */; };
+		1354464C1FADA57400974CE9 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 135446431FADA57400974CE9 /* SDCollectionViewCell.m */; };
+		1354464D1FADA57400974CE9 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 135446451FADA57400974CE9 /* SDCycleScrollView.m */; };
+		1354464E1FADA57400974CE9 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 135446471FADA57400974CE9 /* UIView+SDExtension.m */; };
 		13949B8A1F9883C50027CA84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13949B891F9883C50027CA84 /* Assets.xcassets */; };
 		13949BA21F988AE10027CA84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949B9F1F988AE10027CA84 /* AppDelegate.m */; };
 		13949BA31F988AE10027CA84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BA01F988AE10027CA84 /* main.m */; };
@@ -141,6 +156,33 @@
 		131FC1341FA07F2700476D63 /* ZDXStoreCommodityShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommodityShowCell.m; sourceTree = "<group>"; };
 		131FC1361FA07F4800476D63 /* ZDXStoreCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCollectionViewCell.h; sourceTree = "<group>"; };
 		131FC1371FA07F4800476D63 /* ZDXStoreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCollectionViewCell.m; sourceTree = "<group>"; };
+		13236C781FB000B600619C6B /* ZDXStoreMeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZDXStoreMeHeaderView.h; path = "GeLiStore/Classes/filtrate(筛选)/Controller/ZDXStoreMeHeaderView.h"; sourceTree = SOURCE_ROOT; };
+		13236C791FB000B600619C6B /* ZDXStoreMeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZDXStoreMeHeaderView.m; path = "GeLiStore/Classes/filtrate(筛选)/Controller/ZDXStoreMeHeaderView.m"; sourceTree = SOURCE_ROOT; };
+		13236C7B1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZDXStoreMeOrderAndServiceCell.h; path = "GeLiStore/Classes/filtrate(筛选)/Controller/ZDXStoreMeOrderAndServiceCell.h"; sourceTree = SOURCE_ROOT; };
+		13236C7C1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZDXStoreMeOrderAndServiceCell.m; path = "GeLiStore/Classes/filtrate(筛选)/Controller/ZDXStoreMeOrderAndServiceCell.m"; sourceTree = SOURCE_ROOT; };
+		13236C7D1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZDXStoreMeOrderAndServiceCell.xib; path = "GeLiStore/Classes/filtrate(筛选)/Controller/ZDXStoreMeOrderAndServiceCell.xib"; sourceTree = SOURCE_ROOT; };
+		13236C801FB047C200619C6B /* ZDXStoreMeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreMeInfoViewController.h; sourceTree = "<group>"; };
+		13236C811FB047C200619C6B /* ZDXStoreMeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreMeInfoViewController.m; sourceTree = "<group>"; };
+		13236C821FB047C200619C6B /* ZDXStoreMeInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreMeInfoViewController.xib; sourceTree = "<group>"; };
+		13236C851FB04FEF00619C6B /* ZDXStoreSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreSettingViewController.h; sourceTree = "<group>"; };
+		13236C861FB04FEF00619C6B /* ZDXStoreSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreSettingViewController.m; sourceTree = "<group>"; };
+		13236C881FB051DA00619C6B /* ZDXStoreSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZDXStoreSettingCell.h; path = "GeLiStore/Classes/Me(我的)/Controller/ZDXStoreSettingCell.h"; sourceTree = SOURCE_ROOT; };
+		13236C891FB051DA00619C6B /* ZDXStoreSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZDXStoreSettingCell.m; path = "GeLiStore/Classes/Me(我的)/Controller/ZDXStoreSettingCell.m"; sourceTree = SOURCE_ROOT; };
+		13236C8A1FB051DA00619C6B /* ZDXStoreSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZDXStoreSettingCell.xib; path = "GeLiStore/Classes/Me(我的)/Controller/ZDXStoreSettingCell.xib"; sourceTree = SOURCE_ROOT; };
+		1354463A1FADA57400974CE9 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
+		1354463B1FADA57400974CE9 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
+		1354463C1FADA57400974CE9 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
+		1354463D1FADA57400974CE9 /* TAAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAnimatedDotView.m; sourceTree = "<group>"; };
+		1354463E1FADA57400974CE9 /* TADotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADotView.h; sourceTree = "<group>"; };
+		1354463F1FADA57400974CE9 /* TADotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADotView.m; sourceTree = "<group>"; };
+		135446401FADA57400974CE9 /* TAPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAPageControl.h; sourceTree = "<group>"; };
+		135446411FADA57400974CE9 /* TAPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAPageControl.m; sourceTree = "<group>"; };
+		135446421FADA57400974CE9 /* SDCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionViewCell.h; sourceTree = "<group>"; };
+		135446431FADA57400974CE9 /* SDCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewCell.m; sourceTree = "<group>"; };
+		135446441FADA57400974CE9 /* SDCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCycleScrollView.h; sourceTree = "<group>"; };
+		135446451FADA57400974CE9 /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
+		135446461FADA57400974CE9 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
+		135446471FADA57400974CE9 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
 		13949B7A1F9883C50027CA84 /* GeLiStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeLiStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13949B891F9883C50027CA84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13949B8E1F9883C50027CA84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -380,6 +422,43 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		135446371FADA57400974CE9 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				135446381FADA57400974CE9 /* SDCycleScrollView */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		135446381FADA57400974CE9 /* SDCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				135446391FADA57400974CE9 /* PageControl */,
+				135446421FADA57400974CE9 /* SDCollectionViewCell.h */,
+				135446431FADA57400974CE9 /* SDCollectionViewCell.m */,
+				135446441FADA57400974CE9 /* SDCycleScrollView.h */,
+				135446451FADA57400974CE9 /* SDCycleScrollView.m */,
+				135446461FADA57400974CE9 /* UIView+SDExtension.h */,
+				135446471FADA57400974CE9 /* UIView+SDExtension.m */,
+			);
+			path = SDCycleScrollView;
+			sourceTree = "<group>";
+		};
+		135446391FADA57400974CE9 /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				1354463A1FADA57400974CE9 /* TAAbstractDotView.h */,
+				1354463B1FADA57400974CE9 /* TAAbstractDotView.m */,
+				1354463C1FADA57400974CE9 /* TAAnimatedDotView.h */,
+				1354463D1FADA57400974CE9 /* TAAnimatedDotView.m */,
+				1354463E1FADA57400974CE9 /* TADotView.h */,
+				1354463F1FADA57400974CE9 /* TADotView.m */,
+				135446401FADA57400974CE9 /* TAPageControl.h */,
+				135446411FADA57400974CE9 /* TAPageControl.m */,
+			);
+			path = PageControl;
+			sourceTree = "<group>";
+		};
 		13949B711F9883C50027CA84 = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +569,7 @@
 		13949B991F988AE10027CA84 /* Main(主要) */ = {
 			isa = PBXGroup;
 			children = (
+				135446371FADA57400974CE9 /* Lib */,
 				13949B9A1F988AE10027CA84 /* Category */,
 				13949B9B1F988AE10027CA84 /* Controller */,
 				13949B9C1F988AE10027CA84 /* Model */,
@@ -617,6 +697,11 @@
 			children = (
 				13FEDBD41F99980E00538177 /* ZDXStoreMeViewController.h */,
 				13FEDBD51F99980E00538177 /* ZDXStoreMeViewController.m */,
+				13236C801FB047C200619C6B /* ZDXStoreMeInfoViewController.h */,
+				13236C811FB047C200619C6B /* ZDXStoreMeInfoViewController.m */,
+				13236C821FB047C200619C6B /* ZDXStoreMeInfoViewController.xib */,
+				13236C851FB04FEF00619C6B /* ZDXStoreSettingViewController.h */,
+				13236C861FB04FEF00619C6B /* ZDXStoreSettingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -631,6 +716,14 @@
 		13FEDBBC1F99878F00538177 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				13236C781FB000B600619C6B /* ZDXStoreMeHeaderView.h */,
+				13236C791FB000B600619C6B /* ZDXStoreMeHeaderView.m */,
+				13236C7B1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.h */,
+				13236C7C1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.m */,
+				13236C7D1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.xib */,
+				13236C881FB051DA00619C6B /* ZDXStoreSettingCell.h */,
+				13236C891FB051DA00619C6B /* ZDXStoreSettingCell.m */,
+				13236C8A1FB051DA00619C6B /* ZDXStoreSettingCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -753,6 +846,9 @@
 				131FC11D1FA0718300476D63 /* ZDXStoreBrandChooseCell.xib in Resources */,
 				13D53F631FA86F520080B563 /* ZDXStoreCommdityCommentCell.xib in Resources */,
 				1307A2DA1FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.xib in Resources */,
+				13236C8C1FB051DA00619C6B /* ZDXStoreSettingCell.xib in Resources */,
+				13236C7F1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.xib in Resources */,
+				13236C841FB047C200619C6B /* ZDXStoreMeInfoViewController.xib in Resources */,
 				13949B8A1F9883C50027CA84 /* Assets.xcassets in Resources */,
 				1307A2DC1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib in Resources */,
 			);
@@ -822,7 +918,9 @@
 				1307A2DF1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m in Sources */,
 				13FEDBD31F99980300538177 /* ZDXStoreRecylingInNewViewController.m in Sources */,
 				1307A2C51FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.m in Sources */,
+				13236C8B1FB051DA00619C6B /* ZDXStoreSettingCell.m in Sources */,
 				131FC1121FA0707900476D63 /* ZDXStoreShopCarHearView.m in Sources */,
+				1354464D1FADA57400974CE9 /* SDCycleScrollView.m in Sources */,
 				13FEDBDF1F99C1AE00538177 /* ZDXStoreMainTopView.m in Sources */,
 				131FC0E41FA06FF200476D63 /* ZDXStoreTabBarViewController.m in Sources */,
 				131FC10C1FA0707900476D63 /* ZDXStoreBrandModel.m in Sources */,
@@ -833,10 +931,16 @@
 				13949BB81F9897ED0027CA84 /* UIColor+ColorChange.m in Sources */,
 				131FC0EA1FA0702A00476D63 /* ZDXStoreTabBarButton.m in Sources */,
 				13FEDBD61F99980E00538177 /* ZDXStoreMeViewController.m in Sources */,
+				1354464B1FADA57400974CE9 /* TAPageControl.m in Sources */,
 				131FC10D1FA0707900476D63 /* ZDXStoreProductModel.m in Sources */,
+				13236C7A1FB000B600619C6B /* ZDXStoreMeHeaderView.m in Sources */,
 				13949BA21F988AE10027CA84 /* AppDelegate.m in Sources */,
+				1354464E1FADA57400974CE9 /* UIView+SDExtension.m in Sources */,
+				13236C7E1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.m in Sources */,
+				1354464A1FADA57400974CE9 /* TADotView.m in Sources */,
 				131FC11C1FA0718300476D63 /* ZDXStoreBrandChooseCell.m in Sources */,
 				131FC12F1FA072BC00476D63 /* ZDXStoreChooseBrandView.m in Sources */,
+				1354464C1FADA57400974CE9 /* SDCollectionViewCell.m in Sources */,
 				13FEDBE21F99C8D100538177 /* ZDXStoreChoosePlaceBtn.m in Sources */,
 				13949BB71F9897ED0027CA84 /* UIView+Frame.m in Sources */,
 				13949BB01F9897D90027CA84 /* NSDate+Extension.m in Sources */,
@@ -849,19 +953,23 @@
 				13949BA61F9895480027CA84 /* ZDXStoreNavigationViewController.m in Sources */,
 				131FC0F11FA0704F00476D63 /* ZDXStoreShareViewController.m in Sources */,
 				131FC10E1FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.m in Sources */,
+				135446481FADA57400974CE9 /* TAAbstractDotView.m in Sources */,
 				131FC1181FA070EF00476D63 /* ZDXStoreCommodityClassifyCell.m in Sources */,
 				131FC1101FA0707900476D63 /* ZDXStoreShopCarCell.m in Sources */,
+				13236C831FB047C200619C6B /* ZDXStoreMeInfoViewController.m in Sources */,
 				1307A2C91FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.m in Sources */,
 				13949BBB1F9897FC0027CA84 /* UIImage+ZDXImage.m in Sources */,
 				1307A2CC1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.m in Sources */,
 				131FC10F1FA0707900476D63 /* ZDXStoreShopCarBottomView.m in Sources */,
 				131FC1111FA0707900476D63 /* ZDXStoreShopCarCountView.m in Sources */,
+				135446491FADA57400974CE9 /* TAAnimatedDotView.m in Sources */,
 				13FEDBE51F99D63100538177 /* ZDXStoreTableViewHeaderView.m in Sources */,
 				131FC1151FA070E300476D63 /* ZDXStoreClassifyView.m in Sources */,
 				1315AABE1FA99D5F00360F83 /* ZDXStoreFooterView.m in Sources */,
 				131FC10A1FA0707900476D63 /* ZDXStoreShoppingCarViewController.m in Sources */,
 				1315AACB1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m in Sources */,
 				131FC10B1FA0707900476D63 /* ZDXStoreShopCarFormat.m in Sources */,
+				13236C871FB04FEF00619C6B /* ZDXStoreSettingViewController.m in Sources */,
 				1307A2C81FAD4ABB0019D8F5 /* ZDXStoreFiltrateTableViewHeaderView.m in Sources */,
 				1307A2CF1FAD4B200019D8F5 /* ZDXStoreClassifyViewController.m in Sources */,
 				1307A2D91FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.m in Sources */,

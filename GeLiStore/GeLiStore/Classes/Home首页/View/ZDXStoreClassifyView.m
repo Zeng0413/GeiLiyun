@@ -9,7 +9,6 @@
 #import "ZDXStoreClassifyView.h"
 #import "ZDXComnous.h"
 @interface ZDXStoreClassifyView ()
-
 @property (weak, nonatomic) UIImageView *imageView;
 
 @end
@@ -26,17 +25,18 @@
     self.imageView.image = [UIImage imageNamed:imageStr];
 }
 
+-(void)setTitleStr:(NSString *)titleStr{
+    _titleStr = titleStr;
+    self.label.text = titleStr;
+}
+
 -(void)setupUI{
     
     UIImageView *imageView = [[UIImageView alloc]init];
-    imageView.image = [UIImage imageNamed:self.imageStr];
     [self addSubview:imageView];
     self.imageView = imageView;
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.text = _titleStr;
-    
-    titleLabel.textColor = [UIColor colorWithHexString:@"#444444"];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:titleLabel];
     self.label = titleLabel;

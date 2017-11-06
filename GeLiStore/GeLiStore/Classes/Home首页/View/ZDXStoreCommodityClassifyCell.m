@@ -35,13 +35,14 @@
     NSInteger maxCols = 4;
     for (int i = 0; i<arr.count; i++) {
         ZDXStoreClassifyView *view = [ZDXStoreClassifyView initWithClassifyView];
+        [view setupUI];
         view.imageStr = arr[i];
         view.titleStr = arr[i];
         view.imageToView = 12.0;
         view.imageWH = 49;
         view.labelToImage = 6;
         view.labelH = 12;
-        [view setupUI];
+        
         
         CGFloat width = SCREEN_WIDTH / maxCols;
         CGFloat heigth = 79;

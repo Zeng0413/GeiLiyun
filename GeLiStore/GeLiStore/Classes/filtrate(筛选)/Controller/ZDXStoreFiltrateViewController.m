@@ -90,6 +90,9 @@ static NSString *filtrateCellID = @"filtrateCell";
     return item;
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
 #pragma mark - filtrateView delegate
 -(void)selectedFiltrateType:(NSString *)type{
     if ([type isEqualToString:@"筛选"]) {

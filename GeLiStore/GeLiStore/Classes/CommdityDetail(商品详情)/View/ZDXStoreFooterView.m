@@ -60,6 +60,7 @@
     
     for (int i = 0; i<arr.count; i++) {
         ZDXStoreClassifyView *view = [ZDXStoreClassifyView initWithClassifyView];
+        [view setupUI];
         view.label.textColor = colorWithString(@"#8a8a8a");
         
         if (i == arr.count - 1) {
@@ -73,7 +74,7 @@
         view.imageWH = 20;
         view.labelToImage = 6;
         view.labelH = 9;
-        [view setupUI];
+        
         
         CGFloat width = leftView.width / 3;
         CGFloat height = self.height;

@@ -32,6 +32,8 @@
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
 #import "UIBarButtonItem+Item.h"
+#import "SDCycleScrollView.h"
+
 
 #define colorWithString(s) [UIColor colorWithHexString:(s)]
 #endif /* ZDXComnous_h */
