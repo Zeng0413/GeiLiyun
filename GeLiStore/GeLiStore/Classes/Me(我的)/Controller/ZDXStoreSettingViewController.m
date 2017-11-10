@@ -21,6 +21,7 @@ static NSString *settingCellID = @"settingCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"设置";
     NSMutableDictionary *dict =[NSMutableDictionary dictionary];
     dict[@"image"] = @"地址图标";

@@ -20,17 +20,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"设置";
+
     self.lineView.backgroundColor = colorWithString(@"#f5f5f5");
     self.username.textColor = colorWithString(@"#8a8a8a");
     self.backView.backgroundColor = colorWithString(@"#f4f4f4");
+    
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (IBAction)clickHeader:(UIButton *)sender {
 }

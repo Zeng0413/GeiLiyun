@@ -9,7 +9,7 @@
 #ifndef ZDXComnous_h
 #define ZDXComnous_h
 
-#define hostUrl @"http://loc.geliyunshang.com/"
+#define hostUrl @"http://glys.wuliuhangjia.com/"
 
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
@@ -33,7 +33,8 @@
 #import "UIImageView+WebCache.h"
 #import "UIBarButtonItem+Item.h"
 #import "SDCycleScrollView.h"
-
+#import "MJRefresh.h"
+#import "MBProgressHUD+MJ.h"
 
 #define colorWithString(s) [UIColor colorWithHexString:(s)]
 #endif /* ZDXComnous_h */

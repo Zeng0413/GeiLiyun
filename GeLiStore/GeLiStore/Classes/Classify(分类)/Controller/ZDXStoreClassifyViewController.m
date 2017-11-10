@@ -13,6 +13,7 @@
 #import "ZDXStoreProductModel.h"
 #import "ZDXStoreCommdoityClassifyCollectionCell.h"
 #import "ZDXStoreFiltrateViewController.h"
+#import "ZDXStoreGoodsClassifyModel.h"
 
 static NSString *commdityClassifyBannerCellID = @"commdityClassifyBannerCell";
 static NSString *commodityClassifyCellID = @"commodityClassifyCell";
@@ -88,7 +89,7 @@ static NSString *commodityClassifyCellID = @"commodityClassifyCell";
     NSInteger selectIndex = 0;
     for (int i = 0; i < self.tableDataList.count; i++) {
         NSString *str = self.tableDataList[i];
-        if ([self.commdoityTypeStr isEqualToString:str]) {
+        if ([self.goodsClassifyModel.catName isEqualToString:str]) {
             selectIndex = i;
             break;
         }

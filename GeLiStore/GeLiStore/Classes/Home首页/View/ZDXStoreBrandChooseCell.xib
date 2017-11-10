@@ -40,7 +40,10 @@
                     <constraint firstItem="lca-gK-sM3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="pYb-2W-7Ua"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="47" y="140"/>
+            <connections>
+                <outlet property="bannerView" destination="lca-gK-sM3" id="WPg-hS-YuG"/>
+            </connections>
+            <point key="canvasLocation" x="-142" y="34"/>
         </tableViewCell>
     </objects>
     <resources>

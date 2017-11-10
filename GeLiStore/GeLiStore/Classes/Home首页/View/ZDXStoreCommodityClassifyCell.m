@@ -9,6 +9,12 @@
 #import "ZDXStoreCommodityClassifyCell.h"
 #import "ZDXStoreClassifyView.h"
 #import "ZDXComnous.h"
+#import "ZDXStoreGoodsClassifyModel.h"
+@interface ZDXStoreCommodityClassifyCell ()
+
+
+@end
+
 @implementation ZDXStoreCommodityClassifyCell
 
 +(instancetype)initWithCommodityClassifyTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -24,20 +30,25 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        [self setupUI];
     }
     
     return self;
 }
 
--(void)setupUI{
-    NSArray *arr = @[@"冰箱",@"空调",@"彩电",@"洗衣机",@"烟灶热",@"厨房小电",@"生活电器",@"智能生活"];
+-(void)setDataList:(NSArray *)dataList{
+    _dataList = dataList;
+    [self setupUI:dataList];
+}
+
+
+-(void)setupUI:(NSArray *)dataList{
     NSInteger maxCols = 4;
-    for (int i = 0; i<arr.count; i++) {
+    for (int i = 0; i<dataList.count; i++) {
+        ZDXStoreGoodsClassifyModel *goodsClassifyModel = dataList[i];
         ZDXStoreClassifyView *view = [ZDXStoreClassifyView initWithClassifyView];
         [view setupUI];
-        view.imageStr = arr[i];
-        view.titleStr = arr[i];
+        view.imageStr = goodsClassifyModel.catImg;
+        view.titleStr = goodsClassifyModel.catName;
         view.imageToView = 12.0;
         view.imageWH = 49;
         view.labelToImage = 6;
@@ -58,8 +69,7 @@
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(cols * width, row * heigth, width, heigth);
-        [btn setTitle:arr[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+        btn.tag = i;
         [btn addTarget:self action:@selector(selectedCommodity:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:btn];
         
@@ -69,8 +79,9 @@
 
 
 -(void)selectedCommodity:(UIButton *)button{
-    if ([self.delegate respondsToSelector:@selector(selectedCommodityClassifyString:)]) {
-        [self.delegate selectedCommodityClassifyString:button.titleLabel.text];
+    ZDXStoreGoodsClassifyModel *model = self.dataList[button.tag];
+    if ([self.delegate respondsToSelector:@selector(selectedCommodityClassifyModel:)]) {
+        [self.delegate selectedCommodityClassifyModel:model];
     }
 }
 @end

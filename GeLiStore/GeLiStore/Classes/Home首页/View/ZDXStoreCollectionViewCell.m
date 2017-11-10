@@ -9,6 +9,7 @@
 #import "ZDXStoreCollectionViewCell.h"
 #import "ZDXComnous.h"
 #import "ZDXStoreProductModel.h"
+#import "ZDXStoreGoodsModel.h"
 @interface ZDXStoreCollectionViewCell ()
 
 @property (strong, nonatomic) UIImageView *commodityImage;
@@ -32,7 +33,7 @@
 }
 
 -(void)setupUI{
-    self.commodityImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 155)];
+    self.commodityImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.contentView.width, 155)];
     [self.contentView addSubview:self.commodityImage];
     
     self.titleLabel = [[UILabel alloc] init];
@@ -100,5 +101,23 @@
     self.titleLabel.attributedText = attri;
     
     self.priceLabel.text = [NSString stringWithFormat:@"¥%ld",productModel.productPrice];
+}
+
+-(void)setGoodsModel:(ZDXStoreGoodsModel *)goodsModel{
+    _goodsModel = goodsModel;
+    
+    [self.commodityImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,goodsModel.goodsImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
+    NSString *productName = [NSString stringWithFormat:@"  %@",goodsModel.goodsName];
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:productName];
+    CGFloat attchWH = self.titleLabel.font.lineHeight;
+    NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+    attch.image = [UIImage imageNamed:@"参与抵扣"];
+    attch.bounds = CGRectMake(0, -4, 45, attchWH - 2);
+    
+    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+    [attri insertAttributedString:string atIndex:0];
+    self.titleLabel.attributedText = attri;
+    
+    self.priceLabel.text = [NSString stringWithFormat:@"¥%@",goodsModel.shopPrice];
 }
 @end

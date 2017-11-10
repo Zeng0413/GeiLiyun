@@ -7,9 +7,9 @@
 //
 
 #import "ZDXStoreChooseBrandView.h"
-#import "UIColor+ColorChange.h"
 #import "ZDXStoreBrandCollectionViewCell.h"
-
+#import "ZDXStoreBrandModel.h"
+#import "ZDXComnous.h"
 @interface ZDXStoreChooseBrandView ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>{
     UICollectionView *_collectionView;
 
@@ -53,7 +53,13 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ZDXStoreBrandCollectionViewCell *item = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZDXStoreBrandCollectionViewCell" forIndexPath:indexPath];
-    item.brandImage.image = [UIImage imageNamed:self.dataList[indexPath.row]];
+    ZDXStoreBrandModel *brandModel = self.dataList[indexPath.row];
+    [item.brandImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,brandModel.brandImg]] placeholderImage:[UIImage imageNamed:@"品牌加载"]];
     return item;
+}
+
+-(void)setDataList:(NSArray *)dataList{
+    _dataList = dataList;
+    [_collectionView reloadData];
 }
 @end

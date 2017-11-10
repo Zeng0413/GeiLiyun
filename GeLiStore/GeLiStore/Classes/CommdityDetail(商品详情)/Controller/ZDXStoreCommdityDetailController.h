@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ZDXStoreProductModel;
+@class ZDXStoreGoodsModel;
 @interface ZDXStoreCommdityDetailController : UIViewController
 
-@property (strong, nonatomic) ZDXStoreProductModel *productModel;
+@property (strong, nonatomic) ZDXStoreGoodsModel *goodsModel;
 
 @end

@@ -22,7 +22,7 @@
 
 -(void)setImageStr:(NSString *)imageStr{
     _imageStr = imageStr;
-    self.imageView.image = [UIImage imageNamed:imageStr];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,imageStr]] placeholderImage:[UIImage imageNamed:@"商品分类"]];
 }
 
 -(void)setTitleStr:(NSString *)titleStr{

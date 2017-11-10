@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ZDXStoreProductModel;
+@class ZDXStoreGoodsModel;
 @protocol ZDXStoreCommodityShowCellDelegate <NSObject>
 
--(void)selectedClickProductModel:(ZDXStoreProductModel *)productModel;
+-(void)selectedClickGoodsModel:(ZDXStoreGoodsModel *)goodsModel;
 
 @end
 

@@ -17,7 +17,9 @@
 #import "ZDXComnous.h"
 #import "ZDXStoreClassifyViewController.h"
 #import "ZDXStoreCommdityDetailController.h"
-
+#import "ZDXStoreBrandModel.h"
+#import "ZDXStoreGoodsModel.h"
+#import "ZDXStoreGoodsClassifyModel.h"
 static NSString *brandChooseCell = @"brandChooseCell";
 
 @interface ZDXStoreHomeViewController ()<ZDXStoreMainTopViewDelegate,UITableViewDelegate,UITableViewDataSource, ZDXStoreCommodityClassifyCellDelegate, ZDXStoreCommodityShowCellDelegate>
@@ -35,16 +37,29 @@ static NSString *brandChooseCell = @"brandChooseCell";
 @property (strong, nonatomic) ZDXStoreBrandChooseCell *brandChooseCell;
 
 @property (strong, nonatomic) ZDXStoreCommodityShowCell *commodityShowCell;
-@property (strong, nonatomic) NSMutableArray *dataList;
+
+// 商品数据
+@property (strong, nonatomic) NSMutableArray *goodsDataList;
+
+// 分类数据
+@property (strong, nonatomic) NSArray *classifyDataList;
+
+
+/* 滚回顶部按钮 */
+@property (strong , nonatomic)UIButton *backTopButton;
+
+
+@property (nonatomic,assign) NSInteger page;
+
 @end
 
 @implementation ZDXStoreHomeViewController
 
 -(NSMutableArray *)dataList{
-    if (!_dataList) {
-        _dataList = [NSMutableArray array];
+    if (!_goodsDataList) {
+        _goodsDataList = [NSMutableArray array];
     }
-    return _dataList;
+    return _goodsDataList;
 }
 
 -(ZDXStoreMainTopView *)topView{
@@ -59,22 +74,106 @@ static NSString *brandChooseCell = @"brandChooseCell";
     [super viewDidLoad];
     self.view.backgroundColor = ZDXRandomColor;
     
-    NSArray *imageArr = @[@"item1",@"item2",@"item3",@"item4",@"item3",@"item1",@"item1",@"item2",@"item3",@"item4",@"item3",@"item1",@"item1",@"item2",@"item3",@"item4",@"item3",@"item1"];
-    for (int i = 0;i<imageArr.count;i++){
-        ZDXStoreProductModel *model = [[ZDXStoreProductModel alloc] init];
-        model.productName = @"大金大1匹变频空调客厅卧室用点幅293大金大1匹变频空调客厅卧室用点幅293大金大1匹变频空调客厅卧室用点幅293大金大1匹变频空调客厅卧室用点幅293";
-        model.productPrice = 3559.00;
-        model.productPicUri = imageArr[i];
-        [self.dataList addObject:model];
-    }
-    
-    
+    self.page = 1;
     // 导航栏设置
     [self setupNav];
     
     // tableview设置
     [self setupTableView];
 
+    // 回到顶部按钮
+    _backTopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:_backTopButton];
+    [_backTopButton addTarget:self action:@selector(ScrollToTop) forControlEvents:UIControlEventTouchUpInside];
+    [_backTopButton setImage:[UIImage imageNamed:@"btn_UpToTop"] forState:UIControlStateNormal];
+    _backTopButton.hidden = YES;
+    _backTopButton.frame = CGRectMake(SCREEN_WIDTH - 50, SCREEN_HEIGHT - 110, 40, 40);
+    
+    
+    
+    // 加载品牌数据
+    [self reloadBrandData];
+    
+    // 加载商品数据
+    [self reloadGoodsData];
+    
+    // 加载分类数据
+    [self reloadClassifyData];
+}
+
+-(void)reloadClassifyData{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:@"http://glys.wuliuhangjia.com/api/v1.Cat/homeFirstCat" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] integerValue] == 1) {
+            self.classifyDataList = [ZDXStoreGoodsClassifyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.tableView reloadData];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
+// 加载商品数据
+-(void)reloadGoodsData{
+    AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
+    NSDictionary *params = @{@"page" : [NSString stringWithFormat:@"%ld",_page]};
+    [manage POST:@"http://glys.wuliuhangjia.com/api/v1.Goods/homeGoods" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] integerValue] == 1) {
+            self.goodsDataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.tableView reloadData];
+        }else{
+            
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //    创建弹出框
+        UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:@"网络请求失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [warnningVC show];
+    }];
+}
+
+// 加载品牌数据
+-(void)reloadBrandData{
+    AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
+    [manage GET:@"http://glys.wuliuhangjia.com/api/v1.Brands/homeBrandRecommendation" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        if ([responseObject[@"code"] integerValue] == 1) { // 请求数据成功
+            NSArray *array = [ZDXStoreBrandModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            self.brandChooseCell.arr = array;
+            [self.tableView reloadData];
+        }else{
+            
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //    创建弹出框
+        UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:@"网络请求失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [warnningVC show];
+    }];
+}
+
+// 加载更多数据
+-(void)loadNewData{
+    self.page++;
+    AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
+    NSDictionary *dict = @{@"page" : [NSString stringWithFormat:@"%ld",self.page]};
+    [manage POST:@"http://glys.wuliuhangjia.com/api/v1.Goods/homeGoods" parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        [self.tableView.mj_footer endRefreshing];
+        if ([responseObject[@"code"] integerValue] == 1) { // 请求数据成功
+            NSArray *newDataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.goodsDataList addObjectsFromArray:newDataList];
+            [self.tableView reloadData];
+        }else{
+            [MBProgressHUD showSuccess:@"暂无更多订单"];
+        }
+        
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        //    创建弹出框
+        [self.tableView.mj_footer endRefreshing];
+
+        UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:@"网络请求失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [warnningVC show];
+    }];
 }
 
 // 导航栏设置
@@ -99,16 +198,19 @@ static NSString *brandChooseCell = @"brandChooseCell";
     [self setHeaderView:[ZDXStoreTableViewHeaderView headerView:CGRectMake(0, 0, SCREEN_WIDTH, 183)]];
     
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
-    [manage GET:@"http://loc.geliyunshang.com/api/v1.Ads/homeCarouselAds" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manage GET:@"http://glys.wuliuhangjia.com/api/v1.Ads/homeCarouselAds" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
         self.headerView.dataList = responseObject[@"data"]; 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+    MJRefreshFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    tableView.mj_footer = footer;
     
     [tableView setTableHeaderView:self.headerView];
     
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreBrandChooseCell" bundle:nil] forCellReuseIdentifier:brandChooseCell];
+    tableView.backgroundColor = colorWithString(@"#f4f4f4");
     [self.view addSubview:tableView];
     
     
@@ -132,26 +234,26 @@ static NSString *brandChooseCell = @"brandChooseCell";
     if (indexPath.row == 0) {
         ZDXStoreCommodityClassifyCell *cell = [ZDXStoreCommodityClassifyCell initWithCommodityClassifyTableView:tableView cellForRowAtIndexPath:indexPath];
         cell.delegate = self;
+        if (self.classifyDataList.count > 0) {
+            cell.dataList = self.classifyDataList;
+        }
         self.commodityClassifyCell = cell;
         return cell;
     }else if (indexPath.row == 1) {
         ZDXStoreBrandChooseCell *cell = [tableView dequeueReusableCellWithIdentifier:brandChooseCell];
+        
         self.brandChooseCell = cell;
         return cell;
     }else{
         ZDXStoreCommodityShowCell *cell = [ZDXStoreCommodityShowCell initWithCommodityShowTableView:tableView cellForRowAtIndexPath:indexPath];
-        cell.dataList = self.dataList;
+        if (self.goodsDataList.count>0) {
+            cell.dataList = self.goodsDataList;
+        }
         cell.delegate = self;
         self.commodityShowCell = cell;
         return cell;
     }
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    if (!cell) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:indentifier];
-//    }
-//    cell.textLabel.font = [UIFont systemFontOfSize:9];
-//    cell.textLabel.text = @"zdx";
-//    return cell;
+
 }
 
 
@@ -168,17 +270,30 @@ static NSString *brandChooseCell = @"brandChooseCell";
 
 #pragma mark - cell delagate
 #pragma mark 商品分类选择
--(void)selectedCommodityClassifyString:(NSString *)string{
+-(void)selectedCommodityClassifyModel:(ZDXStoreGoodsClassifyModel *)model{
     ZDXStoreClassifyViewController *vc = [[ZDXStoreClassifyViewController alloc] init];
-    vc.commdoityTypeStr = string;
+    vc.goodsClassifyModel = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 商品选择
--(void)selectedClickProductModel:(ZDXStoreProductModel *)productModel{
+-(void)selectedClickGoodsModel:(ZDXStoreGoodsModel *)goodsModel{
     ZDXStoreCommdityDetailController *vc = [[ZDXStoreCommdityDetailController alloc] init];
-    vc.productModel = productModel;
+    vc.goodsModel = goodsModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+#pragma mark - <UIScrollViewDelegate>
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //判断回到顶部按钮是否隐藏
+    _backTopButton.hidden = (scrollView.contentOffset.y > SCREEN_WIDTH) ? NO : YES;
+}
+
+#pragma mark - collectionView滚回顶部
+- (void)ScrollToTop
+{
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+}
 @end

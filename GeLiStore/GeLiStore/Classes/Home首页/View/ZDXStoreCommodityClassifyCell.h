@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ZDXStoreGoodsClassifyModel;
 @protocol ZDXStoreCommodityClassifyCellDelegate <NSObject>
 
--(void)selectedCommodityClassifyString:(NSString *)string;
+-(void)selectedCommodityClassifyModel:(ZDXStoreGoodsClassifyModel *)model;
 
 @end
 
@@ -19,6 +19,8 @@
 +(instancetype)initWithCommodityClassifyTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @property (assign, nonatomic) CGFloat cellH;
+
+@property (strong, nonatomic) NSArray *dataList;
 
 @property (weak, nonatomic) id<ZDXStoreCommodityClassifyCellDelegate> delegate;
 

@@ -39,8 +39,9 @@
     layout.minimumInteritemSpacing = 10; //最小item间距（默认为10）
     layout.minimumLineSpacing = 10; // 最小行间距（默认10）
     layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+//    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 20, 1000) collectionViewLayout:layout];
+    collectionView.scrollEnabled = NO; 
     NSLog(@"%.f",self.contentView.height);
     collectionView.delegate = self;
     collectionView.dataSource = self;
@@ -57,20 +58,20 @@
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((collectionView.width - 10) / 2, 276);
+    return CGSizeMake((collectionView.width - 10) / 2, 276 + 10);
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ZDXStoreCollectionViewCell *item = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZDXStoreCollectionViewCell" forIndexPath:indexPath];
-    item.productModel = self.dataList[indexPath.row];
+    item.goodsModel = self.dataList[indexPath.row];
     self.cell = item;
     return item;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    ZDXStoreProductModel *model = self.dataList[indexPath.row];
-    if ([self.delegate respondsToSelector:@selector(selectedClickProductModel:)]) {
-        [self.delegate selectedClickProductModel:model];
+    ZDXStoreGoodsModel *model = self.dataList[indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(selectedClickGoodsModel:)]) {
+        [self.delegate selectedClickGoodsModel:model];
     }
     
 }
@@ -83,7 +84,7 @@
     }else{
         count = self.dataList.count / 2;
     }
-    _collectionView.height = count * 276 + (count - 1) * 10;
-    self.cellH = count * 276 + (count - 1) * 10;
+    _collectionView.height = count * 276 + (count - 1) * 10 + count * 10;
+    self.cellH = count * 276 + (count - 1) * 10 + count * 10;
 }
 @end

@@ -21,4 +21,5 @@
 
 @property (strong, nonatomic) NSArray *selectedArray;
 
+@property (copy, nonatomic) NSString *brandImg;
 @end

@@ -12,4 +12,6 @@
 
 @property (assign, nonatomic) NSInteger cellH;
 
+@property (strong, nonatomic) NSArray *arr;
+
 @end
