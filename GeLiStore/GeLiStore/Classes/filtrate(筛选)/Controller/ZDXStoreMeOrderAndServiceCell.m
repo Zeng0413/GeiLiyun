@@ -34,7 +34,7 @@
         ZDXStoreClassifyView *view = [ZDXStoreClassifyView initWithClassifyView];
         [view setupUI];
         view.label.textColor = colorWithString(@"#444444");
-        view.imageStr = self.dataList[i];
+        view.imageView.image = [UIImage imageNamed:self.dataList[i]];
         view.titleStr = self.dataList[i];
         view.imageToView = imageToView;
         view.imageWH = imageWH;

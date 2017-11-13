@@ -58,6 +58,7 @@
 		13236C871FB04FEF00619C6B /* ZDXStoreSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C861FB04FEF00619C6B /* ZDXStoreSettingViewController.m */; };
 		13236C8B1FB051DA00619C6B /* ZDXStoreSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C891FB051DA00619C6B /* ZDXStoreSettingCell.m */; };
 		13236C8C1FB051DA00619C6B /* ZDXStoreSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13236C8A1FB051DA00619C6B /* ZDXStoreSettingCell.xib */; };
+		132469D51FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 132469D41FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m */; };
 		135446481FADA57400974CE9 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1354463B1FADA57400974CE9 /* TAAbstractDotView.m */; };
 		135446491FADA57400974CE9 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1354463D1FADA57400974CE9 /* TAAnimatedDotView.m */; };
 		1354464A1FADA57400974CE9 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1354463F1FADA57400974CE9 /* TADotView.m */; };
@@ -183,6 +184,8 @@
 		13236C881FB051DA00619C6B /* ZDXStoreSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZDXStoreSettingCell.h; path = "GeLiStore/Classes/Me(我的)/Controller/ZDXStoreSettingCell.h"; sourceTree = SOURCE_ROOT; };
 		13236C891FB051DA00619C6B /* ZDXStoreSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZDXStoreSettingCell.m; path = "GeLiStore/Classes/Me(我的)/Controller/ZDXStoreSettingCell.m"; sourceTree = SOURCE_ROOT; };
 		13236C8A1FB051DA00619C6B /* ZDXStoreSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZDXStoreSettingCell.xib; path = "GeLiStore/Classes/Me(我的)/Controller/ZDXStoreSettingCell.xib"; sourceTree = SOURCE_ROOT; };
+		132469D31FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreGoodsClassifySubModel.h; sourceTree = "<group>"; };
+		132469D41FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreGoodsClassifySubModel.m; sourceTree = "<group>"; };
 		1354463A1FADA57400974CE9 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
 		1354463B1FADA57400974CE9 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
 		1354463C1FADA57400974CE9 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 		13065B911FA7113B009BC964 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				132469D31FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.h */,
+				132469D41FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -989,6 +994,7 @@
 				13D53F621FA86F520080B563 /* ZDXStoreCommdityCommentCell.m in Sources */,
 				1307A2BB1FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.m in Sources */,
 				1307A2D81FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.m in Sources */,
+				132469D51FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m in Sources */,
 				13949BA61F9895480027CA84 /* ZDXStoreNavigationViewController.m in Sources */,
 				131FC0F11FA0704F00476D63 /* ZDXStoreShareViewController.m in Sources */,
 				131FC10E1FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.m in Sources */,
@@ -1118,12 +1124,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NWTRGVJ32U;
 				INFOPLIST_FILE = GeLiStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuliuhangjia.ZDXStore.GeLiStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1134,12 +1142,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NWTRGVJ32U;
 				INFOPLIST_FILE = GeLiStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wuliuhangjia.ZDXStore.GeLiStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

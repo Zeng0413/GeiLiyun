@@ -64,10 +64,10 @@
         view.label.textColor = colorWithString(@"#8a8a8a");
         
         if (i == arr.count - 1) {
-            view.imageStr = @"收藏前";
+            view.imageView.image = [UIImage imageNamed:@"收藏前"];
             self.classifyView = view;
         }else{
-            view.imageStr = arr[i];
+            view.imageView.image = [UIImage imageNamed:arr[i]];
         }
         view.titleStr = arr[i];
         view.imageToView = 7.0;
@@ -98,7 +98,7 @@
     self.isSelected = !self.isSelected;
     if (button.tag == 3) {
         NSString *imageStr = self.isSelected ? @"收藏后" : @"收藏前";
-        self.classifyView.imageStr = imageStr;
+        self.classifyView.imageView.image = [UIImage imageNamed:imageStr];
     }
 }
 @end

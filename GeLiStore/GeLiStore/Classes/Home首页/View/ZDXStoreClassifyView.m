@@ -9,7 +9,6 @@
 #import "ZDXStoreClassifyView.h"
 #import "ZDXComnous.h"
 @interface ZDXStoreClassifyView ()
-@property (weak, nonatomic) UIImageView *imageView;
 
 @end
 

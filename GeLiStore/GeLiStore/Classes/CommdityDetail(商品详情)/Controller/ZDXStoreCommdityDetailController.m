@@ -48,6 +48,13 @@ static NSString *commdityCommentCellID = @"commdityCommentCell";
     tableView.showsVerticalScrollIndicator = NO;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self setHeaderView:[ZDXStoreTableViewHeaderView headerView:CGRectMake(0, 0, SCREEN_WIDTH, 260)]];
+    AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
+    [manage GET:@"http://glys.wuliuhangjia.com/api/v1.Ads/homeCarouselAds" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        self.headerView.dataList = responseObject[@"data"];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
     [tableView setTableHeaderView:self.headerView];
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreCommdityCommentCell" bundle:nil] forCellReuseIdentifier:commdityCommentCellID];
     [self.view addSubview:tableView];

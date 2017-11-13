@@ -16,6 +16,8 @@
 +(instancetype)initWithClassifyView;
 
 -(void)setupUI;
+
+@property (weak, nonatomic) UIImageView *imageView;
 @property (copy, nonatomic) NSString *imageStr;
 @property (copy, nonatomic) NSString *titleStr;
 

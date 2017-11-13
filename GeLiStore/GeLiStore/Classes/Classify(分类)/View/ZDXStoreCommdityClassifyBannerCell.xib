@@ -32,7 +32,10 @@
                 <constraint firstItem="Wix-xT-IxY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="7" id="gi9-45-kok"/>
             </constraints>
             <size key="customSize" width="340" height="108"/>
-            <point key="canvasLocation" x="-223" y="-8"/>
+            <connections>
+                <outlet property="bannerImageView" destination="Wix-xT-IxY" id="toL-qk-v9Y"/>
+            </connections>
+            <point key="canvasLocation" x="-323" y="-17"/>
         </collectionViewCell>
     </objects>
     <resources>

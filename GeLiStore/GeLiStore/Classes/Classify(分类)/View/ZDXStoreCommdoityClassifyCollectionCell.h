@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class ZDXStoreProductModel;
+@class ZDXStoreGoodsClassifySubModel;
 @interface ZDXStoreCommdoityClassifyCollectionCell : UICollectionViewCell
 
-@property (strong, nonatomic) ZDXStoreProductModel *model;
+@property (strong, nonatomic) ZDXStoreGoodsClassifySubModel *model;
 
 @end

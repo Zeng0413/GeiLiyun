@@ -7,7 +7,12 @@
 //
 
 #import "ZDXStoreGoodsClassifyModel.h"
-
+#import "ZDXStoreGoodsClassifySubModel.h"
+#import "ZDXComnous.h"
 @implementation ZDXStoreGoodsClassifyModel
 
+
++(NSDictionary *)mj_objectClassInArray{
+    return @{@"child":[ZDXStoreGoodsClassifySubModel class]};
+}
 @end

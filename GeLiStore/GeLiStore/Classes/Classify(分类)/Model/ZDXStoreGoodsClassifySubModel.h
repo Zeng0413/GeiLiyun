@@ -1,15 +1,14 @@
 //
-//  ZDXStoreGoodsClassifyModel.h
+//  ZDXStoreGoodsClassifySubModel.h
 //  GeLiStore
 //
-//  Created by user99 on 2017/11/10.
+//  Created by user99 on 2017/11/13.
 //  Copyright © 2017年 user99. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface ZDXStoreGoodsClassifyModel : NSObject
-
+@interface ZDXStoreGoodsClassifySubModel : NSObject
 @property (assign, nonatomic) NSInteger catId;
 @property (assign, nonatomic) NSInteger parentId;
 @property (assign, nonatomic) NSInteger isShow;
@@ -20,6 +19,4 @@
 @property (copy, nonatomic) NSString *createTime;
 @property (copy, nonatomic) NSString *catImg;
 @property (copy, nonatomic) NSString *commissionRate;
-
-@property (strong, nonatomic) NSArray *child;
 @end

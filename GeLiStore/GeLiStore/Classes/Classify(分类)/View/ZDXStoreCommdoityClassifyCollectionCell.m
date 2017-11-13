@@ -7,8 +7,8 @@
 //
 
 #import "ZDXStoreCommdoityClassifyCollectionCell.h"
-#import "UIColor+ColorChange.h"
-#import "ZDXStoreProductModel.h"
+#import "ZDXComnous.h"
+#import "ZDXStoreGoodsClassifySubModel.h"
 @interface ZDXStoreCommdoityClassifyCollectionCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *commdityImage;
 @property (weak, nonatomic) IBOutlet UILabel *commdityName;
@@ -23,9 +23,9 @@
     self.commdityName.textColor = [UIColor colorWithHexString:@"#444444"];
 }
 
--(void)setModel:(ZDXStoreProductModel *)model{
+-(void)setModel:(ZDXStoreGoodsClassifySubModel *)model{
     _model = model;
-    self.commdityImage.image = [UIImage imageNamed:model.productPicUri];
-    self.commdityName.text = model.productName;
+    [self.commdityImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,model.catImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
+    self.commdityName.text = model.catName;
 }
 @end

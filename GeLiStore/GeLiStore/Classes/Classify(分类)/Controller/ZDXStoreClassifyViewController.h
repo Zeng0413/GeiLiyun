@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ZDXStoreGoodsClassifyModel;
 @interface ZDXStoreClassifyViewController : UIViewController
 
-@property (strong, nonatomic) ZDXStoreGoodsClassifyModel *goodsClassifyModel;
+@property (strong, nonatomic) NSString *classifyStr;;
+
+@property (strong, nonatomic) NSArray *tableDataList;
+
 @end

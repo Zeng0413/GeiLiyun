@@ -10,4 +10,6 @@
 
 @interface ZDXStoreCommdityClassifyBannerCell : UICollectionViewCell
 
+@property (copy, nonatomic) NSString *bannerUrlStr;
+
 @end

@@ -101,6 +101,7 @@ static NSString *brandChooseCell = @"brandChooseCell";
     [self reloadClassifyData];
 }
 
+// 加载分类数据
 -(void)reloadClassifyData{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:@"http://glys.wuliuhangjia.com/api/v1.Cat/homeFirstCat" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -199,8 +200,7 @@ static NSString *brandChooseCell = @"brandChooseCell";
     
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
     [manage GET:@"http://glys.wuliuhangjia.com/api/v1.Ads/homeCarouselAds" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-        self.headerView.dataList = responseObject[@"data"]; 
+        self.headerView.dataList = responseObject[@"data"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
@@ -272,7 +272,8 @@ static NSString *brandChooseCell = @"brandChooseCell";
 #pragma mark 商品分类选择
 -(void)selectedCommodityClassifyModel:(ZDXStoreGoodsClassifyModel *)model{
     ZDXStoreClassifyViewController *vc = [[ZDXStoreClassifyViewController alloc] init];
-    vc.goodsClassifyModel = model;
+    vc.classifyStr = model.catName;
+    vc.tableDataList = self.classifyDataList;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

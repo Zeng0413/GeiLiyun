@@ -10,10 +10,10 @@
 #import "ZDXComnous.h"
 #import "ZDXStoreClassifyLeftCell.h"
 #import "ZDXStoreCommdityClassifyBannerCell.h"
-#import "ZDXStoreProductModel.h"
 #import "ZDXStoreCommdoityClassifyCollectionCell.h"
 #import "ZDXStoreFiltrateViewController.h"
 #import "ZDXStoreGoodsClassifyModel.h"
+#import "ZDXStoreGoodsClassifySubModel.h"
 
 static NSString *commdityClassifyBannerCellID = @"commdityClassifyBannerCell";
 static NSString *commodityClassifyCellID = @"commodityClassifyCell";
@@ -21,26 +21,18 @@ static NSString *commodityClassifyCellID = @"commodityClassifyCell";
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UICollectionView *collectionView;
-@property (strong, nonatomic) NSArray *tableDataList;
-@property (strong, nonatomic) NSMutableArray *collectionDataList;
+@property (strong, nonatomic) NSArray *collectionDataList;
 
+@property (strong, nonatomic) NSArray *dataList;
+
+@property (assign, nonatomic) NSInteger tableViewSelectedIndex;
+@property (copy, nonatomic) NSString *bannerUrlStr;
+
+@property (strong, nonatomic) ZDXStoreCommdityClassifyBannerCell *bannerCell;
 @end
 
 @implementation ZDXStoreClassifyViewController
 
-//-(NSMutableArray *)tableDataList{
-//    if (!_tableDataList) {
-//        _tableDataList = [NSMutableArray array];
-//    }
-//    return _tableDataList;
-//}
-
--(NSMutableArray *)collectionDataList{
-    if (!_collectionDataList) {
-        _collectionDataList = [NSMutableArray array];
-    }
-    return _collectionDataList;
-}
 
 -(UITableView *)tableView{
     if (!_tableView) {
@@ -84,28 +76,56 @@ static NSString *commodityClassifyCellID = @"commodityClassifyCell";
     self.title = @"分类";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.tableDataList = @[@"冰箱",@"空调",@"彩电",@"洗衣机",@"烟灶热",@"厨房小电",@"生活电器",@"智能生活"];
     
-    NSInteger selectIndex = 0;
     for (int i = 0; i < self.tableDataList.count; i++) {
-        NSString *str = self.tableDataList[i];
-        if ([self.goodsClassifyModel.catName isEqualToString:str]) {
-            selectIndex = i;
+        ZDXStoreGoodsClassifyModel *model = self.tableDataList[i];
+        if ([self.classifyStr isEqualToString:model.catName]) {
+            self.tableViewSelectedIndex = i;
+            ZDXStoreGoodsClassifyModel *model = self.tableDataList[self.tableViewSelectedIndex];
+            
+            // 加载banner数据
+            [self reloadBannerData:model.catId];
             break;
         }
     }
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     
+    // 加载分类信息
+    [self reloadClassifyData];
+    
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.tableViewSelectedIndex inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     [self addSubViews];
     
     
-    NSArray *arr = @[@"item1",@"item2",@"item3",@"item4",@"item1",@"item2",@"item3",@"item4",@"item1",@"item2",@"item3",@"item4"];
-    for (int i = 0; i < arr.count; i++) {
-        ZDXStoreProductModel *model = [[ZDXStoreProductModel alloc] init];
-        model.productName = @"壁挂式空调";
-        model.productPicUri = arr[i];
-        [self.collectionDataList addObject:model];
-    }
+}
+
+// 加载分类信息
+-(void)reloadClassifyData{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:@"http://glys.wuliuhangjia.com/api/v1.Cat/classifiedManagement" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        self.dataList = [ZDXStoreGoodsClassifyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        ZDXStoreGoodsClassifyModel *model = self.dataList[self.tableViewSelectedIndex];
+        self.collectionDataList = model.child;
+        [self.collectionView reloadData];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
+// 加载banner数据
+-(void)reloadBannerData:(NSInteger)catId{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSDictionary *param = @{@"catId" : [NSString stringWithFormat:@"%ld",catId]};
+    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Ads/catAds" parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] integerValue] == 1) {
+            NSDictionary *dic = responseObject[@"data"];
+            self.bannerUrlStr = dic[@"adFile"];
+            self.bannerCell.bannerUrlStr = self.bannerUrlStr;
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 
 -(void)addSubViews{
@@ -121,12 +141,17 @@ static NSString *commodityClassifyCellID = @"commodityClassifyCell";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZDXStoreClassifyLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier_Left forIndexPath:indexPath];
-    cell.name.text = self.tableDataList[indexPath.row];
+    ZDXStoreGoodsClassifyModel *model = self.tableDataList[indexPath.row];
+    cell.name.text = model.catName;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZDXStoreGoodsClassifyModel *model = self.tableDataList[indexPath.row];
+    [self reloadBannerData:model.catId];
     
+    self.tableViewSelectedIndex = indexPath.row;
+    [self reloadClassifyData];
 }
 
 #pragma mark - collection delegate
@@ -147,6 +172,8 @@ static NSString *commodityClassifyCellID = @"commodityClassifyCell";
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         ZDXStoreCommdityClassifyBannerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:commdityClassifyBannerCellID forIndexPath:indexPath];
+
+        self.bannerCell = cell;
         return cell;
     }
     if (indexPath.section == 1) {
@@ -171,8 +198,8 @@ static NSString *commodityClassifyCellID = @"commodityClassifyCell";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
         ZDXStoreFiltrateViewController *vc = [[ZDXStoreFiltrateViewController alloc] init];
+        ZDXStoreGoodsClassifySubModel *model = self.collectionDataList[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
-        NSLog(@"%@",self.collectionDataList[indexPath.row]);
     }
 }
 @end
