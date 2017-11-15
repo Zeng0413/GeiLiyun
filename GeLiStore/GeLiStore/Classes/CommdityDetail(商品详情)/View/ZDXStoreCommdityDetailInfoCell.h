@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class ZDXStoreGoodsModel;
 @interface ZDXStoreCommdityDetailInfoCell : UITableViewCell
 
 +(instancetype)initWithCommdityDetailWithTableView:(UITableView *)tableView  cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @property (assign, nonatomic) NSInteger cellH;
+
+@property (strong, nonatomic) ZDXStoreGoodsModel *goodsModel;
 @end

@@ -10,9 +10,21 @@
 
 @interface ZDXStoreGoodsModel : NSObject
 
-@property (assign, nonatomic) NSInteger goodsId;
-@property (copy, nonatomic) NSString *goodsName;
-@property (copy, nonatomic) NSString *goodsImg;
-@property (copy, nonatomic) NSString *shopPrice;
+@property (assign, nonatomic) NSInteger goodsId; // 商品id
+@property (copy, nonatomic) NSString *goodsName; // 商品名
+@property (copy, nonatomic) NSString *goodsImg;  // 商品图片
+@property (copy, nonatomic) NSString *shopPrice; // 购买价格
+@property (assign, nonatomic) NSInteger shopId;  // 购买id
+@property (copy, nonatomic) NSString *marketPrice; // 市场价格
+@property (assign, nonatomic) NSInteger goodsStock; // 商品库存
+@property (copy, nonatomic) NSString *goodsTips; // 商品小窍门
+@property (copy, nonatomic) NSString *goodsDesc; // 商品详情（html格式）
+@property (assign, nonatomic) NSInteger goodsStatus; // 商品状态
+@property (copy, nonatomic) NSString *saleTime;  // 销售时间
+@property (strong, nonatomic) NSArray *gallery;  // 商品轮播图 数组
+@property (copy, nonatomic) NSString *createTime; // 商品创建时间
+@property (assign, nonatomic) NSInteger appraiseNum; // 评价数
 
+// 出售方式:0-正常出售; 1-共享；2-以旧换新   sellingMethod=2时表示参与抵扣
+@property (copy, nonatomic) NSString *sellingMethod; // 出售方式
 @end

@@ -13,14 +13,19 @@
 #import "ZDXStoreCommdityDetailInfoCell.h"
 #import "ZDXStoreCommdityCommentCell.h"
 #import "ZDXStoreFooterView.h"
+#import "ZDXStoreGoodsModel.h"
+#import "ZDXStoreGoodsDescCell.h"
 static NSString *commdityCommentCellID = @"commdityCommentCell";
-
+static NSString *goodsDescCellID = @"goodsDescCell";
 @interface ZDXStoreCommdityDetailController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) ZDXStoreTableViewHeaderView *headerView;
 
 @property (strong, nonatomic)ZDXStoreCommdityDetailInfoCell *commdityInfoCell;
+
+@property (strong, nonatomic)ZDXStoreGoodsDescCell *goodsDescCell;
+
 @end
 
 @implementation ZDXStoreCommdityDetailController
@@ -31,13 +36,50 @@ static NSString *commdityCommentCellID = @"commdityCommentCell";
     self.title = @"商品页";
     self.view.backgroundColor = [UIColor whiteColor];
     
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeCellH) name:@"NSNotificationWebViewDidFinishLoad" object:nil];
+    
+    // 加载数据
+    [self reloadData];
+    
     // 设置导航栏
     [self setupNav];
     
     // 设置tableView
     [self setupTableView];
-    // Do any additional setup after loading the view.
+
 }
+
+
+
+// 加载数据
+-(void)reloadData{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSDictionary *params = @{@"goodsId" : [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId]};
+    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Goods/goodsDetails" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *data = responseObject[@"data"];
+        self.goodsModel = [ZDXStoreGoodsModel mj_objectWithKeyValues:data];
+        self.headerView.dataList = self.goodsModel.gallery;
+
+        NSString *htmlStr = data[@"goodsDesc"];
+        NSLog(@"%@",htmlStr);
+        NSData *data1 = [htmlStr dataUsingEncoding:NSUTF8StringEncoding];
+        
+        TFHpple *xpathParser = [[TFHpple alloc]initWithHTMLData:data1];
+        NSArray *elements  = [xpathParser searchWithXPathQuery:@"//img"];
+        NSLog(@"%@",elements);
+        for (TFHppleElement *hppleElement in elements) {
+//            NSArray *imageArr = [hppleElement searchWithXPathQuery:@"//img"];
+//            for (TFHppleElement *tempElement in imageArr) {
+            NSString *imgStr = [hppleElement objectForKey:@"src/"];
+            NSLog(@"%@",imgStr);
+//            }
+        }
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
 
 // 设置tableView
 -(void)setupTableView{
@@ -47,16 +89,11 @@ static NSString *commdityCommentCellID = @"commdityCommentCell";
     tableView.dataSource = self;
     tableView.showsVerticalScrollIndicator = NO;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self setHeaderView:[ZDXStoreTableViewHeaderView headerView:CGRectMake(0, 0, SCREEN_WIDTH, 260)]];
-    AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
-    [manage GET:@"http://glys.wuliuhangjia.com/api/v1.Ads/homeCarouselAds" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-        self.headerView.dataList = responseObject[@"data"];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
+    [self setHeaderView:[ZDXStoreTableViewHeaderView headerView:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2 - 80)]];
+
     [tableView setTableHeaderView:self.headerView];
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreCommdityCommentCell" bundle:nil] forCellReuseIdentifier:commdityCommentCellID];
+    [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreGoodsDescCell" bundle:nil] forCellReuseIdentifier:goodsDescCellID];
     [self.view addSubview:tableView];
     self.tableView = tableView;
     
@@ -85,6 +122,7 @@ static NSString *commdityCommentCellID = @"commdityCommentCell";
     
     if (indexPath.row == 0) {
         ZDXStoreCommdityDetailInfoCell *cell = [ZDXStoreCommdityDetailInfoCell initWithCommdityDetailWithTableView:tableView cellForRowAtIndexPath:indexPath];
+        cell.goodsModel = self.goodsModel;
         self.commdityInfoCell = cell;
         return cell;
     }
@@ -95,7 +133,9 @@ static NSString *commdityCommentCellID = @"commdityCommentCell";
     }
     
     if (indexPath.row == 2) {
-        ZDXStoreCommdityCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:commdityCommentCellID];
+        ZDXStoreGoodsDescCell *cell = [tableView dequeueReusableCellWithIdentifier:goodsDescCellID];
+        cell.htmlStr = self.goodsModel.goodsDesc;
+        self.goodsDescCell = cell;
         return cell;
     }
     
@@ -116,7 +156,7 @@ static NSString *commdityCommentCellID = @"commdityCommentCell";
     }else if (indexPath.row == 1){
         return 155;
     }else if (indexPath.row == 2){
-        return 155;
+        return 41;
     }
     return 0;
 }

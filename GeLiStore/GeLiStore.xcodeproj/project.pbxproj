@@ -22,6 +22,9 @@
 		1307A2DB1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2D61FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.m */; };
 		1307A2DC1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1307A2D71FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib */; };
 		1307A2DF1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1307A2DE1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m */; };
+		130A920E1FBBCFE2009BFE62 /* ZDXStoreTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 130A920D1FBBCFE2009BFE62 /* ZDXStoreTestViewController.m */; };
+		130A92121FBC1297009BFE62 /* ZDXStoreGoodsDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 130A92101FBC1297009BFE62 /* ZDXStoreGoodsDescCell.m */; };
+		130A92131FBC1297009BFE62 /* ZDXStoreGoodsDescCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 130A92111FBC1297009BFE62 /* ZDXStoreGoodsDescCell.xib */; };
 		1315AABE1FA99D5F00360F83 /* ZDXStoreFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315AABD1FA99D5F00360F83 /* ZDXStoreFooterView.m */; };
 		1315AACB1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315AACA1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m */; };
 		1315C87C1FB54385008C65A7 /* ZDXStoreGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1315C87B1FB54385008C65A7 /* ZDXStoreGoodsModel.m */; };
@@ -117,6 +120,11 @@
 		1307A2D71FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreCommdoityClassifyCollectionCell.xib; sourceTree = "<group>"; };
 		1307A2DD1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCommdityDetailController.h; sourceTree = "<group>"; };
 		1307A2DE1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommdityDetailController.m; sourceTree = "<group>"; };
+		130A920C1FBBCFE2009BFE62 /* ZDXStoreTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreTestViewController.h; sourceTree = "<group>"; };
+		130A920D1FBBCFE2009BFE62 /* ZDXStoreTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreTestViewController.m; sourceTree = "<group>"; };
+		130A920F1FBC1297009BFE62 /* ZDXStoreGoodsDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreGoodsDescCell.h; sourceTree = "<group>"; };
+		130A92101FBC1297009BFE62 /* ZDXStoreGoodsDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreGoodsDescCell.m; sourceTree = "<group>"; };
+		130A92111FBC1297009BFE62 /* ZDXStoreGoodsDescCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreGoodsDescCell.xib; sourceTree = "<group>"; };
 		1315AABC1FA99D5F00360F83 /* ZDXStoreFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFooterView.h; sourceTree = "<group>"; };
 		1315AABD1FA99D5F00360F83 /* ZDXStoreFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFooterView.m; sourceTree = "<group>"; };
 		1315AAC91FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreTitleLeftImageRight.h; sourceTree = "<group>"; };
@@ -693,6 +701,8 @@
 			children = (
 				1307A2DD1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.h */,
 				1307A2DE1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m */,
+				130A920C1FBBCFE2009BFE62 /* ZDXStoreTestViewController.h */,
+				130A920D1FBBCFE2009BFE62 /* ZDXStoreTestViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -714,6 +724,9 @@
 				13D53F611FA86F520080B563 /* ZDXStoreCommdityCommentCell.xib */,
 				1315AABC1FA99D5F00360F83 /* ZDXStoreFooterView.h */,
 				1315AABD1FA99D5F00360F83 /* ZDXStoreFooterView.m */,
+				130A920F1FBC1297009BFE62 /* ZDXStoreGoodsDescCell.h */,
+				130A92101FBC1297009BFE62 /* ZDXStoreGoodsDescCell.m */,
+				130A92111FBC1297009BFE62 /* ZDXStoreGoodsDescCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -877,6 +890,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				130A92131FBC1297009BFE62 /* ZDXStoreGoodsDescCell.xib in Resources */,
 				1307A2C61FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.xib in Resources */,
 				13FDBB6C1F9EE485005A68B8 /* shopcart.plist in Resources */,
 				131FC11D1FA0718300476D63 /* ZDXStoreBrandChooseCell.xib in Resources */,
@@ -992,6 +1006,7 @@
 				1307A2C71FAD4ABB0019D8F5 /* ZDXStoreFiltratePushView.m in Sources */,
 				1315C8851FB554EF008C65A7 /* MBProgressHUD.m in Sources */,
 				13D53F621FA86F520080B563 /* ZDXStoreCommdityCommentCell.m in Sources */,
+				130A92121FBC1297009BFE62 /* ZDXStoreGoodsDescCell.m in Sources */,
 				1307A2BB1FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.m in Sources */,
 				1307A2D81FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.m in Sources */,
 				132469D51FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m in Sources */,
@@ -1005,6 +1020,7 @@
 				1307A2C91FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.m in Sources */,
 				13949BBB1F9897FC0027CA84 /* UIImage+ZDXImage.m in Sources */,
 				1307A2CC1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.m in Sources */,
+				130A920E1FBBCFE2009BFE62 /* ZDXStoreTestViewController.m in Sources */,
 				131FC10F1FA0707900476D63 /* ZDXStoreShopCarBottomView.m in Sources */,
 				131FC1111FA0707900476D63 /* ZDXStoreShopCarCountView.m in Sources */,
 				135446491FADA57400974CE9 /* TAAnimatedDotView.m in Sources */,

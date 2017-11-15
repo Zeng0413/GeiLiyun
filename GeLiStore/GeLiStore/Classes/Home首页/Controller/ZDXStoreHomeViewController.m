@@ -22,6 +22,9 @@
 #import "ZDXStoreGoodsClassifyModel.h"
 static NSString *brandChooseCell = @"brandChooseCell";
 
+
+#import "ZDXStoreTestViewController.h"
+
 @interface ZDXStoreHomeViewController ()<ZDXStoreMainTopViewDelegate,UITableViewDelegate,UITableViewDataSource, ZDXStoreCommodityClassifyCellDelegate, ZDXStoreCommodityShowCellDelegate>
 
 // 导航控制器titleView
@@ -281,6 +284,8 @@ static NSString *brandChooseCell = @"brandChooseCell";
 -(void)selectedClickGoodsModel:(ZDXStoreGoodsModel *)goodsModel{
     ZDXStoreCommdityDetailController *vc = [[ZDXStoreCommdityDetailController alloc] init];
     vc.goodsModel = goodsModel;
+//    ZDXStoreTestViewController *vc = [[ZDXStoreTestViewController alloc] init];
+
     [self.navigationController pushViewController:vc animated:YES];
 }
 

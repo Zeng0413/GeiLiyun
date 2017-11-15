@@ -8,6 +8,7 @@
 
 #import "ZDXStoreCommdityDetailInfoCell.h"
 #import "ZDXComnous.h"
+#import "ZDXStoreGoodsModel.h"
 @interface ZDXStoreCommdityDetailInfoCell ()
 @property (weak, nonatomic) UILabel *commdityInfoLabel;
 @property (weak, nonatomic) UILabel *commdityPricelabel;
@@ -42,16 +43,6 @@
     commdityInfoLabel.numberOfLines = 0;
     commdityInfoLabel.font = [UIFont systemFontOfSize:15];
     commdityInfoLabel.textColor = [UIColor colorWithHexString:@"#262626"];
-    NSString *productName = [NSString stringWithFormat:@"  %@",@"某某牌NN-DS1000 变频蒸汽微波炉 烧烤烘培一体 一级能效 27升 米色"];
-    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:productName];
-    CGFloat attchWH = commdityInfoLabel.font.lineHeight;
-    NSTextAttachment *attch = [[NSTextAttachment alloc] init];
-    attch.image = [UIImage imageNamed:@"参与抵扣"];
-    attch.bounds = CGRectMake(0, -3, 45, attchWH - 3);
-    
-    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
-    [attri insertAttributedString:string atIndex:0];
-    commdityInfoLabel.attributedText = attri;
     [self.contentView addSubview:commdityInfoLabel];
     self.commdityInfoLabel = commdityInfoLabel;
     
@@ -59,8 +50,6 @@
     UILabel *commdityPricelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(commdityInfoLabel.frame) + 10, 100, 20)];
     commdityPricelabel.textColor = [UIColor colorWithHexString:@"#e93644"];
     commdityPricelabel.font = [UIFont systemFontOfSize:20];
-    
-    commdityPricelabel.text = @"¥3559.00";
     [self.contentView addSubview:commdityPricelabel];
     self.commdityPricelabel = commdityPricelabel;
     
@@ -92,6 +81,25 @@
     [self.contentView addSubview:view];
     
     self.cellH = CGRectGetMaxY(view.frame);
+}
+
+-(void)setGoodsModel:(ZDXStoreGoodsModel *)goodsModel{
+    _goodsModel = goodsModel;
+    // 商品名
+    NSString *productName = [NSString stringWithFormat:@"  %@",goodsModel.goodsName];
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:productName];
+    CGFloat attchWH = self.commdityInfoLabel.font.lineHeight;
+    NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+    attch.image = [UIImage imageNamed:@"参与抵扣"];
+    attch.bounds = CGRectMake(0, -3, 45, attchWH - 3);
+    
+    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+    [attri insertAttributedString:string atIndex:0];
+    self.commdityInfoLabel.attributedText = attri;
+    
+    // 商品价格
+    self.commdityPricelabel.text = [NSString stringWithFormat:@"¥%@",goodsModel.shopPrice];
+    
 }
 
 @end

@@ -47,8 +47,13 @@
 -(void)setDataList:(NSArray *)dataList{
     _dataList = dataList;
     NSMutableArray *arr = [NSMutableArray array];
-    for (NSDictionary *dic in dataList) {
-        NSString *imageStr = [NSString stringWithFormat:@"%@%@",hostUrl,dic[@"adFile"]];
+    for (id temp in dataList) {
+        NSString *imageStr;
+        if ([temp isKindOfClass:[NSDictionary class]]) {
+           imageStr = [NSString stringWithFormat:@"%@%@",hostUrl,temp[@"adFile"]];
+        }else{
+            imageStr = [NSString stringWithFormat:@"%@%@",hostUrl,temp];
+        }
         [arr addObject:imageStr];
     }
     _cycleScrollView.imageURLStringsGroup = arr;

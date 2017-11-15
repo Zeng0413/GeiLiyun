@@ -106,6 +106,7 @@
 -(void)setGoodsModel:(ZDXStoreGoodsModel *)goodsModel{
     _goodsModel = goodsModel;
     
+    NSLog(@"%@",goodsModel.goodsImg);
     [self.commodityImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,goodsModel.goodsImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
     NSString *productName = [NSString stringWithFormat:@"  %@",goodsModel.goodsName];
     NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:productName];

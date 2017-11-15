@@ -36,6 +36,16 @@
 #import "MJRefresh.h"
 #import "MBProgressHUD+MJ.h"
 
+
+#import "XPathQuery.h"
+
+#import "TFHpple.h"
+
+#import "TFHppleElement.h"
+
+
+
+
 #define colorWithString(s) [UIColor colorWithHexString:(s)]
 #endif /* ZDXComnous_h */
 
