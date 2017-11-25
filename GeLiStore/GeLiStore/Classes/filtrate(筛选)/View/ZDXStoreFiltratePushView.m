@@ -47,7 +47,7 @@
     if (section == 0) {
         return 1;
     }
-    return 10;
+    return 20;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -57,7 +57,7 @@
         return cell;
     }
     static NSString *inder = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:inder];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:inder];
     }

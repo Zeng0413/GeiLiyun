@@ -40,6 +40,7 @@
     [addShopCarBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     addShopCarBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     addShopCarBtn.backgroundColor = colorWithString(@"#ffa810");
+    [addShopCarBtn addTarget:self action:@selector(addShopcarClick) forControlEvents:UIControlEventTouchUpInside];
     [rightView addSubview:addShopCarBtn];
     
     UIButton *buyBtn = [[UIButton alloc] initWithFrame:CGRectMake(addShopCarBtn.width, 0, rightView.width / 2, self.height)];
@@ -47,6 +48,7 @@
     [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     buyBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     buyBtn.backgroundColor = colorWithString(@"#f95865");
+    [buyBtn addTarget:self action:@selector(buyGoodsClick) forControlEvents:UIControlEventTouchUpInside];
     [rightView addSubview:buyBtn];
     
     UIView *leftView = [[UIView alloc] init];
@@ -93,6 +95,19 @@
     
 }
 
+// 加入购物车
+-(void)addShopcarClick{
+    if ([self.delegate respondsToSelector:@selector(addShopcar)]) {
+        [self.delegate addShopcar];
+    }
+}
+
+// 立即购买
+-(void)buyGoodsClick{
+    if ([self.delegate respondsToSelector:@selector(buyGoods)]) {
+        [self.delegate buyGoods];
+    }
+}
 
 -(void)btnClick:(UIButton *)button{
     self.isSelected = !self.isSelected;

@@ -21,6 +21,12 @@
 // 随机色
 #define ZDXRandomColor ZDXColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 
+// 手机型号
+#define isPhone6 SCREEN_HEIGHT > 568 ? YES : NO
+
+
+#define colorWithString(s) [UIColor colorWithHexString:(s)]
+
 #import "AFNetWorking.h"
 #import "UIView+Frame.h"
 #import "UIColor+ColorChange.h"
@@ -46,7 +52,7 @@
 
 
 
-#define colorWithString(s) [UIColor colorWithHexString:(s)]
+
 #endif /* ZDXComnous_h */
 
 

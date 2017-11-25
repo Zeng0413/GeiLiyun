@@ -9,6 +9,7 @@
 #import "ZDXStoreNavigationViewController.h"
 #import "ZDXComnous.h"
 #import "ZDXStoreTabBarViewController.h"
+#import "GQGesVCTransition.h"
 @interface ZDXStoreNavigationViewController ()<UINavigationControllerDelegate>
 @property (nonatomic, strong) id popDelegate;
 
@@ -29,8 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
+    [GQGesVCTransition validateGesBackWithType:
+                GQGesVCTransitionTypePanWithPercentRight
+               withRequestFailToLoopScrollView:YES]; //手势返回
     //存储手势代理
-    _popDelegate = self.interactivePopGestureRecognizer.delegate;
+//    _popDelegate = self.interactivePopGestureRecognizer.delegate;
     
     self.delegate = self;
     
@@ -45,12 +50,12 @@
         //    设置导航条背景颜色
         self.navigationBar.tintColor = [UIColor whiteColor];
         self.navigationBar.barTintColor = [UIColor colorWithHexString:@"#e93644"];
-        self.interactivePopGestureRecognizer.delegate = nil;
+//        self.interactivePopGestureRecognizer.delegate = nil;
         [tabBarVc setTabBarHidden:NO];
     }else{
         self.navigationBar.tintColor = [UIColor blackColor];
-        self.navigationBar.barTintColor = [UIColor whiteColor];
-        self.interactivePopGestureRecognizer.delegate = _popDelegate;
+        self.navigationBar.barTintColor = colorWithString(@"#f4f4f4");
+//        self.interactivePopGestureRecognizer.delegate = _popDelegate;
         [tabBarVc setTabBarHidden:YES];
         
         //        不是根控制器的时候显示导航条
@@ -62,7 +67,7 @@
     if (self.childViewControllers.count) {
         UIBarButtonItem *left = [UIBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"返回箭头"] highImage:[UIImage imageNamed:@"返回箭头"] target:self action:@selector(popToPre) forControlEvents:UIControlEventTouchUpInside];
         
-        
+        self.interactivePopGestureRecognizer.delegate = nil;
         viewController.navigationItem.leftBarButtonItem = left;
     }
     [super pushViewController:viewController animated:animated];

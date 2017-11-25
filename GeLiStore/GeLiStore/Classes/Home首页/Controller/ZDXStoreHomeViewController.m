@@ -20,6 +20,8 @@
 #import "ZDXStoreBrandModel.h"
 #import "ZDXStoreGoodsModel.h"
 #import "ZDXStoreGoodsClassifyModel.h"
+#import "ZDXStoreSearchGoodsViewController.h"
+
 static NSString *brandChooseCell = @"brandChooseCell";
 
 
@@ -106,6 +108,7 @@ static NSString *brandChooseCell = @"brandChooseCell";
 
 // 加载分类数据
 -(void)reloadClassifyData{
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:@"http://glys.wuliuhangjia.com/api/v1.Cat/homeFirstCat" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 1) {
@@ -119,6 +122,7 @@ static NSString *brandChooseCell = @"brandChooseCell";
 
 // 加载商品数据
 -(void)reloadGoodsData{
+    
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
     NSDictionary *params = @{@"page" : [NSString stringWithFormat:@"%ld",_page]};
     [manage POST:@"http://glys.wuliuhangjia.com/api/v1.Goods/homeGoods" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -133,13 +137,13 @@ static NSString *brandChooseCell = @"brandChooseCell";
         UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:@"网络请求失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [warnningVC show];
     }];
+    
 }
 
 // 加载品牌数据
 -(void)reloadBrandData{
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
     [manage GET:@"http://glys.wuliuhangjia.com/api/v1.Brands/homeBrandRecommendation" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue] == 1) { // 请求数据成功
             NSArray *array = [ZDXStoreBrandModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
             self.brandChooseCell.arr = array;
@@ -160,7 +164,6 @@ static NSString *brandChooseCell = @"brandChooseCell";
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
     NSDictionary *dict = @{@"page" : [NSString stringWithFormat:@"%ld",self.page]};
     [manage POST:@"http://glys.wuliuhangjia.com/api/v1.Goods/homeGoods" parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
         [self.tableView.mj_footer endRefreshing];
         if ([responseObject[@"code"] integerValue] == 1) { // 请求数据成功
             NSArray *newDataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
@@ -190,8 +193,16 @@ static NSString *brandChooseCell = @"brandChooseCell";
 
 // 搜索按钮事件
 -(void)searchClick{
+    ZDXStoreSearchGoodsViewController *vc = [[ZDXStoreSearchGoodsViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
     NSLog(@"搜索");
 }
+
+#pragma mark - 选择城市
+-(void)chooseCity{
+    NSLog(@"选择城市");
+}
+
 // tableview设置
 -(void)setupTableView{
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -207,6 +218,7 @@ static NSString *brandChooseCell = @"brandChooseCell";
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+    
     MJRefreshFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     tableView.mj_footer = footer;
     
@@ -218,11 +230,6 @@ static NSString *brandChooseCell = @"brandChooseCell";
     
     
     self.tableView = tableView;
-    
-}
-#pragma mark - 选择城市
--(void)chooseCity{
-    NSLog(@"选择城市");
 }
 
 #pragma mark - tableView delegate

@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZDXStoreFooterViewDelegate <NSObject>
+
+-(void)addShopcar; //加入购物车
+-(void)buyGoods;   //立即购买
+
+@end
+
 @interface ZDXStoreFooterView : UIView
 
+@property(weak, nonatomic) id<ZDXStoreFooterViewDelegate> delegate;
 
 @end

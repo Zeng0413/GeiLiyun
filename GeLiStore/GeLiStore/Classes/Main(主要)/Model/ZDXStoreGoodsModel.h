@@ -24,7 +24,4 @@
 @property (strong, nonatomic) NSArray *gallery;  // 商品轮播图 数组
 @property (copy, nonatomic) NSString *createTime; // 商品创建时间
 @property (assign, nonatomic) NSInteger appraiseNum; // 评价数
-
-// 出售方式:0-正常出售; 1-共享；2-以旧换新   sellingMethod=2时表示参与抵扣
-@property (copy, nonatomic) NSString *sellingMethod; // 出售方式
 @end

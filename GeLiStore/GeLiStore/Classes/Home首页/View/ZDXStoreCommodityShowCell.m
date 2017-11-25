@@ -42,7 +42,6 @@
 //    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 20, 1000) collectionViewLayout:layout];
     collectionView.scrollEnabled = NO; 
-    NSLog(@"%.f",self.contentView.height);
     collectionView.delegate = self;
     collectionView.dataSource = self;
     collectionView.backgroundColor = [UIColor colorWithHexString:@"#f4f4f4"];

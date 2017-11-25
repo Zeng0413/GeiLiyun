@@ -12,6 +12,7 @@
 #import "ZDXStoreMeOrderAndServiceCell.h"
 #import "ZDXStoreMeInfoViewController.h"
 #import "ZDXStoreSettingViewController.h"
+#import "ZDXStoreLoginViewController.h"
 
 static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 @interface ZDXStoreMeViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreMeHeaderViewDelegate>
@@ -117,7 +118,8 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 #pragma mark - headerView delegate
 -(void)headerViewHeaderClick{
     
-    [self.navigationController pushViewController:[[ZDXStoreMeInfoViewController alloc] init] animated:YES];
+//    [self.navigationController pushViewController:[[ZDXStoreMeInfoViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[ZDXStoreLoginViewController alloc] init] animated:YES];
     
 }
 

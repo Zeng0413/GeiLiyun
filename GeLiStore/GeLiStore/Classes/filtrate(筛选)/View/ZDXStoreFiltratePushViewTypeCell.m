@@ -19,7 +19,8 @@
 
 +(instancetype)initWithTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *indentifier = @"cell";
-    ZDXStoreFiltratePushViewTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
+//    ZDXStoreFiltratePushViewTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
+    ZDXStoreFiltratePushViewTypeCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
         cell = [[ZDXStoreFiltratePushViewTypeCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:indentifier];
     }

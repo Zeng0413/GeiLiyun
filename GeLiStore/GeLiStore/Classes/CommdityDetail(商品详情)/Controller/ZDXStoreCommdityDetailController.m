@@ -15,9 +15,11 @@
 #import "ZDXStoreFooterView.h"
 #import "ZDXStoreGoodsModel.h"
 #import "ZDXStoreGoodsDescCell.h"
+#import "ZDXStoreWriteOrderViewController.h"
+
 static NSString *commdityCommentCellID = @"commdityCommentCell";
 static NSString *goodsDescCellID = @"goodsDescCell";
-@interface ZDXStoreCommdityDetailController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ZDXStoreCommdityDetailController ()<UITableViewDataSource, UITableViewDelegate, ZDXStoreFooterViewDelegate>
 
 @property (weak, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) ZDXStoreTableViewHeaderView *headerView;
@@ -35,8 +37,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     [super viewDidLoad];
     self.title = @"商品页";
     self.view.backgroundColor = [UIColor whiteColor];
-    
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeCellH) name:@"NSNotificationWebViewDidFinishLoad" object:nil];
+  
     
     // 加载数据
     [self reloadData];
@@ -46,9 +47,8 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     
     // 设置tableView
     [self setupTableView];
-
+    // Do any additional setup after loading the view.
 }
-
 
 
 // 加载数据
@@ -61,17 +61,17 @@ static NSString *goodsDescCellID = @"goodsDescCell";
         self.headerView.dataList = self.goodsModel.gallery;
 
         NSString *htmlStr = data[@"goodsDesc"];
-        NSLog(@"%@",htmlStr);
+//        NSLog(@"%@",htmlStr);
         NSData *data1 = [htmlStr dataUsingEncoding:NSUTF8StringEncoding];
         
         TFHpple *xpathParser = [[TFHpple alloc]initWithHTMLData:data1];
         NSArray *elements  = [xpathParser searchWithXPathQuery:@"//img"];
-        NSLog(@"%@",elements);
+//        NSLog(@"%@",elements);
         for (TFHppleElement *hppleElement in elements) {
 //            NSArray *imageArr = [hppleElement searchWithXPathQuery:@"//img"];
 //            for (TFHppleElement *tempElement in imageArr) {
             NSString *imgStr = [hppleElement objectForKey:@"src/"];
-            NSLog(@"%@",imgStr);
+//            NSLog(@"%@",imgStr);
 //            }
         }
         [self.tableView reloadData];
@@ -98,6 +98,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     self.tableView = tableView;
     
     ZDXStoreFooterView *footerView = [[ZDXStoreFooterView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 49, SCREEN_HEIGHT, 49)];
+    footerView.delegate = self;
     [self.view addSubview:footerView];
 }
 
@@ -161,12 +162,15 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     return 0;
 }
 
+#pragma mark - footerView delegate
+// 加入购物车
+-(void)addShopcar{
+    NSLog(@"加入购物车");
+}
 
-
-
-
-
-
-
-
+-(void)buyGoods{
+    ZDXStoreWriteOrderViewController *vc = [[ZDXStoreWriteOrderViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    NSLog(@"立即购买");
+}
 @end

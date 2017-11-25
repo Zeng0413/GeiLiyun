@@ -31,7 +31,7 @@
     self.bannerView.layer.cornerRadius = 20;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"#f4f4f4"];
-    ZDXStoreChooseBrandView *view = [[ZDXStoreChooseBrandView alloc] initWithFrame:CGRectMake(14, 142, SCREEN_WIDTH - 14, 37)];
+    ZDXStoreChooseBrandView *view = [[ZDXStoreChooseBrandView alloc] initWithFrame:CGRectMake(14, 142, SCREEN_WIDTH - 28, 37)];
     [self.contentView addSubview:view];
     self.chooseBrandView = view;
     
