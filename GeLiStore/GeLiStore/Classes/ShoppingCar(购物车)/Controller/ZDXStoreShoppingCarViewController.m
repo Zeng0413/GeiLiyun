@@ -144,6 +144,18 @@
     // Do any additional setup after loading the view.
 }
 -(void)realodData{
+    ZDXStoreUserModel *model = [ZDXStoreUserModelTool userModel];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSDictionary *dict = @{@"userId" : [NSString stringWithFormat:@"%ld",model.userId]};
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/getCartInfo",hostUrl];
+    [manager POST:urlStr parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+    
     [self.shopcartFormat requestShopCarProductList];
 }
 -(void)addSubview{

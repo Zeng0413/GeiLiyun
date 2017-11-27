@@ -90,8 +90,9 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *paramDict = @{@"userPhone" : self.phoneNumStr};
-    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Users/SendSMSAuthenticationCode" parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/SendSMSAuthenticationCode",hostUrl];
+    [manager POST:urlStr parameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 1) { // 验证码发送成功
             
         }else{
@@ -145,7 +146,8 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *params = @{@"userPhone" : self.phoneNumStr,@"mobileCode" : self.codeTextField.text};
     
-    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Users/VerifySMSAuthenticationCode" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/VerifySMSAuthenticationCode",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 1) {
             ZDXStoreSetupPwdViewController *vc = [[ZDXStoreSetupPwdViewController alloc] init];
             vc.phoneNumStr = self.phoneNumStr;

@@ -11,7 +11,6 @@
 
 #define hostUrl @"http://glys.wuliuhangjia.com/"
 
-
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -41,7 +40,7 @@
 #import "SDCycleScrollView.h"
 #import "MJRefresh.h"
 #import "MBProgressHUD+MJ.h"
-
+#import "ZDXStoreUserModelTool.h"
 
 #import "XPathQuery.h"
 

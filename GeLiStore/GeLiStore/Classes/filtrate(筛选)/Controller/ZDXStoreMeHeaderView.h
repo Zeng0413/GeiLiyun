@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class ZDXStoreUserModel;
 @protocol ZDXStoreMeHeaderViewDelegate <NSObject>
 
 -(void)headerViewHeaderClick;
@@ -20,4 +21,5 @@
 
 @property (weak, nonatomic) id<ZDXStoreMeHeaderViewDelegate> delegate;
 
+@property (strong, nonatomic) ZDXStoreUserModel *userModel;
 @end

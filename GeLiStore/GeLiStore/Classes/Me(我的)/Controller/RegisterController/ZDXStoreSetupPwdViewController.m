@@ -8,6 +8,7 @@
 
 #import "ZDXStoreSetupPwdViewController.h"
 #import "ZDXComnous.h"
+#import "ZDXStoreUserModel.h"
 @interface ZDXStoreSetupPwdViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *PWDTextField;
 @property (weak, nonatomic) IBOutlet UIButton *confireBtn;
@@ -52,12 +53,14 @@
     
     [MBProgressHUD showMessage:@"正在加载..."];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSDictionary *params = @{@"loginName" : self.phoneNumStr,@"loginPwd" : self.PWDTextField.text,@"reUserPwd" : self.PWDTextField.text};
+    NSDictionary *params = @{@"loginName" : self.phoneNumStr,@"loginPwd" : self.PWDTextField.text,@"reUserPwd" : self.PWDTextField.text,@"nameType" : @"3"};
     
-    NSLog(@"%@",params);
-    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Users/toRegist" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/toRegist",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 1) {
             [MBProgressHUD showSuccess:@"设置成功"];
+    
+            
             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
         }else{
             //    创建弹出框

@@ -84,6 +84,8 @@
 		13B405651FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B405631FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.xib */; };
 		13B405691FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B405671FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.m */; };
 		13B4056A1FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B405681FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.xib */; };
+		13C66BFF1FCBB171000356C0 /* ZDXStoreUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C66BFE1FCBB171000356C0 /* ZDXStoreUserModel.m */; };
+		13C66C021FCBB525000356C0 /* ZDXStoreUserModelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C66C011FCBB525000356C0 /* ZDXStoreUserModelTool.m */; };
 		13D1DA821FC66EF50026E036 /* ZDXStoreRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D1DA801FC66EF50026E036 /* ZDXStoreRegisterViewController.m */; };
 		13D1DA831FC66EF50026E036 /* ZDXStoreRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13D1DA811FC66EF50026E036 /* ZDXStoreRegisterViewController.xib */; };
 		13D1DA861FC679AE0026E036 /* ZDXStoreUnderLineBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D1DA851FC679AE0026E036 /* ZDXStoreUnderLineBtn.m */; };
@@ -253,6 +255,10 @@
 		13B405661FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderGoodsShowCell.h; sourceTree = "<group>"; };
 		13B405671FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderGoodsShowCell.m; sourceTree = "<group>"; };
 		13B405681FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreOrderGoodsShowCell.xib; sourceTree = "<group>"; };
+		13C66BFD1FCBB171000356C0 /* ZDXStoreUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreUserModel.h; sourceTree = "<group>"; };
+		13C66BFE1FCBB171000356C0 /* ZDXStoreUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreUserModel.m; sourceTree = "<group>"; };
+		13C66C001FCBB525000356C0 /* ZDXStoreUserModelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreUserModelTool.h; sourceTree = "<group>"; };
+		13C66C011FCBB525000356C0 /* ZDXStoreUserModelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreUserModelTool.m; sourceTree = "<group>"; };
 		13D1DA7F1FC66EF50026E036 /* ZDXStoreRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreRegisterViewController.h; sourceTree = "<group>"; };
 		13D1DA801FC66EF50026E036 /* ZDXStoreRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreRegisterViewController.m; sourceTree = "<group>"; };
 		13D1DA811FC66EF50026E036 /* ZDXStoreRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreRegisterViewController.xib; sourceTree = "<group>"; };
@@ -398,6 +404,10 @@
 			children = (
 				1315C87A1FB54385008C65A7 /* ZDXStoreGoodsModel.h */,
 				1315C87B1FB54385008C65A7 /* ZDXStoreGoodsModel.m */,
+				13C66BFD1FCBB171000356C0 /* ZDXStoreUserModel.h */,
+				13C66BFE1FCBB171000356C0 /* ZDXStoreUserModel.m */,
+				13C66C001FCBB525000356C0 /* ZDXStoreUserModelTool.h */,
+				13C66C011FCBB525000356C0 /* ZDXStoreUserModelTool.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1103,6 +1113,7 @@
 				13FEDBDF1F99C1AE00538177 /* ZDXStoreMainTopView.m in Sources */,
 				13F682301FBD34DF0078ED49 /* ZDXStoreLoginViewController.m in Sources */,
 				131FC0E41FA06FF200476D63 /* ZDXStoreTabBarViewController.m in Sources */,
+				13C66BFF1FCBB171000356C0 /* ZDXStoreUserModel.m in Sources */,
 				131FC10C1FA0707900476D63 /* ZDXStoreBrandModel.m in Sources */,
 				131FC1351FA07F2700476D63 /* ZDXStoreCommodityShowCell.m in Sources */,
 				1307A2DB1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.m in Sources */,
@@ -1156,6 +1167,7 @@
 				135446491FADA57400974CE9 /* TAAnimatedDotView.m in Sources */,
 				13FEDBE51F99D63100538177 /* ZDXStoreTableViewHeaderView.m in Sources */,
 				13B405691FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.m in Sources */,
+				13C66C021FCBB525000356C0 /* ZDXStoreUserModelTool.m in Sources */,
 				131FC1151FA070E300476D63 /* ZDXStoreClassifyView.m in Sources */,
 				1315AABE1FA99D5F00360F83 /* ZDXStoreFooterView.m in Sources */,
 				13D1DA821FC66EF50026E036 /* ZDXStoreRegisterViewController.m in Sources */,

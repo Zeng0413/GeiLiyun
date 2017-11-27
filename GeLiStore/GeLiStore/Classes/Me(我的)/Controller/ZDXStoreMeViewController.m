@@ -25,6 +25,9 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 
 @property (strong, nonatomic) ZDXStoreMeOrderAndServiceCell *meServiceCell;
 
+// 用户信息模型
+@property (strong, nonatomic) ZDXStoreUserModel *userModel;
+
 @end
 
 @implementation ZDXStoreMeViewController
@@ -37,7 +40,15 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.userModel = [ZDXStoreUserModelTool userModel];
+    self.headerView.userModel = self.userModel;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,9 +57,10 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
     
     // 设置tableView
     [self setupTableView];
-    // Do any additional setup after loading the view.
+
 }
 
+// 设置tableView
 -(void)setupTableView{
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     tableView.backgroundColor = colorWithString(@"#f4f4f4");
@@ -117,9 +129,13 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 
 #pragma mark - headerView delegate
 -(void)headerViewHeaderClick{
+    if (self.userModel) {
+        [self.navigationController pushViewController:[[ZDXStoreMeInfoViewController alloc] init] animated:YES];
+    }else{
+        [self.navigationController pushViewController:[[ZDXStoreLoginViewController alloc] init] animated:YES];
+    }
     
-//    [self.navigationController pushViewController:[[ZDXStoreMeInfoViewController alloc] init] animated:YES];
-    [self.navigationController pushViewController:[[ZDXStoreLoginViewController alloc] init] animated:YES];
+
     
 }
 

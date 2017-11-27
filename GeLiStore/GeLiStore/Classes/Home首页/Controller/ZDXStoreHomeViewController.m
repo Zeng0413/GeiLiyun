@@ -75,7 +75,7 @@ static NSString *brandChooseCell = @"brandChooseCell";
     return _topView;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad {    
     [super viewDidLoad];
     self.view.backgroundColor = ZDXRandomColor;
     
@@ -110,7 +110,9 @@ static NSString *brandChooseCell = @"brandChooseCell";
 -(void)reloadClassifyData{
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET:@"http://glys.wuliuhangjia.com/api/v1.Cat/homeFirstCat" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Cat/homeFirstCat",hostUrl];
+    [manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 1) {
             self.classifyDataList = [ZDXStoreGoodsClassifyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.tableView reloadData];
@@ -125,7 +127,9 @@ static NSString *brandChooseCell = @"brandChooseCell";
     
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
     NSDictionary *params = @{@"page" : [NSString stringWithFormat:@"%ld",_page]};
-    [manage POST:@"http://glys.wuliuhangjia.com/api/v1.Goods/homeGoods" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Goods/homeGoods",hostUrl];
+    [manage POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 1) {
             self.goodsDataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.tableView reloadData];
@@ -143,7 +147,9 @@ static NSString *brandChooseCell = @"brandChooseCell";
 // 加载品牌数据
 -(void)reloadBrandData{
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
-    [manage GET:@"http://glys.wuliuhangjia.com/api/v1.Brands/homeBrandRecommendation" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Brands/homeBrandRecommendation",hostUrl];
+    [manage GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 1) { // 请求数据成功
             NSArray *array = [ZDXStoreBrandModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
             self.brandChooseCell.arr = array;
@@ -163,7 +169,9 @@ static NSString *brandChooseCell = @"brandChooseCell";
     self.page++;
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
     NSDictionary *dict = @{@"page" : [NSString stringWithFormat:@"%ld",self.page]};
-    [manage POST:@"http://glys.wuliuhangjia.com/api/v1.Goods/homeGoods" parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Goods/homeGoods",hostUrl];
+    [manage POST:urlStr parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self.tableView.mj_footer endRefreshing];
         if ([responseObject[@"code"] integerValue] == 1) { // 请求数据成功
             NSArray *newDataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
@@ -213,7 +221,9 @@ static NSString *brandChooseCell = @"brandChooseCell";
     [self setHeaderView:[ZDXStoreTableViewHeaderView headerView:CGRectMake(0, 0, SCREEN_WIDTH, 183)]];
     
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
-    [manage GET:@"http://glys.wuliuhangjia.com/api/v1.Ads/homeCarouselAds" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Ads/homeCarouselAds",hostUrl];
+    [manage GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         self.headerView.dataList = responseObject[@"data"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

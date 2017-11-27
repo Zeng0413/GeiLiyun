@@ -41,6 +41,20 @@ static NSString *settingCellID = @"settingCell";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ZDXStoreSettingCell" bundle:nil] forCellReuseIdentifier:settingCellID];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 80, 40);
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitle:@"退出登录" forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [btn addTarget:self action:@selector(editButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem=item;
+}
+
+-(void)editButtonAction{
+    [ZDXStoreUserModelTool deleteFile];
+    
 }
 
 - (void)didReceiveMemoryWarning {

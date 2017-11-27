@@ -21,7 +21,8 @@
     [super awakeFromNib];
  
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET:@"http://glys.wuliuhangjia.com/api/v1.Ads/home1F" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Ads/home1F",hostUrl];
+    [manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = responseObject[@"data"];
         [self.bannerView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,dic[@"adFile"]]] placeholderImage:[UIImage imageNamed:@"小banner加载"]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

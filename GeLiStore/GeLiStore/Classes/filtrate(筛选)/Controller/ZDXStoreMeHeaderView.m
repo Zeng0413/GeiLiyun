@@ -46,7 +46,7 @@
     [view setupUI];
     view.label.textColor = colorWithString(@"#ffffff");
     view.imageView.image = [UIImage imageNamed:@"头像"];
-    view.titleStr = @"17782393534";
+    view.titleStr = @"";
     view.imageToView = 25;
     view.imageWH = 50;
     view.labelToImage = 15;
@@ -60,6 +60,18 @@
     [headerBtn addTarget:self action:@selector(headerClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:headerBtn];
     self.headerBtn = headerBtn;
+}
+
+-(void)setUserModel:(ZDXStoreUserModel *)userModel{
+    _userModel = userModel;
+    if (userModel) {
+        self.view.imageStr = userModel.userrankImg;
+        self.view.titleStr = userModel.userName;
+    }else{
+        self.view.imageView.image = [UIImage imageNamed:@"头像"];
+        self.view.titleStr = @"立即登录";
+    }
+    
 }
 
 

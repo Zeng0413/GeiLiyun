@@ -9,6 +9,7 @@
 #import "ZDXStoreLoginViewController.h"
 #import "ZDXComnous.h"
 #import "ZDXStoreRegisterViewController.h"
+#import "ZDXStoreUserModelTool.h"
 
 @interface ZDXStoreLoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *MidLayout;
@@ -52,15 +53,30 @@
 
 // 登录
 - (IBAction)loginClick:(UIButton *)sender {
+    [MBProgressHUD showMessage:@"正在登录..."];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"loginName"] = self.phoneNumTextField.text;
     params[@"loginPwd"] = self.passwordTextField.text;
     
-    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Users/login" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/login",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] integerValue] == 1) {
+            [MBProgressHUD showSuccess:@"登录成功"];
+            ZDXStoreUserModel *model = [ZDXStoreUserModel mj_objectWithKeyValues:responseObject[@"data"]];
+            [ZDXStoreUserModelTool saveUserModel:model];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            [MBProgressHUD hideHUD];
+            //    创建弹出框
+            UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:responseObject[@"msg"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [warnningVC show];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        [MBProgressHUD hideHUD];
+
     }];
     
 }

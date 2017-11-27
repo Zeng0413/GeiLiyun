@@ -30,21 +30,26 @@
     
     self.goodsDescWebView.delegate = self;
    
+    self.goodsDescWebView.scrollView.scrollEnabled = NO;
 }
 
 
 -(void)setHtmlStr:(NSString *)htmlStr{
     _htmlStr = htmlStr;
-    [self.goodsDescWebView loadHTMLString:@"" baseURL:nil];
+//    [self.goodsDescWebView loadHTMLString:htmlStr baseURL:nil];
+    NSURL *url = [NSURL URLWithString:@"http://wuliuhangjia.com/index.php/Content/index/id/1"];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url];
+    [self.goodsDescWebView loadRequest:request];
+
     
 }
 
-//-(void)webViewDidFinishLoad:(UIWebView *)webView{
-//    CGSize contentSize = [webView sizeThatFits:CGSizeZero];
-//    self.cellH = contentSize.height + 40;
-//    
-//    // 发出通知
-//    [[NSNotificationCenter defaultCenter]postNotificationName:@"NSNotificationWebViewDidFinishLoad" object:nil];
-//}
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    CGSize contentSize = [webView sizeThatFits:CGSizeZero];
+    self.cellH = contentSize.height + 40;
+    
+    // 发出通知
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"NSNotificationWebViewDidFinishLoad" object:nil];
+}
 
 @end

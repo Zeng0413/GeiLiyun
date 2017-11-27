@@ -16,6 +16,7 @@
 #import "ZDXStoreGoodsModel.h"
 #import "ZDXStoreGoodsDescCell.h"
 #import "ZDXStoreWriteOrderViewController.h"
+#import "ZDXStoreLoginViewController.h"
 
 static NSString *commdityCommentCellID = @"commdityCommentCell";
 static NSString *goodsDescCellID = @"goodsDescCell";
@@ -47,15 +48,21 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     
     // 设置tableView
     [self setupTableView];
-    // Do any additional setup after loading the view.
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webViewLoadFinish) name:@"NSNotificationWebViewDidFinishLoad" object:nil];
 }
 
+-(void)webViewLoadFinish{
+    [self.tableView reloadData];
+}
 
 // 加载数据
 -(void)reloadData{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *params = @{@"goodsId" : [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId]};
-    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Goods/goodsDetails" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Goods/goodsDetails",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *data = responseObject[@"data"];
         self.goodsModel = [ZDXStoreGoodsModel mj_objectWithKeyValues:data];
         self.headerView.dataList = self.goodsModel.gallery;
@@ -157,7 +164,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     }else if (indexPath.row == 1){
         return 155;
     }else if (indexPath.row == 2){
-        return 41;
+        return self.goodsDescCell.cellH;
     }
     return 0;
 }
@@ -165,7 +172,26 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 #pragma mark - footerView delegate
 // 加入购物车
 -(void)addShopcar{
-    NSLog(@"加入购物车");
+    ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
+    if (userModel) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"userId"] = [NSString stringWithFormat:@"%ld",userModel.userId];
+        params[@"goodsId"] = [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId];
+        params[@"buyNum"] = @1;
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/addCart",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@",responseObject);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }else{
+        ZDXStoreLoginViewController *vc = [[ZDXStoreLoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
 }
 
 -(void)buyGoods{

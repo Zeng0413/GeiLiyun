@@ -21,15 +21,14 @@
     webView.backgroundColor = [UIColor yellowColor];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *params = @{@"goodsId" : @"2"};
-    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Goods/goodsDetails" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Goods/goodsDetails",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *data = responseObject[@"data"];
         NSString *htmlStr = data[@"goodsDesc"];
         [webView loadHTMLString:htmlStr baseURL:nil];
         
-        
-        
-        NSLog(@"%@",htmlStr);
         NSData *data1 = [htmlStr dataUsingEncoding:NSUTF8StringEncoding];
         
         TFHpple *xpathParser = [[TFHpple alloc]initWithHTMLData:data1];

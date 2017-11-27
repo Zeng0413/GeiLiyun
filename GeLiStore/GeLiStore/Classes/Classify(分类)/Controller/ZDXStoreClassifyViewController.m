@@ -101,7 +101,8 @@ static NSString *commodityClassifyCellID = @"commodityClassifyCell";
 // 加载分类信息
 -(void)reloadClassifyData{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET:@"http://glys.wuliuhangjia.com/api/v1.Cat/classifiedManagement" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Cat/classifiedManagement",hostUrl];
+    [manager GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         self.dataList = [ZDXStoreGoodsClassifyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         ZDXStoreGoodsClassifyModel *model = self.dataList[self.tableViewSelectedIndex];
@@ -117,7 +118,9 @@ static NSString *commodityClassifyCellID = @"commodityClassifyCell";
 -(void)reloadBannerData:(NSInteger)catId{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *param = @{@"catId" : [NSString stringWithFormat:@"%ld",catId]};
-    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Ads/catAds" parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Ads/catAds",hostUrl];
+    [manager POST:urlStr parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 1) {
             NSDictionary *dic = responseObject[@"data"];
             self.bannerUrlStr = dic[@"adFile"];
