@@ -24,4 +24,8 @@
 @property (strong, nonatomic) NSArray *gallery;  // 商品轮播图 数组
 @property (copy, nonatomic) NSString *createTime; // 商品创建时间
 @property (assign, nonatomic) NSInteger appraiseNum; // 评价数
+@property (assign, nonatomic) NSInteger cartNum; // 商品个数
+
+@property(nonatomic, assign) BOOL isSelected;    //记录相应row是否选中（自定义）
+
 @end

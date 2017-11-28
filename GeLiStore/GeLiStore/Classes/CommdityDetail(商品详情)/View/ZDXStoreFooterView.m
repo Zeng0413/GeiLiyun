@@ -115,5 +115,10 @@
         NSString *imageStr = self.isSelected ? @"收藏后" : @"收藏前";
         self.classifyView.imageView.image = [UIImage imageNamed:imageStr];
     }
+    
+    if ([self.delegate respondsToSelector:@selector(footerViewLeftClickType:collectIsSelected:)]) {
+        [self.delegate footerViewLeftClickType:button.tag collectIsSelected:self.isSelected];
+    }
+    
 }
 @end

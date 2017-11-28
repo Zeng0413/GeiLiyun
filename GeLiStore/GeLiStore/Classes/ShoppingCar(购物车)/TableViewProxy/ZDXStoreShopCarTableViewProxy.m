@@ -11,87 +11,134 @@
 #import "ZDXStoreBrandModel.h"
 #import "ZDXStoreShopCarHearView.h"
 #import "ZDXStoreShopCarCell.h"
-
+#import "ZDXStoreShopModel.h"
+#import "ZDXStoreGoodsModel.h"
+#import "ZDXStoreShopCartNoCell.h"
+#import "ZDXComnous.h"
 
 @implementation ZDXStoreShopCarTableViewProxy
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.dataArray.count;
+    if (self.dataArray.count != 0) {
+        return self.dataArray.count;
+    }
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    ZDXStoreBrandModel *brandModel = self.dataArray[section];
-    NSArray *productArr = brandModel.products;
-    return productArr.count;
+    if (self.dataArray.count != 0) {
+        ZDXStoreShopModel *brandModel = self.dataArray[section];
+        NSArray *productArr = brandModel.list;
+        return productArr.count;
+    }
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ZDXStoreShopCarCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZDXStoreShopCarCell"];
-    ZDXStoreBrandModel *brandModel = self.dataArray[indexPath.section];
-    NSArray *productArr = brandModel.products;
-    if (productArr.count > indexPath.row) {
-        ZDXStoreProductModel *productModel = productArr[indexPath.row];
-        NSString *productName = [NSString stringWithFormat:@"%@%@%@", brandModel.brandName, productModel.productStyle, productModel.productType];
-        NSString *productSize = [NSString stringWithFormat:@"W:%ld H:%ld D:%ld", productModel.specWidth, productModel.specHeight, productModel.specLength];
+    
+    if (self.dataArray.count != 0) {
+        ZDXStoreShopCarCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZDXStoreShopCarCell"];
+        ZDXStoreShopModel *brandModel = self.dataArray[indexPath.section];
+        NSArray *productArr = brandModel.list;
+        if (productArr.count > indexPath.row) {
+            ZDXStoreGoodsModel *productModel = productArr[indexPath.row];
+            NSString *productName = [NSString stringWithFormat:@"%@%@", brandModel.shopName, productModel.goodsName];
+            NSString *productSize = [NSString stringWithFormat:@"库存：%ld", productModel.goodsStock];
+            
+            [cell setupShopCarCellWithProductURL:productModel.goodsImg productName:productName productSize:productSize productPrice:productModel.shopPrice.integerValue productCount:productModel.cartNum productStock:productModel.cartNum productSelected:productModel.isSelected];
+            
+        }
         
-        [cell setupShopCarCellWithProductURL:productModel.productPicUri productName:productName productSize:productSize productPrice:productModel.productPrice productCount:productModel.productQty productStock:productModel.productStocks productSelected:productModel.isSelected];
+        cell.status = self.status;
         
+        __weak __typeof(self) weakSelf = self;
+        cell.shopcartCellBlock = ^(BOOL isSelected) {
+            if (weakSelf.shopcartProxyProductSelectBlock) {
+                weakSelf.shopcartProxyProductSelectBlock(isSelected, indexPath);
+            }
+        };
+        
+        cell.shopcartCellEditBlock = ^(NSInteger count) {
+            if (weakSelf.shopcartProxyChangeCountBlock) {
+                weakSelf.shopcartProxyChangeCountBlock(count, indexPath);
+            }
+        };
+        return cell;
     }
     
-    cell.status = self.status;
     
-    __weak __typeof(self) weakSelf = self;
-    cell.shopcartCellBlock = ^(BOOL isSelected) {
-        if (weakSelf.shopcartProxyProductSelectBlock) {
-            weakSelf.shopcartProxyProductSelectBlock(isSelected, indexPath);
-        }
-    };
+    ZDXStoreShopCartNoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"noCell"];
+    if (!cell) {
+        cell = [[ZDXStoreShopCartNoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"noCell"];
+    }
     
-    cell.shopcartCellEditBlock = ^(NSInteger count) {
-        if (weakSelf.shopcartProxyChangeCountBlock) {
-            weakSelf.shopcartProxyChangeCountBlock(count, indexPath);
-        }
-    };
+    tableView.scrollEnabled = NO;
+    tableView.separatorStyle = NO;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    ZDXStoreShopCarHearView *shopCarHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ZDXStoreShopCarHearView"];
-    if (self.dataArray.count > section) {
-        ZDXStoreBrandModel *brandModel = self.dataArray[section];
-        [shopCarHeaderView setupShopCarHeaderViewWithBrandName:brandModel.brandName brandSelect:brandModel.isSelected];
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.dataArray.count == 0) {
+        UITabBarController *tabBarVC = [[UITabBarController alloc] init];
+        CGFloat tabBarHeight = tabBarVC.tabBar.frame.size.height;
+        
+        return SCREEN_HEIGHT - 64 - tabBarHeight;
+    }else{
+        return 100;
     }
-    
-    __weak __typeof(self) weakSelf = self;
-    shopCarHeaderView.shopCarHeaderViewBlock = ^(BOOL isSelected) {
-        if (weakSelf.shopcartProxyBrandSelectBlock) {
-            weakSelf.shopcartProxyBrandSelectBlock(isSelected, section);
+}
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (self.dataArray.count != 0) {
+        ZDXStoreShopCarHearView *shopCarHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ZDXStoreShopCarHearView"];
+        if (self.dataArray.count > section) {
+            ZDXStoreShopModel *brandModel = self.dataArray[section];
+            [shopCarHeaderView setupShopCarHeaderViewWithBrandName:brandModel.shopName brandSelect:brandModel.isSelected];
         }
-    };
-    
-    return shopCarHeaderView;
+        
+        __weak __typeof(self) weakSelf = self;
+        shopCarHeaderView.shopCarHeaderViewBlock = ^(BOOL isSelected) {
+            if (weakSelf.shopcartProxyBrandSelectBlock) {
+                weakSelf.shopcartProxyBrandSelectBlock(isSelected, section);
+            }
+        };
+        
+        return shopCarHeaderView;
+    }
+    return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+    if (self.dataArray.count != 0) {
+        return 40;
+    }else{
+        return 0;
+    }
 }
 
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        if (self.shopcartProxyDeleteBlock) {
-            self.shopcartProxyDeleteBlock(indexPath);
-        }
-    }];
+    if (self.dataArray.count != 0) {
+        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            if (self.shopcartProxyDeleteBlock) {
+                self.shopcartProxyDeleteBlock(indexPath);
+            }
+        }];
+        
+        UITableViewRowAction *starAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"收藏" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            if (self.shopcartProxyStarBlock) {
+                self.shopcartProxyStarBlock(indexPath);
+            }
+        }];
+        
+        return @[deleteAction, starAction];
+    }else{
+        return 0;
+    }
     
-    UITableViewRowAction *starAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"收藏" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        if (self.shopcartProxyStarBlock) {
-            self.shopcartProxyStarBlock(indexPath);
-        }
-    }];
-    
-    return @[deleteAction, starAction];
 }
 
 

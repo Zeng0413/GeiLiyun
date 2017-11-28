@@ -51,7 +51,7 @@
 - (UILabel *)brandLable {
     if (_brandLable == nil){
         _brandLable = [[UILabel alloc] init];
-        _brandLable.font = [UIFont systemFontOfSize:18];
+        _brandLable.font = [UIFont systemFontOfSize:16];
         _brandLable.textColor = [UIColor colorWithHexString:@"#262626"];
     }
     return _brandLable;

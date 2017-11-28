@@ -68,6 +68,11 @@
     [navView addSubview:backBtn];
 }
 
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [self.searchBar endEditing:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 // 设置tableView
 -(void)setupTableView{
     CGFloat statheight = [[UIApplication sharedApplication]statusBarFrame].size.height;
@@ -96,6 +101,7 @@
 }
 
 -(void)backClick{
+    [self.searchBar endEditing:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

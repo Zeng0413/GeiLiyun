@@ -14,6 +14,7 @@
 #import "ZDXStoreShopCarHearView.h"
 #import "ZDXStoreBrandModel.h"
 #import "ZDXStoreShopCarFormat.h"
+#import "ZDXStoreShopCartNoCell.h"
 
 @interface ZDXStoreShoppingCarViewController ()<ZDXStoreShopCarFormatDelegate>
 
@@ -44,6 +45,7 @@
         _shopcartTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_shopcartTableView registerClass:[ZDXStoreShopCarCell class] forCellReuseIdentifier:@"ZDXStoreShopCarCell"];
         [_shopcartTableView registerClass:[ZDXStoreShopCarHearView class] forHeaderFooterViewReuseIdentifier:@"ZDXStoreShopCarHearView"];
+        [_shopcartTableView registerNib:[UINib nibWithNibName:@"ZDXStoreShopCartNoCell" bundle:nil] forCellReuseIdentifier:@"noCell"];
         _shopcartTableView.showsVerticalScrollIndicator = NO;
         _shopcartTableView.delegate = self.shopcartTableViewProxy;
         _shopcartTableView.dataSource = self.shopcartTableViewProxy;
@@ -111,19 +113,25 @@
 
 #pragma mark - shopCarFormat delegate
 -(void)shopCarFormatRequestProductListDidSuccessWithArray:(NSMutableArray *)dataArray{
-    
     self.shopcartTableViewProxy.dataArray = dataArray;
     [self.shopcartTableView reloadData];
     
 }
 
+// 购物车没有数据，隐藏BottomView
+-(void)shopCartNoData{
+    self.shopcartBottomView.hidden = YES;
+}
+
 -(void)shopcartFormatAccountForTotalPrice:(float)totalPrice totalCount:(NSInteger)totalCount isAllSelected:(BOOL)isAllSelected{
+    self.shopcartBottomView.hidden = NO;
     [self.shopcartBottomView setupShopCarBottomViewWithTotalPrice:totalPrice totalCount:totalCount isAllSelected:isAllSelected];
     [self.shopcartTableView reloadData];
 }
 
+// 结算
 -(void)shopCarFormatSettleForSelectedProduct:(NSArray *)selectedProducts{
-    
+    NSLog(@"%@",selectedProducts);
 }
 - (void)editButtonAction {
     self.editButton.selected = !self.editButton.isSelected;
@@ -140,20 +148,16 @@
    
     [self addSubview];
     [self layoutSubview];
-    [self realodData];
     // Do any additional setup after loading the view.
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self realodData];
+
+}
+
 -(void)realodData{
-    ZDXStoreUserModel *model = [ZDXStoreUserModelTool userModel];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSDictionary *dict = @{@"userId" : [NSString stringWithFormat:@"%ld",model.userId]};
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/getCartInfo",hostUrl];
-    [manager POST:urlStr parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
     
     
     [self.shopcartFormat requestShopCarProductList];
@@ -164,6 +168,7 @@
     
     [self.view addSubview:self.shopcartTableView];
     [self.view addSubview:self.shopcartBottomView];
+    
 }
 
 -(void)layoutSubview{

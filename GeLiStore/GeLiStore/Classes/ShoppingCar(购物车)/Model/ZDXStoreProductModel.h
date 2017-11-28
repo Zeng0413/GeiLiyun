@@ -44,6 +44,5 @@
 
 @property (nonatomic, copy) NSString *productPicUri;   //图片url
 
-@property(nonatomic, assign)BOOL isSelected;    //记录相应row是否选中（自定义）
 
 @end

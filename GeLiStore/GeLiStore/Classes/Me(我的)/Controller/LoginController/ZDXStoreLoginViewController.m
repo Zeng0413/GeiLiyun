@@ -62,6 +62,7 @@
     
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/login",hostUrl];
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
         if ([responseObject[@"code"] integerValue] == 1) {
             [MBProgressHUD showSuccess:@"登录成功"];
             ZDXStoreUserModel *model = [ZDXStoreUserModel mj_objectWithKeyValues:responseObject[@"data"]];
@@ -69,7 +70,6 @@
             [self.navigationController popViewControllerAnimated:YES];
             
         }else{
-            [MBProgressHUD hideHUD];
             //    创建弹出框
             UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:responseObject[@"msg"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [warnningVC show];

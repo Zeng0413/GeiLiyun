@@ -75,8 +75,23 @@ static NSString *brandChooseCell = @"brandChooseCell";
     return _topView;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+//    ZDXStoreUserModel *model = [ZDXStoreUserModelTool userModel];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    NSDictionary *params = @{@"page" : @1,@"userId" : @(model.userId)};
+//    [manager POST:@"http://glys.wuliuhangjia.com/api/v1.Favorites/listGoodsQuery" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"%@",responseObject);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        
+//    }];
+}
+
 - (void)viewDidLoad {    
     [super viewDidLoad];
+    
+    
+    
     self.view.backgroundColor = ZDXRandomColor;
     
     self.page = 1;

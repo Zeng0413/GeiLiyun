@@ -29,6 +29,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor colorWithHexString:@"#f4f4f4"];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupCollectionView];
     }
     return self;

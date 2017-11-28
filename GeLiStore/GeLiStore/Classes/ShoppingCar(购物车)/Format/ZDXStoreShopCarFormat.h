@@ -22,6 +22,7 @@
 
 -(void)shopCartFormatHasDeleteAllProduct;
 
+-(void)shopCartNoData;
 @end
 
 @interface ZDXStoreShopCarFormat : NSObject

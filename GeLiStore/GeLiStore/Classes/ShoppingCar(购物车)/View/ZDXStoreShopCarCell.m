@@ -57,8 +57,9 @@
                          productCount:(NSInteger)productCount
                          productStock:(NSInteger)productStock
                       productSelected:(BOOL)productSelected{
-    NSURL *encodingURL = [NSURL URLWithString:[productURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-    [self.productImageView sd_setImageWithURL:encodingURL];
+//    NSURL *encodingURL = [NSURL URLWithString:[productURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+//    [self.productImageView sd_setImageWithURL:encodingURL];
+    [self.productImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,productURL]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
     self.productNameLable.text = productName;
     self.productSizeLable.text = productSize;
     self.productPriceLable.text = [NSString stringWithFormat:@"￥%ld", productPrice];
@@ -239,9 +240,8 @@
 -(void)setStatus:(BOOL)status{
     _status = status;
     
- 
-        self.count.hidden = status;
-        self.shopcartCountView.hidden = !status;
+    self.count.hidden = status;
+    self.shopcartCountView.hidden = !status;
     
 }
 

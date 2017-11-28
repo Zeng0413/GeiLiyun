@@ -13,6 +13,7 @@
 -(void)addShopcar; //加入购物车
 -(void)buyGoods;   //立即购买
 
+-(void)footerViewLeftClickType:(NSInteger)type collectIsSelected:(BOOL)isSelected;
 @end
 
 @interface ZDXStoreFooterView : UIView

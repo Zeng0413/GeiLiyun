@@ -194,9 +194,51 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     
 }
 
+// 立即购买
 -(void)buyGoods{
     ZDXStoreWriteOrderViewController *vc = [[ZDXStoreWriteOrderViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-    NSLog(@"立即购买");
+}
+
+// footerLeftClick
+-(void)footerViewLeftClickType:(NSInteger)type collectIsSelected:(BOOL)isSelected{
+    // 用户信息
+    ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
+
+    if (type == 1) { // 店铺
+        NSLog(@"店铺");
+    }else if (type == 2){ // 购物车
+        NSLog(@"购物车");
+    }else{
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"type"] = @"0";
+        params[@"id"] = [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId];
+        params[@"userId"] = [NSString stringWithFormat:@"%ld",userModel.userId];
+        
+        if (isSelected) { // 收藏
+            
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/add",hostUrl];
+            [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@",responseObject);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+            }];
+        }else{ // 取消收藏
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/cancel",hostUrl];
+            [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@",responseObject);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+            }];
+        }
+        
+        
+        
+        
+        NSLog(@"收藏");
+    }
 }
 @end
