@@ -62,6 +62,24 @@
 		13236C8B1FB051DA00619C6B /* ZDXStoreSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C891FB051DA00619C6B /* ZDXStoreSettingCell.m */; };
 		13236C8C1FB051DA00619C6B /* ZDXStoreSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13236C8A1FB051DA00619C6B /* ZDXStoreSettingCell.xib */; };
 		132469D51FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 132469D41FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m */; };
+		132721A51FCE5DEB0081F065 /* ZDXStoreShopCartNoGoodsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721A41FCE5DEB0081F065 /* ZDXStoreShopCartNoGoodsView.m */; };
+		132721A71FCE5DFB0081F065 /* ZDXStoreShopCartNoGoodsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132721A61FCE5DFB0081F065 /* ZDXStoreShopCartNoGoodsView.xib */; };
+		132721B41FCE8CBD0081F065 /* ZDXStoreWriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721AB1FCE8CBD0081F065 /* ZDXStoreWriteOrderViewController.m */; };
+		132721B51FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721AF1FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.m */; };
+		132721B61FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132721B01FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.xib */; };
+		132721B71FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721B21FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.m */; };
+		132721B81FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132721B31FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.xib */; };
+		132721C41FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721C21FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.m */; };
+		132721C51FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132721C31FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.xib */; };
+		132721C81FCE922D0081F065 /* ZDXStoreConsigneeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721C71FCE922D0081F065 /* ZDXStoreConsigneeInfoViewController.m */; };
+		132721CB1FCE9D3C0081F065 /* ZDXStoreEditeAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721CA1FCE9D3C0081F065 /* ZDXStoreEditeAddressViewController.m */; };
+		132721CF1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721CD1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.m */; };
+		132721D01FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132721CE1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.xib */; };
+		132721D41FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721D21FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.m */; };
+		132721D51FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132721D31FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.xib */; };
+		132721D81FCEAF670081F065 /* ZDXTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721D71FCEAF670081F065 /* ZDXTextView.m */; };
+		132721DC1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 132721DA1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.m */; };
+		132721DD1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132721DB1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.xib */; };
 		135446481FADA57400974CE9 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1354463B1FADA57400974CE9 /* TAAbstractDotView.m */; };
 		135446491FADA57400974CE9 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1354463D1FADA57400974CE9 /* TAAnimatedDotView.m */; };
 		1354464A1FADA57400974CE9 /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1354463F1FADA57400974CE9 /* TADotView.m */; };
@@ -80,10 +98,6 @@
 		13949BB71F9897ED0027CA84 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BB41F9897ED0027CA84 /* UIView+Frame.m */; };
 		13949BB81F9897ED0027CA84 /* UIColor+ColorChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BB61F9897ED0027CA84 /* UIColor+ColorChange.m */; };
 		13949BBB1F9897FC0027CA84 /* UIImage+ZDXImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 13949BBA1F9897FC0027CA84 /* UIImage+ZDXImage.m */; };
-		13B405641FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B405621FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.m */; };
-		13B405651FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B405631FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.xib */; };
-		13B405691FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B405671FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.m */; };
-		13B4056A1FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B405681FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.xib */; };
 		13C66BFF1FCBB171000356C0 /* ZDXStoreUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C66BFE1FCBB171000356C0 /* ZDXStoreUserModel.m */; };
 		13C66C021FCBB525000356C0 /* ZDXStoreUserModelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C66C011FCBB525000356C0 /* ZDXStoreUserModelTool.m */; };
 		13D1DA821FC66EF50026E036 /* ZDXStoreRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D1DA801FC66EF50026E036 /* ZDXStoreRegisterViewController.m */; };
@@ -99,10 +113,7 @@
 		13F8CA691FC7CA410046435F /* ZDXStoreSetupPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F8CA671FC7CA410046435F /* ZDXStoreSetupPwdViewController.m */; };
 		13F8CA6A1FC7CA410046435F /* ZDXStoreSetupPwdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F8CA681FC7CA410046435F /* ZDXStoreSetupPwdViewController.xib */; };
 		13F8CA711FC8055B0046435F /* ZDXStoreSearchGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F8CA701FC8055B0046435F /* ZDXStoreSearchGoodsViewController.m */; };
-		13F8CA751FC81B6E0046435F /* ZDXStoreWriteOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F8CA741FC81B6E0046435F /* ZDXStoreWriteOrderViewController.m */; };
 		13FD79BB1FCD43CC006FE649 /* ZDXStoreShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FD79BA1FCD43CC006FE649 /* ZDXStoreShopModel.m */; };
-		13FD79BF1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FD79BD1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.m */; };
-		13FD79C01FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13FD79BE1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.xib */; };
 		13FDBB6C1F9EE485005A68B8 /* shopcart.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13FDBB6B1F9EE485005A68B8 /* shopcart.plist */; };
 		13FEDBD31F99980300538177 /* ZDXStoreRecylingInNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FEDBD21F99980300538177 /* ZDXStoreRecylingInNewViewController.m */; };
 		13FEDBD61F99980E00538177 /* ZDXStoreMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FEDBD51F99980E00538177 /* ZDXStoreMeViewController.m */; };
@@ -215,6 +226,35 @@
 		13236C8A1FB051DA00619C6B /* ZDXStoreSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZDXStoreSettingCell.xib; path = "GeLiStore/Classes/Me(我的)/Controller/ZDXStoreSettingCell.xib"; sourceTree = SOURCE_ROOT; };
 		132469D31FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreGoodsClassifySubModel.h; sourceTree = "<group>"; };
 		132469D41FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreGoodsClassifySubModel.m; sourceTree = "<group>"; };
+		132721A31FCE5DEB0081F065 /* ZDXStoreShopCartNoGoodsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopCartNoGoodsView.h; sourceTree = "<group>"; };
+		132721A41FCE5DEB0081F065 /* ZDXStoreShopCartNoGoodsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopCartNoGoodsView.m; sourceTree = "<group>"; };
+		132721A61FCE5DFB0081F065 /* ZDXStoreShopCartNoGoodsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreShopCartNoGoodsView.xib; sourceTree = "<group>"; };
+		132721AA1FCE8CBD0081F065 /* ZDXStoreWriteOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreWriteOrderViewController.h; sourceTree = "<group>"; };
+		132721AB1FCE8CBD0081F065 /* ZDXStoreWriteOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreWriteOrderViewController.m; sourceTree = "<group>"; };
+		132721AE1FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderAddressDefaultCell.h; sourceTree = "<group>"; };
+		132721AF1FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderAddressDefaultCell.m; sourceTree = "<group>"; };
+		132721B01FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreOrderAddressDefaultCell.xib; sourceTree = "<group>"; };
+		132721B11FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderGoodsShowCell.h; sourceTree = "<group>"; };
+		132721B21FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderGoodsShowCell.m; sourceTree = "<group>"; };
+		132721B31FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreOrderGoodsShowCell.xib; sourceTree = "<group>"; };
+		132721C11FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreNoConsigneeInfoCell.h; sourceTree = "<group>"; };
+		132721C21FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreNoConsigneeInfoCell.m; sourceTree = "<group>"; };
+		132721C31FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreNoConsigneeInfoCell.xib; sourceTree = "<group>"; };
+		132721C61FCE922D0081F065 /* ZDXStoreConsigneeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreConsigneeInfoViewController.h; sourceTree = "<group>"; };
+		132721C71FCE922D0081F065 /* ZDXStoreConsigneeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreConsigneeInfoViewController.m; sourceTree = "<group>"; };
+		132721C91FCE9D3C0081F065 /* ZDXStoreEditeAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreEditeAddressViewController.h; sourceTree = "<group>"; };
+		132721CA1FCE9D3C0081F065 /* ZDXStoreEditeAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreEditeAddressViewController.m; sourceTree = "<group>"; };
+		132721CC1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreEditAddressFirstCell.h; sourceTree = "<group>"; };
+		132721CD1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreEditAddressFirstCell.m; sourceTree = "<group>"; };
+		132721CE1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreEditAddressFirstCell.xib; sourceTree = "<group>"; };
+		132721D11FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreAddressRemakeCell.h; sourceTree = "<group>"; };
+		132721D21FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreAddressRemakeCell.m; sourceTree = "<group>"; };
+		132721D31FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreAddressRemakeCell.xib; sourceTree = "<group>"; };
+		132721D61FCEAF670081F065 /* ZDXTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXTextView.h; sourceTree = "<group>"; };
+		132721D71FCEAF670081F065 /* ZDXTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXTextView.m; sourceTree = "<group>"; };
+		132721D91FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreSetupDefaultAddressCell.h; sourceTree = "<group>"; };
+		132721DA1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreSetupDefaultAddressCell.m; sourceTree = "<group>"; };
+		132721DB1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreSetupDefaultAddressCell.xib; sourceTree = "<group>"; };
 		1354463A1FADA57400974CE9 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
 		1354463B1FADA57400974CE9 /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
 		1354463C1FADA57400974CE9 /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
@@ -252,12 +292,6 @@
 		13949BB91F9897FC0027CA84 /* UIImage+ZDXImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZDXImage.h"; sourceTree = "<group>"; };
 		13949BBA1F9897FC0027CA84 /* UIImage+ZDXImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZDXImage.m"; sourceTree = "<group>"; };
 		13949BE01F98A4210027CA84 /* ZDXComnous.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZDXComnous.h; sourceTree = "<group>"; };
-		13B405611FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderAddressDefaultCell.h; sourceTree = "<group>"; };
-		13B405621FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderAddressDefaultCell.m; sourceTree = "<group>"; };
-		13B405631FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreOrderAddressDefaultCell.xib; sourceTree = "<group>"; };
-		13B405661FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderGoodsShowCell.h; sourceTree = "<group>"; };
-		13B405671FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderGoodsShowCell.m; sourceTree = "<group>"; };
-		13B405681FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreOrderGoodsShowCell.xib; sourceTree = "<group>"; };
 		13C66BFD1FCBB171000356C0 /* ZDXStoreUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreUserModel.h; sourceTree = "<group>"; };
 		13C66BFE1FCBB171000356C0 /* ZDXStoreUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreUserModel.m; sourceTree = "<group>"; };
 		13C66C001FCBB525000356C0 /* ZDXStoreUserModelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreUserModelTool.h; sourceTree = "<group>"; };
@@ -283,13 +317,8 @@
 		13F8CA681FC7CA410046435F /* ZDXStoreSetupPwdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreSetupPwdViewController.xib; sourceTree = "<group>"; };
 		13F8CA6F1FC8055B0046435F /* ZDXStoreSearchGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreSearchGoodsViewController.h; sourceTree = "<group>"; };
 		13F8CA701FC8055B0046435F /* ZDXStoreSearchGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreSearchGoodsViewController.m; sourceTree = "<group>"; };
-		13F8CA731FC81B6E0046435F /* ZDXStoreWriteOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreWriteOrderViewController.h; sourceTree = "<group>"; };
-		13F8CA741FC81B6E0046435F /* ZDXStoreWriteOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreWriteOrderViewController.m; sourceTree = "<group>"; };
 		13FD79B91FCD43CC006FE649 /* ZDXStoreShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopModel.h; sourceTree = "<group>"; };
 		13FD79BA1FCD43CC006FE649 /* ZDXStoreShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopModel.m; sourceTree = "<group>"; };
-		13FD79BC1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopCartNoCell.h; sourceTree = "<group>"; };
-		13FD79BD1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopCartNoCell.m; sourceTree = "<group>"; };
-		13FD79BE1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreShopCartNoCell.xib; sourceTree = "<group>"; };
 		13FDBB6B1F9EE485005A68B8 /* shopcart.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shopcart.plist; sourceTree = "<group>"; };
 		13FEDBD11F99980300538177 /* ZDXStoreRecylingInNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreRecylingInNewViewController.h; sourceTree = "<group>"; };
 		13FEDBD21F99980300538177 /* ZDXStoreRecylingInNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreRecylingInNewViewController.m; sourceTree = "<group>"; };
@@ -537,9 +566,64 @@
 				131FC1071FA0707900476D63 /* ZDXStoreShopCarCountView.m */,
 				131FC1081FA0707900476D63 /* ZDXStoreShopCarHearView.h */,
 				131FC1091FA0707900476D63 /* ZDXStoreShopCarHearView.m */,
-				13FD79BC1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.h */,
-				13FD79BD1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.m */,
-				13FD79BE1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.xib */,
+				132721A31FCE5DEB0081F065 /* ZDXStoreShopCartNoGoodsView.h */,
+				132721A41FCE5DEB0081F065 /* ZDXStoreShopCartNoGoodsView.m */,
+				132721A61FCE5DFB0081F065 /* ZDXStoreShopCartNoGoodsView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		132721A81FCE8CBD0081F065 /* Order(订单) */ = {
+			isa = PBXGroup;
+			children = (
+				132721A91FCE8CBD0081F065 /* Controller */,
+				132721AC1FCE8CBD0081F065 /* Model */,
+				132721AD1FCE8CBD0081F065 /* View */,
+			);
+			path = "Order(订单)";
+			sourceTree = "<group>";
+		};
+		132721A91FCE8CBD0081F065 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				132721AA1FCE8CBD0081F065 /* ZDXStoreWriteOrderViewController.h */,
+				132721AB1FCE8CBD0081F065 /* ZDXStoreWriteOrderViewController.m */,
+				132721C61FCE922D0081F065 /* ZDXStoreConsigneeInfoViewController.h */,
+				132721C71FCE922D0081F065 /* ZDXStoreConsigneeInfoViewController.m */,
+				132721C91FCE9D3C0081F065 /* ZDXStoreEditeAddressViewController.h */,
+				132721CA1FCE9D3C0081F065 /* ZDXStoreEditeAddressViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		132721AC1FCE8CBD0081F065 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		132721AD1FCE8CBD0081F065 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				132721AE1FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.h */,
+				132721AF1FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.m */,
+				132721B01FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.xib */,
+				132721B11FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.h */,
+				132721B21FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.m */,
+				132721B31FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.xib */,
+				132721C11FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.h */,
+				132721C21FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.m */,
+				132721C31FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.xib */,
+				132721CC1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.h */,
+				132721CD1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.m */,
+				132721CE1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.xib */,
+				132721D11FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.h */,
+				132721D21FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.m */,
+				132721D31FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.xib */,
+				132721D91FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.h */,
+				132721DA1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.m */,
+				132721DB1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -632,6 +716,7 @@
 		13949B941F988AE10027CA84 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				132721A81FCE8CBD0081F065 /* Order(订单) */,
 				1315AABF1FA9BA2C00360F83 /* filtrate(筛选) */,
 				13D53F551FA8246B0080B563 /* CommdityDetail(商品详情) */,
 				13065B8F1FA7113B009BC964 /* Classify(分类) */,
@@ -752,6 +837,8 @@
 		13949BA11F988AE10027CA84 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				132721D61FCEAF670081F065 /* ZDXTextView.h */,
+				132721D71FCEAF670081F065 /* ZDXTextView.m */,
 				131FC0E51FA0700A00476D63 /* ZDXStoreTabBar.h */,
 				131FC0E61FA0700A00476D63 /* ZDXStoreTabBar.m */,
 				131FC0E81FA0702A00476D63 /* ZDXStoreTabBarButton.h */,
@@ -772,19 +859,6 @@
 				13F6822F1FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib */,
 			);
 			path = LoginController;
-			sourceTree = "<group>";
-		};
-		13B405601FC915BB009D5815 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				13B405611FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.h */,
-				13B405621FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.m */,
-				13B405631FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.xib */,
-				13B405661FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.h */,
-				13B405671FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.m */,
-				13B405681FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		13D1DA7E1FC66ED90026E036 /* RegisterController */ = {
@@ -816,7 +890,6 @@
 		13D53F561FA8246B0080B563 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				13F8CA721FC819BC0046435F /* orderViewcontroller(订单) */,
 				1307A2DD1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.h */,
 				1307A2DE1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m */,
 				130A920C1FBBCFE2009BFE62 /* ZDXStoreTestViewController.h */,
@@ -856,16 +929,6 @@
 				13F8CA701FC8055B0046435F /* ZDXStoreSearchGoodsViewController.m */,
 			);
 			path = SearchController;
-			sourceTree = "<group>";
-		};
-		13F8CA721FC819BC0046435F /* orderViewcontroller(订单) */ = {
-			isa = PBXGroup;
-			children = (
-				13B405601FC915BB009D5815 /* View */,
-				13F8CA731FC81B6E0046435F /* ZDXStoreWriteOrderViewController.h */,
-				13F8CA741FC81B6E0046435F /* ZDXStoreWriteOrderViewController.m */,
-			);
-			path = "orderViewcontroller(订单)";
 			sourceTree = "<group>";
 		};
 		13FEDBB91F99878F00538177 /* Me(我的) */ = {
@@ -1030,24 +1093,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				130A92131FBC1297009BFE62 /* ZDXStoreGoodsDescCell.xib in Resources */,
+				132721D01FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.xib in Resources */,
 				1307A2C61FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.xib in Resources */,
 				13FDBB6C1F9EE485005A68B8 /* shopcart.plist in Resources */,
-				13FD79C01FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.xib in Resources */,
+				132721A71FCE5DFB0081F065 /* ZDXStoreShopCartNoGoodsView.xib in Resources */,
+				132721B81FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.xib in Resources */,
 				131FC11D1FA0718300476D63 /* ZDXStoreBrandChooseCell.xib in Resources */,
 				13D1DA831FC66EF50026E036 /* ZDXStoreRegisterViewController.xib in Resources */,
 				13F8CA6A1FC7CA410046435F /* ZDXStoreSetupPwdViewController.xib in Resources */,
-				13B405651FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.xib in Resources */,
-				13B4056A1FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.xib in Resources */,
 				13D1DA8B1FC6C7CE0026E036 /* ZDXStoreCodeVerificationViewController.xib in Resources */,
 				1315C8841FB554EF008C65A7 /* MBProgressHUD.bundle in Resources */,
 				13D53F631FA86F520080B563 /* ZDXStoreCommdityCommentCell.xib in Resources */,
+				132721D51FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.xib in Resources */,
 				1307A2DA1FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.xib in Resources */,
 				13236C8C1FB051DA00619C6B /* ZDXStoreSettingCell.xib in Resources */,
+				132721B61FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.xib in Resources */,
 				13236C7F1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.xib in Resources */,
 				13236C841FB047C200619C6B /* ZDXStoreMeInfoViewController.xib in Resources */,
 				13F682311FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib in Resources */,
 				13949B8A1F9883C50027CA84 /* Assets.xcassets in Resources */,
 				1307A2DC1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib in Resources */,
+				132721DD1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.xib in Resources */,
+				132721C51FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1179,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				132721B71FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.m in Sources */,
+				132721C81FCE922D0081F065 /* ZDXStoreConsigneeInfoViewController.m in Sources */,
 				131FC1321FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m in Sources */,
 				13065B8E1FA70FAE009BC964 /* UIBarButtonItem+Item.m in Sources */,
 				1315C88C1FB57DCC008C65A7 /* ZDXStoreGoodsClassifyModel.m in Sources */,
@@ -1120,7 +1189,6 @@
 				13FEDBD31F99980300538177 /* ZDXStoreRecylingInNewViewController.m in Sources */,
 				1307A2C51FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.m in Sources */,
 				13236C8B1FB051DA00619C6B /* ZDXStoreSettingCell.m in Sources */,
-				13F8CA751FC81B6E0046435F /* ZDXStoreWriteOrderViewController.m in Sources */,
 				131FC1121FA0707900476D63 /* ZDXStoreShopCarHearView.m in Sources */,
 				136BD7BD1FC56BA200FC000E /* GQGesVCTransition.m in Sources */,
 				1354464D1FADA57400974CE9 /* SDCycleScrollView.m in Sources */,
@@ -1139,6 +1207,7 @@
 				13FEDBD61F99980E00538177 /* ZDXStoreMeViewController.m in Sources */,
 				1354464B1FADA57400974CE9 /* TAPageControl.m in Sources */,
 				131FC10D1FA0707900476D63 /* ZDXStoreProductModel.m in Sources */,
+				132721B41FCE8CBD0081F065 /* ZDXStoreWriteOrderViewController.m in Sources */,
 				13236C7A1FB000B600619C6B /* ZDXStoreMeHeaderView.m in Sources */,
 				13D1DA8A1FC6C7CE0026E036 /* ZDXStoreCodeVerificationViewController.m in Sources */,
 				13949BA21F988AE10027CA84 /* AppDelegate.m in Sources */,
@@ -1147,29 +1216,35 @@
 				1354464A1FADA57400974CE9 /* TADotView.m in Sources */,
 				131FC11C1FA0718300476D63 /* ZDXStoreBrandChooseCell.m in Sources */,
 				131FC12F1FA072BC00476D63 /* ZDXStoreChooseBrandView.m in Sources */,
+				132721B51FCE8CBD0081F065 /* ZDXStoreOrderAddressDefaultCell.m in Sources */,
 				1354464C1FADA57400974CE9 /* SDCollectionViewCell.m in Sources */,
 				13FEDBE21F99C8D100538177 /* ZDXStoreChoosePlaceBtn.m in Sources */,
 				13949BB71F9897ED0027CA84 /* UIView+Frame.m in Sources */,
 				1315C8831FB554EF008C65A7 /* MBProgressHUD+MJ.m in Sources */,
 				1315C87C1FB54385008C65A7 /* ZDXStoreGoodsModel.m in Sources */,
+				132721C41FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.m in Sources */,
 				13F8CA711FC8055B0046435F /* ZDXStoreSearchGoodsViewController.m in Sources */,
 				13F8CA691FC7CA410046435F /* ZDXStoreSetupPwdViewController.m in Sources */,
 				13949BB01F9897D90027CA84 /* NSDate+Extension.m in Sources */,
 				131FC1381FA07F4800476D63 /* ZDXStoreCollectionViewCell.m in Sources */,
 				13949BA31F988AE10027CA84 /* main.m in Sources */,
+				132721D41FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.m in Sources */,
 				1307A2C71FAD4ABB0019D8F5 /* ZDXStoreFiltratePushView.m in Sources */,
 				1315C8851FB554EF008C65A7 /* MBProgressHUD.m in Sources */,
-				13B405641FC915DF009D5815 /* ZDXStoreOrderAddressDefaultCell.m in Sources */,
 				13D53F621FA86F520080B563 /* ZDXStoreCommdityCommentCell.m in Sources */,
 				130A92121FBC1297009BFE62 /* ZDXStoreGoodsDescCell.m in Sources */,
 				1307A2BB1FAD4AA90019D8F5 /* ZDXStoreFiltrateViewController.m in Sources */,
+				132721A51FCE5DEB0081F065 /* ZDXStoreShopCartNoGoodsView.m in Sources */,
 				1307A2D81FAD4B440019D8F5 /* ZDXStoreClassifyLeftCell.m in Sources */,
+				132721CF1FCEA39B0081F065 /* ZDXStoreEditAddressFirstCell.m in Sources */,
 				132469D51FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m in Sources */,
 				13949BA61F9895480027CA84 /* ZDXStoreNavigationViewController.m in Sources */,
+				132721DC1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.m in Sources */,
 				131FC0F11FA0704F00476D63 /* ZDXStoreShareViewController.m in Sources */,
 				131FC10E1FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.m in Sources */,
 				135446481FADA57400974CE9 /* TAAbstractDotView.m in Sources */,
 				131FC1181FA070EF00476D63 /* ZDXStoreCommodityClassifyCell.m in Sources */,
+				132721D81FCEAF670081F065 /* ZDXTextView.m in Sources */,
 				131FC1101FA0707900476D63 /* ZDXStoreShopCarCell.m in Sources */,
 				13236C831FB047C200619C6B /* ZDXStoreMeInfoViewController.m in Sources */,
 				1307A2C91FAD4ABB0019D8F5 /* ZDXStoreFiltratePushViewTypeCell.m in Sources */,
@@ -1180,14 +1255,13 @@
 				131FC1111FA0707900476D63 /* ZDXStoreShopCarCountView.m in Sources */,
 				135446491FADA57400974CE9 /* TAAnimatedDotView.m in Sources */,
 				13FEDBE51F99D63100538177 /* ZDXStoreTableViewHeaderView.m in Sources */,
-				13B405691FC91A50009D5815 /* ZDXStoreOrderGoodsShowCell.m in Sources */,
+				132721CB1FCE9D3C0081F065 /* ZDXStoreEditeAddressViewController.m in Sources */,
 				13C66C021FCBB525000356C0 /* ZDXStoreUserModelTool.m in Sources */,
 				131FC1151FA070E300476D63 /* ZDXStoreClassifyView.m in Sources */,
 				1315AABE1FA99D5F00360F83 /* ZDXStoreFooterView.m in Sources */,
 				13D1DA821FC66EF50026E036 /* ZDXStoreRegisterViewController.m in Sources */,
 				131FC10A1FA0707900476D63 /* ZDXStoreShoppingCarViewController.m in Sources */,
 				1315AACB1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m in Sources */,
-				13FD79BF1FCD5B2F006FE649 /* ZDXStoreShopCartNoCell.m in Sources */,
 				13FD79BB1FCD43CC006FE649 /* ZDXStoreShopModel.m in Sources */,
 				131FC10B1FA0707900476D63 /* ZDXStoreShopCarFormat.m in Sources */,
 				13236C871FB04FEF00619C6B /* ZDXStoreSettingViewController.m in Sources */,

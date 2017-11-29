@@ -14,7 +14,8 @@
 #import "ZDXStoreShopCarHearView.h"
 #import "ZDXStoreBrandModel.h"
 #import "ZDXStoreShopCarFormat.h"
-#import "ZDXStoreShopCartNoCell.h"
+
+#import "ZDXStoreShopCartNoGoodsView.h"
 
 @interface ZDXStoreShoppingCarViewController ()<ZDXStoreShopCarFormatDelegate>
 
@@ -23,6 +24,8 @@
 @property (nonatomic, strong) ZDXStoreShopCarTableViewProxy *shopcartTableViewProxy;    /**< tableView代理 */
 
 @property (nonatomic, strong) ZDXStoreShopCarFormat *shopcartFormat;    /**< 负责购物车逻辑处理 */
+
+@property (strong, nonatomic) ZDXStoreShopCartNoGoodsView *shopCartNoGoodsView;
 
 @property (nonatomic, strong) UIButton *editButton;    /**< 编辑按钮 */
 @end
@@ -113,6 +116,7 @@
 
 #pragma mark - shopCarFormat delegate
 -(void)shopCarFormatRequestProductListDidSuccessWithArray:(NSMutableArray *)dataArray{
+    [self.shopCartNoGoodsView removeFromSuperview];
     self.shopcartTableViewProxy.dataArray = dataArray;
     [self.shopcartTableView reloadData];
     
@@ -120,6 +124,7 @@
 
 // 购物车没有数据，隐藏BottomView
 -(void)shopCartNoData{
+    [self.view addSubview:self.shopCartNoGoodsView];
     self.shopcartBottomView.hidden = YES;
 }
 
@@ -146,6 +151,9 @@
     self.title = @"购物车";
     self.view.backgroundColor = ZDXRandomColor;
    
+    self.shopCartNoGoodsView = [ZDXStoreShopCartNoGoodsView view];
+    self.shopCartNoGoodsView.frame = self.view.bounds;
+    
     [self addSubview];
     [self layoutSubview];
     // Do any additional setup after loading the view.
@@ -158,8 +166,6 @@
 }
 
 -(void)realodData{
-    
-    
     [self.shopcartFormat requestShopCarProductList];
 }
 -(void)addSubview{

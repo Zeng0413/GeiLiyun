@@ -13,17 +13,17 @@
 #import "ZDXStoreShopCarCell.h"
 #import "ZDXStoreShopModel.h"
 #import "ZDXStoreGoodsModel.h"
-#import "ZDXStoreShopCartNoCell.h"
 #import "ZDXComnous.h"
 
 @implementation ZDXStoreShopCarTableViewProxy
+
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.dataArray.count != 0) {
         return self.dataArray.count;
     }
-    return 1;
+    return 0;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -32,7 +32,7 @@
         NSArray *productArr = brandModel.list;
         return productArr.count;
     }
-    return 1;
+    return 0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -66,81 +66,47 @@
         };
         return cell;
     }
-    
-    
-    ZDXStoreShopCartNoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"noCell"];
-    if (!cell) {
-        cell = [[ZDXStoreShopCartNoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"noCell"];
-    }
-    
-    tableView.scrollEnabled = NO;
-    tableView.separatorStyle = NO;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.dataArray.count == 0) {
-        UITabBarController *tabBarVC = [[UITabBarController alloc] init];
-        CGFloat tabBarHeight = tabBarVC.tabBar.frame.size.height;
-        
-        return SCREEN_HEIGHT - 64 - tabBarHeight;
-    }else{
-        return 100;
-    }
+    return nil;
 }
 
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (self.dataArray.count != 0) {
-        ZDXStoreShopCarHearView *shopCarHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ZDXStoreShopCarHearView"];
-        if (self.dataArray.count > section) {
-            ZDXStoreShopModel *brandModel = self.dataArray[section];
-            [shopCarHeaderView setupShopCarHeaderViewWithBrandName:brandModel.shopName brandSelect:brandModel.isSelected];
-        }
-        
-        __weak __typeof(self) weakSelf = self;
-        shopCarHeaderView.shopCarHeaderViewBlock = ^(BOOL isSelected) {
-            if (weakSelf.shopcartProxyBrandSelectBlock) {
-                weakSelf.shopcartProxyBrandSelectBlock(isSelected, section);
-            }
-        };
-        
-        return shopCarHeaderView;
+    ZDXStoreShopCarHearView *shopCarHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ZDXStoreShopCarHearView"];
+    if (self.dataArray.count > section) {
+        ZDXStoreShopModel *brandModel = self.dataArray[section];
+        [shopCarHeaderView setupShopCarHeaderViewWithBrandName:brandModel.shopName brandSelect:brandModel.isSelected];
     }
-    return nil;
+    
+    __weak __typeof(self) weakSelf = self;
+    shopCarHeaderView.shopCarHeaderViewBlock = ^(BOOL isSelected) {
+        if (weakSelf.shopcartProxyBrandSelectBlock) {
+            weakSelf.shopcartProxyBrandSelectBlock(isSelected, section);
+        }
+    };
+    
+    return shopCarHeaderView;
+ 
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (self.dataArray.count != 0) {
-        return 40;
-    }else{
-        return 0;
-    }
+    return 40;
 }
 
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.dataArray.count != 0) {
-        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-            if (self.shopcartProxyDeleteBlock) {
-                self.shopcartProxyDeleteBlock(indexPath);
-            }
-        }];
-        
-        UITableViewRowAction *starAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"收藏" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-            if (self.shopcartProxyStarBlock) {
-                self.shopcartProxyStarBlock(indexPath);
-            }
-        }];
-        
-        return @[deleteAction, starAction];
-    }else{
-        return 0;
-    }
     
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        if (self.shopcartProxyDeleteBlock) {
+            self.shopcartProxyDeleteBlock(indexPath);
+        }
+    }];
+    
+    UITableViewRowAction *starAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"收藏" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        if (self.shopcartProxyStarBlock) {
+            self.shopcartProxyStarBlock(indexPath);
+        }
+    }];
+    return @[deleteAction, starAction];
+   
 }
-
-
-
 @end
