@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZDXTextView.h"
 
 @interface ZDXStoreAddressRemakeCell : UITableViewCell
 
+@property (strong, nonatomic) ZDXTextView *textView;
 
 @end

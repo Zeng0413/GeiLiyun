@@ -10,9 +10,7 @@
 #import "UIColor+ColorChange.h"
 @interface ZDXStoreEditAddressFirstCell ()<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *conginnerTextField;
-@property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
 
 @end
 
@@ -33,6 +31,11 @@
     [self.phoneNumTextField endEditing:YES];
     
     return YES;
+}
+- (IBAction)selectAddressClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(chooseAddress)]) {
+        [self.delegate chooseAddress];
+    }
 }
 
 @end

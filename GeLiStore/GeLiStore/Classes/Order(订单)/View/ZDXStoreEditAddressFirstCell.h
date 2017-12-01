@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZDXStoreEditAddressFirstCellDelegate <NSObject>
+
+-(void)chooseAddress;
+
+@end
+
 @interface ZDXStoreEditAddressFirstCell : UITableViewCell
 
+@property (weak, nonatomic) id<ZDXStoreEditAddressFirstCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UITextField *conginnerTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
 @end

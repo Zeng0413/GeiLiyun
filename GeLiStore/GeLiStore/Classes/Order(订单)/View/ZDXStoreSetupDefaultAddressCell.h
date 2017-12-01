@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^defaultAddressSelectBlock)(NSInteger type);
 @interface ZDXStoreSetupDefaultAddressCell : UITableViewCell
+
+@property (copy, nonatomic) defaultAddressSelectBlock block;
 
 @end

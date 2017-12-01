@@ -7,12 +7,8 @@
 //
 
 #import "ZDXStoreAddressRemakeCell.h"
-#import "ZDXTextView.h"
 #import "ZDXComnous.h"
 @interface ZDXStoreAddressRemakeCell ()<UITextViewDelegate>
-
-@property (strong, nonatomic) ZDXTextView *textView;
-
 
 @end
 

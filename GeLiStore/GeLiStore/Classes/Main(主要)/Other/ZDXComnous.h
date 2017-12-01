@@ -17,6 +17,10 @@
 // RGB颜色
 #define ZDXColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
+#define ZDXFont(f) [UIFont systemFontOfSize:(f)]
+
+#define blackLabelColor colorWithString(@"262626")
+
 // 随机色
 #define ZDXRandomColor ZDXColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 

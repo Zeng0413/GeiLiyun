@@ -87,7 +87,7 @@
                             <constraint firstAttribute="width" constant="10" id="yf7-pw-Fl1"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重庆 重庆市 九龙坡" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQB-WP-KjR">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQB-WP-KjR">
                         <rect key="frame" x="92" y="142" width="195" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="y4N-DS-2uF"/>
@@ -103,6 +103,12 @@
                             <constraint firstAttribute="height" constant="1" id="txS-Fi-raY"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxY-oZ-Kpr">
+                        <rect key="frame" x="0.0" y="120" width="320" height="59"/>
+                        <connections>
+                            <action selector="selectAddressClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8P1-cd-IOQ"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="JVT-TL-Fxw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0KQ-Kc-Cwd"/>
@@ -112,8 +118,10 @@
                     <constraint firstItem="jYi-fD-YB4" firstAttribute="top" secondItem="FLh-yT-FfU" secondAttribute="bottom" constant="22" id="A3a-D9-NUV"/>
                     <constraint firstAttribute="trailing" secondItem="fGo-Ed-Bof" secondAttribute="trailing" constant="10" id="DJd-WB-SAk"/>
                     <constraint firstAttribute="trailing" secondItem="FLh-yT-FfU" secondAttribute="trailing" id="E4s-6v-Xrf"/>
+                    <constraint firstAttribute="trailing" secondItem="mxY-oZ-Kpr" secondAttribute="trailing" id="EZz-vZ-Axy"/>
                     <constraint firstItem="fGo-Ed-Bof" firstAttribute="centerY" secondItem="TW3-Bu-ncs" secondAttribute="centerY" id="GcF-WD-g0t"/>
                     <constraint firstAttribute="trailing" secondItem="WX6-cG-PVt" secondAttribute="trailing" id="HdD-wB-C7x"/>
+                    <constraint firstItem="mxY-oZ-Kpr" firstAttribute="top" secondItem="FLh-yT-FfU" secondAttribute="bottom" id="HxX-eT-djR"/>
                     <constraint firstAttribute="trailing" secondItem="JVT-TL-Fxw" secondAttribute="trailing" id="Jff-UF-ZnI"/>
                     <constraint firstItem="FLh-yT-FfU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MKt-eU-lQG"/>
                     <constraint firstItem="ims-zY-M99" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="R3c-3v-APn"/>
@@ -121,7 +129,9 @@
                     <constraint firstItem="C82-kV-EuS" firstAttribute="centerY" secondItem="jYi-fD-YB4" secondAttribute="centerY" id="WdA-D9-75R"/>
                     <constraint firstAttribute="trailing" secondItem="C82-kV-EuS" secondAttribute="trailing" constant="10" id="X2f-9p-aGF"/>
                     <constraint firstItem="jYi-fD-YB4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Z3N-6R-2OX"/>
+                    <constraint firstItem="WX6-cG-PVt" firstAttribute="top" secondItem="mxY-oZ-Kpr" secondAttribute="bottom" id="Zyx-LA-LHu"/>
                     <constraint firstAttribute="trailing" secondItem="84G-Sp-fB6" secondAttribute="trailing" constant="10" id="boK-P6-nCc"/>
+                    <constraint firstItem="mxY-oZ-Kpr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="c04-tK-fUq"/>
                     <constraint firstItem="84G-Sp-fB6" firstAttribute="centerY" secondItem="ims-zY-M99" secondAttribute="centerY" id="dC8-0t-slw"/>
                     <constraint firstItem="84G-Sp-fB6" firstAttribute="leading" secondItem="ims-zY-M99" secondAttribute="trailing" constant="10" id="dmm-aw-Qvt"/>
                     <constraint firstItem="FLh-yT-FfU" firstAttribute="top" secondItem="TW3-Bu-ncs" secondAttribute="bottom" constant="22" id="fFw-9R-cUM"/>
@@ -138,7 +148,7 @@
                 <outlet property="conginnerTextField" destination="84G-Sp-fB6" id="LMz-qy-Shg"/>
                 <outlet property="phoneNumTextField" destination="fGo-Ed-Bof" id="hfK-AL-P7I"/>
             </connections>
-            <point key="canvasLocation" x="-343" y="-26.5"/>
+            <point key="canvasLocation" x="-282" y="-31.5"/>
         </tableViewCell>
     </objects>
     <resources>

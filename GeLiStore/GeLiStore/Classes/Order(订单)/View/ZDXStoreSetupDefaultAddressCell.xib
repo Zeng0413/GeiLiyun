@@ -31,20 +31,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bf-Rz-OA7">
-                                <rect key="frame" x="288" y="18" width="22" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="22" id="PG9-rp-lGn"/>
-                                    <constraint firstAttribute="height" constant="22" id="S3b-gr-hrA"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="未选中商品"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hKG-Nr-yzc" firstAttribute="leading" secondItem="y6I-aa-RkN" secondAttribute="leading" constant="10" id="165-PE-shx"/>
-                            <constraint firstAttribute="trailing" secondItem="0Bf-Rz-OA7" secondAttribute="trailing" constant="10" id="8yo-TU-0gu"/>
-                            <constraint firstAttribute="bottom" secondItem="0Bf-Rz-OA7" secondAttribute="bottom" constant="19" id="YbO-uR-aNj"/>
                             <constraint firstAttribute="height" constant="59" id="fGW-Ba-EYU"/>
                             <constraint firstAttribute="bottom" secondItem="hKG-Nr-yzc" secondAttribute="bottom" constant="22" id="sAw-pO-W7W"/>
                         </constraints>
@@ -60,7 +50,4 @@
             <point key="canvasLocation" x="25" y="70"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="未选中商品" width="22" height="22"/>
-    </resources>
 </document>
