@@ -21,9 +21,10 @@
     self.textView.y = 22;
     self.textView.width =SCREEN_WIDTH - 20;
     self.textView.x = 10;
-    self.textView.height = 56;
+    self.textView.height = 126;
     self.textView.font = [UIFont systemFontOfSize:15];
     self.textView.delegate = self;
+    self.textView.showsVerticalScrollIndicator = NO;
     // 垂直方向上永远可以退拽
     self.textView.alwaysBounceVertical = YES;
     self.textView.placeholder = @"详细地址";

@@ -88,7 +88,7 @@
     defaultAddressBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     
     defaultAddressBtn.x = border;
-    defaultAddressBtn.width = defaultAddressBtn.imageView.width + 10 + [defaultAddressBtn.titleLabel.text sizeWithFont:ZDXFont(14)].width + 10;
+    defaultAddressBtn.width = defaultAddressBtn.imageView.width + 10 + [defaultAddressBtn.titleLabel.text sizeWithFont:ZDXFont(14)].width + 10 + 3 ;
     defaultAddressBtn.height = 20;
     
     [defaultAddressBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -105,7 +105,7 @@
     [cancelBtn setTitle:@"删除" forState:UIControlStateNormal];
     cancelBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 9);
     
-    cancelBtn.width = cancelBtn.imageView.width + 10 + [cancelBtn.titleLabel.text sizeWithFont:ZDXFont(14)].width + 10;
+    cancelBtn.width = cancelBtn.imageView.width + 10 + [cancelBtn.titleLabel.text sizeWithFont:ZDXFont(14)].width + 10 + 3;
     cancelBtn.x = SCREEN_WIDTH - border - cancelBtn.width;
     cancelBtn.height = 20;
     
@@ -122,7 +122,7 @@
     [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
     editBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 9);
     
-    editBtn.width = editBtn.imageView.width + 10 + [editBtn.titleLabel.text sizeWithFont:ZDXFont(14)].width + 10;
+    editBtn.width = editBtn.imageView.width + 10 + [editBtn.titleLabel.text sizeWithFont:ZDXFont(14)].width + 10 + 3;
     editBtn.x = SCREEN_WIDTH - border * 2 - editBtn.width - self.cancelBtn.width;
     editBtn.height = 20;
     

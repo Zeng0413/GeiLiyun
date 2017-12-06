@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZDXStoreConsigneeInfoModel.h"
 
 @interface ZDXStoreOrderAddressCell : UITableViewCell
+
+@property (strong, nonatomic) ZDXStoreConsigneeInfoModel *model;
 
 @end

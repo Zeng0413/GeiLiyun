@@ -1,12 +1,12 @@
 //
-//  ZDXStoreWriteOrderViewController.m
+//  ZDXStoreFillInOrderViewController.m
 //  GeLiStore
 //
-//  Created by user99 on 2017/11/24.
+//  Created by user99 on 2017/12/6.
 //  Copyright © 2017年 user99. All rights reserved.
 //
 
-#import "ZDXStoreWriteOrderViewController.h"
+#import "ZDXStoreFillInOrderViewController.h"
 #import "ZDXStoreOrderAddressDefaultCell.h"
 #import "ZDXStoreOrderGoodsShowCell.h"
 #import "ZDXStoreConsignnnerInfoViewController.h"
@@ -14,17 +14,28 @@
 #import "ZDXComnous.h"
 #import "ZDXStoreConsigneeInfoModel.h"
 #import "ZDXStoreOrderAddressCell.h"
+#import "ZDXStoreDeliveryInstallCell.h"
+#import "ZDXStoreRebateCell.h"
+#import "ZDXStoreOrderGoodsCountTableViewCell.h"
+#import "ZDXStoreSubmitOrderBottomView.h"
+#import "ZDXStoreOrderStatusViewController.h"
 
 static NSString *orderAddressCellID = @"orderAddressCell";
 static NSString *orderAddressDefaultCellID = @"orderAddressDefaultCell";
 static NSString *orderGoodsShowCellID = @"OrderGoodsShowCell";
-@interface ZDXStoreWriteOrderViewController ()
+static NSString *deliveryInstallCellID = @"DeliveryInstallCell";
+static NSString *rebateCellID = @"rebateCell";
+static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
+
+@interface ZDXStoreFillInOrderViewController ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) UITableView *tableView;
 
 @property (strong ,nonatomic) ZDXStoreConsigneeInfoModel *consigneeInfoModel;
 
 @end
 
-@implementation ZDXStoreWriteOrderViewController
+@implementation ZDXStoreFillInOrderViewController
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -33,14 +44,49 @@ static NSString *orderGoodsShowCellID = @"OrderGoodsShowCell";
     [self setupDefaultAddress];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"填写订单";
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self setupTableView];
+
+    [self setupBottomView];
+}
+
+-(void)setupBottomView{
+    ZDXStoreSubmitOrderBottomView *view = [ZDXStoreSubmitOrderBottomView view];
+    view.frame = CGRectMake(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH, 50);
+    view.goodsPrice = @"43950.00";
+    
+    view.block = ^{
+        ZDXStoreOrderStatusViewController *vc = [[ZDXStoreOrderStatusViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    
+    [self.view addSubview:view];
+}
+
+-(void)setupTableView{
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 50 - 64) style:UITableViewStylePlain];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = colorWithString(@"#f5f5f5");
+    
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"ZDXStoreOrderAddressDefaultCell" bundle:nil] forCellReuseIdentifier:orderAddressDefaultCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"ZDXStoreOrderGoodsShowCell" bundle:nil] forCellReuseIdentifier:orderGoodsShowCellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"ZDXStoreOrderAddressCell" bundle:nil] forCellReuseIdentifier:orderAddressCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ZDXStoreDeliveryInstallCell" bundle:nil] forCellReuseIdentifier:deliveryInstallCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ZDXStoreRebateCell" bundle:nil] forCellReuseIdentifier:rebateCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ZDXStoreOrderGoodsCountTableViewCell" bundle:nil] forCellReuseIdentifier:orderGoodsCountCellID];
+    
+    [self.view addSubview:self.tableView];
 }
 
 // 获取默认地址
@@ -75,6 +121,7 @@ static NSString *orderGoodsShowCellID = @"OrderGoodsShowCell";
     if (indexPath.section == 0) {
         if (self.consigneeInfoModel) {
             ZDXStoreOrderAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:orderAddressCellID];
+            cell.model = self.consigneeInfoModel;
             return cell;
         }else{
             ZDXStoreOrderAddressDefaultCell *cell = [tableView dequeueReusableCellWithIdentifier:orderAddressDefaultCellID];
@@ -84,6 +131,21 @@ static NSString *orderGoodsShowCellID = @"OrderGoodsShowCell";
     }
     if (indexPath.section == 1) {
         ZDXStoreOrderGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:orderGoodsShowCellID];
+        return cell;
+    }
+    
+    if (indexPath.section == 2) {
+        ZDXStoreDeliveryInstallCell *cell = [tableView dequeueReusableCellWithIdentifier:deliveryInstallCellID];
+        return cell;
+    }
+    
+    if (indexPath.section == 3) {
+        ZDXStoreRebateCell *cell = [tableView dequeueReusableCellWithIdentifier:rebateCellID];
+        return cell;
+    }
+    
+    if (indexPath.section == 4) {
+        ZDXStoreOrderGoodsCountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:orderGoodsCountCellID];
         return cell;
     }
     
@@ -99,13 +161,20 @@ static NSString *orderGoodsShowCellID = @"OrderGoodsShowCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         if (self.consigneeInfoModel) {
-            return 104;
+            return 99;
         }else{
             return 59;
         }
     }else if (indexPath.section == 1){
         return 107;
+    }else if (indexPath.section == 2){
+        return 146;
+    }else if (indexPath.section == 3){
+        return 68;
+    }else if (indexPath.section == 4){
+        return 87;
     }
+    
     return 50;
 }
 
@@ -115,6 +184,4 @@ static NSString *orderGoodsShowCellID = @"OrderGoodsShowCell";
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-
-
 @end

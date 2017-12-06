@@ -39,14 +39,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="订单地址图标" translatesAutoresizingMaskIntoConstraints="NO" id="qYA-SF-jIn">
-                        <rect key="frame" x="10" y="53" width="12" height="17"/>
+                        <rect key="frame" x="10" y="48" width="12" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="sip-u2-o13"/>
                             <constraint firstAttribute="width" constant="12" id="tZ6-Q3-6HL"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收货地址：重庆市九龙坡区石桥铺绿梦立交桥桥下蓝色小区一栋54-0-1-0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2si-6J-maK">
-                        <rect key="frame" x="32" y="44" width="318" height="35"/>
+                        <rect key="frame" x="32" y="39" width="318" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="RFr-Ff-dcE"/>
                         </constraints>
@@ -55,13 +55,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="地址分割线" translatesAutoresizingMaskIntoConstraints="NO" id="xzd-2E-bcd">
-                        <rect key="frame" x="0.0" y="99" width="387" height="5"/>
+                        <rect key="frame" x="0.0" y="94" width="387" height="5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="5" id="x2m-ue-0Sv"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="向右箭头" translatesAutoresizingMaskIntoConstraints="NO" id="Wax-Td-kqy">
-                        <rect key="frame" x="367" y="55" width="10" height="13"/>
+                        <rect key="frame" x="367" y="50" width="10" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="huJ-dx-XLJ"/>
                             <constraint firstAttribute="width" constant="10" id="ymW-i5-3MF"/>
@@ -78,7 +78,7 @@
                     <constraint firstItem="qYA-SF-jIn" firstAttribute="centerY" secondItem="2si-6J-maK" secondAttribute="centerY" id="fJr-14-qQq"/>
                     <constraint firstItem="Wax-Td-kqy" firstAttribute="centerY" secondItem="2si-6J-maK" secondAttribute="centerY" id="h6K-a7-xrX"/>
                     <constraint firstAttribute="trailing" secondItem="xzd-2E-bcd" secondAttribute="trailing" id="nJb-pS-u2y"/>
-                    <constraint firstItem="2si-6J-maK" firstAttribute="top" secondItem="Cwu-DH-Qwz" secondAttribute="bottom" constant="20" id="obt-Ph-SNH"/>
+                    <constraint firstItem="2si-6J-maK" firstAttribute="top" secondItem="Cwu-DH-Qwz" secondAttribute="bottom" constant="15" id="obt-Ph-SNH"/>
                     <constraint firstAttribute="trailing" secondItem="sG9-j6-4aW" secondAttribute="trailing" constant="37" id="sde-vW-taj"/>
                     <constraint firstItem="qYA-SF-jIn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="uCO-x9-eV4"/>
                     <constraint firstItem="xzd-2E-bcd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="v6s-uc-bla"/>

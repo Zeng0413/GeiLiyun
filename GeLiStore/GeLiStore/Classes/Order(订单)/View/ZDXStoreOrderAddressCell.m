@@ -24,13 +24,17 @@
     self.phone.textColor = blackLabelColor;
     self.address.textColor = blackLabelColor;
     
-    // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+-(void)setModel:(ZDXStoreConsigneeInfoModel *)model{
+    _model = model;
+    
+    self.name.text = [NSString stringWithFormat:@"收货人：%@",model.userName];
+    self.phone.text = model.userPhone;
+    self.address.text = [NSString stringWithFormat:@"%@,%@",model.areaName,model.userAddress];    
 }
 
 @end

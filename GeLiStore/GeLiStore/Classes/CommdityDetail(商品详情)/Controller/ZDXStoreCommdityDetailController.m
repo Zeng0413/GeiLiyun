@@ -15,7 +15,8 @@
 #import "ZDXStoreFooterView.h"
 #import "ZDXStoreGoodsModel.h"
 #import "ZDXStoreGoodsDescCell.h"
-#import "ZDXStoreWriteOrderViewController.h"
+
+#import "ZDXStoreFillInOrderViewController.h"
 #import "ZDXStoreLoginViewController.h"
 
 static NSString *commdityCommentCellID = @"commdityCommentCell";
@@ -196,7 +197,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 
 // 立即购买
 -(void)buyGoods{
-    ZDXStoreWriteOrderViewController *vc = [[ZDXStoreWriteOrderViewController alloc] init];
+    ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
