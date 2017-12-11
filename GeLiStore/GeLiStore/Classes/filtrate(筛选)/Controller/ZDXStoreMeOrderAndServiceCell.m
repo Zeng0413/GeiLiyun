@@ -71,7 +71,9 @@
 }
 
 -(void)selectedCommodity:(UIButton *)button{
-    NSLog(@"%@",button.titleLabel.text);
+    if ([self.delegate respondsToSelector:@selector(cellSelectedTypeStr:)]) {
+        [self.delegate cellSelectedTypeStr:button.titleLabel.text];
+    }
 }
 
 @end

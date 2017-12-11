@@ -57,6 +57,12 @@
 		131FC1321FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1311FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m */; };
 		131FC1351FA07F2700476D63 /* ZDXStoreCommodityShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1341FA07F2700476D63 /* ZDXStoreCommodityShowCell.m */; };
 		131FC1381FA07F4800476D63 /* ZDXStoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 131FC1371FA07F4800476D63 /* ZDXStoreCollectionViewCell.m */; };
+		1321AF8B1FDE5785007505D0 /* ZDXStoreMeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1321AF8A1FDE5785007505D0 /* ZDXStoreMeCollectionViewController.m */; };
+		1321AF8E1FDE58C5007505D0 /* ZDXStoreCollectionTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1321AF8D1FDE58C5007505D0 /* ZDXStoreCollectionTopView.m */; };
+		1321AF921FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1321AF901FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.m */; };
+		1321AF931FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1321AF911FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.xib */; };
+		1321AF971FDE6F27007505D0 /* ZDXStoreNoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1321AF951FDE6F27007505D0 /* ZDXStoreNoCollectionCell.m */; };
+		1321AF981FDE6F27007505D0 /* ZDXStoreNoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1321AF961FDE6F27007505D0 /* ZDXStoreNoCollectionCell.xib */; };
 		13236C7A1FB000B600619C6B /* ZDXStoreMeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C791FB000B600619C6B /* ZDXStoreMeHeaderView.m */; };
 		13236C7E1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13236C7C1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.m */; };
 		13236C7F1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13236C7D1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.xib */; };
@@ -232,6 +238,16 @@
 		131FC1341FA07F2700476D63 /* ZDXStoreCommodityShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommodityShowCell.m; sourceTree = "<group>"; };
 		131FC1361FA07F4800476D63 /* ZDXStoreCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCollectionViewCell.h; sourceTree = "<group>"; };
 		131FC1371FA07F4800476D63 /* ZDXStoreCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCollectionViewCell.m; sourceTree = "<group>"; };
+		1321AF891FDE5785007505D0 /* ZDXStoreMeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreMeCollectionViewController.h; sourceTree = "<group>"; };
+		1321AF8A1FDE5785007505D0 /* ZDXStoreMeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreMeCollectionViewController.m; sourceTree = "<group>"; };
+		1321AF8C1FDE58C5007505D0 /* ZDXStoreCollectionTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCollectionTopView.h; sourceTree = "<group>"; };
+		1321AF8D1FDE58C5007505D0 /* ZDXStoreCollectionTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCollectionTopView.m; sourceTree = "<group>"; };
+		1321AF8F1FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCollectionGoodsCell.h; sourceTree = "<group>"; };
+		1321AF901FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCollectionGoodsCell.m; sourceTree = "<group>"; };
+		1321AF911FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreCollectionGoodsCell.xib; sourceTree = "<group>"; };
+		1321AF941FDE6F27007505D0 /* ZDXStoreNoCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreNoCollectionCell.h; sourceTree = "<group>"; };
+		1321AF951FDE6F27007505D0 /* ZDXStoreNoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreNoCollectionCell.m; sourceTree = "<group>"; };
+		1321AF961FDE6F27007505D0 /* ZDXStoreNoCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreNoCollectionCell.xib; sourceTree = "<group>"; };
 		13236C781FB000B600619C6B /* ZDXStoreMeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZDXStoreMeHeaderView.h; path = "GeLiStore/Classes/filtrate(筛选)/Controller/ZDXStoreMeHeaderView.h"; sourceTree = SOURCE_ROOT; };
 		13236C791FB000B600619C6B /* ZDXStoreMeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZDXStoreMeHeaderView.m; path = "GeLiStore/Classes/filtrate(筛选)/Controller/ZDXStoreMeHeaderView.m"; sourceTree = SOURCE_ROOT; };
 		13236C7B1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZDXStoreMeOrderAndServiceCell.h; path = "GeLiStore/Classes/filtrate(筛选)/Controller/ZDXStoreMeOrderAndServiceCell.h"; sourceTree = SOURCE_ROOT; };
@@ -610,6 +626,47 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1321AF851FDE576B007505D0 /* MeCollect(我的收藏) */ = {
+			isa = PBXGroup;
+			children = (
+				1321AF861FDE576B007505D0 /* Controller */,
+				1321AF871FDE576B007505D0 /* Model */,
+				1321AF881FDE576B007505D0 /* View */,
+			);
+			path = "MeCollect(我的收藏)";
+			sourceTree = "<group>";
+		};
+		1321AF861FDE576B007505D0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1321AF891FDE5785007505D0 /* ZDXStoreMeCollectionViewController.h */,
+				1321AF8A1FDE5785007505D0 /* ZDXStoreMeCollectionViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1321AF871FDE576B007505D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1321AF881FDE576B007505D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1321AF8C1FDE58C5007505D0 /* ZDXStoreCollectionTopView.h */,
+				1321AF8D1FDE58C5007505D0 /* ZDXStoreCollectionTopView.m */,
+				1321AF8F1FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.h */,
+				1321AF901FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.m */,
+				1321AF911FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.xib */,
+				1321AF941FDE6F27007505D0 /* ZDXStoreNoCollectionCell.h */,
+				1321AF951FDE6F27007505D0 /* ZDXStoreNoCollectionCell.m */,
+				1321AF961FDE6F27007505D0 /* ZDXStoreNoCollectionCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		132721A81FCE8CBD0081F065 /* Order(订单) */ = {
 			isa = PBXGroup;
 			children = (
@@ -776,6 +833,7 @@
 		13949B941F988AE10027CA84 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1321AF851FDE576B007505D0 /* MeCollect(我的收藏) */,
 				132721A81FCE8CBD0081F065 /* Order(订单) */,
 				1315AABF1FA9BA2C00360F83 /* filtrate(筛选) */,
 				13D53F551FA8246B0080B563 /* CommdityDetail(商品详情) */,
@@ -1175,11 +1233,13 @@
 				13236C7F1FB0114D00619C6B /* ZDXStoreMeOrderAndServiceCell.xib in Resources */,
 				13D592331FD7A54800BE2C7E /* ZDXStoreRebateCell.xib in Resources */,
 				13236C841FB047C200619C6B /* ZDXStoreMeInfoViewController.xib in Resources */,
+				1321AF981FDE6F27007505D0 /* ZDXStoreNoCollectionCell.xib in Resources */,
 				13F682311FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib in Resources */,
 				13949B8A1F9883C50027CA84 /* Assets.xcassets in Resources */,
 				1307A2DC1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib in Resources */,
 				132721DD1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.xib in Resources */,
 				132721C51FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.xib in Resources */,
+				1321AF931FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1251,7 +1311,9 @@
 				13FEDBD91F9998D400538177 /* ZDXStoreHomeViewController.m in Sources */,
 				1307A2DF1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m in Sources */,
 				13FEDBD31F99980300538177 /* ZDXStoreRecylingInNewViewController.m in Sources */,
+				1321AF8B1FDE5785007505D0 /* ZDXStoreMeCollectionViewController.m in Sources */,
 				1307A2C51FAD4ABB0019D8F5 /* ZDXStoreFiltrateCollectionViewCell.m in Sources */,
+				1321AF971FDE6F27007505D0 /* ZDXStoreNoCollectionCell.m in Sources */,
 				13041DCB1FD1062200DC1548 /* ZDXStoreConsigneeInfoModel.m in Sources */,
 				13236C8B1FB051DA00619C6B /* ZDXStoreSettingCell.m in Sources */,
 				131FC1121FA0707900476D63 /* ZDXStoreShopCarHearView.m in Sources */,
@@ -1313,6 +1375,7 @@
 				13FEDA851FCFD4B50088BD94 /* ZDXStoreCityModel.m in Sources */,
 				132469D51FB94E0A003D508F /* ZDXStoreGoodsClassifySubModel.m in Sources */,
 				13949BA61F9895480027CA84 /* ZDXStoreNavigationViewController.m in Sources */,
+				1321AF921FDE616A007505D0 /* ZDXStoreCollectionGoodsCell.m in Sources */,
 				132721DC1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.m in Sources */,
 				131FC0F11FA0704F00476D63 /* ZDXStoreShareViewController.m in Sources */,
 				131FC10E1FA0707900476D63 /* ZDXStoreShopCarTableViewProxy.m in Sources */,
@@ -1344,6 +1407,7 @@
 				1307A2D91FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.m in Sources */,
 				13949BB11F9897D90027CA84 /* NSString+Extension.m in Sources */,
 				13D53F5E1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.m in Sources */,
+				1321AF8E1FDE58C5007505D0 /* ZDXStoreCollectionTopView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZDXStoreMeOrderAndServiceCellDelegate <NSObject>
+
+-(void)cellSelectedTypeStr:(NSString *)str;
+
+@end
+
 @interface ZDXStoreMeOrderAndServiceCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *title;
-
 
 -(void)setupUIWithMaxCols:(NSInteger)maxCols imageToView:(CGFloat)imageToView imageWH:(CGFloat)imageWH lableToImage:(CGFloat)lableToImage;
 
@@ -18,4 +23,5 @@
 
 @property (strong, nonatomic) NSArray *dataList;
 
+@property (weak, nonatomic) id<ZDXStoreMeOrderAndServiceCellDelegate> delegate;
 @end

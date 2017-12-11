@@ -13,9 +13,10 @@
 #import "ZDXStoreMeInfoViewController.h"
 #import "ZDXStoreSettingViewController.h"
 #import "ZDXStoreLoginViewController.h"
+#import "ZDXStoreMeCollectionViewController.h"
 
 static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
-@interface ZDXStoreMeViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreMeHeaderViewDelegate>
+@interface ZDXStoreMeViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreMeHeaderViewDelegate, ZDXStoreMeOrderAndServiceCellDelegate>
 
 @property (weak, nonatomic) UITableView *tableView;
 
@@ -52,7 +53,6 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的";
     self.view.backgroundColor = ZDXRandomColor;
     
     // 设置tableView
@@ -92,6 +92,8 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
         cell.dataList = arr;
         cell.title.text = @"我的订单";
         [cell setupUIWithMaxCols:5 imageToView:13 imageWH:35 lableToImage:7];
+        
+        cell.delegate = self;
         self.meOrderCell = cell;
         return cell;
         
@@ -103,6 +105,7 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
         cell.dataList = arr;
         cell.title.text = @"我的服务";
         [cell setupUIWithMaxCols:3 imageToView:25 imageWH:41 lableToImage:9];
+        cell.delegate = self;
         self.meServiceCell = cell;
         return cell;
     }
@@ -141,6 +144,14 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 
 -(void)settingClick{
     [self.navigationController pushViewController:[[ZDXStoreSettingViewController alloc] init] animated:YES];
+}
+
+#pragma mark - cell delegate
+-(void)cellSelectedTypeStr:(NSString *)str{
+    if ([str isEqualToString:@"我的收藏"]) {
+        ZDXStoreMeCollectionViewController *vc = [[ZDXStoreMeCollectionViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

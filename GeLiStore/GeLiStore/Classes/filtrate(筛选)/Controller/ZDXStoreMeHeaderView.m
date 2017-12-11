@@ -51,6 +51,9 @@
     view.imageWH = 50;
     view.labelToImage = 15;
     view.labelH = 15;
+    
+    view.imageView.layer.masksToBounds = YES;
+    view.imageView.layer.cornerRadius = 25;
     [self addSubview:view];
     self.view = view;
     
@@ -65,7 +68,7 @@
 -(void)setUserModel:(ZDXStoreUserModel *)userModel{
     _userModel = userModel;
     if (userModel) {
-        self.view.imageStr = userModel.userrankImg;
+        self.view.imageStr = userModel.userPhoto;
         self.view.titleStr = userModel.userName;
     }else{
         self.view.imageView.image = [UIImage imageNamed:@"头像"];
