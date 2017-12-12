@@ -85,7 +85,7 @@
                 <outlet property="imageX" destination="UTB-ba-nW2" id="fL5-Ct-HaA"/>
                 <outlet property="shadowView" destination="T41-Vt-Cyi" id="46r-1E-3qF"/>
             </connections>
-            <point key="canvasLocation" x="-66" y="17"/>
+            <point key="canvasLocation" x="-292" y="11"/>
         </tableViewCell>
     </objects>
 </document>

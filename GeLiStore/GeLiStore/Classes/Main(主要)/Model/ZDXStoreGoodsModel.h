@@ -11,6 +11,8 @@
 @interface ZDXStoreGoodsModel : NSObject
 
 @property (assign, nonatomic) NSInteger goodsId; // 商品id
+@property (assign, nonatomic) NSInteger favoriteId; // 收藏表Id
+
 @property (copy, nonatomic) NSString *goodsName; // 商品名
 @property (copy, nonatomic) NSString *goodsImg;  // 商品图片
 @property (copy, nonatomic) NSString *shopPrice; // 购买价格

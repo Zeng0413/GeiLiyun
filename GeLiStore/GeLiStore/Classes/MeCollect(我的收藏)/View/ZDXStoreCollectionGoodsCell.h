@@ -13,6 +13,8 @@
 
 -(void)collectionGoodsWithModel:(ZDXStoreGoodsModel *)goodsModel selectedStatus:(BOOL)selectedStatus;
 
+-(void)myTabClick:(UITableViewCell *)cell;
+
 @end
 
 @interface ZDXStoreCollectionGoodsCell : UITableViewCell
@@ -21,6 +23,7 @@
 
 @property (strong, nonatomic) ZDXStoreGoodsModel *goodsModel;
 
+@property (strong, nonatomic) UIButton *defaultBtn;
 
 -(void)isEditStatus:(BOOL)isEdit;
 @end

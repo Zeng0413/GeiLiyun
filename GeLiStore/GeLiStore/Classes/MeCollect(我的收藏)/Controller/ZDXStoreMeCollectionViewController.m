@@ -10,6 +10,7 @@
 #import "ZDXStoreCollectionTopView.h"
 #import "ZDXComnous.h"
 #import "ZDXStoreCollectionGoodsCell.h"
+
 #import "ZDXStoreNoCollectionCell.h"
 
 static NSString *noCollectionCellID = @"noCollectionCellID";
@@ -31,6 +32,12 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 @property (assign, nonatomic) BOOL isSelected;
 
 @property (strong, nonatomic) NSMutableArray *goodsSelectedArr;
+
+@property (strong, nonatomic) ZDXStoreUserModel *userModel;
+
+@property (assign, nonatomic) NSInteger num;
+
+@property (nonatomic,assign) NSInteger page;
 
 @end
 
@@ -78,9 +85,27 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
     [self.tableView reloadData];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self addObserver:self forKeyPath:@"num" options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self removeObserver:self forKeyPath:@"num"];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的收藏";
+    
+    self.page = 1;
+    
+    self.userModel = [ZDXStoreUserModelTool userModel];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = colorWithString(@"#f4f4f4");
     UIBarButtonItem *editBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.editButton];
@@ -104,7 +129,9 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
     self.bottomBtn.width = SCREEN_WIDTH;
     self.bottomBtn.height = 44;
     self.bottomBtn.y = SCREEN_HEIGHT - 44;
-    [self.bottomBtn setBackgroundColor:colorWithString(@"#f95865")];
+    
+    self.bottomBtn.enabled = NO;
+    [self.bottomBtn setBackgroundColor:ZDXColor(255, 130, 142)];
     [self.bottomBtn setTitle:@"删除" forState:UIControlStateNormal];
     self.bottomBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -113,20 +140,21 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 
 // 加载数据
 -(void)reloadData{
-    ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listGoodsQuery",hostUrl];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"userId"] = @(userModel.userId);
+    params[@"userId"] = @(self.userModel.userId);
     params[@"page"] = @1;
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject[@"code"] integerValue] == 1) { // 数据加载成功
+        [MBProgressHUD hideHUD];
+//        if ([responseObject[@"code"] integerValue] == 1) { // 数据加载成功
+            
             self.dataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.tableView reloadData];
             
-        }
+//        }
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -145,9 +173,37 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
     
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreNoCollectionCell" bundle:nil] forCellReuseIdentifier:noCollectionCellID];
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreCollectionGoodsCell" bundle:nil] forCellReuseIdentifier:collectionGoodsCellID];
+    
+    MJRefreshFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    tableView.mj_footer = footer;
     [self.view addSubview:tableView];
     self.tableView = tableView;
     
+}
+
+-(void)loadNewData{
+    self.page++;
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listGoodsQuery",hostUrl];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userId"] = @(self.userModel.userId);
+    params[@"page"] = @(self.page);
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self.tableView.mj_footer endRefreshing];
+        if ([responseObject[@"code"] integerValue] == 1) {
+            NSArray *list = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.dataList addObjectsFromArray:list];
+            [self.tableView reloadData];
+        }else{
+            [MBProgressHUD showSuccess:@"暂无更多订单"];
+        }
+        
+       
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 
 // 收藏筛选View
@@ -167,7 +223,8 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataList.count > 0) {
-        ZDXStoreCollectionGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionGoodsCellID];
+        ZDXStoreCollectionGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionGoodsCellID forIndexPath:indexPath];
+
         cell.goodsModel = self.dataList[indexPath.row];
         cell.delegate = self;
         if (self.isSelected) {
@@ -197,16 +254,88 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 
 // 删除收藏商品
 -(void)deleteClick{
-    
+    [MBProgressHUD showMessage:@""];
+    if (self.goodsSelectedArr.count == 1) {
+        
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        ZDXStoreGoodsModel *goodsModel = self.goodsSelectedArr.firstObject;
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"type"] = @0;
+        params[@"id"] = @(goodsModel.favoriteId);
+        params[@"userId"] = @(self.userModel.userId);
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/cancel",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"code"] integerValue] == 1) {
+                [self.goodsSelectedArr removeAllObjects];
+                [self reloadData];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }else{
+        NSString *ids = @"";
+        
+        for (int i = 0; i < self.goodsSelectedArr.count; i++) {
+            ZDXStoreGoodsModel *goodsModel = self.goodsSelectedArr[i];
+            ids = [ids stringByAppendingString:[NSString stringWithFormat:@"%ld,",goodsModel.favoriteId]];
+        }
+        
+        ids = [ids substringToIndex:([ids length] - 1)];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"type"] = @0;
+        params[@"ids"] = ids;
+        params[@"userId"] = @(self.userModel.userId);
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/batchCancel",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"code"] integerValue] == 1) {
+                [self.goodsSelectedArr removeAllObjects];
+                [self reloadData];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+}
+
+#pragma mark -- KVO
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"num"]) {
+        if (_goodsSelectedArr.count > 0) {
+            self.bottomBtn.backgroundColor = colorWithString(@"#f95865");
+            self.bottomBtn.enabled = YES;
+        }else{
+            self.bottomBtn.backgroundColor = ZDXColor(255, 130, 142);
+            self.bottomBtn.enabled = NO;
+        }
+    }
 }
 
 #pragma mark - cell delegate
+
+-(void)myTabClick:(UITableViewCell *)cell{
+    NSIndexPath *indx = [self.tableView indexPathForCell:cell];
+    ZDXStoreGoodsModel *goodsModel = self.dataList[indx.row];
+    goodsModel.isSelected = !goodsModel.isSelected;
+    [self.tableView reloadData];
+}
+
 #pragma mark 商品选择
 -(void)collectionGoodsWithModel:(ZDXStoreGoodsModel *)goodsModel selectedStatus:(BOOL)selectedStatus{
+    
     if (selectedStatus) {
         [self.goodsSelectedArr addObject:goodsModel];
     }else{
         [self.goodsSelectedArr removeObject:goodsModel];
     }
+    
+    self.num++;
 }
 @end

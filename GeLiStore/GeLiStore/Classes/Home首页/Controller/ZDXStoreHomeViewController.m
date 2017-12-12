@@ -191,6 +191,7 @@ static NSString *brandChooseCell = @"brandChooseCell";
         if ([responseObject[@"code"] integerValue] == 1) { // 请求数据成功
             NSArray *newDataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
             [self.goodsDataList addObjectsFromArray:newDataList];
+            
             [self.tableView reloadData];
         }else{
             [MBProgressHUD showSuccess:@"暂无更多订单"];
