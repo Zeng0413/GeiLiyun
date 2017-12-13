@@ -15,6 +15,7 @@
                 <outlet property="contractServerBtn" destination="AEY-BQ-wae" id="fKj-0W-D7r"/>
                 <outlet property="nextBtn" destination="cPy-V6-Iik" id="lKR-Gy-dgw"/>
                 <outlet property="phoneNumberTextFileld" destination="niA-X7-pwK" id="lM8-t9-9EI"/>
+                <outlet property="titleName" destination="wbh-2p-CVR" id="dVQ-iI-VJk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

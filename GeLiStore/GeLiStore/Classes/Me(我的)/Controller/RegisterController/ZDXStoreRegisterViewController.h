@@ -10,4 +10,8 @@
 
 @interface ZDXStoreRegisterViewController : UIViewController
 
+@property (copy, nonatomic) NSString *NavTitle;
+
+@property (copy, nonatomic) NSString *titleStatus;
+
 @end

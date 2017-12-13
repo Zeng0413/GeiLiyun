@@ -218,7 +218,8 @@ static NSString *brandChooseCell = @"brandChooseCell";
 // 搜索按钮事件
 -(void)searchClick{
     ZDXStoreSearchGoodsViewController *vc = [[ZDXStoreSearchGoodsViewController alloc] init];
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+//    [self presentViewController:vc animated:YES completion:nil];
     NSLog(@"搜索");
 }
 

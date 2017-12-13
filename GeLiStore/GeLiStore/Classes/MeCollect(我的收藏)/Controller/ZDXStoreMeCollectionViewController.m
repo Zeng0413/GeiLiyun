@@ -142,7 +142,7 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 -(void)reloadData{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listGoodsQuery",hostUrl];
+    NSString *   urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listGoodsQuery",hostUrl];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"userId"] = @(self.userModel.userId);
@@ -155,7 +155,6 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
             [self.tableView reloadData];
             
 //        }
-        NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];

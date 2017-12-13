@@ -10,6 +10,7 @@
 #import "ZDXComnous.h"
 #import "ZDXStoreUserModel.h"
 @interface ZDXStoreSetupPwdViewController ()<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *passwordTitle;
 @property (weak, nonatomic) IBOutlet UITextField *PWDTextField;
 @property (weak, nonatomic) IBOutlet UIButton *confireBtn;
 
@@ -19,7 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"新用户注册";
+    if (self.NavTitle.length>0) {
+        self.title = self.NavTitle;
+    }else{
+        self.title = @"新用户注册";
+    }
+    
+    if (self.titleStatus.length>0) {
+        self.passwordTitle.text = self.titleStatus;
+    }
+    
     self.PWDTextField.delegate = self;
     self.PWDTextField.layer.borderWidth = 1.0f;
     self.PWDTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -52,24 +62,47 @@
 - (IBAction)confireClick:(UIButton *)sender {
     
     [MBProgressHUD showMessage:@"正在加载..."];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSDictionary *params = @{@"loginName" : self.phoneNumStr,@"loginPwd" : self.PWDTextField.text,@"reUserPwd" : self.PWDTextField.text,@"nameType" : @"3"};
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/toRegist",hostUrl];
-    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject[@"code"] integerValue] == 1) {
-            [MBProgressHUD showSuccess:@"设置成功"];
-    
-            
-            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
-        }else{
-            //    创建弹出框
-            UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:responseObject[@"msg"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [warnningVC show];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    if (self.NavTitle.length>0) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSDictionary *params = @{@"userPhone" : self.phoneNumStr,@"newPassword" : self.PWDTextField.text};
         
-    }];
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/forgotPasswordForNewPsssword",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [MBProgressHUD hideHUD];
+            if ([responseObject[@"code"] integerValue] == 1) {
+                [MBProgressHUD showSuccess:@"设置成功"];
+                
+                
+                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+            }else{
+                //    创建弹出框
+                UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:responseObject[@"msg"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [warnningVC show];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+        }];
+    }else{
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSDictionary *params = @{@"loginName" : self.phoneNumStr,@"loginPwd" : self.PWDTextField.text,@"reUserPwd" : self.PWDTextField.text,@"nameType" : @"3"};
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/toRegist",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"code"] integerValue] == 1) {
+                [MBProgressHUD showSuccess:@"设置成功"];
+                
+                
+                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+            }else{
+                //    创建弹出框
+                UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:responseObject[@"msg"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [warnningVC show];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+    
     
 }
 

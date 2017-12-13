@@ -14,6 +14,7 @@
 #import "ZDXStoreFiltrateViewController.h"
 #import "ZDXStoreGoodsClassifyModel.h"
 #import "ZDXStoreGoodsClassifySubModel.h"
+#import "ZDXStoreGoodsModel.h"
 
 static NSString *commdityClassifyBannerCellID = @"commdityClassifyBannerCell";
 static NSString *commodityClassifyCellID = @"commodityClassifyCell";
@@ -200,9 +201,28 @@ static NSString *commodityClassifyCellID = @"commodityClassifyCell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
+        [MBProgressHUD showMessage:@""];
         ZDXStoreFiltrateViewController *vc = [[ZDXStoreFiltrateViewController alloc] init];
+        
         ZDXStoreGoodsClassifySubModel *model = self.collectionDataList[indexPath.row];
-        [self.navigationController pushViewController:vc animated:YES];
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"page"] = @1;
+        params[@"type"] = @1;
+        params[@"keyword"] = model.catName;
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Search/keywordSearch",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [MBProgressHUD hideHUD];
+            NSMutableArray *classifyArr = [NSMutableArray array];
+            classifyArr = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            vc.dataList = classifyArr;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+
+        }];        
     }
 }
 @end

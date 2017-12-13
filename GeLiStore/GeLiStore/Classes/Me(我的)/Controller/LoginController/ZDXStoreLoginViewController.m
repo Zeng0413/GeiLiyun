@@ -102,6 +102,10 @@
 
 // 忘记密码
 - (IBAction)forgetPassword:(UIButton *)sender {
+    ZDXStoreRegisterViewController *vc = [[ZDXStoreRegisterViewController alloc]init];
+    vc.titleStatus = @"请输入原手机号码：";
+    vc.NavTitle = @"更换手机号码";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

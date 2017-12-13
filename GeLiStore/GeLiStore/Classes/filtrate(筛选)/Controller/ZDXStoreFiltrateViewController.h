@@ -10,4 +10,6 @@
 
 @interface ZDXStoreFiltrateViewController : UIViewController
 
+@property (strong, nonatomic) NSMutableArray *dataList;
+
 @end

@@ -11,4 +11,7 @@
 @interface ZDXStoreSetupPwdViewController : UIViewController
 @property (copy, nonatomic) NSString *phoneNumStr;
 
+@property (copy, nonatomic) NSString *NavTitle;
+
+@property (copy, nonatomic) NSString *titleStatus;
 @end

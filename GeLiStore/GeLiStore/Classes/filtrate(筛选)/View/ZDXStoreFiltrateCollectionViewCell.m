@@ -7,15 +7,13 @@
 //
 
 #import "ZDXStoreFiltrateCollectionViewCell.h"
-#import "UIColor+ColorChange.h"
-#import "ZDXStoreProductModel.h"
+#import "ZDXComnous.h"
+#import "ZDXStoreGoodsModel.h"
 @interface ZDXStoreFiltrateCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *commdityImage;
 @property (weak, nonatomic) IBOutlet UILabel *commdityName;
 @property (weak, nonatomic) IBOutlet UILabel *commdityPrice;
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
-
-
 
 @end
 
@@ -23,6 +21,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.contentView.backgroundColor = [UIColor whiteColor];
+    
     self.commdityName.textColor = [UIColor colorWithHexString:@"#444444"];
     self.commdityPrice.textColor = [UIColor colorWithHexString:@"#e93644"];
     
@@ -34,12 +34,13 @@
     
 }
 
--(void)setProductModel:(ZDXStoreProductModel *)productModel{
-    _productModel = productModel;
+-(void)setGoodsModel:(ZDXStoreGoodsModel *)goodsModel{
+    _goodsModel = goodsModel;
     
-    self.commdityImage.image = [UIImage imageNamed:productModel.productPicUri];
+//    self.commdityImage.image = [UIImage imageNamed:productModel.productPicUri];
+    [self.commdityImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,goodsModel.goodsImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
     
-    NSString *productName = [NSString stringWithFormat:@"  %@",productModel.productName];
+    NSString *productName = [NSString stringWithFormat:@"  %@",goodsModel.goodsName];
     NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:productName];
     CGFloat attchWH = self.commdityName.font.lineHeight;
     NSTextAttachment *attch = [[NSTextAttachment alloc] init];
@@ -50,7 +51,6 @@
     [attri insertAttributedString:string atIndex:0];
     self.commdityName.attributedText = attri;
     
-    self.commdityPrice.text = [NSString stringWithFormat:@"¥%ld",productModel.productPrice];
-    
+    self.commdityPrice.text = [NSString stringWithFormat:@"¥%@",goodsModel.shopPrice];
 }
 @end

@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="PWDTextField" destination="m1x-g9-wyV" id="bhh-uc-gSY"/>
                 <outlet property="confireBtn" destination="lyz-C2-cD1" id="Kxl-uY-Ck5"/>
+                <outlet property="passwordTitle" destination="VOr-C0-U95" id="zmD-m7-qHQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -40,8 +40,11 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"新用户注册";
+    [super viewDidLoad];if (self.NavTitle.length>0) {
+        self.title = self.NavTitle;
+    }else{
+        self.title = @"新用户注册";
+    }
 
     // 初始化界面
     [self setupUI];
@@ -151,6 +154,8 @@
         if ([responseObject[@"code"] integerValue] == 1) {
             ZDXStoreSetupPwdViewController *vc = [[ZDXStoreSetupPwdViewController alloc] init];
             vc.phoneNumStr = self.phoneNumStr;
+            vc.NavTitle = @"重置密码";
+            vc.titleStatus = @"请设置新的登录密码";
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             //    创建弹出框

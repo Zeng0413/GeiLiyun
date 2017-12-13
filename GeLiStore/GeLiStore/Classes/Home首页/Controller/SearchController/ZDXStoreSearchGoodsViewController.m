@@ -8,6 +8,9 @@
 
 #import "ZDXStoreSearchGoodsViewController.h"
 #import "ZDXComnous.h"
+#import "ZDXStoreGoodsModel.h"
+#import "ZDXStoreFiltrateViewController.h"
+
 @interface ZDXStoreSearchGoodsViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) UISearchBar *searchBar;
@@ -23,6 +26,16 @@
         _searchReaultList = [NSMutableArray array];
     }
     return _searchReaultList;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -52,8 +65,9 @@
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
     searchBar.delegate = self;
     searchBar.barTintColor = [UIColor whiteColor];
-    searchBar.showsCancelButton = YES;
-    searchBar.placeholder = @"请商品名";
+//    searchBar.backgroundColor = colorWithString(@"#f4f4f4");
+    searchBar.showsCancelButton = NO;
+    searchBar.placeholder = @"请输入商品名";
     [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"搜索框"] forState:UIControlStateNormal];
     [navView addSubview:searchBar];
     self.searchBar = searchBar;
@@ -66,11 +80,7 @@
     [backBtn setImage:[UIImage imageNamed:@"返回箭头"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     [navView addSubview:backBtn];
-}
 
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    [self.searchBar endEditing:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // 设置tableView
@@ -96,13 +106,42 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:indetifer];
     }
-    cell.textLabel.text = @"zdx";
+    cell.textLabel.text = @"";
     return cell;
 }
 
 -(void)backClick{
     [self.searchBar endEditing:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.searchBar endEditing:YES];
+}
+
+#pragma mark - searchBar delegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [MBProgressHUD showMessage:@""];
+    ZDXStoreFiltrateViewController *vc = [[ZDXStoreFiltrateViewController alloc] init];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"page"] = @1;
+    params[@"type"] = @1;
+    params[@"keyword"] = searchBar.text;
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Search/keywordSearch",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+        NSMutableArray *classifyArr = [NSMutableArray array];
+        classifyArr = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        vc.dataList = classifyArr;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
+
+    }];
+    
 }
 
 @end

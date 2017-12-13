@@ -12,6 +12,7 @@
 #import "ZDXStoreCodeVerificationViewController.h"
 
 @interface ZDXStoreRegisterViewController ()<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *titleName;
 @property (weak, nonatomic) IBOutlet UILabel *DistrictNum;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextFileld;
 @property (weak, nonatomic) IBOutlet ZDXStoreUnderLineBtn *contractServerBtn;
@@ -24,12 +25,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"新用户注册";
+    if (self.NavTitle.length>0) {
+        self.title = self.NavTitle;
+    }else{
+        self.title = @"新用户注册";
+    }
     // 初始化界面
     [self setupUI];
     
     [self.phoneNumberTextFileld addTarget:self  action:@selector(valueChanged:)  forControlEvents:UIControlEventAllEditingEvents];
     
+    if (self.titleStatus.length>0) {
+        self.titleName.text = self.titleStatus;
+    }
 }
 
 -(void)valueChanged:(UITextField *)textFiled{
@@ -66,25 +74,33 @@
     
 }
 - (IBAction)nextClick:(UIButton *)sender {
-    [MBProgressHUD showMessage:@"正在加载..."];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSDictionary *dict = @{@"userPhone" : self.phoneNumberTextFileld.text};
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/checkLoginKey",hostUrl];
-    [manager POST:urlStr parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject[@"code"] integerValue] == 1) { // 可以注册
-            [MBProgressHUD hideHUD];
-            ZDXStoreCodeVerificationViewController *vc = [[ZDXStoreCodeVerificationViewController alloc] init];
-            vc.phoneNumStr = self.phoneNumberTextFileld.text;
-            [self.navigationController pushViewController:vc animated:YES];
-        }else{
-            //    创建弹出框
-            UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:responseObject[@"data"][@"error"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [warnningVC show];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    if (self.titleStatus.length>0) {
+        ZDXStoreCodeVerificationViewController *vc = [[ZDXStoreCodeVerificationViewController alloc] init];
+        vc.phoneNumStr = self.phoneNumberTextFileld.text;
+        vc.NavTitle = @"更换手机号码";
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        [MBProgressHUD showMessage:@"正在加载..."];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSDictionary *dict = @{@"userPhone" : self.phoneNumberTextFileld.text};
         
-    }];
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/checkLoginKey",hostUrl];
+        [manager POST:urlStr parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"code"] integerValue] == 1) { // 可以注册
+                [MBProgressHUD hideHUD];
+                ZDXStoreCodeVerificationViewController *vc = [[ZDXStoreCodeVerificationViewController alloc] init];
+                vc.phoneNumStr = self.phoneNumberTextFileld.text;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                //    创建弹出框
+                UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:responseObject[@"data"][@"error"] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [warnningVC show];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+    
 }
 
 

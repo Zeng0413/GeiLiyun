@@ -16,7 +16,6 @@
 static NSString *filtrateCellID = @"filtrateCell";
 @interface ZDXStoreFiltrateViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ZDXStoreFiltrateTopViewDelegate>
 @property (strong, nonatomic) UICollectionView *collectionView;
-@property (strong, nonatomic) NSMutableArray *dataList;
 
 @property (strong, nonatomic) ZDXStoreFiltratePushView *filtratePushView;
 
@@ -36,15 +35,6 @@ static NSString *filtrateCellID = @"filtrateCell";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"商品";
-    
-    NSArray *imageArr = @[@"item1",@"item2",@"item3",@"item4",@"item3",@"item1",@"item1",@"item2",@"item3",@"item4",@"item3",@"item1",@"item1",@"item2",@"item3",@"item4",@"item3",@"item1"];
-    for (int i = 0;i<imageArr.count;i++){
-        ZDXStoreProductModel *model = [[ZDXStoreProductModel alloc] init];
-        model.productName = @"大金大1匹变频空调客厅卧室用点幅293大金大1匹变频空调客厅卧室用点幅293大金大1匹变频空调客厅卧室用点幅293大金大1匹变频空调客厅卧室用点幅293";
-        model.productPrice = 3559.00;
-        model.productPicUri = imageArr[i];
-        [self.dataList addObject:model];
-    }
     
     // 筛选栏
     [self setupTopView];
@@ -86,7 +76,7 @@ static NSString *filtrateCellID = @"filtrateCell";
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ZDXStoreFiltrateCollectionViewCell *item = [collectionView dequeueReusableCellWithReuseIdentifier:filtrateCellID forIndexPath:indexPath];
-    item.productModel = self.dataList[indexPath.row];
+    item.goodsModel = self.dataList[indexPath.row];
     return item;
 }
 
