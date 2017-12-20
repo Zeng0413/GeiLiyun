@@ -8,12 +8,12 @@
 
 #import "ZDXStoreShopModel.h"
 #import "ZDXComnous.h"
-#import "ZDXStoreGoodsModel.h"
 
 @implementation ZDXStoreShopModel
 
 +(NSDictionary *)mj_objectClassInArray{
     return @{@"list" : [ZDXStoreGoodsModel class]};
 }
+
 
 @end

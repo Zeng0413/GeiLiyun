@@ -13,9 +13,9 @@
 #import "ZDXStoreCommdityDetailInfoCell.h"
 #import "ZDXStoreCommdityCommentCell.h"
 #import "ZDXStoreFooterView.h"
-#import "ZDXStoreGoodsModel.h"
+#import "ZDXStoreShopModel.h"
 #import "ZDXStoreGoodsDescCell.h"
-
+#import "ZDXStoreShopViewController.h"
 #import "ZDXStoreFillInOrderViewController.h"
 #import "ZDXStoreLoginViewController.h"
 
@@ -30,6 +30,8 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 
 @property (strong, nonatomic)ZDXStoreGoodsDescCell *goodsDescCell;
 
+@property (strong, nonatomic) ZDXStoreUserModel *userModel;
+
 @end
 
 @implementation ZDXStoreCommdityDetailController
@@ -40,6 +42,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     self.title = @"商品页";
     self.view.backgroundColor = [UIColor whiteColor];
   
+    self.userModel = [ZDXStoreUserModelTool userModel];
     
     // 加载数据
     [self reloadData];
@@ -173,11 +176,10 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 #pragma mark - footerView delegate
 // 加入购物车
 -(void)addShopcar{
-    ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
-    if (userModel) {
+    if (self.userModel) {
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        params[@"userId"] = [NSString stringWithFormat:@"%ld",userModel.userId];
+        params[@"userId"] = [NSString stringWithFormat:@"%ld",self.userModel.userId];
         params[@"goodsId"] = [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId];
         params[@"buyNum"] = @1;
         
@@ -197,25 +199,37 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 
 // 立即购买
 -(void)buyGoods{
-    ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [MBProgressHUD showMessage:@"正在提交"];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+
+    NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
+    parmas[@"userId"] = @(self.userModel.userId);
+    parmas[@"num"] = @1;
+    parmas[@"goodsId"] = @(self.goodsModel.goodsId);
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Goods/purchaseImmediately",hostUrl];
+    [manager POST:urlStr parameters:parmas progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+        NSLog(@"%@",responseObject);
+        NSArray *arr = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"carts"][@"carts"]];
+        ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
+        vc.dataList = arr;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+    
 }
 
-// footerLeftClick
--(void)footerViewLeftClickType:(NSInteger)type collectIsSelected:(BOOL)isSelected{
-    // 用户信息
-    ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
-
-    if (type == 1) { // 店铺
-        NSLog(@"店铺");
-    }else if (type == 2){ // 购物车
-        NSLog(@"购物车");
-    }else{
-        
+// 收藏
+-(void)addCollection:(BOOL)isSelected{
+    if (self.userModel) {
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"type"] = @"0";
         params[@"id"] = [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId];
-        params[@"userId"] = [NSString stringWithFormat:@"%ld",userModel.userId];
+        params[@"userId"] = [NSString stringWithFormat:@"%ld",self.userModel.userId];
         
         if (isSelected) { // 收藏
             
@@ -235,10 +249,25 @@ static NSString *goodsDescCellID = @"goodsDescCell";
                 
             }];
         }
+    }
+    
+}
+
+// footerLeftClick
+-(void)footerViewLeftClickType:(NSInteger)type collectIsSelected:(BOOL)isSelected{
+    // 用户信息
+
+    if (type == 1) { // 店铺
+        ZDXStoreShopViewController *vc = [[ZDXStoreShopViewController alloc] init];
+        vc.goodsModel = self.goodsModel;
+        [self.navigationController pushViewController:vc animated:YES];
         
+        NSLog(@"店铺");
+    }else if (type == 2){ // 购物车
+        NSLog(@"购物车");
+    }else{
         
-        
-        
+        [self addCollection:isSelected];
         NSLog(@"收藏");
     }
 }

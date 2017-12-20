@@ -1,31 +1,32 @@
 //
-//  ZDXStoreCollectionTopView.m
+//  ZDXStoreSelectedTopView.m
 //  GeLiStore
 //
-//  Created by user99 on 2017/12/11.
+//  Created by user99 on 2017/12/20.
 //  Copyright © 2017年 user99. All rights reserved.
 //
 
-#import "ZDXStoreCollectionTopView.h"
+#import "ZDXStoreSelectedTopView.h"
 #import "ZDXComnous.h"
 
-@interface ZDXStoreCollectionTopView ()
+@interface ZDXStoreSelectedTopView ()
 
 @property (strong, nonatomic) UIButton *selectedBtn;
 
 @end
 
-@implementation ZDXStoreCollectionTopView
+@implementation ZDXStoreSelectedTopView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
-        [self setupUI];
     }
     return self;
 }
 
--(void)setupUI{
+-(void)setList:(NSArray *)list{
+    _list = list;
+    
     UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
     topLineView.backgroundColor = colorWithString(@"#cdcdcd");
     [self addSubview:topLineView];
@@ -34,22 +35,22 @@
     bottomLineView.backgroundColor = colorWithString(@"#cdcdcd");
     [self addSubview:bottomLineView];
     
-    NSArray *arr = @[@"商品",@"店铺",@"共享/二手特卖"];
-    CGFloat btnW = SCREEN_WIDTH / 3;
+    NSInteger count = list.count;
+    CGFloat btnW = SCREEN_WIDTH / count;
     
-    for (int i = 0; i<3; i++) {
+    for (int i = 0; i<count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.titleLabel.font = [UIFont systemFontOfSize:15];
         [btn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
         [btn setTitleColor:colorWithString(@"#e63944") forState:UIControlStateDisabled];
         
-        [btn setTitle:arr[i] forState:UIControlStateNormal];
+        [btn setTitle:list[i] forState:UIControlStateNormal];
         btn.tag = i + 1;
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         
         btn.x = i * btnW;
         btn.y = 1;
-        btn.width = SCREEN_WIDTH / 3;
+        btn.width = SCREEN_WIDTH / count;
         btn.height = self.height - 2;
         [self addSubview:btn];
         
@@ -65,7 +66,9 @@
     button.enabled = NO;
     self.selectedBtn = button;
     
+    if ([self.delegate respondsToSelector:@selector(selectedTopViewSelected:)]) {
+        [self.delegate selectedTopViewSelected:button.tag];
+    }
     
 }
-
 @end

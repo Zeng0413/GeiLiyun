@@ -9,12 +9,16 @@
 #import "ZDXStoreMeInfoViewController.h"
 #import "ZDXComnous.h"
 #import "ZDXStoreUserModelTool.h"
+#import "WLRPushView1.h"
 
 @interface ZDXStoreMeInfoViewController ()<UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UIView *backView;
+
+@property (copy, nonatomic) NSString *userPhotoStr;
+@property (copy, nonatomic) NSString *userNameStr;
 
 @property (nonatomic,strong) UIImagePickerController *imagePickerController;
 
@@ -49,7 +53,46 @@
     self.headerImageView.layer.cornerRadius = 15;
     
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,self.userModel.userPhoto]] placeholderImage:nil];
+    self.username.text = self.userModel.userName;
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 40, 40);
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitle:@"保存" forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [btn addTarget:self action:@selector(editButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.rightBarButtonItem=item;
+    
+}
+
+-(void)editButtonAction{
+    
+    [MBProgressHUD showMessage:@"正在提交..."];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userId"] = @(self.userModel.userId);
+    params[@"userPhoto"] = self.userPhotoStr;
+    params[@"userName"] = self.userNameStr;
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Users/toEdit",hostUrl];
+    
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+        if ([responseObject[@"code"] integerValue] == 1) {
+            [MBProgressHUD showSuccess:@"保存成功"];
+            if (self.userNameStr.length > 0) {
+                self.userModel.userName = self.userNameStr;
+                [ZDXStoreUserModelTool saveUserModel:self.userModel];
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
+
+    }];
 }
 
 - (IBAction)clickHeader:(UIButton *)sender {
@@ -60,6 +103,13 @@
 }
 
 - (IBAction)clickHeaderName:(UIButton *)sender {
+    WLRPushView1 *view1 = [[WLRPushView1 alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) andTitle:@"用户名"];
+    [self.view addSubview:view1];
+    view1.block = ^(NSString *titleParam)
+    {
+        self.userNameStr = titleParam;
+        self.username.text = titleParam;
+    };
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -124,6 +174,8 @@
         if ([responseObject[@"code"] integerValue] == 1) { // 上传成功
             NSArray *photoArr = responseObject[@"data"][@"thumb"];
             NSString *userPhotoStr = [photoArr firstObject];
+            
+            self.userPhotoStr = userPhotoStr;
             self.userModel.userPhoto = userPhotoStr;
             [ZDXStoreUserModelTool saveUserModel:self.userModel];
         }else{

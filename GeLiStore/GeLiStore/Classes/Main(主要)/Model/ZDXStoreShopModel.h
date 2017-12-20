@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ZDXStoreGoodsModel.h"
 @interface ZDXStoreShopModel : NSObject
 
 @property (assign, nonatomic) BOOL isSelected; // 记录相应section是否全选（自定义）
@@ -15,7 +15,16 @@
 
 @property (assign, nonatomic) NSInteger goodsMoney;
 @property (assign, nonatomic) NSInteger shopId;
+@property (assign, nonatomic) NSInteger shopUserId;
+@property (copy, nonatomic) NSString *shopImg;
+@property (copy, nonatomic) NSString *shopAddress;
+@property (copy, nonatomic) NSString *shopTel;
 @property (copy, nonatomic) NSString *shopName;
 @property (copy, nonatomic) NSString *shopQQ;
+@property (strong, nonatomic) NSDictionary *scores;
+
+@property (assign, nonatomic) NSInteger favShop;
+
 @property (copy, nonatomic) NSArray *list;
+
 @end

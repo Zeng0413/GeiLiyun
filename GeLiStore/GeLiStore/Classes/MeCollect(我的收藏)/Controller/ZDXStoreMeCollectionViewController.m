@@ -7,15 +7,16 @@
 //
 
 #import "ZDXStoreMeCollectionViewController.h"
-#import "ZDXStoreCollectionTopView.h"
+#import "ZDXStoreSelectedTopView.h"
 #import "ZDXComnous.h"
 #import "ZDXStoreCollectionGoodsCell.h"
-
+#import "ZDXStoreCollectionStoreCell.h"
 #import "ZDXStoreNoCollectionCell.h"
 
 static NSString *noCollectionCellID = @"noCollectionCellID";
 static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
-@interface ZDXStoreMeCollectionViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreCollectionGoodsCellDelegate>
+static NSString *collectionStoreCellID = @"CollectionStoreCell";
+@interface ZDXStoreMeCollectionViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreCollectionGoodsCellDelegate, ZDXStoreSelectedTopViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *dataList;
 @property (weak, nonatomic) UITableView *tableView;
@@ -39,6 +40,7 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 
 @property (nonatomic,assign) NSInteger page;
 
+@property (assign, nonatomic) NSInteger type;
 @end
 
 @implementation ZDXStoreMeCollectionViewController
@@ -103,6 +105,8 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
     self.title = @"我的收藏";
     
     self.page = 1;
+    
+    self.type = 1; // 默认选择商品
     
     self.userModel = [ZDXStoreUserModelTool userModel];
     
@@ -172,6 +176,7 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
     
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreNoCollectionCell" bundle:nil] forCellReuseIdentifier:noCollectionCellID];
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreCollectionGoodsCell" bundle:nil] forCellReuseIdentifier:collectionGoodsCellID];
+    [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreCollectionStoreCell" bundle:nil] forCellReuseIdentifier:collectionStoreCellID];
     
     MJRefreshFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     tableView.mj_footer = footer;
@@ -207,7 +212,9 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 
 // 收藏筛选View
 -(void)setupFiltrateView{
-    ZDXStoreCollectionTopView *topView = [[ZDXStoreCollectionTopView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 55)];
+    ZDXStoreSelectedTopView *topView = [[ZDXStoreSelectedTopView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 55)];
+    topView.list = @[@"商品",@"店铺",@"共享/二手特卖"];
+    topView.delegate = self;
     [self.view addSubview:topView];
 }
 
@@ -222,17 +229,23 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataList.count > 0) {
-        ZDXStoreCollectionGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionGoodsCellID forIndexPath:indexPath];
-
-        cell.goodsModel = self.dataList[indexPath.row];
-        cell.delegate = self;
-        if (self.isSelected) {
-            [cell isEditStatus:YES];
-        }else{
-            [cell isEditStatus:NO];
+        if (self.type == 1) { // 商品
+            ZDXStoreCollectionGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionGoodsCellID forIndexPath:indexPath];
+            
+            cell.goodsModel = self.dataList[indexPath.row];
+            cell.delegate = self;
+            if (self.isSelected) {
+                [cell isEditStatus:YES];
+            }else{
+                [cell isEditStatus:NO];
+            }
+            self.collectionGoodsCell = cell;
+            return cell;
+        }else if (self.type == 2){ // 店铺
+            ZDXStoreCollectionStoreCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionStoreCellID];
+            return cell;
         }
-        self.collectionGoodsCell = cell;
-        return cell;
+        
     }
     
     
@@ -244,7 +257,11 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataList.count > 0) {
-        return 140;
+        if (self.type == 1) {
+            return 140;
+        }else if (self.type == 2){
+            return 102;
+        }
     }
     
     return SCREEN_HEIGHT - 64 - 55;
@@ -336,5 +353,12 @@ static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
     }
     
     self.num++;
+}
+
+
+#pragma mark - filtrateView delegate
+-(void)selectedTopViewSelected:(NSInteger)type{
+    self.type = type;
+    [self.tableView reloadData];
 }
 @end

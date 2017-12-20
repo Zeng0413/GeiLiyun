@@ -12,8 +12,12 @@
 #import "ZDXStoreProductModel.h"
 #import "ZDXStoreFiltrateCollectionViewCell.h"
 #import "ZDXStoreFiltratePushView.h"
+#import "ZDXStoreCommdityDetailController.h"
+#import "ZDXStoreFiltrateNoGoodsCell.h"
 
 static NSString *filtrateCellID = @"filtrateCell";
+static NSString *filtrateNoGoodsCellID = @"FiltrateNoGoodsCell";
+
 @interface ZDXStoreFiltrateViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ZDXStoreFiltrateTopViewDelegate>
 @property (strong, nonatomic) UICollectionView *collectionView;
 
@@ -52,7 +56,10 @@ static NSString *filtrateCellID = @"filtrateCell";
     collectionView.dataSource = self;
     collectionView.backgroundColor = colorWithString(@"f4f4f4");
     collectionView.showsVerticalScrollIndicator = NO;
+    
     [collectionView registerNib:[UINib nibWithNibName:@"ZDXStoreFiltrateCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:filtrateCellID];
+    [collectionView registerNib:[UINib nibWithNibName:@"ZDXStoreFiltrateNoGoodsCell" bundle:nil] forCellWithReuseIdentifier:filtrateNoGoodsCellID];
+    
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
 }
@@ -66,21 +73,44 @@ static NSString *filtrateCellID = @"filtrateCell";
 
 #pragma mark - collection delegate
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataList.count;
+    if (self.dataList.count != 0) {
+        return self.dataList.count;
+    }else{
+        return 1;
+    }
 }
 
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((SCREEN_WIDTH - 10) / 2, 253);
+    if (self.dataList.count != 0) {
+        return CGSizeMake((SCREEN_WIDTH - 10) / 2, 253);
+    }else{
+        return CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 49);
+    }
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    ZDXStoreFiltrateCollectionViewCell *item = [collectionView dequeueReusableCellWithReuseIdentifier:filtrateCellID forIndexPath:indexPath];
-    item.goodsModel = self.dataList[indexPath.row];
-    return item;
+    if (self.dataList.count != 0) {
+        ZDXStoreFiltrateCollectionViewCell *item = [collectionView dequeueReusableCellWithReuseIdentifier:filtrateCellID forIndexPath:indexPath];
+        item.goodsModel = self.dataList[indexPath.row];
+        return item;
+    }else{
+        ZDXStoreFiltrateNoGoodsCell *item = [collectionView dequeueReusableCellWithReuseIdentifier:filtrateNoGoodsCellID forIndexPath:indexPath];
+        return item;
+    }
+    
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (self.dataList.count != 0) {
+        ZDXStoreGoodsModel *model = self.dataList[indexPath.row];
+        
+        ZDXStoreCommdityDetailController *vc = [[ZDXStoreCommdityDetailController alloc] init];
+        vc.goodsModel = model;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
 }
 #pragma mark - filtrateView delegate

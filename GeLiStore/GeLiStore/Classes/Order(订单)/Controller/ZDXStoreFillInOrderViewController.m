@@ -20,6 +20,8 @@
 #import "ZDXStoreSubmitOrderBottomView.h"
 #import "ZDXStoreOrderStatusViewController.h"
 
+#import "ZDXStoreShopModel.h"
+
 static NSString *orderAddressCellID = @"orderAddressCell";
 static NSString *orderAddressDefaultCellID = @"orderAddressDefaultCell";
 static NSString *orderGoodsShowCellID = @"OrderGoodsShowCell";

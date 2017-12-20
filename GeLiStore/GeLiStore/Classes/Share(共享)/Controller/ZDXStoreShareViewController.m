@@ -8,32 +8,91 @@
 
 #import "ZDXStoreShareViewController.h"
 #import "ZDXComnous.h"
-@interface ZDXStoreShareViewController ()
+#import "ZDXStoreShareHeaderView.h"
+#import "ZDXStoreShareClassifyCell.h"
+#import "ZDXStoreShareGoodsCell.h"
 
+static NSString *shareGoodsCellID = @"ShareGoodsCell";
+@interface ZDXStoreShareViewController ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) ZDXStoreShareClassifyCell *shareClassifyCell;
+
+@property (strong, nonatomic) ZDXStoreShareGoodsCell *shareGoodsCell;
 @end
 
 @implementation ZDXStoreShareViewController
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"共享";
     self.view.backgroundColor = ZDXRandomColor;
-    // Do any additional setup after loading the view.
+    
+    // 设置tableView
+    [self setupTableView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+// 设置tableView
+-(void)setupTableView{
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - self.tabBarController.tabBar.height) style:UITableViewStylePlain];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.showsVerticalScrollIndicator = NO;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    ZDXStoreShareHeaderView *shareHeaderView = [ZDXStoreShareHeaderView shareHeaderView:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 4)];
+    [tableView setTableHeaderView:shareHeaderView];
+    [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreShareGoodsCell" bundle:nil] forCellReuseIdentifier:shareGoodsCellID];
+    [self.view addSubview:tableView];
+    self.tableView = tableView;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - tableView delegate
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 20;
 }
-*/
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        ZDXStoreShareClassifyCell *cell = [ZDXStoreShareClassifyCell initWithShareTableView:tableView cellForAtIndexPath:indexPath];
+        self.shareClassifyCell = cell;
+        return cell;
+    }else{
+        ZDXStoreShareGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:shareGoodsCellID];
+        self.shareGoodsCell = cell;
+        return cell;
+    }
+    
+    
+//    static NSString *indentifier = @"cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
+//    if (!cell) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:indentifier];
+//    }
+//    cell.backgroundColor = [UIColor redColor];
+//    cell.textLabel.text = @"zdx";
+//    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return self.shareClassifyCell.cellH;
+    }
+    
+    return self.shareGoodsCell.cellH;
+}
 
 @end

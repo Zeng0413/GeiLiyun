@@ -17,6 +17,8 @@
 @property (strong, nonatomic) NSMutableArray *searchReaultList;
 @property (weak, nonatomic) UITableView *tableView;
 
+
+
 @end
 
 @implementation ZDXStoreSearchGoodsViewController
@@ -30,12 +32,13 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
 }
 
 - (void)viewDidLoad {
@@ -51,8 +54,7 @@
 }
 
 -(void)setupSatesAndNav{
-    CGFloat statheight = [[UIApplication sharedApplication]statusBarFrame].size.height;
-    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, statheight, SCREEN_WIDTH, 53)];
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, STATE_HEIGHT, SCREEN_WIDTH, 53)];
     navView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:navView];
     
@@ -65,7 +67,6 @@
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
     searchBar.delegate = self;
     searchBar.barTintColor = [UIColor whiteColor];
-//    searchBar.backgroundColor = colorWithString(@"#f4f4f4");
     searchBar.showsCancelButton = NO;
     searchBar.placeholder = @"请输入商品名";
     [searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"搜索框"] forState:UIControlStateNormal];

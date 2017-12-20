@@ -24,9 +24,6 @@
 
 static NSString *brandChooseCell = @"brandChooseCell";
 
-
-#import "ZDXStoreTestViewController.h"
-
 @interface ZDXStoreHomeViewController ()<ZDXStoreMainTopViewDelegate,UITableViewDelegate,UITableViewDataSource, ZDXStoreCommodityClassifyCellDelegate, ZDXStoreCommodityShowCellDelegate>
 
 // 导航控制器titleView
@@ -60,7 +57,7 @@ static NSString *brandChooseCell = @"brandChooseCell";
 
 @implementation ZDXStoreHomeViewController
 
--(NSMutableArray *)dataList{
+-(NSMutableArray *)goodsDataList{
     if (!_goodsDataList) {
         _goodsDataList = [NSMutableArray array];
     }
@@ -235,8 +232,9 @@ static NSString *brandChooseCell = @"brandChooseCell";
     tableView.dataSource = self;
     tableView.showsVerticalScrollIndicator = NO;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     [self setHeaderView:[ZDXStoreTableViewHeaderView headerView:CGRectMake(0, 0, SCREEN_WIDTH, 183)]];
-    
+
     AFHTTPSessionManager *manage = [AFHTTPSessionManager manager];
     
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Ads/homeCarouselAds",hostUrl];

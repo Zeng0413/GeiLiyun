@@ -7,12 +7,18 @@
 //
 
 #import "ZDXStoreFiltrateNoGoodsCell.h"
+#import "UIColor+ColorChange.h"
+@interface ZDXStoreFiltrateNoGoodsCell ()
+@property (weak, nonatomic) IBOutlet UILabel *title;
+
+@end
 
 @implementation ZDXStoreFiltrateNoGoodsCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    self.title.textColor = [UIColor colorWithHexString:@"#8a8a8a"];
 }
 
 @end

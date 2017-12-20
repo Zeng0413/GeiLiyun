@@ -10,4 +10,6 @@
 
 @interface ZDXStoreFillInOrderViewController : UIViewController
 
+@property (strong, nonatomic) NSArray *dataList;
+
 @end
