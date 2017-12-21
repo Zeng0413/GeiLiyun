@@ -61,9 +61,9 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X 1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkw-Ch-iD3">
-                        <rect key="frame" x="335" y="100.5" width="25" height="12"/>
+                        <rect key="frame" x="280" y="100.5" width="80" height="12"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="25" id="Efi-Mu-s4q"/>
+                            <constraint firstAttribute="width" constant="80" id="Efi-Mu-s4q"/>
                             <constraint firstAttribute="height" constant="12" id="ePD-of-XO3"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>

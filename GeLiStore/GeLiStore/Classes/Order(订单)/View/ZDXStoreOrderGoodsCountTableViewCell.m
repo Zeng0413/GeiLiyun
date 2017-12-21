@@ -35,8 +35,19 @@
     self.title3.textColor = [UIColor colorWithHexString:@"#888888"];
     self.originalPrice.textColor = [UIColor colorWithHexString:@"#888888"];
     self.rebatePrice.textColor = [UIColor colorWithHexString:@"#888888"];
-
     
 }
 
+-(void)setGoodsPrice:(NSString *)goodsPrice{
+    _goodsPrice = goodsPrice;
+    
+    self.goodsCountPrice.text = goodsPrice;
+    
+}
+
+-(void)setOriginPrice:(NSString *)originPrice{
+    _originPrice = originPrice;
+    
+    self.originalPrice.text = originPrice;
+}
 @end

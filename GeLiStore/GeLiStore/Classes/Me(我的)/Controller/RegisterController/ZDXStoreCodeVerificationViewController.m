@@ -154,8 +154,11 @@
         if ([responseObject[@"code"] integerValue] == 1) {
             ZDXStoreSetupPwdViewController *vc = [[ZDXStoreSetupPwdViewController alloc] init];
             vc.phoneNumStr = self.phoneNumStr;
-            vc.NavTitle = @"重置密码";
-            vc.titleStatus = @"请设置新的登录密码";
+            if (self.NavTitle.length > 0) {
+                vc.NavTitle = @"重置密码";
+                vc.titleStatus = @"请设置新的登录密码";
+
+            }
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             //    创建弹出框

@@ -214,10 +214,12 @@ static NSString *goodsDescCellID = @"goodsDescCell";
         NSArray *arr = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"carts"][@"carts"]];
         ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
         vc.dataList = arr;
+        vc.goodsTotalMoney = [responseObject[@"carts"][@"goodsTotalMoney"] integerValue];
         [self.navigationController pushViewController:vc animated:YES];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        [MBProgressHUD hideHUD];
+
     }];
     
     

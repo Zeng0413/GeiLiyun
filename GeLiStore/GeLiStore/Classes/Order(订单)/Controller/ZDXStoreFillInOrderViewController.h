@@ -12,4 +12,5 @@
 
 @property (strong, nonatomic) NSArray *dataList;
 
+@property (assign, nonatomic) NSInteger goodsTotalMoney;
 @end

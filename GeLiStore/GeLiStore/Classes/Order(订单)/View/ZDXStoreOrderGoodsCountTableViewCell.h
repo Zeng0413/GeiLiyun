@@ -10,4 +10,6 @@
 
 @interface ZDXStoreOrderGoodsCountTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) NSString *goodsPrice;
+@property (strong, nonatomic) NSString *originPrice;
 @end

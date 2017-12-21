@@ -18,4 +18,5 @@ typedef void (^submitOrderBlock)();
 
 @property (copy, nonatomic) submitOrderBlock block;
 
+@property (assign, nonatomic) BOOL submitBtnIsSelected;
 @end

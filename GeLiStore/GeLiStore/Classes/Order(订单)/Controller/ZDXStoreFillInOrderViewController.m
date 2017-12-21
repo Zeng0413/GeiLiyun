@@ -35,9 +35,19 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
 
 @property (strong ,nonatomic) ZDXStoreConsigneeInfoModel *consigneeInfoModel;
 
+@property (strong, nonatomic) NSMutableArray *goodsArr;
+
+@property (weak, nonatomic) ZDXStoreSubmitOrderBottomView *bottomView;
 @end
 
 @implementation ZDXStoreFillInOrderViewController
+
+-(NSMutableArray *)goodsArr{
+    if (!_goodsArr) {
+        _goodsArr = [NSMutableArray array];
+    }
+    return _goodsArr;
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -53,6 +63,12 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    for (ZDXStoreShopModel *shopModel in self.dataList) {
+        for (ZDXStoreGoodsModel *goodsModel in shopModel.list) {
+            [self.goodsArr addObject:goodsModel];
+        }
+    }
+    
     [self setupTableView];
 
     [self setupBottomView];
@@ -61,7 +77,7 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
 -(void)setupBottomView{
     ZDXStoreSubmitOrderBottomView *view = [ZDXStoreSubmitOrderBottomView view];
     view.frame = CGRectMake(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH, 50);
-    view.goodsPrice = @"43950.00";
+    view.goodsPrice = [NSString stringWithFormat:@"%ld",self.goodsTotalMoney];
     
     view.block = ^{
         ZDXStoreOrderStatusViewController *vc = [[ZDXStoreOrderStatusViewController alloc] init];
@@ -69,6 +85,7 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
     };
     
     [self.view addSubview:view];
+    self.bottomView = view;
 }
 
 -(void)setupTableView{
@@ -99,6 +116,7 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Useraddress/getUserDefaultAddress",hostUrl];
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"code"] integerValue] == 1) {
+            self.bottomView.submitBtnIsSelected = YES;
             self.consigneeInfoModel = [ZDXStoreConsigneeInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.tableView reloadData];
         }
@@ -114,7 +132,7 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
-        return 2;
+        return self.goodsArr.count;
     }
     return 1;
 }
@@ -133,6 +151,7 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
     }
     if (indexPath.section == 1) {
         ZDXStoreOrderGoodsShowCell *cell = [tableView dequeueReusableCellWithIdentifier:orderGoodsShowCellID];
+        cell.goodsModel = self.goodsArr[indexPath.row];
         return cell;
     }
     
@@ -148,6 +167,8 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
     
     if (indexPath.section == 4) {
         ZDXStoreOrderGoodsCountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:orderGoodsCountCellID];
+        cell.goodsPrice = [NSString stringWithFormat:@"%ld件 ¥%ld",self.goodsArr.count,self.goodsTotalMoney];
+        cell.originPrice = [NSString stringWithFormat:@"¥%ld",self.goodsTotalMoney];
         return cell;
     }
     

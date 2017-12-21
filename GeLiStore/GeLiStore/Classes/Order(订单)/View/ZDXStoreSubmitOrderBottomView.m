@@ -29,7 +29,8 @@
     self.title.textColor = colorWithString(@"#262626");
     self.price.textColor = colorWithString(@"#e93644");
     
-    self.submitOrderBtn.backgroundColor = colorWithString(@"#f95865");
+    self.submitOrderBtn.backgroundColor = colorWithString(@"#ffa4a4");
+    self.submitOrderBtn.enabled = NO;
     [self.submitOrderBtn setTitle:@"提交订单" forState:UIControlStateNormal];
     self.btnW.constant = SCREEN_WIDTH / 3 - 20;
     
@@ -54,5 +55,17 @@
         self.block();
     }
     
+}
+
+
+-(void)setSubmitBtnIsSelected:(BOOL)submitBtnIsSelected{
+    _submitBtnIsSelected = submitBtnIsSelected;
+    if (submitBtnIsSelected) {
+        self.submitOrderBtn.backgroundColor = colorWithString(@"#f95865");
+        self.submitOrderBtn.enabled = YES;
+    }else{
+        self.submitOrderBtn.backgroundColor = colorWithString(@"#ffa4a4");
+        self.submitOrderBtn.enabled = NO;
+    }
 }
 @end

@@ -8,6 +8,7 @@
 
 #import "ZDXStoreShopCarFormat.h"
 #import "ZDXComnous.h"
+#import "ZDXStoreUserModel.h"
 #import "ZDXStoreBrandModel.h"
 #import "ZDXStoreGoodsModel.h"
 #import "ZDXStoreShopModel.h"
@@ -100,6 +101,22 @@
     // 根据请求结果决定是否改变数据
     productModel.cartNum = count;
     
+    ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userId"] = @(userModel.userId);
+    params[@"id"] = @(productModel.cartId);
+    params[@"buyNum"] = @(count);
+    params[@"isCheck"] = @1;
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/addCart",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
     [self.delegate shopcartFormatAccountForTotalPrice:[self accountTotalPrice] totalCount:[self accountTotalCount] isAllSelected:[self isAllSelected]];
 }
 
@@ -119,17 +136,17 @@
 -(void)settleSelectedProducts{
     NSMutableArray *settleArray = [NSMutableArray array];
     for (ZDXStoreShopModel *brandModel in self.shopcartListArray) {
-        NSMutableArray *selectedArray = [NSMutableArray array];
+//        NSMutableArray *selectedArray = [NSMutableArray array];
         for (ZDXStoreGoodsModel *productModel in brandModel.list) {
             if (productModel.isSelected) {
-                [selectedArray addObject:productModel];
+                [settleArray addObject:productModel];
             }
         }
         
-        brandModel.selectedArray = selectedArray;
-        if (selectedArray.count) {
-            [settleArray addObject:brandModel];
-        }
+//        brandModel.selectedArray = selectedArray;
+//        if (selectedArray.count) {
+//            [settleArray addObject:brandModel];
+//        }
     }
     
     [self.delegate shopCarFormatSettleForSelectedProduct:settleArray];

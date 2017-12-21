@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class ZDXStoreGoodsModel;
 @interface ZDXStoreOrderGoodsShowCell : UITableViewCell
+
+@property (strong, nonatomic) ZDXStoreGoodsModel *goodsModel;
 
 @end

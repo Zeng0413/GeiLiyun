@@ -14,9 +14,10 @@
 #import "ZDXStoreShopCarHearView.h"
 #import "ZDXStoreBrandModel.h"
 #import "ZDXStoreShopCarFormat.h"
-
+#import "ZDXStoreShopModel.h"
+#import "ZDXStoreUserModel.h"
 #import "ZDXStoreShopCartNoGoodsView.h"
-
+#import "ZDXStoreFillInOrderViewController.h"
 @interface ZDXStoreShoppingCarViewController ()<ZDXStoreShopCarFormatDelegate>
 
 @property (nonatomic, strong) UITableView *shopcartTableView;   /**< 购物车列表 */
@@ -28,6 +29,8 @@
 @property (strong, nonatomic) ZDXStoreShopCartNoGoodsView *shopCartNoGoodsView;
 
 @property (nonatomic, strong) UIButton *editButton;    /**< 编辑按钮 */
+
+@property (strong, nonatomic) ZDXStoreUserModel *userModel;
 @end
 
 @implementation ZDXStoreShoppingCarViewController
@@ -137,6 +140,34 @@
 // 结算
 -(void)shopCarFormatSettleForSelectedProduct:(NSArray *)selectedProducts{
     NSLog(@"%@",selectedProducts);
+    
+    [MBProgressHUD showMessage:@"正在提交"];
+
+    NSString *ids = @"";
+    
+    for (int i = 0; i < selectedProducts.count; i++) {
+        ZDXStoreGoodsModel *goodsModel = selectedProducts[i];
+        ids = [ids stringByAppendingString:[NSString stringWithFormat:@"%ld,",goodsModel.goodsId]];
+    }
+    
+    ids = [ids substringToIndex:([ids length] - 1)];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"userId" : @(self.userModel.userId), @"goodsId" : ids};
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/clearingInformationFormCart",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+        
+        NSArray *arr = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"carts"][@"carts"]];
+        ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
+        vc.goodsTotalMoney = [responseObject[@"data"][@"carts"][@"goodsTotalMoney"] integerValue];
+        vc.dataList = arr;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
+
+    }];
 }
 - (void)editButtonAction {
     self.editButton.selected = !self.editButton.isSelected;
@@ -149,6 +180,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"购物车";
+    
+    self.userModel = [ZDXStoreUserModelTool userModel];
+    
     self.view.backgroundColor = ZDXRandomColor;
    
     self.shopCartNoGoodsView = [ZDXStoreShopCartNoGoodsView view];
@@ -159,14 +193,24 @@
     // Do any additional setup after loading the view.
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self realodData];
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    
+}
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self realodData];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
 }
 
 -(void)realodData{
     [self.shopcartFormat requestShopCarProductList];
+    [self.shopcartTableView reloadData];
+    [self.shopcartBottomView setupShopCarBottomViewWithTotalPrice:0 totalCount:0 isAllSelected:NO];
+
 }
 -(void)addSubview{
     UIBarButtonItem *editBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.editButton];
