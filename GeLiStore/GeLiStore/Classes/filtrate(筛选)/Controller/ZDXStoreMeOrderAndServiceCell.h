@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ZDXStoreMeOrderAndServiceCell;
 @protocol ZDXStoreMeOrderAndServiceCellDelegate <NSObject>
 
--(void)cellSelectedTypeStr:(NSString *)str;
+-(void)cellSelectedTypeStr:(NSString *)str orderAndService:(ZDXStoreMeOrderAndServiceCell *)cell;
 
 @end
 

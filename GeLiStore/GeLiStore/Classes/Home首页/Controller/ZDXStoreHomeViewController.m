@@ -21,6 +21,7 @@
 #import "ZDXStoreGoodsModel.h"
 #import "ZDXStoreGoodsClassifyModel.h"
 #import "ZDXStoreSearchGoodsViewController.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 static NSString *brandChooseCell = @"brandChooseCell";
 
@@ -217,6 +218,9 @@ static NSString *brandChooseCell = @"brandChooseCell";
     [self.navigationController pushViewController:vc animated:YES];
 //    [self presentViewController:vc animated:YES completion:nil];
     NSLog(@"搜索");
+//    [[AlipaySDK defaultService] payOrder:@"alipay_sdk=alipay-sdk-php-20161101&app_id=2017061907522300&biz_content=%7B%22body%22%3A%22payment_product%22%2C%22subject%22%3A+%22%E5%95%86%E5%93%81%E8%B4%AD%E4%B9%B0%22%2C%22extend_params%22%3A+%2230%401%22%2C%22out_trade_no%22%3A+%22151390664591976071%22%2C%22timeout_express%22%3A+%2230m%22%2C%22total_amount%22%3A+%22168.00%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%7D&charset=UTF-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2Fglys.wuliuhangjia.com%2Fapi%2FPay%2Fali_return&sign_type=RSA2&timestamp=2017-12-22+14%3A16%3A42&version=1.0&sign=nGASUKn%2BiSo1MLhqRPouOUJaSUy0IRf5Z2jFoz4X2ru2P0drece341OSc0TPgVtvFwzjDooPPX8O4x%2BeWL9uralCoN5a9ww457FQnsQ2YWWLA6xsNJPj2CI%2FU57Wolx%2BYsTH4Dj1mjccQ1zxYWtGafXzABrAvYZgVRk5Bld5etQNQxEd0jHBzVVXablGJ9X2RrqfFJsI%2B%2BGUR4%2FvwZoqNVoGNsBdpEMHnjOAl%2FLu4mVmpTlgGCjvaWVcq%2FeJ5XKIIbZQTp2zcYP9V5plELG1Vx6JgeyQG9imHHkvGUpEWBS1GygIFQrEt%2BXYaBupK7VVC94gF%2FKbVwD2KZHWNaVmJQ%3D%3D" fromScheme:@"GeLiStoreAliPay" callback:^(NSDictionary *resultDic) {
+//        NSLog(@"%@",resultDic);
+//    }];
 }
 
 #pragma mark - 选择城市

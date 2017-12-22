@@ -71,8 +71,8 @@
 }
 
 -(void)selectedCommodity:(UIButton *)button{
-    if ([self.delegate respondsToSelector:@selector(cellSelectedTypeStr:)]) {
-        [self.delegate cellSelectedTypeStr:button.titleLabel.text];
+    if ([self.delegate respondsToSelector:@selector(cellSelectedTypeStr:orderAndService:)]) {
+        [self.delegate cellSelectedTypeStr:button.titleLabel.text orderAndService:self];
     }
 }
 

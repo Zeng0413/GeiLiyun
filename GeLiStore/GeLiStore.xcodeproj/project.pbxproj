@@ -133,9 +133,23 @@
 		13D5923B1FD7C76900BE2C7E /* ZDXStoreSubmitOrderBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D5923A1FD7C76900BE2C7E /* ZDXStoreSubmitOrderBottomView.m */; };
 		13D5923D1FD7C78F00BE2C7E /* ZDXStoreSubmitOrderBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13D5923C1FD7C78F00BE2C7E /* ZDXStoreSubmitOrderBottomView.xib */; };
 		13D592401FD7DA3900BE2C7E /* ZDXStoreOrderStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D5923F1FD7DA3900BE2C7E /* ZDXStoreOrderStatusViewController.m */; };
+		13E2D2531FED055E001AD28A /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13E2D2511FED055E001AD28A /* AlipaySDK.bundle */; };
+		13E2D2541FED055E001AD28A /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E2D2521FED055E001AD28A /* AlipaySDK.framework */; };
+		13E2D2561FED05B2001AD28A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E2D2551FED05B2001AD28A /* CoreTelephony.framework */; };
+		13E2D2581FED05BC001AD28A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E2D2571FED05BC001AD28A /* QuartzCore.framework */; };
+		13E2D25A1FED05C7001AD28A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E2D2591FED05C7001AD28A /* CoreText.framework */; };
+		13E2D25C1FED05E9001AD28A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E2D25B1FED05E9001AD28A /* CFNetwork.framework */; };
+		13E2D25E1FED05F0001AD28A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E2D25D1FED05F0001AD28A /* CoreMotion.framework */; };
+		13E2D2601FED0630001AD28A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E2D25F1FED0630001AD28A /* libc++.tbd */; };
+		13E2D2621FED0637001AD28A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E2D2611FED0637001AD28A /* libz.tbd */; };
 		13EC6DAC1FE8F66D00039771 /* ZDXStoreCollectionStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EC6DAA1FE8F66D00039771 /* ZDXStoreCollectionStoreCell.m */; };
 		13EC6DAD1FE8F66D00039771 /* ZDXStoreCollectionStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13EC6DAB1FE8F66D00039771 /* ZDXStoreCollectionStoreCell.xib */; };
 		13EC6DB41FE9165500039771 /* ZDXStoreShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EC6DB31FE9165500039771 /* ZDXStoreShopViewController.m */; };
+		13EE31AC1FECA38500FD3C42 /* ZDXStoreMyOrderTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EE31AB1FECA38500FD3C42 /* ZDXStoreMyOrderTopView.m */; };
+		13EE31AF1FECADD200FD3C42 /* ZDXStoreMyorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EE31AE1FECADD200FD3C42 /* ZDXStoreMyorderViewController.m */; };
+		13EE31B61FECC80700FD3C42 /* ZDXStoreMyOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EE31B41FECC80700FD3C42 /* ZDXStoreMyOrderCell.m */; };
+		13EE31B71FECC80700FD3C42 /* ZDXStoreMyOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13EE31B51FECC80700FD3C42 /* ZDXStoreMyOrderCell.xib */; };
+		13EE31BA1FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EE31B91FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.m */; };
 		13F682301FBD34DF0078ED49 /* ZDXStoreLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6822E1FBD34DF0078ED49 /* ZDXStoreLoginViewController.m */; };
 		13F682311FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F6822F1FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib */; };
 		13F8CA691FC7CA410046435F /* ZDXStoreSetupPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F8CA671FC7CA410046435F /* ZDXStoreSetupPwdViewController.m */; };
@@ -381,11 +395,29 @@
 		13D5923C1FD7C78F00BE2C7E /* ZDXStoreSubmitOrderBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreSubmitOrderBottomView.xib; sourceTree = "<group>"; };
 		13D5923E1FD7DA3900BE2C7E /* ZDXStoreOrderStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderStatusViewController.h; sourceTree = "<group>"; };
 		13D5923F1FD7DA3900BE2C7E /* ZDXStoreOrderStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderStatusViewController.m; sourceTree = "<group>"; };
+		13E2D2511FED055E001AD28A /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		13E2D2521FED055E001AD28A /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		13E2D2551FED05B2001AD28A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		13E2D2571FED05BC001AD28A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		13E2D2591FED05C7001AD28A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		13E2D25B1FED05E9001AD28A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		13E2D25D1FED05F0001AD28A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		13E2D25F1FED0630001AD28A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		13E2D2611FED0637001AD28A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		13EC6DA91FE8F66D00039771 /* ZDXStoreCollectionStoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCollectionStoreCell.h; sourceTree = "<group>"; };
 		13EC6DAA1FE8F66D00039771 /* ZDXStoreCollectionStoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCollectionStoreCell.m; sourceTree = "<group>"; };
 		13EC6DAB1FE8F66D00039771 /* ZDXStoreCollectionStoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreCollectionStoreCell.xib; sourceTree = "<group>"; };
 		13EC6DB21FE9165500039771 /* ZDXStoreShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopViewController.h; sourceTree = "<group>"; };
 		13EC6DB31FE9165500039771 /* ZDXStoreShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopViewController.m; sourceTree = "<group>"; };
+		13EE31AA1FECA38500FD3C42 /* ZDXStoreMyOrderTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreMyOrderTopView.h; sourceTree = "<group>"; };
+		13EE31AB1FECA38500FD3C42 /* ZDXStoreMyOrderTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreMyOrderTopView.m; sourceTree = "<group>"; };
+		13EE31AD1FECADD200FD3C42 /* ZDXStoreMyorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreMyorderViewController.h; sourceTree = "<group>"; };
+		13EE31AE1FECADD200FD3C42 /* ZDXStoreMyorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreMyorderViewController.m; sourceTree = "<group>"; };
+		13EE31B31FECC80700FD3C42 /* ZDXStoreMyOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreMyOrderCell.h; sourceTree = "<group>"; };
+		13EE31B41FECC80700FD3C42 /* ZDXStoreMyOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreMyOrderCell.m; sourceTree = "<group>"; };
+		13EE31B51FECC80700FD3C42 /* ZDXStoreMyOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreMyOrderCell.xib; sourceTree = "<group>"; };
+		13EE31B81FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreMyOrderHeaderView.h; sourceTree = "<group>"; };
+		13EE31B91FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreMyOrderHeaderView.m; sourceTree = "<group>"; };
 		13F6822D1FBD34DF0078ED49 /* ZDXStoreLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreLoginViewController.h; sourceTree = "<group>"; };
 		13F6822E1FBD34DF0078ED49 /* ZDXStoreLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreLoginViewController.m; sourceTree = "<group>"; };
 		13F6822F1FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreLoginViewController.xib; sourceTree = "<group>"; };
@@ -425,7 +457,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13E2D2621FED0637001AD28A /* libz.tbd in Frameworks */,
+				13E2D2601FED0630001AD28A /* libc++.tbd in Frameworks */,
+				13E2D25E1FED05F0001AD28A /* CoreMotion.framework in Frameworks */,
+				13E2D25C1FED05E9001AD28A /* CFNetwork.framework in Frameworks */,
+				13E2D25A1FED05C7001AD28A /* CoreText.framework in Frameworks */,
+				13E2D2581FED05BC001AD28A /* QuartzCore.framework in Frameworks */,
+				13E2D2561FED05B2001AD28A /* CoreTelephony.framework in Frameworks */,
 				A429925974CF0F834000A3FD /* libPods-GeLiStore.a in Frameworks */,
+				13E2D2541FED055E001AD28A /* AlipaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +829,7 @@
 		135446371FADA57400974CE9 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				13E2D2501FED054D001AD28A /* Alipay */,
 				136BD7BA1FC56BA200FC000E /* GQGesVCTransition */,
 				1315C87D1FB554EF008C65A7 /* MBProgressHUD */,
 				135446381FADA57400974CE9 /* SDCycleScrollView */,
@@ -874,6 +915,7 @@
 		13949B941F988AE10027CA84 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				13EE31A61FECA21800FD3C42 /* myOrder(我的订单) */,
 				13EC6DAE1FE9163400039771 /* Shop(店铺) */,
 				1321AF851FDE576B007505D0 /* MeCollect(我的收藏) */,
 				132721A81FCE8CBD0081F065 /* Order(订单) */,
@@ -1084,6 +1126,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		13E2D2501FED054D001AD28A /* Alipay */ = {
+			isa = PBXGroup;
+			children = (
+				13E2D2511FED055E001AD28A /* AlipaySDK.bundle */,
+				13E2D2521FED055E001AD28A /* AlipaySDK.framework */,
+			);
+			path = Alipay;
+			sourceTree = "<group>";
+		};
 		13EC6DAE1FE9163400039771 /* Shop(店铺) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1117,6 +1168,46 @@
 				130EDBF81FE9F7F2006013C4 /* ZDXStoreShopHeaderView.m */,
 				130EDC001FEA4D1C006013C4 /* ZDXStoreShopGoodsCell.h */,
 				130EDC011FEA4D1C006013C4 /* ZDXStoreShopGoodsCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		13EE31A61FECA21800FD3C42 /* myOrder(我的订单) */ = {
+			isa = PBXGroup;
+			children = (
+				13EE31A71FECA21800FD3C42 /* Controller */,
+				13EE31A81FECA21800FD3C42 /* Model */,
+				13EE31A91FECA21800FD3C42 /* View */,
+			);
+			path = "myOrder(我的订单)";
+			sourceTree = "<group>";
+		};
+		13EE31A71FECA21800FD3C42 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				13EE31AD1FECADD200FD3C42 /* ZDXStoreMyorderViewController.h */,
+				13EE31AE1FECADD200FD3C42 /* ZDXStoreMyorderViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		13EE31A81FECA21800FD3C42 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13EE31A91FECA21800FD3C42 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				13EE31AA1FECA38500FD3C42 /* ZDXStoreMyOrderTopView.h */,
+				13EE31AB1FECA38500FD3C42 /* ZDXStoreMyOrderTopView.m */,
+				13EE31B81FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.h */,
+				13EE31B91FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.m */,
+				13EE31B31FECC80700FD3C42 /* ZDXStoreMyOrderCell.h */,
+				13EE31B41FECC80700FD3C42 /* ZDXStoreMyOrderCell.m */,
+				13EE31B51FECC80700FD3C42 /* ZDXStoreMyOrderCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1223,6 +1314,13 @@
 		9CC3C4FB1B0B37128E438A11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				13E2D2611FED0637001AD28A /* libz.tbd */,
+				13E2D25F1FED0630001AD28A /* libc++.tbd */,
+				13E2D25D1FED05F0001AD28A /* CoreMotion.framework */,
+				13E2D25B1FED05E9001AD28A /* CFNetwork.framework */,
+				13E2D2591FED05C7001AD28A /* CoreText.framework */,
+				13E2D2571FED05BC001AD28A /* QuartzCore.framework */,
+				13E2D2551FED05B2001AD28A /* CoreTelephony.framework */,
 				256339442F21EDE3FB1E09E7 /* libPods-GeLiStore.a */,
 			);
 			name = Frameworks;
@@ -1304,6 +1402,7 @@
 				13EC6DAD1FE8F66D00039771 /* ZDXStoreCollectionStoreCell.xib in Resources */,
 				13F8CA6A1FC7CA410046435F /* ZDXStoreSetupPwdViewController.xib in Resources */,
 				13D1DA8B1FC6C7CE0026E036 /* ZDXStoreCodeVerificationViewController.xib in Resources */,
+				13EE31B71FECC80700FD3C42 /* ZDXStoreMyOrderCell.xib in Resources */,
 				13041DD01FD1585200DC1548 /* ZDXStoreOrderAddressCell.xib in Resources */,
 				1315C8841FB554EF008C65A7 /* MBProgressHUD.bundle in Resources */,
 				1341C51C1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.xib in Resources */,
@@ -1320,6 +1419,7 @@
 				13F682311FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib in Resources */,
 				13949B8A1F9883C50027CA84 /* Assets.xcassets in Resources */,
 				1307A2DC1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib in Resources */,
+				13E2D2531FED055E001AD28A /* AlipaySDK.bundle in Resources */,
 				132721DD1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.xib in Resources */,
 				132BDDC61FE776ED004ECACB /* ZDXStoreShareGoodsCell.xib in Resources */,
 				132721C51FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.xib in Resources */,
@@ -1389,6 +1489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				132721B71FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.m in Sources */,
+				13EE31B61FECC80700FD3C42 /* ZDXStoreMyOrderCell.m in Sources */,
 				1341C51B1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.m in Sources */,
 				131FC1321FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m in Sources */,
 				13065B8E1FA70FAE009BC964 /* UIBarButtonItem+Item.m in Sources */,
@@ -1488,6 +1589,7 @@
 				1315AABE1FA99D5F00360F83 /* ZDXStoreFooterView.m in Sources */,
 				13D1DA821FC66EF50026E036 /* ZDXStoreRegisterViewController.m in Sources */,
 				131FC10A1FA0707900476D63 /* ZDXStoreShoppingCarViewController.m in Sources */,
+				13EE31AF1FECADD200FD3C42 /* ZDXStoreMyorderViewController.m in Sources */,
 				1315AACB1FA9C68900360F83 /* ZDXStoreTitleLeftImageRight.m in Sources */,
 				130EDBF91FE9F7F2006013C4 /* ZDXStoreShopHeaderView.m in Sources */,
 				13FD79BB1FCD43CC006FE649 /* ZDXStoreShopModel.m in Sources */,
@@ -1496,7 +1598,9 @@
 				13D5923B1FD7C76900BE2C7E /* ZDXStoreSubmitOrderBottomView.m in Sources */,
 				1307A2C81FAD4ABB0019D8F5 /* ZDXStoreFiltrateTableViewHeaderView.m in Sources */,
 				132BDDC11FE76961004ECACB /* ZDXStoreShareClassifyCell.m in Sources */,
+				13EE31BA1FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.m in Sources */,
 				1307A2CF1FAD4B200019D8F5 /* ZDXStoreClassifyViewController.m in Sources */,
+				13EE31AC1FECA38500FD3C42 /* ZDXStoreMyOrderTopView.m in Sources */,
 				1307A2D91FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.m in Sources */,
 				13949BB11F9897D90027CA84 /* NSString+Extension.m in Sources */,
 				13D53F5E1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.m in Sources */,
@@ -1606,6 +1710,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NWTRGVJ32U;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GeLiStore/Classes/Main(主要)/Lib/Alipay",
+				);
 				INFOPLIST_FILE = GeLiStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1624,6 +1732,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NWTRGVJ32U;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GeLiStore/Classes/Main(主要)/Lib/Alipay",
+				);
 				INFOPLIST_FILE = GeLiStore/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

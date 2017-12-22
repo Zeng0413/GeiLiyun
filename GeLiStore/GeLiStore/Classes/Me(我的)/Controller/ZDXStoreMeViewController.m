@@ -14,6 +14,7 @@
 #import "ZDXStoreSettingViewController.h"
 #import "ZDXStoreLoginViewController.h"
 #import "ZDXStoreMeCollectionViewController.h"
+#import "ZDXStoreMyorderViewController.h"
 
 static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 @interface ZDXStoreMeViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreMeHeaderViewDelegate, ZDXStoreMeOrderAndServiceCellDelegate>
@@ -149,11 +150,32 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 }
 
 #pragma mark - cell delegate
--(void)cellSelectedTypeStr:(NSString *)str{
-    if ([str isEqualToString:@"我的收藏"]) {
-        ZDXStoreMeCollectionViewController *vc = [[ZDXStoreMeCollectionViewController alloc] init];
+-(void)cellSelectedTypeStr:(NSString *)str orderAndService:(ZDXStoreMeOrderAndServiceCell *)cell{
+    
+    if (cell == self.meOrderCell) {
+        CGFloat index;
+        if ([str isEqualToString:@"全部订单"]) {
+            index = 0;
+        }else if ([str isEqualToString:@"待付款"]){
+            index = 1;
+        }else if ([str isEqualToString:@"待收货"]){
+            index = 2;
+        }else if ([str isEqualToString:@"待评价"]){
+            index = 3;
+        }else{
+            index = 4;
+        }
+        ZDXStoreMyorderViewController *vc = [[ZDXStoreMyorderViewController alloc] init];
+        vc.index = index;
         [self.navigationController pushViewController:vc animated:YES];
+        
+    }else if (cell == self.meServiceCell){
+        if ([str isEqualToString:@"我的收藏"]) {
+            ZDXStoreMeCollectionViewController *vc = [[ZDXStoreMeCollectionViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
+    
 }
 
 @end
