@@ -38,6 +38,8 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
 @property (strong, nonatomic) NSMutableArray *goodsArr;
 
 @property (weak, nonatomic) ZDXStoreSubmitOrderBottomView *bottomView;
+
+@property (strong, nonatomic) ZDXStoreUserModel *userModel;
 @end
 
 @implementation ZDXStoreFillInOrderViewController
@@ -61,10 +63,14 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
     [super viewDidLoad];
     self.title = @"填写订单";
     
+    // 用户信息
+    self.userModel = [ZDXStoreUserModelTool userModel];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     for (ZDXStoreShopModel *shopModel in self.dataList) {
         for (ZDXStoreGoodsModel *goodsModel in shopModel.list) {
+            goodsModel.shopName = shopModel.shopName;
             [self.goodsArr addObject:goodsModel];
         }
     }
@@ -80,8 +86,51 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
     view.goodsPrice = [NSString stringWithFormat:@"%ld",self.goodsTotalMoney];
     
     view.block = ^{
-        ZDXStoreOrderStatusViewController *vc = [[ZDXStoreOrderStatusViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        [MBProgressHUD showMessage:@"正在提交..."];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager]
+        ;
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"s_addressId"] = @(self.consigneeInfoModel.addressId);
+        params[@"deliverType"] = @0;
+        params[@"payType"] = @1;
+        params[@"userId"] = @(self.userModel.userId);
+        params[@"isCarts"] = @(self.isCarts);
+        
+        NSString *ids = @"";
+        for (int i = 0; i < self.goodsArr.count; i++) {
+            ZDXStoreGoodsModel *goodsModel = self.goodsArr[i];
+            ids = [ids stringByAppendingString:[NSString stringWithFormat:@"%ld,",goodsModel.goodsId]];
+        }
+        ids = [ids substringToIndex:([ids length] - 1)];
+        
+        params[@"goodsId"] = ids;
+        params[@"num"] = @(self.dataList.count);
+        params[@"orderSrc"] = @3;
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/submit",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [MBProgressHUD hideHUD];
+            if ([responseObject[@"code"] integerValue] == 1) { // 订单提交成功
+                
+                ZDXStoreOrderStatusViewController *vc = [[ZDXStoreOrderStatusViewController alloc] init];
+                vc.orderId = responseObject[@"data"][@"data"];
+                vc.consigneeInfoModel = self.consigneeInfoModel;
+                vc.dataList = self.goodsArr;
+                vc.type = 1;
+                vc.isBatch = 1;
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:responseObject[@"msg"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                [alertView show];
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+
+        }];
+        
+        
     };
     
     [self.view addSubview:view];
@@ -111,7 +160,7 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
 // 获取默认地址
 -(void)setupDefaultAddress{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSDictionary *params = @{@"userId" : @([ZDXStoreUserModelTool userModel].userId)};
+    NSDictionary *params = @{@"userId" : @(self.userModel.userId)};
     
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Useraddress/getUserDefaultAddress",hostUrl];
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

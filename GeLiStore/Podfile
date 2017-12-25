@@ -6,4 +6,5 @@ pod 'MJExtension'
 pod 'Masonry'
 pod 'MJRefresh'
 pod 'TFHpple'
+pod 'WechatOpenSDK'
 end

@@ -21,6 +21,7 @@ PODS:
     - SDWebImage/Core (= 4.1.2)
   - SDWebImage/Core (4.1.2)
   - TFHpple (2.0.0)
+  - WechatOpenSDK (1.8.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - MJRefresh
   - SDWebImage
   - TFHpple
+  - WechatOpenSDK
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -37,7 +39,8 @@ SPEC CHECKSUMS:
   MJRefresh: 6642e35b3227a5447b9fd5e17c552c90196c9859
   SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
   TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
+  WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
 
-PODFILE CHECKSUM: 963c2d6d615ee9533e56194a600d7b85bf2af52e
+PODFILE CHECKSUM: 1ea06c16d190349d116ebc3b0174a94cecf969a7
 
 COCOAPODS: 1.3.1

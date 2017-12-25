@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ZDXStoreTabBarViewController.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"
 
 @interface AppDelegate ()
 

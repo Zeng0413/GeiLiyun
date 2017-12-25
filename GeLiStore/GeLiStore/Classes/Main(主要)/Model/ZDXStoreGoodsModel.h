@@ -15,6 +15,7 @@
 
 @property (copy, nonatomic) NSString *goodsName; // 商品名
 @property (copy, nonatomic) NSString *goodsImg;  // 商品图片
+@property (copy, nonatomic) NSString *shopName;  // 店铺名
 @property (copy, nonatomic) NSString *shopPrice; // 购买价格
 @property (assign, nonatomic) NSInteger shopId;  // 购买id
 @property (copy, nonatomic) NSString *marketPrice; // 市场价格

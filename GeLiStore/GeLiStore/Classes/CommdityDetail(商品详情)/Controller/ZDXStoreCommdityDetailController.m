@@ -211,10 +211,11 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     [manager POST:urlStr parameters:parmas progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD hideHUD];
         NSLog(@"%@",responseObject);
-        NSArray *arr = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"carts"][@"carts"]];
+        NSArray *arr = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"carts"][@"carts"]];
         ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
         vc.dataList = arr;
-        vc.goodsTotalMoney = [responseObject[@"carts"][@"goodsTotalMoney"] integerValue];
+        vc.isCarts = 0;
+        vc.goodsTotalMoney = [responseObject[@"data"][@"carts"][@"goodsTotalMoney"] integerValue];
         [self.navigationController pushViewController:vc animated:YES];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

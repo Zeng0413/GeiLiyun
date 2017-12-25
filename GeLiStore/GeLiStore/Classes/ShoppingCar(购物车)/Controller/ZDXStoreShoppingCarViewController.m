@@ -163,6 +163,7 @@
         ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
         vc.goodsTotalMoney = [responseObject[@"data"][@"carts"][@"goodsTotalMoney"] integerValue];
         vc.dataList = arr;
+        vc.isCarts = 1;
         [self.navigationController pushViewController:vc animated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MBProgressHUD hideHUD];

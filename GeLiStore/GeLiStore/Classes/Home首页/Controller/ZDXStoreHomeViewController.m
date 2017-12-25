@@ -21,7 +21,6 @@
 #import "ZDXStoreGoodsModel.h"
 #import "ZDXStoreGoodsClassifyModel.h"
 #import "ZDXStoreSearchGoodsViewController.h"
-#import <AlipaySDK/AlipaySDK.h>
 
 static NSString *brandChooseCell = @"brandChooseCell";
 

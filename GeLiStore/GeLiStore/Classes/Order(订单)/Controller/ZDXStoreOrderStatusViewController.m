@@ -8,12 +8,21 @@
 
 #import "ZDXStoreOrderStatusViewController.h"
 #import "ZDXComnous.h"
+#import "ZDXStoreOrderPayAddressCell.h"
+#import "ZDXStoreOrderPayGoodsCell.h"
+#import "ZDXStoreOrderPaySendTypeCell.h"
+#import "ZDXStoreUserModel.h"
+#import <AlipaySDK/AlipaySDK.h>
 
+static NSString *paySendTypeCellID = @"PaySendTypeCell";
 @interface ZDXStoreOrderStatusViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UIView *tableViewTopView;
 
 @property (weak, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) ZDXStoreOrderPayAddressCell *payAddressCell;
+@property (strong, nonatomic) ZDXStoreOrderPayGoodsCell *payGoodsCell;
 
 @end
 
@@ -44,14 +53,15 @@
     [self.view addSubview:bottomView];
     
     CGFloat btnW = (SCREEN_WIDTH / 2 + 20) / 2;
-    UIButton *payBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW, 0, btnW, bottomView.height)];
+    UIButton *payBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW, 1, btnW, bottomView.height)];
     payBtn.backgroundColor = colorWithString(@"#f95865");
     [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [payBtn setTitle:@"去付款" forState:UIControlStateNormal];
     payBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:payBtn];
     
-    UIButton *cancelOrderBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW * 2, 0, btnW, bottomView.height)];
+    UIButton *cancelOrderBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW * 2, 1, btnW, bottomView.height)];
     cancelOrderBtn.backgroundColor = colorWithString(@"#f4f4f4");
     [cancelOrderBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
     [cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
@@ -59,7 +69,7 @@
     [bottomView addSubview:cancelOrderBtn];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-    lineView.backgroundColor = colorWithString(@"#f5f5f5");
+    lineView.backgroundColor = colorWithString(@"#f6f6f6");
     [bottomView addSubview:lineView];
 }
 
@@ -71,6 +81,9 @@
     tableView.showsVerticalScrollIndicator = NO;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.backgroundColor = colorWithString(@"#f4f4f4");
+    
+    [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreOrderPaySendTypeCell" bundle:nil] forCellReuseIdentifier:paySendTypeCellID];
+    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 5)];
     imageView.image = [UIImage imageNamed:@"等待付款图片"];
     [tableView setTableHeaderView:imageView];
@@ -79,22 +92,78 @@
     self.tableView = tableView;
 }
 
-
+// 去付款
+-(void)payClick{
+    [MBProgressHUD showMessage:@""];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"type"] = @(self.type);
+    params[@"payFrom"] = @1;
+    params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
+    params[@"isBatch"] = @(self.isBatch);
+    params[@"orderId"] = self.orderId;
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/Pay/tunePay",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+        if ([responseObject[@"code"] integerValue] == 1) {
+            NSString *payStr = responseObject[@"data"][@"data"][@"pay"];
+            
+            NSString *schemeSre = @"GeLiStoreAliPay";
+            if (payStr.length > 0) {
+                [[AlipaySDK defaultService] payOrder:payStr fromScheme:schemeSre callback:^(NSDictionary *resultDic) {
+                    NSLog(@"%@",resultDic);
+                }];
+            }
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
+    }];
+}
+#pragma mark - tableView delegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 3;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    if (section == 1) {
+        return self.dataList.count;
+    }
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *indentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:indentifier];
+    if (indexPath.section == 0) {
+        ZDXStoreOrderPayAddressCell *cell = [ZDXStoreOrderPayAddressCell initWithTableView:tableView cellWithAtIndexPath:indexPath];
+        cell.model = self.consigneeInfoModel;
+        self.payAddressCell = cell;
+        return cell;
     }
-    cell.textLabel.text = @"zdx";
-    return cell;
+    if (indexPath.section == 1){
+        ZDXStoreOrderPayGoodsCell *cell = [ZDXStoreOrderPayGoodsCell initWithPayGoodsTableView:tableView cellForRowAtIndexPath:indexPath];
+        cell.goodsModel = self.dataList[indexPath.row];
+        self.payGoodsCell = cell;
+        return cell;
+    }else{
+        ZDXStoreOrderPaySendTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:paySendTypeCellID];
+        return cell;
+    }
+    
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return self.payAddressCell.cellH;
+    }else if (indexPath.section == 1){
+        return self.payGoodsCell.cellH;
+    }else{
+        return 223;
+    }
+    
+}
 
 
 @end
