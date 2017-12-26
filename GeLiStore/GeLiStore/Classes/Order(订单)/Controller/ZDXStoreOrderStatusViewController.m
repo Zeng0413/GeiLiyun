@@ -149,6 +149,7 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
         return cell;
     }else{
         ZDXStoreOrderPaySendTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:paySendTypeCellID];
+        cell.orderId.text = [NSString stringWithFormat:@"订单编号：%@",self.orderId];
         return cell;
     }
     

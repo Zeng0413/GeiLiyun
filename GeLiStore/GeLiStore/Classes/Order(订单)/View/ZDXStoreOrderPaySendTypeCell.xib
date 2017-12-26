@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="222"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="222"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="221.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tor-aU-IWS">
@@ -109,9 +109,9 @@
                         <rect key="frame" x="0.0" y="164" width="320" height="59"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下单时间：2016-10-08 18:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unf-HZ-bo2">
-                                <rect key="frame" x="10" y="19" width="177" height="13"/>
+                                <rect key="frame" x="10" y="19" width="250" height="13"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="177" id="6hQ-6b-2XB"/>
+                                    <constraint firstAttribute="width" constant="250" id="6hQ-6b-2XB"/>
                                     <constraint firstAttribute="height" constant="13" id="f5M-Md-Q5h"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -119,10 +119,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单编号：0000000000001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wh-26-HkZ">
-                                <rect key="frame" x="10" y="36" width="200" height="13"/>
+                                <rect key="frame" x="10" y="36" width="250" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="BCH-69-VHE"/>
-                                    <constraint firstAttribute="width" constant="200" id="ggD-LD-0nS"/>
+                                    <constraint firstAttribute="width" constant="250" id="ggD-LD-0nS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

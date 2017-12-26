@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ZDXStoreOrderPaySendTypeCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *orderId;
 
 @end

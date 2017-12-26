@@ -11,16 +11,31 @@
 #import "ZDXComnous.h"
 #import "ZDXStoreMyOrderCell.h"
 #import "ZDXStoreShopModel.h"
+#import "ZDXStoreUserModel.h"
 #import "ZDXStoreMyOrderHeaderView.h"
+#import "ZDXStoreOrderModel.h"
 static NSString *myOrderCellID = @"MyOrderCell";
-@interface ZDXStoreMyorderViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ZDXStoreMyorderViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreMyOrderCellDelegate>
 
 @property (strong, nonatomic) ZDXStoreMyOrderTopView *topView;
 
 @property (weak, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) NSMutableArray *orderArr;
+
+@property (strong, nonatomic) ZDXStoreUserModel *userModel;
+
+@property (assign, nonatomic) NSInteger page;
 @end
 
 @implementation ZDXStoreMyorderViewController
+
+-(NSMutableArray *)orderArr{
+    if (!_orderArr) {
+        _orderArr = [NSMutableArray array];
+    }
+    return _orderArr;
+}
 
 -(ZDXStoreMyOrderTopView *)topView{
     if (!_topView) {
@@ -47,11 +62,35 @@ static NSString *myOrderCellID = @"MyOrderCell";
     
     [self.view addSubview:self.topView];
     
+    self.page = 1;
+    self.userModel = [ZDXStoreUserModelTool userModel];
+    
+    // 加载数据
+    [self reloadData];
+    
     // 默认选中订单类型
     [self.topView selectedWithIndex:self.index];
     
     // 初始化tableView
     [self setupTableView];
+}
+
+// 加载数据
+-(void)reloadData{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userId"] = @(self.userModel.userId);
+    params[@"page"] = @(self.page);
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/allOrders",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] integerValue] == 1) { // 数据加载成功
+            self.orderArr = [ZDXStoreOrderModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.tableView reloadData];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 
 // 初始化tableView
@@ -71,16 +110,20 @@ static NSString *myOrderCellID = @"MyOrderCell";
 #pragma mark - tableView delegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return self.orderArr.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    
+    ZDXStoreOrderModel *orderModel = self.orderArr[section];
+    return orderModel.list.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ZDXStoreMyOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:myOrderCellID];
+    cell.orderModel = self.orderArr[indexPath.section];
+    cell.delegate = self;
     return cell;
     
 //    static NSString *indenifier = @"cell";
@@ -103,10 +146,14 @@ static NSString *myOrderCellID = @"MyOrderCell";
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     ZDXStoreMyOrderHeaderView *view =[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ZDXStoreMyOrderHeaderView"];
-    ZDXStoreShopModel *model = [[ZDXStoreShopModel alloc] init];
-    model.shopName = @"海尔旗舰店";
-    view.shopModel = model;
+    ZDXStoreOrderModel *model = self.orderArr[section];
+    view.orderModel = model;
     return view;
 }
 
+
+#pragma mark - cell Delegate
+-(void)orderSelected:(NSString *)str{
+    NSLog(@"%@",str);
+}
 @end

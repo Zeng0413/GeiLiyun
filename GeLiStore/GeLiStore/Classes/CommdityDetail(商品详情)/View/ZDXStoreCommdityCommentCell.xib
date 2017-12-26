@@ -105,6 +105,9 @@
                             <constraint firstAttribute="height" constant="25" id="U1E-YW-UUv"/>
                         </constraints>
                         <state key="normal" title="查看全部评价"/>
+                        <connections>
+                            <action selector="lookCommentClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nak-jf-RZM"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.6分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Hd-c4-o8E">
                         <rect key="frame" x="276" y="15" width="34" height="12"/>

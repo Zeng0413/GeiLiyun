@@ -38,10 +38,11 @@
     self.lineView.backgroundColor = colorWithString(@"#f4f4f4");
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (IBAction)lookCommentClick:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(selectedCommentClick)]) {
+        [self.delegate selectedCommentClick];
+    }
 }
+
 
 @end

@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UILabel *price;
 @property (weak, nonatomic) IBOutlet UILabel *orderTime;
-@property (weak, nonatomic) IBOutlet UILabel *orderId;
 
 @end
 
@@ -21,6 +20,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.topView.backgroundColor = [ UIColor colorWithHexString:@"#f4f4f4"];
     self.bottomView.backgroundColor = [ UIColor colorWithHexString:@"#f4f4f4"];
     
@@ -30,10 +31,7 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
+
 
 @end

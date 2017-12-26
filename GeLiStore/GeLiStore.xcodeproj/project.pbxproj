@@ -95,6 +95,8 @@
 		132BDDC61FE776ED004ECACB /* ZDXStoreShareGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132BDDC41FE776ED004ECACB /* ZDXStoreShareGoodsCell.xib */; };
 		1341C51B1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1341C5191FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.m */; };
 		1341C51C1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1341C51A1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.xib */; };
+		1342F59F1FF21E1D00500938 /* ZDXStoreOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1342F59E1FF21E1D00500938 /* ZDXStoreOrderModel.m */; };
+		1342F5A61FF23F6100500938 /* ZDXStoreCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1342F5A51FF23F6100500938 /* ZDXStoreCommentViewController.m */; };
 		134D630D1FF0A5EA00000F28 /* ZDXStoreOrderPayAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 134D630C1FF0A5EA00000F28 /* ZDXStoreOrderPayAddressCell.m */; };
 		134D63111FF0D1CF00000F28 /* ZDXStoreOrderPayGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 134D630F1FF0D1CF00000F28 /* ZDXStoreOrderPayGoodsCell.m */; };
 		134D63161FF0E88800000F28 /* ZDXStoreOrderPaySendTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 134D63141FF0E88800000F28 /* ZDXStoreOrderPaySendTypeCell.m */; };
@@ -329,6 +331,10 @@
 		1341C5181FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFiltrateNoGoodsCell.h; sourceTree = "<group>"; };
 		1341C5191FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFiltrateNoGoodsCell.m; sourceTree = "<group>"; };
 		1341C51A1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreFiltrateNoGoodsCell.xib; sourceTree = "<group>"; };
+		1342F59D1FF21E1D00500938 /* ZDXStoreOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderModel.h; sourceTree = "<group>"; };
+		1342F59E1FF21E1D00500938 /* ZDXStoreOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderModel.m; sourceTree = "<group>"; };
+		1342F5A41FF23F6100500938 /* ZDXStoreCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreCommentViewController.h; sourceTree = "<group>"; };
+		1342F5A51FF23F6100500938 /* ZDXStoreCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreCommentViewController.m; sourceTree = "<group>"; };
 		134D630B1FF0A5EA00000F28 /* ZDXStoreOrderPayAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderPayAddressCell.h; sourceTree = "<group>"; };
 		134D630C1FF0A5EA00000F28 /* ZDXStoreOrderPayAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderPayAddressCell.m; sourceTree = "<group>"; };
 		134D630E1FF0D1CF00000F28 /* ZDXStoreOrderPayGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderPayGoodsCell.h; sourceTree = "<group>"; };
@@ -844,6 +850,39 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1342F5A01FF23F4100500938 /* Comment(评价) */ = {
+			isa = PBXGroup;
+			children = (
+				1342F5A11FF23F4100500938 /* Controller */,
+				1342F5A21FF23F4100500938 /* Model */,
+				1342F5A31FF23F4100500938 /* View */,
+			);
+			path = "Comment(评价)";
+			sourceTree = "<group>";
+		};
+		1342F5A11FF23F4100500938 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1342F5A41FF23F6100500938 /* ZDXStoreCommentViewController.h */,
+				1342F5A51FF23F6100500938 /* ZDXStoreCommentViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1342F5A21FF23F4100500938 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1342F5A31FF23F4100500938 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		135446371FADA57400974CE9 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -933,6 +972,7 @@
 		13949B941F988AE10027CA84 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1342F5A01FF23F4100500938 /* Comment(评价) */,
 				13EE31A61FECA21800FD3C42 /* myOrder(我的订单) */,
 				13EC6DAE1FE9163400039771 /* Shop(店铺) */,
 				1321AF851FDE576B007505D0 /* MeCollect(我的收藏) */,
@@ -1212,6 +1252,8 @@
 		13EE31A81FECA21800FD3C42 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1342F59D1FF21E1D00500938 /* ZDXStoreOrderModel.h */,
+				1342F59E1FF21E1D00500938 /* ZDXStoreOrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1546,6 +1588,7 @@
 				13FEDBD61F99980E00538177 /* ZDXStoreMeViewController.m in Sources */,
 				1354464B1FADA57400974CE9 /* TAPageControl.m in Sources */,
 				131FC10D1FA0707900476D63 /* ZDXStoreProductModel.m in Sources */,
+				1342F59F1FF21E1D00500938 /* ZDXStoreOrderModel.m in Sources */,
 				13236C7A1FB000B600619C6B /* ZDXStoreMeHeaderView.m in Sources */,
 				13D1DA8A1FC6C7CE0026E036 /* ZDXStoreCodeVerificationViewController.m in Sources */,
 				13949BA21F988AE10027CA84 /* AppDelegate.m in Sources */,
@@ -1626,6 +1669,7 @@
 				1307A2D91FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.m in Sources */,
 				13949BB11F9897D90027CA84 /* NSString+Extension.m in Sources */,
 				13D53F5E1FA86EF70080B563 /* ZDXStoreCommdityDetailInfoCell.m in Sources */,
+				1342F5A61FF23F6100500938 /* ZDXStoreCommentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

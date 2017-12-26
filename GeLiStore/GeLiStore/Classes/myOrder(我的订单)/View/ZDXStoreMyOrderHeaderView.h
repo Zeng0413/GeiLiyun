@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ZDXStoreShopModel;
+@class ZDXStoreOrderModel;
 
 @interface ZDXStoreMyOrderHeaderView : UITableViewHeaderFooterView
 
-@property (strong, nonatomic) ZDXStoreShopModel *shopModel;
+@property (strong, nonatomic) ZDXStoreOrderModel *orderModel;
 
 @end

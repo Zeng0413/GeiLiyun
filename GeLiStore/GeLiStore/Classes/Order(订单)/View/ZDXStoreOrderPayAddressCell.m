@@ -35,6 +35,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         // 收货人
         UILabel *consignnerLabel = [[UILabel alloc] init];
         consignnerLabel.textColor = blackLabelColor;

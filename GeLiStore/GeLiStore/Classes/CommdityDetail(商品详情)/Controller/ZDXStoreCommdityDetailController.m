@@ -18,10 +18,11 @@
 #import "ZDXStoreShopViewController.h"
 #import "ZDXStoreFillInOrderViewController.h"
 #import "ZDXStoreLoginViewController.h"
+#import "ZDXStoreCommentViewController.h"
 
 static NSString *commdityCommentCellID = @"commdityCommentCell";
 static NSString *goodsDescCellID = @"goodsDescCell";
-@interface ZDXStoreCommdityDetailController ()<UITableViewDataSource, UITableViewDelegate, ZDXStoreFooterViewDelegate>
+@interface ZDXStoreCommdityDetailController ()<UITableViewDataSource, UITableViewDelegate, ZDXStoreFooterViewDelegate, ZDXStoreCommdityCommentCellDelegate>
 
 @property (weak, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) ZDXStoreTableViewHeaderView *headerView;
@@ -141,6 +142,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     
     if (indexPath.row == 1) {
         ZDXStoreCommdityCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:commdityCommentCellID];
+        cell.delegate = self;
         return cell;
     }
     
@@ -273,5 +275,12 @@ static NSString *goodsDescCellID = @"goodsDescCell";
         [self addCollection:isSelected];
         NSLog(@"收藏");
     }
+}
+
+#pragma mark - cell Delegate
+// 查看全部评论
+-(void)selectedCommentClick{
+    ZDXStoreCommentViewController *vc = [[ZDXStoreCommentViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

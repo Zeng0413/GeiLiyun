@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZDXStoreCommdityCommentCellDelegate <NSObject>
+
+-(void)selectedCommentClick;
+
+@end
+
 @interface ZDXStoreCommdityCommentCell : UITableViewCell
+
+@property (weak, nonatomic) id<ZDXStoreCommdityCommentCellDelegate> delegate;
 
 @end

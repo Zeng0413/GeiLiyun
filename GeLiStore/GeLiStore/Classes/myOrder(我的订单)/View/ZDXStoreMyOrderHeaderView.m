@@ -8,7 +8,7 @@
 
 #import "ZDXStoreMyOrderHeaderView.h"
 #import "ZDXComnous.h"
-#import "ZDXStoreShopModel.h"
+#import "ZDXStoreOrderModel.h"
 
 @interface ZDXStoreMyOrderHeaderView ()
 @property (weak, nonatomic) UILabel *shopName;
@@ -50,19 +50,19 @@
     self.orderStatus = orderStatus;
 }
 
--(void)setShopModel:(ZDXStoreShopModel *)shopModel{
-    _shopModel = shopModel;
+-(void)setOrderModel:(ZDXStoreOrderModel *)orderModel{
+    _orderModel = orderModel;
     
-    CGSize shopNameSize = [shopModel.shopName sizeWithFont:[UIFont systemFontOfSize:15]];
+    CGSize shopNameSize = [orderModel.shopName sizeWithFont:[UIFont systemFontOfSize:15]];
     self.shopName.frame = CGRectMake(10, 14, shopNameSize.width, shopNameSize.height);
-    self.shopName.text = shopModel.shopName;
+    self.shopName.text = orderModel.shopName;
     
     self.img.frame = CGRectMake(CGRectGetMaxX(self.shopName.frame) + 15, 30, 10, 13);
     self.img.centerY = self.shopName.centerY;
     
     self.orderStatus.frame = CGRectMake(SCREEN_WIDTH - 10 - 80, 28, 80, 15);
     self.orderStatus.centerY = self.shopName.centerY;
-    self.orderStatus.text = @"待付款";
+    self.orderStatus.text = orderModel.status;
     
 }
 @end
