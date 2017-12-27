@@ -12,11 +12,12 @@
 #import "ZDXStoreCollectionGoodsCell.h"
 #import "ZDXStoreCollectionStoreCell.h"
 #import "ZDXStoreNoCollectionCell.h"
-
+#import "ZDXStoreShopModel.h"
+#import "ZDXStoreShopViewController.h"
 static NSString *noCollectionCellID = @"noCollectionCellID";
 static NSString *collectionGoodsCellID = @"CollectionGoodsCell";
 static NSString *collectionStoreCellID = @"CollectionStoreCell";
-@interface ZDXStoreMeCollectionViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreCollectionGoodsCellDelegate, ZDXStoreSelectedTopViewDelegate>
+@interface ZDXStoreMeCollectionViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreCollectionGoodsCellDelegate, ZDXStoreSelectedTopViewDelegate, ZDXStoreCollectionStoreCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray *dataList;
 @property (weak, nonatomic) UITableView *tableView;
@@ -122,7 +123,7 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     [self setupTableView];
     
     // 加载数据
-    [self reloadData];
+    [self reloadGoodsData];
     
     [self setupBottomView];
 }
@@ -142,27 +143,7 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     [self.bottomBtn addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
-// 加载数据
--(void)reloadData{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    NSString *   urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listGoodsQuery",hostUrl];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"userId"] = @(self.userModel.userId);
-    params[@"page"] = @1;
-    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [MBProgressHUD hideHUD];
-//        if ([responseObject[@"code"] integerValue] == 1) { // 数据加载成功
-            
-            self.dataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            [self.tableView reloadData];
-            
-//        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
-}
+
 
 // 设置tableView
 -(void)setupTableView{
@@ -183,31 +164,6 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     [self.view addSubview:tableView];
     self.tableView = tableView;
     
-}
-
--(void)loadNewData{
-    self.page++;
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listGoodsQuery",hostUrl];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"userId"] = @(self.userModel.userId);
-    params[@"page"] = @(self.page);
-    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [self.tableView.mj_footer endRefreshing];
-        if ([responseObject[@"code"] integerValue] == 1) {
-            NSArray *list = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            [self.dataList addObjectsFromArray:list];
-            [self.tableView reloadData];
-        }else{
-            [MBProgressHUD showSuccess:@"暂无更多订单"];
-        }
-        
-       
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
 }
 
 // 收藏筛选View
@@ -243,6 +199,8 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
             return cell;
         }else if (self.type == 2){ // 店铺
             ZDXStoreCollectionStoreCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionStoreCellID];
+            cell.shopModel = self.dataList[indexPath.row];
+            cell.delegate = self;
             return cell;
         }
         
@@ -287,7 +245,7 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
         [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if ([responseObject[@"code"] integerValue] == 1) {
                 [self.goodsSelectedArr removeAllObjects];
-                [self reloadData];
+                [self reloadGoodsData];
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
@@ -312,7 +270,7 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
         [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if ([responseObject[@"code"] integerValue] == 1) {
                 [self.goodsSelectedArr removeAllObjects];
-                [self reloadData];
+                [self reloadGoodsData];
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
@@ -343,6 +301,13 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     [self.tableView reloadData];
 }
 
+// 进店
+-(void)toShopBtnClick:(ZDXStoreShopModel *)shopModel{
+    ZDXStoreShopViewController *vc = [[ZDXStoreShopViewController alloc] init];
+    vc.shopId = shopModel.shopId;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark 商品选择
 -(void)collectionGoodsWithModel:(ZDXStoreGoodsModel *)goodsModel selectedStatus:(BOOL)selectedStatus{
     
@@ -358,7 +323,111 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
 
 #pragma mark - filtrateView delegate
 -(void)selectedTopViewSelected:(NSInteger)type{
+    self.page = 1;
+    [self.dataList removeAllObjects];
     self.type = type;
+    if (type == 1) {
+        // 加载收藏商品数据
+        [self reloadGoodsData];
+    }else if (type == 2){
+        // 加载收藏店铺数据
+        [self reloadShopData];
+    }else{
+        
+    }
     [self.tableView reloadData];
+}
+
+// 加载收藏店铺数据
+-(void)reloadShopData{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listShopQuery",hostUrl];
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"page"] = @(self.page);
+    params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        self.dataList = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
+// 加载收藏商品数据
+-(void)reloadGoodsData{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listGoodsQuery",hostUrl];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userId"] = @(self.userModel.userId);
+    params[@"page"] = @1;
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+        //        if ([responseObject[@"code"] integerValue] == 1) { // 数据加载成功
+        
+        self.dataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        [self.tableView reloadData];
+        
+        //        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
+// 加载更多数据
+-(void)loadNewData{
+    if (self.type == 1) { // 更多商品
+        self.page++;
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listGoodsQuery",hostUrl];
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"userId"] = @(self.userModel.userId);
+        params[@"page"] = @(self.page);
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self.tableView.mj_footer endRefreshing];
+            if ([responseObject[@"code"] integerValue] == 1) {
+                NSArray *list = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+                [self.dataList addObjectsFromArray:list];
+                [self.tableView reloadData];
+            }else{
+                [MBProgressHUD showSuccess:@"暂无更多订单"];
+            }
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }else if (self.type == 2){
+        self.page++;
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/listShopQuery",hostUrl];
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"page"] = @(self.page);
+        params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self.tableView.mj_footer endRefreshing];
+            if ([responseObject[@"code"] integerValue] == 1) {
+                NSArray *list = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+                [self.dataList addObjectsFromArray:list];
+                [self.tableView reloadData];
+            }else{
+                [MBProgressHUD showSuccess:@"暂无更多店铺"];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [self.tableView.mj_footer endRefreshing];
+
+        }];
+    }else{
+        
+    }
+    
 }
 @end

@@ -11,6 +11,6 @@
 
 @interface ZDXStoreShopViewController : UIViewController
 
-@property (strong, nonatomic) ZDXStoreGoodsModel *goodsModel;
+@property (assign, nonatomic) NSInteger shopId;
 
 @end

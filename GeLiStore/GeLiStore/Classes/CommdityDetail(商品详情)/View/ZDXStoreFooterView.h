@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZDXStoreClassifyView.h"
 
 @protocol ZDXStoreFooterViewDelegate <NSObject>
 
@@ -20,4 +21,7 @@
 
 @property(weak, nonatomic) id<ZDXStoreFooterViewDelegate> delegate;
 
+@property (assign, nonatomic) BOOL btnSelected;
+
+@property (strong, nonatomic) ZDXStoreClassifyView *classifyView;
 @end

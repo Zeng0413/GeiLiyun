@@ -33,10 +33,16 @@
     
     ZDXStoreShopHeaderView *headerView = [[ZDXStoreShopHeaderView alloc] init];
     headerView.frame = frame;
+
+    [headerView setupUI:frame];
     
+    return headerView;
+}
+
+-(void)setupUI:(CGRect)frame{
     UIImageView *backImg = [[UIImageView alloc] initWithFrame:frame];
     backImg.image = [UIImage imageNamed:@"店铺背景"];
-    [headerView addSubview:backImg];
+    [self addSubview:backImg];
     
     // 店铺图片
     UIImageView *shopImg = [[UIImageView alloc] init];
@@ -45,9 +51,9 @@
     shopImg.x = 10;
     shopImg.height = 40;
     shopImg.width = 40;
-    shopImg.y = headerView.height - shopImg.height - 9;
-    [backImg addSubview:shopImg];
-    headerView.shopImg = shopImg;
+    shopImg.y = self.height - shopImg.height - 9;
+    [self addSubview:shopImg];
+    self.shopImg = shopImg;
     
     // 店铺名称
     UILabel *shopName = [[UILabel alloc] init];
@@ -57,8 +63,8 @@
     shopName.y = shopImg.y;
     shopName.width = 150;
     shopName.height = 15;
-    [backImg addSubview:shopName];
-    headerView.shopName = shopName;
+    [self addSubview:shopName];
+    self.shopName = shopName;
     
     // 星星图片
     for (int i = 0; i < 5; i++) {
@@ -69,17 +75,17 @@
         startImg.y = CGRectGetMaxY(shopName.frame) + 15;
         
         startImg.image = [UIImage imageNamed:@"收藏后"];
-        [backImg addSubview:startImg];
+        [self addSubview:startImg];
         if (i == 0) {
-            headerView.startImg1 = startImg;
+            self.startImg1 = startImg;
         }else if (i == 1){
-            headerView.startImg2 = startImg;
+            self.startImg2 = startImg;
         }else if (i == 2){
-            headerView.startImg3 = startImg;
+            self.startImg3 = startImg;
         }else if (i == 3){
-            headerView.startImg4 = startImg;
+            self.startImg4 = startImg;
         }else if (i == 4){
-            headerView.startImg5 = startImg;
+            self.startImg5 = startImg;
         }
     }
     
@@ -87,12 +93,12 @@
     UILabel *shopScore = [[UILabel alloc] init];
     shopScore.font = [UIFont systemFontOfSize:13];
     shopScore.textColor = [UIColor whiteColor];
-    shopScore.x = CGRectGetMaxX(headerView.startImg5.frame) + 5;
-    shopScore.y = headerView.startImg5.y - 1;
+    shopScore.x = CGRectGetMaxX(self.startImg5.frame) + 5;
+    shopScore.y = self.startImg5.y - 1;
     shopScore.width = 50;
     shopScore.height = 13;
-    [backImg addSubview:shopScore];
-    headerView.shopScore = shopScore;
+    [self addSubview:shopScore];
+    self.shopScore = shopScore;
     
     // 店铺收藏按钮
     UIButton *shopCollectionBtn = [[UIButton alloc] init];
@@ -103,12 +109,15 @@
     
     [shopCollectionBtn setBackgroundColor:colorWithString(@"#e63944")];
     [shopCollectionBtn setTitle:@"收藏店铺" forState:UIControlStateNormal];
+    
     [shopCollectionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
     shopCollectionBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     
+    [shopCollectionBtn addTarget:self action:@selector(shopCollectionClick:) forControlEvents:UIControlEventTouchUpInside];
     shopCollectionBtn.layer.cornerRadius = 7.0;
-    [backImg addSubview:shopCollectionBtn];
-    headerView.shopCollectionBtn = shopCollectionBtn;
+    [self addSubview:shopCollectionBtn];
+    self.shopCollectionBtn = shopCollectionBtn;
     
     // 店铺收藏人数
     UILabel *collectionCount = [[UILabel alloc] init];
@@ -120,10 +129,8 @@
     collectionCount.height = 13;
     collectionCount.x = SCREEN_WIDTH - collectionCount.width - 10;
     collectionCount.y = CGRectGetMaxY(shopCollectionBtn.frame) + 5;
-    [backImg addSubview:collectionCount];
-    headerView.collectionCount = collectionCount;
-
-    return headerView;
+    [self addSubview:collectionCount];
+    self.collectionCount = collectionCount;
 }
 
 -(void)setShopModel:(ZDXStoreShopModel *)shopModel{
@@ -186,4 +193,33 @@
     }
 }
 
+-(void)shopCollectionClick:(UIButton *)button{
+    self.isSelected = !self.isSelected;
+    self.shopCollectionBtn.selected = self.isSelected;
+    if (self.isSelected) {
+        self.shopCollectionBtn.backgroundColor = [UIColor whiteColor];
+        [self.shopCollectionBtn setTitle:@"已收藏" forState:UIControlStateNormal];
+        [self.shopCollectionBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
+    }else{
+        [self.shopCollectionBtn setBackgroundColor:colorWithString(@"#e63944")];
+        
+        [self.shopCollectionBtn setTitle:@"收藏店铺" forState:UIControlStateNormal];
+        [self.shopCollectionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(addCollectionShopIsSelected:)]) {
+        [self.delegate addCollectionShopIsSelected:self.isSelected];
+    }
+}
+
+-(void)setIsSelected:(BOOL)isSelected{
+    _isSelected = isSelected;
+    
+    self.shopCollectionBtn.selected = self.isSelected;
+    if (self.isSelected) {
+        self.shopCollectionBtn.backgroundColor = [UIColor whiteColor];
+    }else{
+        [self.shopCollectionBtn setBackgroundColor:colorWithString(@"#e63944")];
+    }
+}
 @end

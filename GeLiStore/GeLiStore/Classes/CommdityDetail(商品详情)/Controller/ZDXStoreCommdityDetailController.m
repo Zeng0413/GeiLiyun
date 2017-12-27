@@ -19,7 +19,7 @@
 #import "ZDXStoreFillInOrderViewController.h"
 #import "ZDXStoreLoginViewController.h"
 #import "ZDXStoreCommentViewController.h"
-
+#import "ZDXStoreUserModelTool.h"
 static NSString *commdityCommentCellID = @"commdityCommentCell";
 static NSString *goodsDescCellID = @"goodsDescCell";
 @interface ZDXStoreCommdityDetailController ()<UITableViewDataSource, UITableViewDelegate, ZDXStoreFooterViewDelegate, ZDXStoreCommdityCommentCellDelegate>
@@ -33,6 +33,8 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 
 @property (strong, nonatomic) ZDXStoreUserModel *userModel;
 
+
+@property (weak, nonatomic) ZDXStoreFooterView *footerView;
 @end
 
 @implementation ZDXStoreCommdityDetailController
@@ -64,7 +66,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 // 加载数据
 -(void)reloadData{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSDictionary *params = @{@"goodsId" : [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId]};
+    NSDictionary *params = @{@"goodsId" : [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId], @"userId" : @([ZDXStoreUserModelTool userModel].userId)};
     
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Goods/goodsDetails",hostUrl];
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -72,6 +74,12 @@ static NSString *goodsDescCellID = @"goodsDescCell";
         self.goodsModel = [ZDXStoreGoodsModel mj_objectWithKeyValues:data];
         self.headerView.dataList = self.goodsModel.gallery;
 
+        if (self.goodsModel.favGood != 0) {
+            self.footerView.btnSelected = YES;
+        }else{
+            self.footerView.btnSelected = NO;
+        }
+        
         NSString *htmlStr = data[@"goodsDesc"];
 //        NSLog(@"%@",htmlStr);
         NSData *data1 = [htmlStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -112,6 +120,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     ZDXStoreFooterView *footerView = [[ZDXStoreFooterView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 49, SCREEN_HEIGHT, 49)];
     footerView.delegate = self;
     [self.view addSubview:footerView];
+    self.footerView = footerView;
 }
 
 // 设置导航栏
@@ -233,11 +242,10 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     if (self.userModel) {
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"type"] = @"0";
-        params[@"id"] = [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId];
         params[@"userId"] = [NSString stringWithFormat:@"%ld",self.userModel.userId];
         
         if (isSelected) { // 收藏
-            
+            params[@"id"] = [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId];
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/add",hostUrl];
             [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -246,6 +254,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
                 
             }];
         }else{ // 取消收藏
+            params[@"id"] = [NSString stringWithFormat:@"%ld",self.goodsModel.favGood];
             AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
             NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/cancel",hostUrl];
             [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -264,7 +273,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 
     if (type == 1) { // 店铺
         ZDXStoreShopViewController *vc = [[ZDXStoreShopViewController alloc] init];
-        vc.goodsModel = self.goodsModel;
+        vc.shopId = self.goodsModel.shopId;
         [self.navigationController pushViewController:vc animated:YES];
         
         NSLog(@"店铺");

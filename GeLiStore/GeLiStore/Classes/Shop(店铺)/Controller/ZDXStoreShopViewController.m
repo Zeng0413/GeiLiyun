@@ -14,7 +14,7 @@
 #import "ZDXStoreSelectedTopView.h"
 #import "ZDXStoreShopGoodsCell.h"
 
-@interface ZDXStoreShopViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreSelectedTopViewDelegate, ZDXStoreShopGoodsCellDelegate>
+@interface ZDXStoreShopViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreSelectedTopViewDelegate, ZDXStoreShopGoodsCellDelegate, ZDXStoreShopHeaderViewDelegate>
 @property (weak, nonatomic) UITableView *tableView;
 
 @property (weak, nonatomic) ZDXStoreShopHeaderView *shopHeaderView;
@@ -72,7 +72,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"shopId"] = @(self.goodsModel.shopId);
+    params[@"shopId"] = @(self.shopId);
     params[@"userId"] = @(self.userModel.userId);
     params[@"page"] = @1;
     
@@ -83,7 +83,14 @@
         self.shopModel = [ZDXStoreShopModel mj_objectWithKeyValues:data[@"shop"]];
         self.shopHeaderView.shopModel = self.shopModel;
         
+        if (self.shopModel.favShop != 0) {
+            self.shopHeaderView.isSelected = YES;
+        }else{
+            self.shopHeaderView.isSelected = NO;
+        }
+        
         self.goodsDataList = [ZDXStoreGoodsModel mj_objectArrayWithKeyValuesArray:data[@"list"]];
+        
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -105,6 +112,7 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     ZDXStoreShopHeaderView *shopHeaderView = [ZDXStoreShopHeaderView shopHeaderView:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 4 )];
+    shopHeaderView.delegate = self;
     
     UITextField *searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(32, 12 + STATE_HEIGHT, SCREEN_WIDTH - 32 - 31 - 9 - 10, 30)];
     searchTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -198,6 +206,36 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 55;
+}
+
+#pragma mark - 收藏店铺
+-(void)addCollectionShopIsSelected:(BOOL)isSelected{
+    if (self.userModel) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"type"] = @"1";
+        params[@"userId"] = [NSString stringWithFormat:@"%ld",self.userModel.userId];
+        
+        if (isSelected) { // 收藏
+            params[@"id"] = [NSString stringWithFormat:@"%ld",self.shopModel.shopId];
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/add",hostUrl];
+            [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@",responseObject);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+            }];
+        }else{ // 取消收藏
+            params[@"id"] = [NSString stringWithFormat:@"%ld",self.shopModel.favShop];
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/cancel",hostUrl];
+            [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@",responseObject);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+            }];
+            
+        }
+    }
 }
 
 #pragma mark 商品选择

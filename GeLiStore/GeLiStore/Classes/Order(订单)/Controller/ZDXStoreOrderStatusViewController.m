@@ -13,6 +13,7 @@
 #import "ZDXStoreOrderPaySendTypeCell.h"
 #import "ZDXStoreUserModel.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "ZDXStorePayTypePushView.h"
 
 static NSString *paySendTypeCellID = @"PaySendTypeCell";
 @interface ZDXStoreOrderStatusViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -24,6 +25,7 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
 @property (strong, nonatomic) ZDXStoreOrderPayAddressCell *payAddressCell;
 @property (strong, nonatomic) ZDXStoreOrderPayGoodsCell *payGoodsCell;
 
+@property (weak, nonatomic) ZDXStorePayTypePushView *pushView;
 @end
 
 @implementation ZDXStoreOrderStatusViewController
@@ -41,6 +43,8 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     self.title = @"订单详情";
     self.view.backgroundColor = colorWithString(@"#f4f4f4");
     
+    self.pushView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 212);
+    [self.view addSubview:self.pushView];
     // 设置tableView
     [self setupTableView];
     
@@ -94,34 +98,42 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
 
 // 去付款
 -(void)payClick{
-    [MBProgressHUD showMessage:@""];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"type"] = @(self.type);
-    params[@"payFrom"] = @1;
-    params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
-    params[@"isBatch"] = @(self.isBatch);
-    params[@"orderId"] = self.orderId;
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/Pay/tunePay",hostUrl];
-    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [MBProgressHUD hideHUD];
-        if ([responseObject[@"code"] integerValue] == 1) {
-            NSString *payStr = responseObject[@"data"][@"data"][@"pay"];
-            
-            NSString *schemeSre = @"GeLiStoreAliPay";
-            if (payStr.length > 0) {
-                [[AlipaySDK defaultService] payOrder:payStr fromScheme:schemeSre callback:^(NSDictionary *resultDic) {
-                    NSLog(@"%@",resultDic);
-                }];
-            }
-            
-        }
+    ZDXStorePayTypePushView *pushView = [ZDXStorePayTypePushView payTypePushView];
+    [UIView animateWithDuration:0.5 animations:^{
+        pushView.y = SCREEN_HEIGHT - 212;
+    } completion:^(BOOL finished) {
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUD];
     }];
+    
+    [self.view addSubview:pushView];
+//    [MBProgressHUD showMessage:@""];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    params[@"type"] = @(self.type);
+//    params[@"payFrom"] = @1;
+//    params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
+//    params[@"isBatch"] = @(self.isBatch);
+//    params[@"orderId"] = self.orderId;
+//    
+//    NSString *urlStr = [NSString stringWithFormat:@"%@api/Pay/tunePay",hostUrl];
+//    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        [MBProgressHUD hideHUD];
+//        if ([responseObject[@"code"] integerValue] == 1) {
+//            NSString *payStr = responseObject[@"data"][@"data"][@"pay"];
+//            
+//            NSString *schemeSre = @"GeLiStoreAliPay";
+//            if (payStr.length > 0) {
+//                [[AlipaySDK defaultService] payOrder:payStr fromScheme:schemeSre callback:^(NSDictionary *resultDic) {
+//                    NSLog(@"%@",resultDic);
+//                }];
+//            }
+//            
+//        }
+//        
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [MBProgressHUD hideHUD];
+//    }];
 }
 #pragma mark - tableView delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -150,6 +162,7 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     }else{
         ZDXStoreOrderPaySendTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:paySendTypeCellID];
         cell.orderId.text = [NSString stringWithFormat:@"订单编号：%@",self.orderId];
+        cell.price.text = [NSString stringWithFormat:@"¥%ld",self.totalMoney];
         return cell;
     }
     

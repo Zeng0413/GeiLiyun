@@ -11,4 +11,5 @@
 @interface ZDXStoreOrderPaySendTypeCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *orderId;
 
+@property (weak, nonatomic) IBOutlet UILabel *price;
 @end

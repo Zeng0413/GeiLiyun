@@ -9,9 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @class ZDXStoreShopModel;
+
+@protocol ZDXStoreShopHeaderViewDelegate <NSObject>
+
+-(void)addCollectionShopIsSelected:(BOOL)isSelected;
+
+@end
+
 @interface ZDXStoreShopHeaderView : UIView
 
 +(instancetype)shopHeaderView:(CGRect)frame;
 
 @property (strong, nonatomic) ZDXStoreShopModel *shopModel;
+
+@property (assign, nonatomic) BOOL isSelected;
+
+@property (weak, nonatomic) id<ZDXStoreShopHeaderViewDelegate> delegate;
+
 @end

@@ -8,12 +8,9 @@
 
 #import "ZDXStoreFooterView.h"
 #import "ZDXComnous.h"
-#import "ZDXStoreClassifyView.h"
 
 @interface ZDXStoreFooterView ()
 
-@property (strong, nonatomic) ZDXStoreClassifyView *classifyView;
-@property (assign, nonatomic) BOOL isSelected;
 @end
 
 @implementation ZDXStoreFooterView
@@ -65,12 +62,6 @@
         [view setupUI];
         view.label.textColor = colorWithString(@"#8a8a8a");
         
-        if (i == arr.count - 1) {
-            view.imageView.image = [UIImage imageNamed:@"收藏前"];
-            self.classifyView = view;
-        }else{
-            view.imageView.image = [UIImage imageNamed:arr[i]];
-        }
         view.titleStr = arr[i];
         view.imageToView = 7.0;
         view.imageWH = 20;
@@ -85,6 +76,13 @@
         view.width = width;
         view.height = height;
         [leftView addSubview:view];
+        
+        if (i == arr.count - 1) {
+            view.imageView.image = [UIImage imageNamed:@"收藏前"];
+            self.classifyView = view;
+        }else{
+            view.imageView.image = [UIImage imageNamed:arr[i]];
+        }
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(i * width, 0, width, height);
@@ -110,15 +108,27 @@
 }
 
 -(void)btnClick:(UIButton *)button{
-    self.isSelected = !self.isSelected;
+    self.btnSelected = !self.btnSelected;
     if (button.tag == 3) {
-        NSString *imageStr = self.isSelected ? @"收藏后" : @"收藏前";
+        NSString *imageStr = self.btnSelected ? @"收藏后" : @"收藏前";
         self.classifyView.imageView.image = [UIImage imageNamed:imageStr];
+        
+        NSString *str = self.btnSelected ? @"已收藏" : @"收藏";
+        self.classifyView.titleStr = str;
     }
     
     if ([self.delegate respondsToSelector:@selector(footerViewLeftClickType:collectIsSelected:)]) {
-        [self.delegate footerViewLeftClickType:button.tag collectIsSelected:self.isSelected];
+        [self.delegate footerViewLeftClickType:button.tag collectIsSelected:self.btnSelected];
     }
     
+}
+
+-(void)setBtnSelected:(BOOL)btnSelected{
+    _btnSelected = btnSelected;
+    NSString *imageStr = btnSelected ? @"收藏后" : @"收藏前";
+    self.classifyView.imageView.image = [UIImage imageNamed:imageStr];
+    
+    NSString *str = btnSelected ? @"已收藏" : @"收藏";
+    self.classifyView.titleStr = str;
 }
 @end

@@ -118,6 +118,7 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
                 vc.dataList = self.goodsArr;
                 vc.type = 1;
                 vc.isBatch = 1;
+                vc.totalMoney = self.goodsTotalMoney;
                 [self.navigationController pushViewController:vc animated:YES];
                 
             }else{

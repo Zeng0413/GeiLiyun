@@ -31,6 +31,7 @@
 @property (assign, nonatomic) NSInteger cartNum; // 商品个数
 @property (assign, nonatomic) NSInteger cartId; // 购物车id
 
+@property (assign, nonatomic) NSInteger favGood; // 非0，表示已经收藏
 @property(nonatomic, assign) BOOL isSelected;    //记录相应row是否选中（自定义）
 
 @end

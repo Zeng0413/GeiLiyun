@@ -7,7 +7,8 @@
 //
 
 #import "ZDXStoreCollectionStoreCell.h"
-#import "UIColor+ColorChange.h"
+#import "ZDXComnous.h"
+#import "ZDXStoreShopModel.h"
 
 @interface ZDXStoreCollectionStoreCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *storeImg;
@@ -41,6 +42,16 @@
     [self.storeBtn setTitleColor:[UIColor colorWithHexString:@"e63944"] forState:UIControlStateNormal];
 }
 
-
+-(void)setShopModel:(ZDXStoreShopModel *)shopModel{
+    _shopModel = shopModel;
+    [self.storeImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,shopModel.shopImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
+    
+    self.storeName.text = shopModel.shopName;
+}
+- (IBAction)btnClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(toShopBtnClick:)]) {
+        [self.delegate toShopBtnClick:self.shopModel];
+    }
+}
 
 @end

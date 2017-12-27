@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZDXStoreShopModel.h"
+
+@protocol ZDXStoreCollectionStoreCellDelegate <NSObject>
+
+-(void)toShopBtnClick:(ZDXStoreShopModel *)shopModel;
+
+@end
 
 @interface ZDXStoreCollectionStoreCell : UITableViewCell
+
+@property (strong, nonatomic) ZDXStoreShopModel *shopModel;
+
+@property (weak, nonatomic) id<ZDXStoreCollectionStoreCellDelegate> delegate;
 
 @end

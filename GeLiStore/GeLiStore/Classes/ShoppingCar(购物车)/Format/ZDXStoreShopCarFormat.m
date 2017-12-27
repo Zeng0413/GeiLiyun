@@ -101,6 +101,7 @@
     // 根据请求结果决定是否改变数据
     productModel.cartNum = count;
     
+    [MBProgressHUD showMessage:@""];
     ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -109,13 +110,12 @@
     params[@"id"] = @(productModel.cartId);
     params[@"buyNum"] = @(count);
     params[@"isCheck"] = @1;
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/addCart",hostUrl];
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/changeCartGoods",hostUrl];
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSLog(@"%@",responseObject);
-        
+        [MBProgressHUD hideHUD];        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        [MBProgressHUD hideHUD];
+
     }];
     [self.delegate shopcartFormatAccountForTotalPrice:[self accountTotalPrice] totalCount:[self accountTotalCount] isAllSelected:[self isAllSelected]];
 }
