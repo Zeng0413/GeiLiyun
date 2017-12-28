@@ -11,12 +11,16 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "WXApi.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
 @implementation AppDelegate
 
++ (AppDelegate *)sharedApplicationDelegate
+{
+    return (AppDelegate *) [UIApplication sharedApplication].delegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // 设置状态栏颜色为白色
@@ -25,6 +29,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[ZDXStoreTabBarViewController alloc] init];
     [self.window makeKeyAndVisible];
+    
+    [WXApi registerApp:@"wxb9a9c9223ebd997d" enableMTA:YES];
     
     return YES;
 }
@@ -70,8 +76,48 @@
         return YES;
     }
     
-    return YES;
+    return [WXApi handleOpenURL:url delegate:self];
 }
 
+// 微信支付回调
+
+-(void)onResp:(BaseResp *)resp{
+    NSString * strTitle;
+    //判断是微信消息的回调 --> 是支付回调回来的还是消息回调回来的.
+    if ([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        strTitle = [NSString stringWithFormat:@"发送媒体消息的结果"];
+    }
+    
+    
+    //判断是否是微信支付回调 (注意是PayResp 而不是PayReq)
+    
+    if ([resp isKindOfClass:[PayResp class]])
+    {
+        //支付返回的结果, 实际支付结果需要去微信服务器端查询
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        switch (resp.errCode)
+        {
+            case WXSuccess:
+            {
+                
+                self.ZDXPayStatusCount = 1;
+                break;
+            }
+            case WXErrCodeUserCancel:
+            {
+                
+                self.ZDXPayStatusCount = 2;
+                break;
+            }
+            default:
+            {
+                
+                self.ZDXPayStatusCount = 3;
+                break;
+            }
+        }
+    }
+}
 
 @end

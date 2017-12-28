@@ -47,8 +47,21 @@ static NSString *myOrderCellID = @"MyOrderCell";
         }
         _topView = [[ZDXStoreMyOrderTopView alloc] initWithTopViewFrame:CGRectMake(0, 64, SCREEN_WIDTH, viewH) titleName:@[@"全部订单",@"待付款",@"待收货",@"待评价",@"退款／售后"]];
         
+        __weak typeof(self) selfVc = self;
         _topView.block = ^(NSInteger tag) {
-            
+            NSString *str = @"";
+            if (tag == 0) { // 加载全部订单
+                str = @"api/v1.Orders/allOrders";
+            }else if (tag == 1){ // 待付款
+                str = @"api/v1.Orders/waitPayByPage";
+            }else if (tag == 2){ // 待收货
+                str = @"api/v1.Orders/waitReceiptByPage";
+            }else if (tag == 3){ // 待评价
+                str = @"api/v1.Orders/waitAppraiseByPage";
+            }else if (tag == 4){ // 退款／售后
+                str = @"api/v1.Orders/finishByPage";
+            }
+            [selfVc reloadOrder:str];
         };
     }
     return _topView;
@@ -77,20 +90,19 @@ static NSString *myOrderCellID = @"MyOrderCell";
 
 // 加载数据
 -(void)reloadData{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"userId"] = @(self.userModel.userId);
-    params[@"page"] = @(self.page);
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/allOrders",hostUrl];
-    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject[@"code"] integerValue] == 1) { // 数据加载成功
-            self.orderArr = [ZDXStoreOrderModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            [self.tableView reloadData];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-    }];
+    NSString *str = @"";
+    if (self.index == 0) { // 加载全部订单
+        str = @"api/v1.Orders/allOrders";
+    }else if (self.index == 1){ // 待付款
+        str = @"api/v1.Orders/waitPayByPage";
+    }else if (self.index == 2){ // 待收货
+        str = @"api/v1.Orders/waitReceiptByPage";
+    }else if (self.index == 3){ // 待评价
+        str = @"api/v1.Orders/waitAppraiseByPage";
+    }else if (self.index == 4){ // 退款／售后
+        str = @"api/v1.Orders/finishByPage";
+    }
+    [self reloadOrder:str];
 }
 
 // 初始化tableView
@@ -107,6 +119,23 @@ static NSString *myOrderCellID = @"MyOrderCell";
     self.tableView = tableView;
 }
 
+#pragma mark - 加载数据
+-(void)reloadOrder:(NSString *)urlString{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userId"] = @(self.userModel.userId);
+    params[@"page"] = @(self.page);
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",hostUrl,urlString];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        if ([responseObject[@"code"] integerValue] == 1) { // 数据加载成功
+            self.orderArr = [ZDXStoreOrderModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            [self.tableView reloadData];
+//        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
 #pragma mark - tableView delegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

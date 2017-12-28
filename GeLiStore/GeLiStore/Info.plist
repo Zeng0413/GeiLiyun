@@ -28,6 +28,16 @@
 				<string>GeLiStoreAliPay</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>WeiXinPay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wxb9a9c9223ebd997d</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>

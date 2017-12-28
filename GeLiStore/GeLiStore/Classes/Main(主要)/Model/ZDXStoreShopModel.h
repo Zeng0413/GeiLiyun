@@ -23,6 +23,8 @@
 @property (copy, nonatomic) NSString *shopQQ;
 @property (strong, nonatomic) NSDictionary *scores;
 
+@property (assign, nonatomic) NSInteger favoriteId; // 收藏表Id
+
 @property (assign, nonatomic) NSInteger favShop;
 
 @property (copy, nonatomic) NSArray *list;

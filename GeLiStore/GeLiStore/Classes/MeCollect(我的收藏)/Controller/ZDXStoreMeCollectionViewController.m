@@ -35,6 +35,8 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
 
 @property (strong, nonatomic) NSMutableArray *goodsSelectedArr;
 
+@property (strong, nonatomic) NSMutableArray *shopSelectedArr;
+
 @property (strong, nonatomic) ZDXStoreUserModel *userModel;
 
 @property (assign, nonatomic) NSInteger num;
@@ -51,6 +53,13 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
         _goodsSelectedArr = [NSMutableArray array];
     }
     return _goodsSelectedArr;
+}
+
+-(NSMutableArray *)shopSelectedArr{
+    if (!_shopSelectedArr) {
+        _shopSelectedArr = [NSMutableArray array];
+    }
+    return _shopSelectedArr;
 }
 
 -(NSMutableArray *)dataList{
@@ -91,18 +100,24 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self addObserver:self forKeyPath:@"num" options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+   
     
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    
     [self removeObserver:self forKeyPath:@"num"];
     
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+     [self addObserver:self forKeyPath:@"num" options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+    
     self.title = @"我的收藏";
     
     self.page = 1;
@@ -201,6 +216,12 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
             ZDXStoreCollectionStoreCell *cell = [tableView dequeueReusableCellWithIdentifier:collectionStoreCellID];
             cell.shopModel = self.dataList[indexPath.row];
             cell.delegate = self;
+            
+            if (self.isSelected) {
+                [cell isEditCollectionStore:YES];
+            }else{
+                [cell isEditCollectionStore:NO];
+            }
             return cell;
         }
         
@@ -229,60 +250,68 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
 // 删除收藏商品
 -(void)deleteClick{
     [MBProgressHUD showMessage:@""];
-    if (self.goodsSelectedArr.count == 1) {
-        
-        
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        
-        ZDXStoreGoodsModel *goodsModel = self.goodsSelectedArr.firstObject;
-        
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        params[@"type"] = @0;
-        params[@"id"] = @(goodsModel.favoriteId);
-        params[@"userId"] = @(self.userModel.userId);
-        
-        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/cancel",hostUrl];
-        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if ([responseObject[@"code"] integerValue] == 1) {
-                [self.goodsSelectedArr removeAllObjects];
-                [self reloadGoodsData];
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    if (self.type == 1) { // 删除商品
+        if (self.goodsSelectedArr.count == 1) {
             
-        }];
-    }else{
-        NSString *ids = @"";
-        
-        for (int i = 0; i < self.goodsSelectedArr.count; i++) {
-            ZDXStoreGoodsModel *goodsModel = self.goodsSelectedArr[i];
-            ids = [ids stringByAppendingString:[NSString stringWithFormat:@"%ld,",goodsModel.favoriteId]];
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            
+            ZDXStoreGoodsModel *goodsModel = self.goodsSelectedArr.firstObject;
+            
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            params[@"type"] = @0;
+            params[@"id"] = @(goodsModel.favoriteId);
+            params[@"userId"] = @(self.userModel.userId);
+            
+            NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/cancel",hostUrl];
+            [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if ([responseObject[@"code"] integerValue] == 1) {
+                    [self.goodsSelectedArr removeAllObjects];
+                    [self reloadGoodsData];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+            }];
+        }else{
+            NSString *ids = @"";
+            
+            for (int i = 0; i < self.goodsSelectedArr.count; i++) {
+                ZDXStoreGoodsModel *goodsModel = self.goodsSelectedArr[i];
+                ids = [ids stringByAppendingString:[NSString stringWithFormat:@"%ld,",goodsModel.favoriteId]];
+            }
+            
+            ids = [ids substringToIndex:([ids length] - 1)];
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            params[@"type"] = @0;
+            params[@"ids"] = ids;
+            params[@"userId"] = @(self.userModel.userId);
+            
+            NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/batchCancel",hostUrl];
+            [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if ([responseObject[@"code"] integerValue] == 1) {
+                    [self.goodsSelectedArr removeAllObjects];
+                    [self reloadGoodsData];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+            }];
         }
-        
-        ids = [ids substringToIndex:([ids length] - 1)];
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        params[@"type"] = @0;
-        params[@"ids"] = ids;
-        params[@"userId"] = @(self.userModel.userId);
-        
-        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/batchCancel",hostUrl];
-        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            if ([responseObject[@"code"] integerValue] == 1) {
-                [self.goodsSelectedArr removeAllObjects];
-                [self reloadGoodsData];
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
-        }];
+    }else if (self.type == 2){ // 删除店铺
+        if (self.shopSelectedArr.count == 1) {
+            [self cancelStore];
+        }else{
+            [self batchStore]; // 批量删除收藏店铺
+        }
     }
+    
 }
 
 #pragma mark -- KVO
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"num"]) {
-        if (_goodsSelectedArr.count > 0) {
+        if (_goodsSelectedArr.count > 0 || _shopSelectedArr.count > 0) {
             self.bottomBtn.backgroundColor = colorWithString(@"#f95865");
             self.bottomBtn.enabled = YES;
         }else{
@@ -292,15 +321,7 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     }
 }
 
-#pragma mark - cell delegate
-
--(void)myTabClick:(UITableViewCell *)cell{
-    NSIndexPath *indx = [self.tableView indexPathForCell:cell];
-    ZDXStoreGoodsModel *goodsModel = self.dataList[indx.row];
-    goodsModel.isSelected = !goodsModel.isSelected;
-    [self.tableView reloadData];
-}
-
+#pragma mark - storeCell delegate
 // 进店
 -(void)toShopBtnClick:(ZDXStoreShopModel *)shopModel{
     ZDXStoreShopViewController *vc = [[ZDXStoreShopViewController alloc] init];
@@ -308,6 +329,35 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)collectionStoreClick:(UITableViewCell *)storeCell{
+    if (self.type == 2) {
+        NSIndexPath *index = [self.tableView indexPathForCell:storeCell];
+        ZDXStoreShopModel *shopModel = self.dataList[index.row];
+        shopModel.isSelected = !shopModel.isSelected;
+        [self.tableView reloadData];
+    }
+}
+
+-(void)selectedStoreWithShopModel:(ZDXStoreShopModel *)shopModel selectedStatus:(BOOL)selectedStatus{
+    if (selectedStatus) {
+        [self.shopSelectedArr addObject:shopModel];
+    }else{
+        [self.shopSelectedArr removeObject:shopModel];
+    }
+    
+    self.num++;
+}
+
+#pragma mark - goodsCell delegate
+-(void)myTabClick:(UITableViewCell *)cell{
+    if (self.type == 1) {
+        NSIndexPath *indx = [self.tableView indexPathForCell:cell];
+        ZDXStoreGoodsModel *goodsModel = self.dataList[indx.row];
+        goodsModel.isSelected = !goodsModel.isSelected;
+        [self.tableView reloadData];
+    }
+    
+}
 #pragma mark 商品选择
 -(void)collectionGoodsWithModel:(ZDXStoreGoodsModel *)goodsModel selectedStatus:(BOOL)selectedStatus{
     
@@ -321,15 +371,32 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
 }
 
 
+
 #pragma mark - filtrateView delegate
 -(void)selectedTopViewSelected:(NSInteger)type{
     self.page = 1;
+    [self.goodsSelectedArr removeAllObjects];
+    [self.shopSelectedArr removeAllObjects];
     [self.dataList removeAllObjects];
     self.type = type;
     if (type == 1) {
+        if (self.goodsSelectedArr.count>0) {
+            self.bottomBtn.backgroundColor = colorWithString(@"#f95865");
+            self.bottomBtn.enabled = YES;
+        }else{
+            self.bottomBtn.backgroundColor = ZDXColor(255, 130, 142);
+            self.bottomBtn.enabled = NO;
+        }
         // 加载收藏商品数据
         [self reloadGoodsData];
     }else if (type == 2){
+        if (self.shopSelectedArr.count>0) {
+            self.bottomBtn.backgroundColor = colorWithString(@"#f95865");
+            self.bottomBtn.enabled = YES;
+        }else{
+            self.bottomBtn.backgroundColor = ZDXColor(255, 130, 142);
+            self.bottomBtn.enabled = NO;
+        }
         // 加载收藏店铺数据
         [self reloadShopData];
     }else{
@@ -349,10 +416,12 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     params[@"page"] = @(self.page);
     params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
         self.dataList = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        [MBProgressHUD hideHUD];
+
     }];
 }
 
@@ -429,5 +498,55 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
         
     }
     
+}
+
+// 批量删除店铺
+-(void)batchStore{
+    NSString *ids = @"";
+    
+    for (int i = 0; i < self.shopSelectedArr.count; i++) {
+        ZDXStoreShopModel *shopModel = self.shopSelectedArr[i];
+        ids = [ids stringByAppendingString:[NSString stringWithFormat:@"%ld,",shopModel.favoriteId]];
+    }
+    
+    ids = [ids substringToIndex:([ids length] - 1)];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"type"] = @1;
+    params[@"ids"] = ids;
+    params[@"userId"] = @(self.userModel.userId);
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/batchCancel",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] integerValue] == 1) {
+            [self.shopSelectedArr removeAllObjects];
+            [self reloadShopData];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
+// 删除店铺
+-(void)cancelStore{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    ZDXStoreShopModel *shopModel = self.shopSelectedArr.firstObject;
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"type"] = @1;
+    params[@"id"] = @(shopModel.favoriteId);
+    params[@"userId"] = @(self.userModel.userId);
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Favorites/cancel",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] integerValue] == 1) {
+            [self.shopSelectedArr removeAllObjects];
+            [self reloadShopData];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 @end

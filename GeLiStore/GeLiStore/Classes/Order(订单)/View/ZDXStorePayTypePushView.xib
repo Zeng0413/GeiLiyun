@@ -17,24 +17,27 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUW-eX-DlV">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
-                    <color key="backgroundColor" red="1" green="0.70156818759999995" blue="0.74160506520000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="53" id="DCy-qr-bgl"/>
                     </constraints>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-BF-zMh">
                     <rect key="frame" x="0.0" y="53" width="375" height="53"/>
-                    <color key="backgroundColor" red="0.89969235749999998" green="0.89969235749999998" blue="0.89969235749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="53" id="b6R-lu-mMw"/>
                     </constraints>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlU-Bo-W7W">
                     <rect key="frame" x="0.0" y="106" width="375" height="53"/>
-                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="53" id="2jD-lE-h7I"/>
                     </constraints>
+                    <connections>
+                        <action selector="wxPayClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="B3F-Cl-6RF"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iC1-cZ-VEb">
                     <rect key="frame" x="47" y="125" width="77" height="15"/>
@@ -48,10 +51,13 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzT-Fo-mTw">
                     <rect key="frame" x="0.0" y="159" width="375" height="53"/>
-                    <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="53" id="96o-Sg-6hg"/>
                     </constraints>
+                    <connections>
+                        <action selector="alipayClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="sLS-d9-AYX"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认付款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eh-j3-AMV">
                     <rect key="frame" x="20" y="18" width="70" height="17"/>
@@ -76,6 +82,9 @@
                         <constraint firstAttribute="width" constant="14" id="QPn-WX-JLh"/>
                     </constraints>
                     <state key="normal" image="弹出框关闭按钮"/>
+                    <connections>
+                        <action selector="cancelBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="sNY-FV-u7I"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应付金额：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Reb-oO-vBz">
                     <rect key="frame" x="20" y="72" width="77" height="15"/>
@@ -158,6 +167,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="price" destination="jGD-kI-KJP" id="cCl-4A-yoR"/>
+            </connections>
             <point key="canvasLocation" x="-328" y="100"/>
         </view>
     </objects>

@@ -50,7 +50,6 @@
 -(void)setGoodsModel:(ZDXStoreGoodsModel *)goodsModel{
     _goodsModel = goodsModel;
     [self.goodsImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,goodsModel.goodsImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
-    
     self.goodsName.text = goodsModel.goodsName;
     self.goodsDetail.text = [NSString stringWithFormat:@"重量 %ld",goodsModel.goodsStock];
     self.goodsPrice.text = [NSString stringWithFormat:@"¥%@",goodsModel.shopPrice];

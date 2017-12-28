@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZDXStorePayTypePushViewDelegate <NSObject>
+
+-(void)hidePayTypePushView;
+
+-(void)clickPayType:(NSInteger)type;
+@end
+
 @interface ZDXStorePayTypePushView : UIView
 
 +(instancetype)payTypePushView;
 
+@property (weak, nonatomic) id<ZDXStorePayTypePushViewDelegate> delegate;
+
+@property (assign, nonatomic) NSInteger payPrice;
 @end

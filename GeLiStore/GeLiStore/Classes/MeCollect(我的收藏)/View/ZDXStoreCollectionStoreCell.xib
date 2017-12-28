@@ -95,6 +95,7 @@
                 <outlet property="storeBtn" destination="hhs-y9-2gU" id="BbL-Zg-q5N"/>
                 <outlet property="storeDetail" destination="BFF-qa-jXl" id="jyk-e3-duh"/>
                 <outlet property="storeImg" destination="dqA-Hl-mmQ" id="Dbd-eb-Ng6"/>
+                <outlet property="storeImgX" destination="by7-ua-fOJ" id="WWu-k2-qZS"/>
                 <outlet property="storeName" destination="eVj-uk-wjv" id="9E9-dy-192"/>
                 <outlet property="topLine" destination="nER-zc-Bkc" id="5Tr-MZ-oXe"/>
             </connections>

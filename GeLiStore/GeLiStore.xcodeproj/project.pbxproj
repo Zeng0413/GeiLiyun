@@ -158,6 +158,8 @@
 		13EE31B61FECC80700FD3C42 /* ZDXStoreMyOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EE31B41FECC80700FD3C42 /* ZDXStoreMyOrderCell.m */; };
 		13EE31B71FECC80700FD3C42 /* ZDXStoreMyOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13EE31B51FECC80700FD3C42 /* ZDXStoreMyOrderCell.xib */; };
 		13EE31BA1FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EE31B91FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.m */; };
+		13F3038D1FF4920F005049F7 /* WLRPushView4.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F3038B1FF4920F005049F7 /* WLRPushView4.m */; };
+		13F3038E1FF4920F005049F7 /* WLRPushView4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F3038C1FF4920F005049F7 /* WLRPushView4.xib */; };
 		13F682301FBD34DF0078ED49 /* ZDXStoreLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F6822E1FBD34DF0078ED49 /* ZDXStoreLoginViewController.m */; };
 		13F682311FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F6822F1FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib */; };
 		13F8CA691FC7CA410046435F /* ZDXStoreSetupPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F8CA671FC7CA410046435F /* ZDXStoreSetupPwdViewController.m */; };
@@ -440,6 +442,9 @@
 		13EE31B51FECC80700FD3C42 /* ZDXStoreMyOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreMyOrderCell.xib; sourceTree = "<group>"; };
 		13EE31B81FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreMyOrderHeaderView.h; sourceTree = "<group>"; };
 		13EE31B91FECF82B00FD3C42 /* ZDXStoreMyOrderHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreMyOrderHeaderView.m; sourceTree = "<group>"; };
+		13F3038A1FF4920F005049F7 /* WLRPushView4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLRPushView4.h; sourceTree = "<group>"; };
+		13F3038B1FF4920F005049F7 /* WLRPushView4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLRPushView4.m; sourceTree = "<group>"; };
+		13F3038C1FF4920F005049F7 /* WLRPushView4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WLRPushView4.xib; sourceTree = "<group>"; };
 		13F6822D1FBD34DF0078ED49 /* ZDXStoreLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreLoginViewController.h; sourceTree = "<group>"; };
 		13F6822E1FBD34DF0078ED49 /* ZDXStoreLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreLoginViewController.m; sourceTree = "<group>"; };
 		13F6822F1FBD34DF0078ED49 /* ZDXStoreLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreLoginViewController.xib; sourceTree = "<group>"; };
@@ -1105,6 +1110,9 @@
 		13949BA11F988AE10027CA84 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				13F3038A1FF4920F005049F7 /* WLRPushView4.h */,
+				13F3038B1FF4920F005049F7 /* WLRPushView4.m */,
+				13F3038C1FF4920F005049F7 /* WLRPushView4.xib */,
 				130EDC031FEA5C21006013C4 /* WLRPushView1.h */,
 				130EDC041FEA5C21006013C4 /* WLRPushView1.m */,
 				132721D61FCEAF670081F065 /* ZDXTextView.h */,
@@ -1490,6 +1498,7 @@
 				1307A2DC1FAD4B440019D8F5 /* ZDXStoreCommdoityClassifyCollectionCell.xib in Resources */,
 				13E2D2531FED055E001AD28A /* AlipaySDK.bundle in Resources */,
 				132721DD1FCEB4160081F065 /* ZDXStoreSetupDefaultAddressCell.xib in Resources */,
+				13F3038E1FF4920F005049F7 /* WLRPushView4.xib in Resources */,
 				132BDDC61FE776ED004ECACB /* ZDXStoreShareGoodsCell.xib in Resources */,
 				130F81B71FF399E0009C127E /* ZDXStorePayTypePushView.xib in Resources */,
 				132721C51FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.xib in Resources */,
@@ -1653,6 +1662,7 @@
 				13949BBB1F9897FC0027CA84 /* UIImage+ZDXImage.m in Sources */,
 				1307A2CC1FAD4AFC0019D8F5 /* ZDXStoreFiltrateTopView.m in Sources */,
 				131FC10F1FA0707900476D63 /* ZDXStoreShopCarBottomView.m in Sources */,
+				13F3038D1FF4920F005049F7 /* WLRPushView4.m in Sources */,
 				131FC1111FA0707900476D63 /* ZDXStoreShopCarCountView.m in Sources */,
 				135446491FADA57400974CE9 /* TAAnimatedDotView.m in Sources */,
 				13EC6DB41FE9165500039771 /* ZDXStoreShopViewController.m in Sources */,

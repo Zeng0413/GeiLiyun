@@ -14,9 +14,11 @@
 #import "ZDXStoreUserModel.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "ZDXStorePayTypePushView.h"
-
+#import "WLRPushView4.h"
+#import "AppDelegate.h"
+#import "WXApi.h"
 static NSString *paySendTypeCellID = @"PaySendTypeCell";
-@interface ZDXStoreOrderStatusViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ZDXStoreOrderStatusViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStorePayTypePushViewDelegate, WLRPushView4Delegate>
 
 @property (strong, nonatomic) UIView *tableViewTopView;
 
@@ -25,26 +27,44 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
 @property (strong, nonatomic) ZDXStoreOrderPayAddressCell *payAddressCell;
 @property (strong, nonatomic) ZDXStoreOrderPayGoodsCell *payGoodsCell;
 
-@property (weak, nonatomic) ZDXStorePayTypePushView *pushView;
+@property (strong, nonatomic) ZDXStorePayTypePushView *pushView;
+
+@property (strong, nonatomic) UIView *coverView;
+
+@property (strong, nonatomic) AppDelegate *appDelegate;
 @end
 
 @implementation ZDXStoreOrderStatusViewController
-
-//-(UIView *)tableViewTopView{
-//    if (!_tableViewTopView) {
-//        _tableViewTopView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 4)];
-//        
-//    }
-//}
-
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [_appDelegate removeObserver:self forKeyPath:@"ZDXPayStatusCount"];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.title = @"订单详情";
     self.view.backgroundColor = colorWithString(@"#f4f4f4");
     
+    // 支付方式弹出视图
+    self.pushView = [ZDXStorePayTypePushView payTypePushView];
     self.pushView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 212);
-    [self.view addSubview:self.pushView];
+    self.pushView.payPrice = self.totalMoney;
+    self.pushView.delegate = self;
+    
+    // 遮盖View
+    self.coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.coverView.backgroundColor = colorWithString(@"#333333");
+    self.coverView.alpha = 0.6;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture)];
+    tapGesture.numberOfTapsRequired = 1; //点击次数
+    tapGesture.numberOfTouchesRequired = 1; //点击手指数
+    [self.coverView addGestureRecognizer:tapGesture];
+    
+    //    监听微信支付回调结果
+    _appDelegate = [AppDelegate sharedApplicationDelegate];
+    [_appDelegate addObserver:self forKeyPath:@"ZDXPayStatusCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+    
     // 设置tableView
     [self setupTableView];
     
@@ -96,45 +116,148 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     self.tableView = tableView;
 }
 
+
+#pragma mark - payPushView delegate
+-(void)hidePayTypePushView{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.pushView.y += self.pushView.height;
+    } completion:^(BOOL finished) {
+        [self.coverView removeFromSuperview];
+        [self.pushView removeFromSuperview];
+    }];
+}
+
+-(void)clickPayType:(NSInteger)type{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"type"] = @(self.type);
+    params[@"payFrom"] = @(type);
+    params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
+    params[@"isBatch"] = @(self.isBatch);
+    params[@"orderId"] = self.orderId;
+    if (type == 1) { // 支付宝
+        [MBProgressHUD showMessage:@""];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/Pay/tunePay",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [MBProgressHUD hideHUD];
+            if ([responseObject[@"code"] integerValue] == 1) {
+                NSString *payStr = responseObject[@"data"][@"data"][@"pay"];
+
+                NSString *schemeSre = @"GeLiStoreAliPay";
+                if (payStr.length > 0) {
+                    [[AlipaySDK defaultService] payOrder:payStr fromScheme:schemeSre callback:^(NSDictionary *resultDic) {
+                        if ([resultDic[@"resultStatus"] intValue] == 9000) {
+                            WLRPushView4 *view = [WLRPushView4 view];
+                            view.delegate = self;
+                            view.frame = self.view.bounds;
+                            [self.view addSubview:view];
+                            view.statusImage.image = [UIImage imageNamed:@"接单成功"];
+                            view.statusLabel.text = @"支付成功";
+                        }else{
+                            WLRPushView4 *view = [WLRPushView4 view];
+                            view.frame = self.view.bounds;
+                            [self.view addSubview:view];
+                            view.statusImage.image = [UIImage imageNamed:@"接单失败"];
+                            view.statusLabel.text = @"支付失败";
+                        }
+                    }];
+                }
+                
+            }
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+        }];
+    }else{ // 微信
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/Pay/tunePay",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@",responseObject);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSDictionary *dict = responseObject[@"data"][@"data"];
+                
+                PayReq *request = [[PayReq alloc] init];
+                request.partnerId = dict[@"partnerid"];
+                request.prepayId = dict[@"prepayid"];
+                request.package = dict[@"package"];
+                request.nonceStr = dict[@"noncestr"];
+                request.timeStamp= [dict[@"timestamp"] intValue];
+                request.sign = dict[@"sign"];
+                [WXApi sendReq:request];
+                
+            });
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            //    创建弹出框
+            UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:@"网络请求失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [warnningVC show];
+        }];
+    }
+}
+
+#pragma mark -- 监听微信回调计数变化
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"ZDXPayStatusCount"]) {
+        
+        
+        if (_appDelegate.ZDXPayStatusCount == 1) {
+            WLRPushView4 *view = [WLRPushView4 view];
+            view.delegate =self;
+            view.frame = self.view.bounds;
+            [self.view addSubview:view];
+            view.statusImage.image = [UIImage imageNamed:@"接单成功"];
+            view.statusLabel.text = @"支付成功";
+            
+            
+        }
+        else if (_appDelegate.ZDXPayStatusCount == 2)
+        {
+            WLRPushView4 *view = [WLRPushView4 view];
+            view.frame = self.view.bounds;
+            [self.view addSubview:view];
+            view.statusImage.image = [UIImage imageNamed:@"接单失败"];
+            view.statusLabel.text = @"取消支付";
+        }
+        else
+        {
+            WLRPushView4 *view = [WLRPushView4 view];
+            view.frame = self.view.bounds;
+            [self.view addSubview:view];
+            view.statusImage.image = [UIImage imageNamed:@"接单失败"];
+            view.statusLabel.text = @"支付失败";
+        }
+        
+    }
+}
+
+-(void)tapGesture{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.pushView.y += self.pushView.height;
+    } completion:^(BOOL finished) {
+        [self.coverView removeFromSuperview];
+        [self.pushView removeFromSuperview];
+    }];
+}
+
 // 去付款
 -(void)payClick{
-    ZDXStorePayTypePushView *pushView = [ZDXStorePayTypePushView payTypePushView];
-    [UIView animateWithDuration:0.5 animations:^{
-        pushView.y = SCREEN_HEIGHT - 212;
-    } completion:^(BOOL finished) {
-        
-    }];
+    [self.view addSubview:self.coverView];
+    [self.view addSubview:self.pushView];
     
-    [self.view addSubview:pushView];
-//    [MBProgressHUD showMessage:@""];
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    params[@"type"] = @(self.type);
-//    params[@"payFrom"] = @1;
-//    params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
-//    params[@"isBatch"] = @(self.isBatch);
-//    params[@"orderId"] = self.orderId;
-//    
-//    NSString *urlStr = [NSString stringWithFormat:@"%@api/Pay/tunePay",hostUrl];
-//    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        [MBProgressHUD hideHUD];
-//        if ([responseObject[@"code"] integerValue] == 1) {
-//            NSString *payStr = responseObject[@"data"][@"data"][@"pay"];
-//            
-//            NSString *schemeSre = @"GeLiStoreAliPay";
-//            if (payStr.length > 0) {
-//                [[AlipaySDK defaultService] payOrder:payStr fromScheme:schemeSre callback:^(NSDictionary *resultDic) {
-//                    NSLog(@"%@",resultDic);
-//                }];
-//            }
-//            
-//        }
-//        
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        [MBProgressHUD hideHUD];
-//    }];
+    [UIView animateWithDuration:0.5 animations:^{
+//        self.pushView.transform = CGAffineTransformMakeTranslation(0, SCREEN_HEIGHT - self.pushView.height);
+        self.pushView.y -= self.pushView.height;
+    }];
+
 }
+#pragma mark WLRPushView4代理
+-(void)viewPopToRootVC{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 #pragma mark - tableView delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 3;

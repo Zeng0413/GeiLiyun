@@ -18,12 +18,26 @@
 @property (weak, nonatomic) IBOutlet UIView *topLine;
 @property (weak, nonatomic) IBOutlet UIView *bottomLine;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *storeImgX;
 @end
 
 @implementation ZDXStoreCollectionStoreCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.defaultBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.defaultBtn setImage:[UIImage imageNamed:@"未选中商品"] forState:UIControlStateNormal];
+    [self.defaultBtn setImage:[UIImage imageNamed:@"选中商品"] forState:UIControlStateSelected];
+    [self.defaultBtn addTarget:self action:@selector(defaultBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.defaultBtn.x = 10;
+    self.defaultBtn.centerY = self.storeImg.centerY;
+    self.defaultBtn.width = 22;
+    self.defaultBtn.height = 22;
+    self.defaultBtn.hidden = YES;
+    [self.contentView addSubview:self.defaultBtn];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.topLine.backgroundColor = [UIColor colorWithHexString:@"#cdcdcd"];
     self.bottomLine.backgroundColor = [UIColor colorWithHexString:@"#cdcdcd"];
@@ -47,6 +61,23 @@
     [self.storeImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,shopModel.shopImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
     
     self.storeName.text = shopModel.shopName;
+    
+    if (shopModel.isSelected) {
+        self.defaultBtn.selected = YES;
+    }else{
+        self.defaultBtn.selected = NO;
+    }
+    
+}
+
+-(void)isEditCollectionStore:(BOOL)isEdit{
+    if (isEdit) {
+        self.storeImgX.constant = 42;
+        self.defaultBtn.hidden = NO;
+    }else{
+        self.storeImgX.constant = 10;
+        self.defaultBtn.hidden = YES;
+    }
 }
 - (IBAction)btnClick:(id)sender {
     if ([self.delegate respondsToSelector:@selector(toShopBtnClick:)]) {
@@ -54,4 +85,12 @@
     }
 }
 
+
+-(void)defaultBtnClick{
+    [self.delegate collectionStoreClick:self];
+    
+    if ([self.delegate respondsToSelector:@selector(selectedStoreWithShopModel:selectedStatus:)]) {
+        [self.delegate selectedStoreWithShopModel:self.shopModel selectedStatus:!self.defaultBtn.isSelected];
+    }
+}
 @end
