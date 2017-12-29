@@ -12,6 +12,7 @@
 
 -(void)cellSelectedTypeStr:(NSString *)str orderAndService:(ZDXStoreMeOrderAndServiceCell *)cell;
 
+-(void)toLookMoreOrderWithCell:(UITableViewCell *)cell;
 @end
 
 @interface ZDXStoreMeOrderAndServiceCell : UITableViewCell

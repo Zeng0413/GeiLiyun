@@ -90,7 +90,7 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        NSArray *arr = @[@"待付款",@"待收货",@"待评价",@"退货／售后",@"全部订单"];
+        NSArray *arr = @[@"待付款",@"待发货",@"待收货",@"待评价",@"退货／售后"];
         ZDXStoreMeOrderAndServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:meOrderAndServiceCellID];
         cell.dataList = arr;
         cell.title.text = @"我的订单";
@@ -150,24 +150,38 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 }
 
 #pragma mark - cell delegate
+
+-(void)toLookMoreOrderWithCell:(UITableViewCell *)cell{
+    if (cell == self.meOrderCell) {
+        ZDXStoreMyorderViewController *vc = [[ZDXStoreMyorderViewController alloc] init];
+        vc.index = 0;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 -(void)cellSelectedTypeStr:(NSString *)str orderAndService:(ZDXStoreMeOrderAndServiceCell *)cell{
     
     if (cell == self.meOrderCell) {
         CGFloat index;
-        if ([str isEqualToString:@"全部订单"]) {
-            index = 0;
-        }else if ([str isEqualToString:@"待付款"]){
-            index = 1;
-        }else if ([str isEqualToString:@"待收货"]){
-            index = 2;
-        }else if ([str isEqualToString:@"待评价"]){
-            index = 3;
+    
+        if ([str isEqualToString:@"退货／售后"]) {
+            NSLog(@"%@",str);
         }else{
-            index = 4;
+            if ([str isEqualToString:@"待发货"]) {
+                index = 2;
+            }else if ([str isEqualToString:@"待付款"]){
+                index = 1;
+            }else if ([str isEqualToString:@"待收货"]){
+                index = 3;
+            }else {
+                index = 4;
+            }
+            ZDXStoreMyorderViewController *vc = [[ZDXStoreMyorderViewController alloc] init];
+            vc.index = index;
+            [self.navigationController pushViewController:vc animated:YES];
         }
-        ZDXStoreMyorderViewController *vc = [[ZDXStoreMyorderViewController alloc] init];
-        vc.index = index;
-        [self.navigationController pushViewController:vc animated:YES];
+        
+        
         
     }else if (cell == self.meServiceCell){
         if ([str isEqualToString:@"我的收藏"]) {

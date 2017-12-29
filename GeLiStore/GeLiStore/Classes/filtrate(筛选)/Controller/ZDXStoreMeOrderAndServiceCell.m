@@ -12,6 +12,7 @@
 
 @interface ZDXStoreMeOrderAndServiceCell ()
 @property (weak, nonatomic) IBOutlet UIView *lineView;
+@property (weak, nonatomic) IBOutlet UILabel *lookMoreOrderL;
 
 @end
 
@@ -20,6 +21,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.lookMoreOrderL.textColor = colorWithString(@"#888888");
     self.title.textColor = colorWithString(@"#262626");
     self.lineView.backgroundColor = colorWithString(@"#f4f4f4");
     
@@ -73,6 +75,11 @@
 -(void)selectedCommodity:(UIButton *)button{
     if ([self.delegate respondsToSelector:@selector(cellSelectedTypeStr:orderAndService:)]) {
         [self.delegate cellSelectedTypeStr:button.titleLabel.text orderAndService:self];
+    }
+}
+- (IBAction)lookMoreOrderClick:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(toLookMoreOrderWithCell:)]) {
+        [self.delegate toLookMoreOrderWithCell:self];
     }
 }
 

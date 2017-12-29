@@ -9,7 +9,7 @@
 #import "ZDXStoreNoCollectionCell.h"
 #import "UIColor+ColorChange.h"
 @interface ZDXStoreNoCollectionCell ()
-@property (weak, nonatomic) IBOutlet UILabel *title;
+
 
 @end
 

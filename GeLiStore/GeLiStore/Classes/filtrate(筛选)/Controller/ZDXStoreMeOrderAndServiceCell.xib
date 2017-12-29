@@ -35,9 +35,42 @@
                             <constraint firstAttribute="height" constant="1" id="GeF-4W-dKo"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="右箭头" translatesAutoresizingMaskIntoConstraints="NO" id="q3x-Uw-GTg">
+                        <rect key="frame" x="302" y="22" width="8" height="11"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="11" id="9dr-44-LSm"/>
+                            <constraint firstAttribute="width" constant="8" id="t4x-ce-VfP"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWb-fj-qF3">
+                        <rect key="frame" x="213" y="11" width="107" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="107" id="SU3-1D-pqf"/>
+                            <constraint firstAttribute="height" constant="33" id="ixI-Uq-2WX"/>
+                        </constraints>
+                        <connections>
+                            <action selector="lookMoreOrderClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xHg-c5-qbh"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查看更多订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-g9-yUK">
+                        <rect key="frame" x="213" y="21" width="81" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="CXQ-8C-qmX"/>
+                            <constraint firstAttribute="width" constant="81" id="dBh-uZ-5RC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="hWb-fj-qF3" firstAttribute="centerY" secondItem="e0A-CH-wNZ" secondAttribute="centerY" id="EdJ-l4-kSI"/>
+                    <constraint firstAttribute="trailing" secondItem="q3x-Uw-GTg" secondAttribute="trailing" constant="10" id="FS7-Bc-83S"/>
                     <constraint firstItem="e0A-CH-wNZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="VCb-Im-SL0"/>
+                    <constraint firstItem="q3x-Uw-GTg" firstAttribute="leading" secondItem="Xte-g9-yUK" secondAttribute="trailing" constant="8" id="dou-wF-Dnh"/>
+                    <constraint firstItem="q3x-Uw-GTg" firstAttribute="centerY" secondItem="e0A-CH-wNZ" secondAttribute="centerY" id="hCW-TL-zxY"/>
+                    <constraint firstItem="Xte-g9-yUK" firstAttribute="centerY" secondItem="e0A-CH-wNZ" secondAttribute="centerY" id="heg-8o-qbp"/>
+                    <constraint firstAttribute="trailing" secondItem="hWb-fj-qF3" secondAttribute="trailing" id="jWE-Mn-J1U"/>
                     <constraint firstItem="e0A-CH-wNZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="mOp-uY-rrv"/>
                     <constraint firstItem="4cb-Bu-vQM" firstAttribute="top" secondItem="e0A-CH-wNZ" secondAttribute="bottom" constant="20" id="pCY-Zf-iyv"/>
                     <constraint firstItem="4cb-Bu-vQM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uI5-U8-cMp"/>
@@ -46,9 +79,13 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="lineView" destination="4cb-Bu-vQM" id="wrK-nF-lJC"/>
+                <outlet property="lookMoreOrderL" destination="Xte-g9-yUK" id="QAN-Eu-qdF"/>
                 <outlet property="title" destination="e0A-CH-wNZ" id="1ek-Xk-RKT"/>
             </connections>
-            <point key="canvasLocation" x="-281" y="12.5"/>
+            <point key="canvasLocation" x="-746" y="-81.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="右箭头" width="10" height="13"/>
+    </resources>
 </document>

@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ZDXStoreNoCollectionCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIImageView *Img;
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ImgH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ImgW;
 @end

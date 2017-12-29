@@ -31,6 +31,10 @@
 -(void)setupView{
     self.contentView.backgroundColor = [UIColor whiteColor];
     
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+    topView.backgroundColor = colorWithString(@"#f4f4ff");
+    [self addSubview:topView];
+    
     UILabel *shopName = [[UILabel alloc] init];
     shopName.font = [UIFont systemFontOfSize:15];
     shopName.textColor = colorWithString(@"#262626");
@@ -54,13 +58,13 @@
     _orderModel = orderModel;
     
     CGSize shopNameSize = [orderModel.shopName sizeWithFont:[UIFont systemFontOfSize:15]];
-    self.shopName.frame = CGRectMake(10, 14, shopNameSize.width, shopNameSize.height);
+    self.shopName.frame = CGRectMake(10, 14 + 10, shopNameSize.width, shopNameSize.height);
     self.shopName.text = orderModel.shopName;
     
-    self.img.frame = CGRectMake(CGRectGetMaxX(self.shopName.frame) + 15, 30, 10, 13);
+    self.img.frame = CGRectMake(CGRectGetMaxX(self.shopName.frame) + 15, 30 + 10, 10, 13);
     self.img.centerY = self.shopName.centerY;
     
-    self.orderStatus.frame = CGRectMake(SCREEN_WIDTH - 10 - 80, 28, 80, 15);
+    self.orderStatus.frame = CGRectMake(SCREEN_WIDTH - 10 - 80, 28 + 10, 80, 15);
     self.orderStatus.centerY = self.shopName.centerY;
     self.orderStatus.text = orderModel.status;
     

@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="368"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="收藏为空" translatesAutoresizingMaskIntoConstraints="NO" id="cuk-uu-Twm">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cuk-uu-Twm">
                         <rect key="frame" x="66" y="67.5" width="188" height="116"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="116" id="EqB-mL-Pa3"/>
@@ -32,7 +32,7 @@
                             <constraint firstAttribute="height" constant="1" id="nBH-Cm-8Pp"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还没有收藏商品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZS-Xf-nCi">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZS-Xf-nCi">
                         <rect key="frame" x="99" y="199.5" width="123" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="RGx-H6-gcv"/>
@@ -54,12 +54,12 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="Img" destination="cuk-uu-Twm" id="TrD-9R-dgY"/>
+                <outlet property="ImgH" destination="EqB-mL-Pa3" id="GUn-Vx-2nn"/>
+                <outlet property="ImgW" destination="Lx5-Rg-7gd" id="fh2-sU-zOg"/>
                 <outlet property="title" destination="LZS-Xf-nCi" id="XWJ-Wy-hw6"/>
             </connections>
             <point key="canvasLocation" x="-39" y="210"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="收藏为空" width="188" height="116"/>
-    </resources>
 </document>

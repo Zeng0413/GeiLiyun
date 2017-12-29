@@ -104,13 +104,10 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    
+-(void)dealloc{
     [self removeObserver:self forKeyPath:@"num"];
-    
-}
 
+}
 
 
 - (void)viewDidLoad {
@@ -229,7 +226,8 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     
     
     ZDXStoreNoCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:noCollectionCellID];
-    
+    cell.Img.image = [UIImage imageNamed:@"收藏为空"];
+    cell.title.text = @"您还没有收藏商品";
     return cell;
     
 }

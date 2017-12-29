@@ -95,6 +95,7 @@
 		132BDDC11FE76961004ECACB /* ZDXStoreShareClassifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 132BDDC01FE76960004ECACB /* ZDXStoreShareClassifyCell.m */; };
 		132BDDC51FE776ED004ECACB /* ZDXStoreShareGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 132BDDC31FE776ED004ECACB /* ZDXStoreShareGoodsCell.m */; };
 		132BDDC61FE776ED004ECACB /* ZDXStoreShareGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132BDDC41FE776ED004ECACB /* ZDXStoreShareGoodsCell.xib */; };
+		132DB3EC1FF639490079865C /* ZDXStoreOrderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 132DB3EB1FF639490079865C /* ZDXStoreOrderFooterView.m */; };
 		1341C51B1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1341C5191FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.m */; };
 		1341C51C1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1341C51A1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.xib */; };
 		1342F59F1FF21E1D00500938 /* ZDXStoreOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1342F59E1FF21E1D00500938 /* ZDXStoreOrderModel.m */; };
@@ -335,6 +336,8 @@
 		132BDDC21FE776ED004ECACB /* ZDXStoreShareGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShareGoodsCell.h; sourceTree = "<group>"; };
 		132BDDC31FE776ED004ECACB /* ZDXStoreShareGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShareGoodsCell.m; sourceTree = "<group>"; };
 		132BDDC41FE776ED004ECACB /* ZDXStoreShareGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreShareGoodsCell.xib; sourceTree = "<group>"; };
+		132DB3EA1FF639490079865C /* ZDXStoreOrderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderFooterView.h; sourceTree = "<group>"; };
+		132DB3EB1FF639490079865C /* ZDXStoreOrderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderFooterView.m; sourceTree = "<group>"; };
 		1341C5181FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreFiltrateNoGoodsCell.h; sourceTree = "<group>"; };
 		1341C5191FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreFiltrateNoGoodsCell.m; sourceTree = "<group>"; };
 		1341C51A1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreFiltrateNoGoodsCell.xib; sourceTree = "<group>"; };
@@ -985,6 +988,7 @@
 		13949B941F988AE10027CA84 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				131FC0EB1FA0704F00476D63 /* Share(共享) */,
 				1342F5A01FF23F4100500938 /* Comment(评价) */,
 				13EE31A61FECA21800FD3C42 /* myOrder(我的订单) */,
 				13EC6DAE1FE9163400039771 /* Shop(店铺) */,
@@ -994,7 +998,6 @@
 				13D53F551FA8246B0080B563 /* CommdityDetail(商品详情) */,
 				13065B8F1FA7113B009BC964 /* Classify(分类) */,
 				131FC0F21FA0707900476D63 /* ShoppingCar(购物车) */,
-				131FC0EB1FA0704F00476D63 /* Share(共享) */,
 				13FEDBB91F99878F00538177 /* Me(我的) */,
 				13FEDBBD1F99878F00538177 /* RecyclingInNew(回收换新) */,
 				13949B951F988AE10027CA84 /* Home首页 */,
@@ -1284,6 +1287,8 @@
 				13EE31B31FECC80700FD3C42 /* ZDXStoreMyOrderCell.h */,
 				13EE31B41FECC80700FD3C42 /* ZDXStoreMyOrderCell.m */,
 				13EE31B51FECC80700FD3C42 /* ZDXStoreMyOrderCell.xib */,
+				132DB3EA1FF639490079865C /* ZDXStoreOrderFooterView.h */,
+				132DB3EB1FF639490079865C /* ZDXStoreOrderFooterView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1625,6 +1630,7 @@
 				130EDBFF1FEA4274006013C4 /* ZDXStoreSelectedTopView.m in Sources */,
 				1315C8831FB554EF008C65A7 /* MBProgressHUD+MJ.m in Sources */,
 				13EC6DAC1FE8F66D00039771 /* ZDXStoreCollectionStoreCell.m in Sources */,
+				132DB3EC1FF639490079865C /* ZDXStoreOrderFooterView.m in Sources */,
 				1315C87C1FB54385008C65A7 /* ZDXStoreGoodsModel.m in Sources */,
 				132721C41FCE8F200081F065 /* ZDXStoreNoConsigneeInfoCell.m in Sources */,
 				13F8CA711FC8055B0046435F /* ZDXStoreSearchGoodsViewController.m in Sources */,
