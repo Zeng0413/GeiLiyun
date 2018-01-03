@@ -17,7 +17,7 @@
 
 @interface ZDXStoreMeOrderAndServiceCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *title;
-
+@property (weak, nonatomic) IBOutlet UILabel *lookMoreOrderL;
 -(void)setupUIWithMaxCols:(NSInteger)maxCols imageToView:(CGFloat)imageToView imageWH:(CGFloat)imageWH lableToImage:(CGFloat)lableToImage;
 
 @property (assign, nonatomic) CGFloat cellH;

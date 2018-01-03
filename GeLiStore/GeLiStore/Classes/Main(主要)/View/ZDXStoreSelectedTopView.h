@@ -18,4 +18,5 @@
 
 @property (strong, nonatomic) NSArray *list;
 
+@property (strong, nonatomic) UIColor *btnDisableColor;
 @end

@@ -17,6 +17,7 @@
 #import "WLRPushView4.h"
 #import "AppDelegate.h"
 #import "WXApi.h"
+#import "ZDXStoreRefundViewController.h"
 static NSString *paySendTypeCellID = @"PaySendTypeCell";
 @interface ZDXStoreOrderStatusViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStorePayTypePushViewDelegate, WLRPushView4Delegate>
 
@@ -40,6 +41,13 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     [_appDelegate removeObserver:self forKeyPath:@"ZDXPayStatusCount"];
     
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    监听微信支付回调结果
+    _appDelegate = [AppDelegate sharedApplicationDelegate];
+    [_appDelegate addObserver:self forKeyPath:@"ZDXPayStatusCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -49,8 +57,12 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     // 支付方式弹出视图
     self.pushView = [ZDXStorePayTypePushView payTypePushView];
     self.pushView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 212);
-    self.pushView.payPrice = self.totalMoney;
     self.pushView.delegate = self;
+    if (self.orderDetailModel) {
+        self.pushView.payPrice = self.orderDetailModel.totalMoney.integerValue;
+    }else{
+        self.pushView.payPrice = self.totalMoney;
+    }
     
     // 遮盖View
     self.coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -61,9 +73,7 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     tapGesture.numberOfTouchesRequired = 1; //点击手指数
     [self.coverView addGestureRecognizer:tapGesture];
     
-    //    监听微信支付回调结果
-    _appDelegate = [AppDelegate sharedApplicationDelegate];
-    [_appDelegate addObserver:self forKeyPath:@"ZDXPayStatusCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+    
     
     // 设置tableView
     [self setupTableView];
@@ -72,26 +82,73 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
 }
 
 -(void)setupBottomView{
+    CGFloat btnW = (SCREEN_WIDTH / 2 + 20) / 2;
+
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH, 50)];
     bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomView];
+    if (self.orderDetailModel) { // 订单状态(-5:门店不同意退款；-4:门店同意退款；-3:用户拒收 -2:待付款 -1：用户取消 0:待发货 1:配送中 2:用户确认收货;3:申请退款；4:申请退货)
+        if (self.orderDetailModel.orderStatus == -2) {
+            UIButton *payBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW, 1, btnW, bottomView.height)];
+            payBtn.backgroundColor = colorWithString(@"#f95865");
+            [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [payBtn setTitle:@"去付款" forState:UIControlStateNormal];
+            payBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+            [payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
+            [bottomView addSubview:payBtn];
+            
+            UIButton *cancelOrderBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW * 2, 1, btnW, bottomView.height)];
+            cancelOrderBtn.backgroundColor = colorWithString(@"#f4f4f4");
+            [cancelOrderBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
+            [cancelOrderBtn addTarget:self action:@selector(cancelOrderClick) forControlEvents:UIControlEventTouchUpInside];
+            [cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
+            cancelOrderBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+            [bottomView addSubview:cancelOrderBtn];
+            
+        }else if (self.orderDetailModel.orderStatus == 0){
+            UIButton *refundBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW, 1, btnW, bottomView.height)];
+            refundBtn.layer.borderWidth = 1.0;
+            refundBtn.layer.borderColor = colorWithString(@"#f4f4f4").CGColor;
+            refundBtn.backgroundColor = [UIColor whiteColor];
+            [refundBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
+            [refundBtn setTitle:@"退款" forState:UIControlStateNormal];
+            [refundBtn addTarget:self action:@selector(refundClick) forControlEvents:UIControlEventTouchUpInside];
+            refundBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+            [bottomView addSubview:refundBtn];
     
-    CGFloat btnW = (SCREEN_WIDTH / 2 + 20) / 2;
-    UIButton *payBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW, 1, btnW, bottomView.height)];
-    payBtn.backgroundColor = colorWithString(@"#f95865");
-    [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [payBtn setTitle:@"去付款" forState:UIControlStateNormal];
-    payBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
-    [bottomView addSubview:payBtn];
-    
-    UIButton *cancelOrderBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW * 2, 1, btnW, bottomView.height)];
-    cancelOrderBtn.backgroundColor = colorWithString(@"#f4f4f4");
-    [cancelOrderBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
-    [cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
-    cancelOrderBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [bottomView addSubview:cancelOrderBtn];
-    
+        }else if (self.orderDetailModel.orderStatus == 1){
+            UIButton *confirmCargoBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW, 1, btnW, bottomView.height)];
+            confirmCargoBtn.backgroundColor = colorWithString(@"#f95865");
+            [confirmCargoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [confirmCargoBtn setTitle:@"确认收货" forState:UIControlStateNormal];
+            confirmCargoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+            [confirmCargoBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
+            [bottomView addSubview:confirmCargoBtn];
+            
+            UIButton *cancelCargoBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW * 2, 1, btnW, bottomView.height)];
+            cancelCargoBtn.backgroundColor = colorWithString(@"#f4f4f4");
+            [cancelCargoBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
+            [cancelCargoBtn setTitle:@"退货" forState:UIControlStateNormal];
+            cancelCargoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+            [bottomView addSubview:cancelCargoBtn];
+        }
+    }else{
+        CGFloat btnW = (SCREEN_WIDTH / 2 + 20) / 2;
+        UIButton *payBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW, 1, btnW, bottomView.height)];
+        payBtn.backgroundColor = colorWithString(@"#f95865");
+        [payBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [payBtn setTitle:@"去付款" forState:UIControlStateNormal];
+        payBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        [payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
+        [bottomView addSubview:payBtn];
+        
+        UIButton *cancelOrderBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW * 2, 1, btnW, bottomView.height)];
+        cancelOrderBtn.backgroundColor = colorWithString(@"#f4f4f4");
+        [cancelOrderBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
+        [cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
+        cancelOrderBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        [bottomView addSubview:cancelOrderBtn];
+    }
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
     lineView.backgroundColor = colorWithString(@"#f6f6f6");
     [bottomView addSubview:lineView];
@@ -109,7 +166,15 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreOrderPaySendTypeCell" bundle:nil] forCellReuseIdentifier:paySendTypeCellID];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 5)];
-    imageView.image = [UIImage imageNamed:@"等待付款图片"];
+    if (self.orderDetailModel.orderStatus == 0){
+        imageView.image = [UIImage imageNamed:@"等待发货"];
+
+    }else if (self.orderDetailModel.orderStatus == 1){
+        imageView.image = [UIImage imageNamed:@"商家已发货"];
+
+    }else{
+        imageView.image = [UIImage imageNamed:@"等待付款图片"];
+    }
     [tableView setTableHeaderView:imageView];
     
     [self.view addSubview:tableView];
@@ -127,13 +192,23 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     }];
 }
 
+// 退款
+-(void)refundClick{
+    ZDXStoreRefundViewController *vc = [[ZDXStoreRefundViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(void)clickPayType:(NSInteger)type{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"type"] = @(self.type);
     params[@"payFrom"] = @(type);
     params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
     params[@"isBatch"] = @(self.isBatch);
-    params[@"orderId"] = self.orderId;
+    if (self.orderDetailModel) {
+        params[@"orderId"] = @(self.orderDetailModel.orderId);
+    }else{
+        params[@"orderId"] = self.orderId;
+    }
     if (type == 1) { // 支付宝
         [MBProgressHUD showMessage:@""];
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -242,6 +317,28 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     }];
 }
 
+-(void)cancelOrderClick{
+    if (self.orderDetailModel) {
+        [MBProgressHUD showMessage:@""];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        NSDictionary *params = @{@"orderNo" : self.orderDetailModel.orderNo, @"userId" : @([ZDXStoreUserModelTool userModel].userId)};
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/userCancel",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"code"] integerValue] == 1) {
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+            [MBProgressHUD hideHUD];
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+            
+        }];
+    }
+    
+}
+
 // 去付款
 -(void)payClick{
     [self.view addSubview:self.coverView];
@@ -265,7 +362,11 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 1) {
-        return self.dataList.count;
+        if (self.orderDetailModel) {
+            return self.orderDetailModel.goods.count;
+        }else{
+            return self.dataList.count;
+        }
     }
     return 1;
 }
@@ -273,19 +374,33 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         ZDXStoreOrderPayAddressCell *cell = [ZDXStoreOrderPayAddressCell initWithTableView:tableView cellWithAtIndexPath:indexPath];
-        cell.model = self.consigneeInfoModel;
+        if (self.orderDetailModel) {
+            cell.orderDetailModel = self.orderDetailModel;
+        }else{
+            cell.model = self.consigneeInfoModel;
+        }
         self.payAddressCell = cell;
         return cell;
     }
     if (indexPath.section == 1){
         ZDXStoreOrderPayGoodsCell *cell = [ZDXStoreOrderPayGoodsCell initWithPayGoodsTableView:tableView cellForRowAtIndexPath:indexPath];
-        cell.goodsModel = self.dataList[indexPath.row];
+        if (self.orderDetailModel) {
+            cell.goodsModel = self.orderDetailModel.goods[indexPath.row];
+        }else{
+            cell.goodsModel = self.dataList[indexPath.row];
+        }
         self.payGoodsCell = cell;
         return cell;
     }else{
         ZDXStoreOrderPaySendTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:paySendTypeCellID];
-        cell.orderId.text = [NSString stringWithFormat:@"订单编号：%@",self.orderId];
-        cell.price.text = [NSString stringWithFormat:@"¥%ld",self.totalMoney];
+        if (self.orderDetailModel) {
+            cell.orderId.text = [NSString stringWithFormat:@"订单编号：%@",self.orderDetailModel.orderNo];
+            cell.price.text = [NSString stringWithFormat:@"¥%@",self.orderDetailModel.totalMoney];
+        }else{
+            cell.orderId.text = [NSString stringWithFormat:@"订单编号：%@",self.orderId];
+            cell.price.text = [NSString stringWithFormat:@"¥%ld",self.totalMoney];
+        }
+        
         return cell;
     }
     

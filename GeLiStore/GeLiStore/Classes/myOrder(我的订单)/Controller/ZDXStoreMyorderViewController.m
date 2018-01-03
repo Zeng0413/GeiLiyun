@@ -15,10 +15,14 @@
 #import "ZDXStoreMyOrderHeaderView.h"
 #import "ZDXStoreOrderModel.h"
 #import "ZDXStoreNoCollectionCell.h"
+#import "ZDXStoreOrderFooterView.h"
+#import "ZDXStoreOrderStatusViewController.h"
+#import "ZDXStoreOrderDetailModel.h"
+#import "ZDXStoreRefundViewController.h"
 
 static NSString *noCellID = @"noCellID";
 static NSString *myOrderCellID = @"MyOrderCell";
-@interface ZDXStoreMyorderViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreMyOrderCellDelegate>
+@interface ZDXStoreMyorderViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreOrderFooterViewDelegate>
 
 @property (strong, nonatomic) ZDXStoreMyOrderTopView *topView;
 
@@ -73,6 +77,11 @@ static NSString *myOrderCellID = @"MyOrderCell";
     return _topView;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self reloadOrder];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的订单";
@@ -121,6 +130,7 @@ static NSString *myOrderCellID = @"MyOrderCell";
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreMyOrderCell" bundle:nil] forCellReuseIdentifier:myOrderCellID];
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreNoCollectionCell" bundle:nil] forCellReuseIdentifier:noCellID];
     [tableView registerClass:[ZDXStoreMyOrderHeaderView class] forHeaderFooterViewReuseIdentifier:@"ZDXStoreMyOrderHeaderView"];
+    [tableView registerClass:[ZDXStoreOrderFooterView class] forHeaderFooterViewReuseIdentifier:@"ZDXStoreOrderFooterView"];
     tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
 
     // 下拉刷新
@@ -200,7 +210,6 @@ static NSString *myOrderCellID = @"MyOrderCell";
     if (self.orderArr.count>0) {
         ZDXStoreMyOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:myOrderCellID];
         cell.orderModel = self.orderArr[indexPath.section];
-        cell.delegate = self;
         return cell;
     }
     ZDXStoreNoCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:noCellID];
@@ -244,15 +253,67 @@ static NSString *myOrderCellID = @"MyOrderCell";
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (self.orderArr.count > 0) {
-        UIView *view = [[UIView alloc] init];
-        view.backgroundColor = [UIColor redColor];
+        ZDXStoreOrderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ZDXStoreOrderFooterView"];
+        view.delegate = self;
+        ZDXStoreOrderModel *orderModel = self.orderArr[section];
+        view.orderModel = orderModel;
         return view;
     }
     return [UIView new];
     
 }
-#pragma mark - cell Delegate
--(void)orderSelected:(NSString *)str{
-    NSLog(@"%@",str);
+#pragma mark - footerView Delegate
+-(void)selectedOrderModel:(ZDXStoreOrderModel *)orderModel withType:(NSString *)type{
+    if ([type isEqualToString:@"取消订单"]) {
+        [MBProgressHUD showMessage:@""];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        
+        NSDictionary *params = @{@"orderNo" : orderModel.orderNo, @"userId" : @([ZDXStoreUserModelTool userModel].userId)};
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/userCancel",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"code"] integerValue] == 1) {
+                [self.tableView.mj_header beginRefreshing];
+                [self reloadOrder];
+                
+            }
+            [MBProgressHUD hideHUD];
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+
+        }];
+    }
+    NSLog(@"%@ %@",orderModel, type);
+}
+
+-(void)toPushViewWithOrderModel:(ZDXStoreOrderModel *)orderModel{
+    [MBProgressHUD showMessage:@""];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"id"] = @(orderModel.orderId);
+    params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/detail",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+        ZDXStoreOrderDetailModel *model = [ZDXStoreOrderDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
+        if (model.orderStatus == 0) { // 待发货
+            ZDXStoreRefundViewController *vc = [[ZDXStoreRefundViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            ZDXStoreOrderStatusViewController *vc = [[ZDXStoreOrderStatusViewController alloc] init];
+            vc.isBatch = 0;
+            vc.orderDetailModel = model;
+            vc.type = 1;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
+
+    }];
+    
+    
+    
 }
 @end

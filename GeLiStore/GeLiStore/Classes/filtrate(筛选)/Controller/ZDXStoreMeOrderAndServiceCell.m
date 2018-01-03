@@ -12,7 +12,7 @@
 
 @interface ZDXStoreMeOrderAndServiceCell ()
 @property (weak, nonatomic) IBOutlet UIView *lineView;
-@property (weak, nonatomic) IBOutlet UILabel *lookMoreOrderL;
+
 
 @end
 

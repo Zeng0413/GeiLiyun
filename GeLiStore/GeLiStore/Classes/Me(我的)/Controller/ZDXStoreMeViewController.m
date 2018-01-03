@@ -15,7 +15,8 @@
 #import "ZDXStoreLoginViewController.h"
 #import "ZDXStoreMeCollectionViewController.h"
 #import "ZDXStoreMyorderViewController.h"
-
+#import "ZDXStoreDeductionTicketViewController.h"
+#import "ZDXStoreMyShareViewController.h"
 static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 @interface ZDXStoreMeViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreMeHeaderViewDelegate, ZDXStoreMeOrderAndServiceCellDelegate>
 
@@ -103,8 +104,9 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
     }
     
     if (indexPath.row == 1) {
-        NSArray *arr = @[@"我的钱包",@"现金劵",@"我的评价",@"我的收藏",@"我的回收",@"我的共享"];
+        NSArray *arr = @[@"我的钱包",@"现金券",@"我的评价",@"我的收藏",@"我的回收",@"我的共享"];
         ZDXStoreMeOrderAndServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:meOrderAndServiceCellID];
+        cell.lookMoreOrderL.hidden = YES;
         cell.dataList = arr;
         cell.title.text = @"我的服务";
         [cell setupUIWithMaxCols:3 imageToView:25 imageWH:41 lableToImage:9];
@@ -186,6 +188,12 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
     }else if (cell == self.meServiceCell){
         if ([str isEqualToString:@"我的收藏"]) {
             ZDXStoreMeCollectionViewController *vc = [[ZDXStoreMeCollectionViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([str isEqualToString:@"现金券"]){
+            ZDXStoreDeductionTicketViewController *vc = [[ZDXStoreDeductionTicketViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([str isEqualToString:@"我的共享"]){
+            ZDXStoreMyShareViewController *vc = [[ZDXStoreMyShareViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

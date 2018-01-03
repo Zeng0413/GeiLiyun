@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="134.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MJZ-Xv-BGs">
@@ -65,58 +65,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oK9-lS-qZq">
-                        <rect key="frame" x="247" y="98" width="63" height="23"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="63" id="Q1J-Iz-aIE"/>
-                            <constraint firstAttribute="height" constant="23" id="uwl-zn-MtH"/>
-                        </constraints>
-                        <state key="normal" title="确认收货"/>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAh-7e-Kjm">
-                        <rect key="frame" x="175" y="98" width="63" height="23"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="23" id="TpL-Hk-T9r"/>
-                            <constraint firstAttribute="width" constant="63" id="rUa-j5-3pW"/>
-                        </constraints>
-                        <state key="normal" title="查看物流"/>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Och-YB-XQq">
-                        <rect key="frame" x="103" y="98" width="63" height="23"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="23" id="2iq-nB-XBf"/>
-                            <constraint firstAttribute="width" constant="63" id="H3j-Gd-kVh"/>
-                        </constraints>
-                        <state key="normal" title="退货"/>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xVb-ZZ-1ws" firstAttribute="leading" secondItem="1G7-ud-KKU" secondAttribute="leading" id="6u0-gB-Kzd"/>
                     <constraint firstItem="pHN-vw-Evc" firstAttribute="leading" secondItem="xVb-ZZ-1ws" secondAttribute="leading" id="C7K-ZQ-B21"/>
-                    <constraint firstItem="RAh-7e-Kjm" firstAttribute="leading" secondItem="Och-YB-XQq" secondAttribute="trailing" constant="9" id="EF8-1b-Tmz"/>
                     <constraint firstItem="MJZ-Xv-BGs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="EtE-TD-d3v"/>
-                    <constraint firstItem="oK9-lS-qZq" firstAttribute="centerY" secondItem="5uv-9N-CD1" secondAttribute="centerY" id="Iyy-3S-62D"/>
                     <constraint firstItem="pHN-vw-Evc" firstAttribute="bottom" secondItem="MJZ-Xv-BGs" secondAttribute="bottom" id="PI4-A3-yvG"/>
                     <constraint firstItem="MJZ-Xv-BGs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PdF-qZ-53o"/>
                     <constraint firstItem="xVb-ZZ-1ws" firstAttribute="top" secondItem="1G7-ud-KKU" secondAttribute="bottom" constant="5" id="S5K-uW-R2p"/>
                     <constraint firstItem="5uv-9N-CD1" firstAttribute="leading" secondItem="MJZ-Xv-BGs" secondAttribute="leading" id="VVA-xw-g7L"/>
-                    <constraint firstItem="oK9-lS-qZq" firstAttribute="leading" secondItem="RAh-7e-Kjm" secondAttribute="trailing" constant="9" id="Xl6-Bl-rzk"/>
                     <constraint firstItem="5uv-9N-CD1" firstAttribute="top" secondItem="MJZ-Xv-BGs" secondAttribute="bottom" constant="15" id="Yuw-0S-SVz"/>
                     <constraint firstItem="1G7-ud-KKU" firstAttribute="top" secondItem="MJZ-Xv-BGs" secondAttribute="top" id="d3Z-RD-ggc"/>
                     <constraint firstItem="1G7-ud-KKU" firstAttribute="leading" secondItem="MJZ-Xv-BGs" secondAttribute="trailing" constant="16" id="e03-7N-nv7"/>
-                    <constraint firstItem="Och-YB-XQq" firstAttribute="centerY" secondItem="5uv-9N-CD1" secondAttribute="centerY" id="geV-LR-Gqd"/>
                     <constraint firstAttribute="trailing" secondItem="1G7-ud-KKU" secondAttribute="trailing" constant="10" id="q6f-LH-pcg"/>
-                    <constraint firstAttribute="trailing" secondItem="oK9-lS-qZq" secondAttribute="trailing" constant="10" id="rMP-XA-iK2"/>
-                    <constraint firstItem="RAh-7e-Kjm" firstAttribute="centerY" secondItem="5uv-9N-CD1" secondAttribute="centerY" id="yK0-06-nFN"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="btn1" destination="Och-YB-XQq" id="R3A-DE-MXn"/>
-                <outlet property="btn2" destination="RAh-7e-Kjm" id="t6L-dt-tIj"/>
-                <outlet property="btn3" destination="oK9-lS-qZq" id="lVe-GE-80H"/>
-                <outlet property="btnW1" destination="H3j-Gd-kVh" id="od7-kP-qxL"/>
-                <outlet property="btnW2" destination="rUa-j5-3pW" id="NCi-av-Az8"/>
-                <outlet property="btnW3" destination="Q1J-Iz-aIE" id="GOd-7H-E8b"/>
                 <outlet property="goodsDetail" destination="xVb-ZZ-1ws" id="rvX-sZ-clo"/>
                 <outlet property="goodsImg" destination="MJZ-Xv-BGs" id="TBL-XF-EpF"/>
                 <outlet property="goodsName" destination="1G7-ud-KKU" id="9oS-VI-r7z"/>

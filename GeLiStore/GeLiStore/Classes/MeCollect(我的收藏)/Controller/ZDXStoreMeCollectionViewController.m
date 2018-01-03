@@ -181,6 +181,7 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
 // 收藏筛选View
 -(void)setupFiltrateView{
     ZDXStoreSelectedTopView *topView = [[ZDXStoreSelectedTopView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 55)];
+    topView.btnDisableColor = colorWithString(@"#e63944");
     topView.list = @[@"商品",@"店铺",@"共享/二手特卖"];
     topView.delegate = self;
     [self.view addSubview:topView];

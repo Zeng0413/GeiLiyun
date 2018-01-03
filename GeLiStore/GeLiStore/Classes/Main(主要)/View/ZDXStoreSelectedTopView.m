@@ -42,7 +42,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.titleLabel.font = [UIFont systemFontOfSize:15];
         [btn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
-        [btn setTitleColor:colorWithString(@"#e63944") forState:UIControlStateDisabled];
+        [btn setTitleColor:self.btnDisableColor forState:UIControlStateDisabled];
         
         [btn setTitle:list[i] forState:UIControlStateNormal];
         btn.tag = i + 1;

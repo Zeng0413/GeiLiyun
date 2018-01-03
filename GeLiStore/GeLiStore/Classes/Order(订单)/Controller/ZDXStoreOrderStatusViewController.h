@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ZDXStoreConsigneeInfoModel.h"
+#import "ZDXStoreOrderDetailModel.h"
 @interface ZDXStoreOrderStatusViewController : UIViewController
+
+@property (strong, nonatomic) ZDXStoreOrderDetailModel *orderDetailModel;
 
 @property (copy, nonatomic) NSString *orderId;
 

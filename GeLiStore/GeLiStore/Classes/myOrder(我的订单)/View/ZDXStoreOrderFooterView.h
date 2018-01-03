@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ZDXStoreOrderModel;
+@protocol ZDXStoreOrderFooterViewDelegate <NSObject>
+
+-(void)selectedOrderModel:(ZDXStoreOrderModel *)orderModel withType:(NSString *)type;
+-(void)toPushViewWithOrderModel:(ZDXStoreOrderModel *)orderModel;
+
+@end
 
 @interface ZDXStoreOrderFooterView : UITableViewHeaderFooterView
 
+@property (strong, nonatomic) ZDXStoreOrderModel *orderModel;
+
+@property (weak, nonatomic) id<ZDXStoreOrderFooterViewDelegate> delegate;
 @end

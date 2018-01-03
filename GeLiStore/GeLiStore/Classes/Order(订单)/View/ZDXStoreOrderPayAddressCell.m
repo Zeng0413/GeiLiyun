@@ -8,7 +8,6 @@
 
 #import "ZDXStoreOrderPayAddressCell.h"
 #import "ZDXComnous.h"
-
 @interface ZDXStoreOrderPayAddressCell ()
 
 @property (weak, nonatomic) UILabel *consignnerLabel; // 收货人
@@ -72,6 +71,31 @@
     }
     
     return self;
+}
+
+-(void)setOrderDetailModel:(ZDXStoreOrderDetailModel *)orderDetailModel{
+    _orderDetailModel = orderDetailModel;
+    NSString *consignner = [NSString stringWithFormat:@"收货人：%@",orderDetailModel.userName];
+    CGSize consignnerL = [consignner sizeWithFont:[UIFont systemFontOfSize:15]];
+    self.consignnerLabel.frame = CGRectMake(32, 10, consignnerL.width, consignnerL.height);
+    self.consignnerLabel.text = consignner;
+    
+    CGSize phoneSize = [orderDetailModel.userPhone sizeWithFont:[UIFont systemFontOfSize:15]];
+    self.telNum.frame = CGRectMake(SCREEN_WIDTH - 10 - phoneSize.width, 10, phoneSize.width, phoneSize.height);
+    self.telNum.text = orderDetailModel.userPhone;
+    
+    NSString *consignnerAdd = [NSString stringWithFormat:@"收货地址：%@",orderDetailModel.userAddress];
+    CGSize consignnerAddSize = [consignnerAdd sizeWithFont:[UIFont systemFontOfSize:15] maxW:SCREEN_WIDTH - self.consignnerLabel.x - 10];
+    self.addressStr.frame = CGRectMake(self.consignnerLabel.x, CGRectGetMaxY(self.consignnerLabel.frame) + 15, consignnerAddSize.width, consignnerAddSize.height);
+    self.addressStr.text = consignnerAdd;
+    
+    self.addressImg.width = 12;
+    self.addressImg.height = 17;
+    self.addressImg.x = CGRectGetMinX(self.addressStr.frame) - 10 - self.addressImg.width;
+    self.addressImg.centerY = self.addressStr.centerY;
+    
+    self.bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.addressStr.frame) + 18, SCREEN_WIDTH, 20);
+    self.cellH = CGRectGetMaxY(self.bottomView.frame);
 }
 
 -(void)setModel:(ZDXStoreConsigneeInfoModel *)model{

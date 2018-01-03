@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZDXStoreConsigneeInfoModel.h"
+#import "ZDXStoreOrderDetailModel.h"
 @interface ZDXStoreOrderPayAddressCell : UITableViewCell
 
 +(instancetype)initWithTableView:(UITableView *)tableView cellWithAtIndexPath:(NSIndexPath *)indexPath;
@@ -15,4 +16,6 @@
 @property (assign, nonatomic) CGFloat cellH;
 
 @property (strong, nonatomic) ZDXStoreConsigneeInfoModel *model;
+
+@property (strong, nonatomic) ZDXStoreOrderDetailModel *orderDetailModel;
 @end
