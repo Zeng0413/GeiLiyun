@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ZDXStoreOrderDetailModel;
 @interface ZDXStoreRefundViewController : UIViewController
+
+@property (strong, nonatomic) ZDXStoreOrderDetailModel *orderDetailModel;
 
 @end

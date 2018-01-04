@@ -152,6 +152,42 @@
     [self.delegate shopCarFormatSettleForSelectedProduct:settleArray];
 }
 
+// 删除一行
+-(void)deleteProductAtIndexPath:(NSIndexPath *)indexPath{
+    ZDXStoreShopModel *shopModel = self.shopcartListArray[indexPath.section];
+    ZDXStoreGoodsModel *goodsModel = shopModel.list[indexPath.row];
+    
+    [shopModel.list removeObject:goodsModel];
+    if (shopModel.list.count == 0) {
+        [self.shopcartListArray removeObject:shopModel];
+    } else {
+        if (!shopModel.isSelected) {
+            BOOL isBrandSelected = YES;
+            for (ZDXStoreShopModel *aProductModel in shopModel.list) {
+                if (!aProductModel.isSelected) {
+                    isBrandSelected = NO;
+                    break;
+                }
+            }
+            
+            if (isBrandSelected) {
+                shopModel.isSelected = YES;
+            }
+        }
+    }
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [MBProgressHUD showMessage:@""];
+    NSDictionary *params = @{@"userId" : @([ZDXStoreUserModelTool userModel].userId), @"id" : @(goodsModel.cartId)};
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/delCart",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
+    }];
+    [self.delegate shopcartFormatAccountForTotalPrice:[self accountTotalPrice] totalCount:[self accountTotalCount] isAllSelected:[self isAllSelected]];
+}
+
 #pragma mark - private methods
 -(float)accountTotalPrice{
     float totalPrice = 0.f;

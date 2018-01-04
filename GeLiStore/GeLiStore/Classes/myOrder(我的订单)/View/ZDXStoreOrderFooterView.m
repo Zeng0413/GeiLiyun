@@ -45,7 +45,7 @@
     self.btn3.width = btnW;
     self.btn3.height = 23;
     self.btn3.x = SCREEN_WIDTH - 10 - btnW;
-    self.btn3.y = 35 /2 - 23 /2;
+    self.btn3.y = 40 /2 - 23 /2;
     [self addSubview:self.btn3];
     
     self.btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -58,7 +58,7 @@
     self.btn2.width = btnW;
     self.btn2.height = 23;
     self.btn2.x = SCREEN_WIDTH - 20 - btnW * 2;
-    self.btn2.y = 35 /2 - 23 /2;
+    self.btn2.y = 40 /2 - 23 /2;
     [self addSubview:self.btn2];
     
     self.btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -81,15 +81,7 @@
 
 -(void)setOrderModel:(ZDXStoreOrderModel *)orderModel{
     _orderModel = orderModel;
-    
-    if (orderModel.isAppraise != 0) { // 待评价
-        self.btn1.hidden = NO;
-        self.btn2.hidden = NO;
-        self.btn3.hidden = NO;
-        [self.btn1 setTitle:@"退货" forState:UIControlStateNormal];
-        [self.btn2 setTitle:@"查看物流" forState:UIControlStateNormal];
-        [self.btn3 setTitle:@"去评价" forState:UIControlStateNormal];
-    }else if (orderModel.isRefund != 0){ // 退款中
+    if (orderModel.isRefund != 0){ // 退款中
         self.btn1.hidden = YES;
         self.btn2.hidden = YES;
         self.btn3.hidden = YES;
@@ -111,6 +103,15 @@
         [self.btn1 setTitle:@"退货" forState:UIControlStateNormal];
         [self.btn2 setTitle:@"查看物流" forState:UIControlStateNormal];
         [self.btn3 setTitle:@"确认收货" forState:UIControlStateNormal];
+    }else{
+        if (orderModel.isAppraise == 0) { // 待评价
+            self.btn1.hidden = NO;
+            self.btn2.hidden = NO;
+            self.btn3.hidden = NO;
+            [self.btn1 setTitle:@"退货" forState:UIControlStateNormal];
+            [self.btn2 setTitle:@"查看物流" forState:UIControlStateNormal];
+            [self.btn3 setTitle:@"去评价" forState:UIControlStateNormal];
+        }
     }
 }
 

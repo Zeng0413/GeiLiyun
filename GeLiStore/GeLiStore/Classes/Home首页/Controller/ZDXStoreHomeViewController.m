@@ -86,7 +86,7 @@ static NSString *brandChooseCell = @"brandChooseCell";
 - (void)viewDidLoad {    
     [super viewDidLoad];
     
-    
+    CGFloat width = SCREEN_WIDTH;
     
     self.view.backgroundColor = ZDXRandomColor;
     

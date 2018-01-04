@@ -66,7 +66,23 @@
     
     self.orderStatus.frame = CGRectMake(SCREEN_WIDTH - 10 - 80, 28 + 10, 80, 15);
     self.orderStatus.centerY = self.shopName.centerY;
-    self.orderStatus.text = orderModel.status;
+    if (orderModel.isRefund != 0){ // 退款中
+        self.orderStatus.text = @"退款中";
+    }else if (orderModel.orderStatus == -2){ // 待付款
+        self.orderStatus.text = @"待付款";
+
+    }else if (orderModel.orderStatus == 0){ // 待发货
+        self.orderStatus.text = @"待发货";
+
+    }else if (orderModel.orderStatus == 1){ // 待收货
+        self.orderStatus.text = @"待收货";
+    }else{
+        if (orderModel.isAppraise == 0) { // 待评价
+            self.orderStatus.text = @"待评价";
+        }else{
+            self.orderStatus.text = @"已评价";
+        }
+    }
     
 }
 @end

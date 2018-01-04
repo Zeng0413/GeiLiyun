@@ -81,6 +81,15 @@
         _shopcartTableViewProxy.shopcartProxyChangeCountBlock = ^(NSInteger count, NSIndexPath *indexPath) {
             [weakSelf.shopcartFormat changeCountAtIndexPath:indexPath count:count];
         };
+        
+        _shopcartTableViewProxy.shopcartProxyDeleteBlock = ^(NSIndexPath *indexPath) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"确认要删除这个宝贝吗？" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [weakSelf.shopcartFormat deleteProductAtIndexPath:indexPath];
+            }]];
+            [weakSelf presentViewController:alert animated:YES completion:nil];
+        };
     }
     
     return _shopcartTableViewProxy;

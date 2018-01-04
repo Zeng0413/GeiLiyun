@@ -299,7 +299,12 @@ static NSString *myOrderCellID = @"MyOrderCell";
         ZDXStoreOrderDetailModel *model = [ZDXStoreOrderDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
         if (model.orderStatus == 0) { // 待发货
             ZDXStoreRefundViewController *vc = [[ZDXStoreRefundViewController alloc] init];
+            vc.orderDetailModel = model;
             [self.navigationController pushViewController:vc animated:YES];
+        }else if (model.orderStatus == 1){ // 待收货
+            [self confirmGoods:model];
+            NSLog(@"aa");
+            
         }else{
             ZDXStoreOrderStatusViewController *vc = [[ZDXStoreOrderStatusViewController alloc] init];
             vc.isBatch = 0;
@@ -310,10 +315,22 @@ static NSString *myOrderCellID = @"MyOrderCell";
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MBProgressHUD hideHUD];
-
+        
     }];
     
     
     
+}
+
+// 确认收货
+-(void)confirmGoods:(ZDXStoreOrderDetailModel *)model{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSDictionary *params = @{@"orderId" : @(model.orderId), @"userId" : @([ZDXStoreUserModelTool userModel].userId)};
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/receive",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 @end

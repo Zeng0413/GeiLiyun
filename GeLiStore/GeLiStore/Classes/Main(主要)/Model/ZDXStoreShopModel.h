@@ -27,6 +27,6 @@
 
 @property (assign, nonatomic) NSInteger favShop;
 
-@property (copy, nonatomic) NSArray *list;
+@property (strong, nonatomic) NSMutableArray *list;
 
 @end

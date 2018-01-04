@@ -100,13 +100,13 @@
             self.shopcartProxyDeleteBlock(indexPath);
         }
     }];
-    
-    UITableViewRowAction *starAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"收藏" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        if (self.shopcartProxyStarBlock) {
-            self.shopcartProxyStarBlock(indexPath);
-        }
-    }];
-    return @[deleteAction, starAction];
+//    
+//    UITableViewRowAction *starAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"收藏" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+//        if (self.shopcartProxyStarBlock) {
+//            self.shopcartProxyStarBlock(indexPath);
+//        }
+//    }];
+    return @[deleteAction];
    
 }
 @end
