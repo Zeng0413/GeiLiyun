@@ -18,6 +18,8 @@
 #import "AppDelegate.h"
 #import "WXApi.h"
 #import "ZDXStoreRefundViewController.h"
+#import "ZDXStoreOrderAppraiseViewController.h"
+
 static NSString *paySendTypeCellID = @"PaySendTypeCell";
 @interface ZDXStoreOrderStatusViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStorePayTypePushViewDelegate, WLRPushView4Delegate>
 
@@ -122,7 +124,7 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
             [confirmCargoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [confirmCargoBtn setTitle:@"确认收货" forState:UIControlStateNormal];
             confirmCargoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-            [confirmCargoBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
+//            [confirmCargoBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
             [bottomView addSubview:confirmCargoBtn];
             
             UIButton *cancelCargoBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW * 2, 1, btnW, bottomView.height)];
@@ -131,6 +133,16 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
             [cancelCargoBtn setTitle:@"退货" forState:UIControlStateNormal];
             cancelCargoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
             [bottomView addSubview:cancelCargoBtn];
+        }else{
+            if (self.orderDetailModel.isAppraise == 0) {
+                UIButton *commentBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW, 1, btnW, bottomView.height)];
+                commentBtn.backgroundColor = colorWithString(@"#f95865");
+                [commentBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [commentBtn setTitle:@"去评价" forState:UIControlStateNormal];
+                commentBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+                [commentBtn addTarget:self action:@selector(toComment) forControlEvents:UIControlEventTouchUpInside];
+                [bottomView addSubview:commentBtn];
+            }
         }
     }else{
         CGFloat btnW = (SCREEN_WIDTH / 2 + 20) / 2;
@@ -172,8 +184,13 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     }else if (self.orderDetailModel.orderStatus == 1){
         imageView.image = [UIImage imageNamed:@"商家已发货"];
 
-    }else{
+    }else if (self.orderDetailModel.orderStatus == -2){
         imageView.image = [UIImage imageNamed:@"等待付款图片"];
+    }else{
+        if (self.orderDetailModel.isAppraise == 0) {
+            // 待评价
+            imageView.image = [UIImage imageNamed:@"交易成功"];
+        }
     }
     [tableView setTableHeaderView:imageView];
     
@@ -192,9 +209,17 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     }];
 }
 
+
+// 去评价
+-(void)toComment{
+    ZDXStoreOrderAppraiseViewController *vc = [[ZDXStoreOrderAppraiseViewController alloc] init];
+    vc.orderDetailModel = self.orderDetailModel;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 // 退款
 -(void)refundClick{
     ZDXStoreRefundViewController *vc = [[ZDXStoreRefundViewController alloc] init];
+    vc.orderDetailModel = self.orderDetailModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

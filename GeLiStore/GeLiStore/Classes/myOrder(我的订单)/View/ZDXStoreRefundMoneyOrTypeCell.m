@@ -26,6 +26,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.topView.backgroundColor = [UIColor colorWithHexString:@"#f4f4f4"];
     self.lineView1.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];
     self.lineView2.backgroundColor = [UIColor colorWithHexString:@"#f5f5f5"];

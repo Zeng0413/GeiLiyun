@@ -178,6 +178,9 @@
 		13F8CA691FC7CA410046435F /* ZDXStoreSetupPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F8CA671FC7CA410046435F /* ZDXStoreSetupPwdViewController.m */; };
 		13F8CA6A1FC7CA410046435F /* ZDXStoreSetupPwdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F8CA681FC7CA410046435F /* ZDXStoreSetupPwdViewController.xib */; };
 		13F8CA711FC8055B0046435F /* ZDXStoreSearchGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F8CA701FC8055B0046435F /* ZDXStoreSearchGoodsViewController.m */; };
+		13F9A2AA1FFF57BE00041016 /* ZDXStoreOrderAppraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F9A2A91FFF57BE00041016 /* ZDXStoreOrderAppraiseViewController.m */; };
+		13F9A2B11FFF630100041016 /* ZDXStoreAppraiseRemarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 13F9A2AF1FFF630100041016 /* ZDXStoreAppraiseRemarkCell.m */; };
+		13F9A2B21FFF630100041016 /* ZDXStoreAppraiseRemarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F9A2B01FFF630100041016 /* ZDXStoreAppraiseRemarkCell.xib */; };
 		13FD79BB1FCD43CC006FE649 /* ZDXStoreShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FD79BA1FCD43CC006FE649 /* ZDXStoreShopModel.m */; };
 		13FDBB6C1F9EE485005A68B8 /* shopcart.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13FDBB6B1F9EE485005A68B8 /* shopcart.plist */; };
 		13FEDA821FCF94610088BD94 /* ZDXStoreEditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FEDA811FCF94610088BD94 /* ZDXStoreEditAddressViewController.m */; };
@@ -488,6 +491,11 @@
 		13F8CA681FC7CA410046435F /* ZDXStoreSetupPwdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreSetupPwdViewController.xib; sourceTree = "<group>"; };
 		13F8CA6F1FC8055B0046435F /* ZDXStoreSearchGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreSearchGoodsViewController.h; sourceTree = "<group>"; };
 		13F8CA701FC8055B0046435F /* ZDXStoreSearchGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreSearchGoodsViewController.m; sourceTree = "<group>"; };
+		13F9A2A81FFF57BE00041016 /* ZDXStoreOrderAppraiseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreOrderAppraiseViewController.h; sourceTree = "<group>"; };
+		13F9A2A91FFF57BE00041016 /* ZDXStoreOrderAppraiseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreOrderAppraiseViewController.m; sourceTree = "<group>"; };
+		13F9A2AE1FFF630100041016 /* ZDXStoreAppraiseRemarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreAppraiseRemarkCell.h; sourceTree = "<group>"; };
+		13F9A2AF1FFF630100041016 /* ZDXStoreAppraiseRemarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreAppraiseRemarkCell.m; sourceTree = "<group>"; };
+		13F9A2B01FFF630100041016 /* ZDXStoreAppraiseRemarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZDXStoreAppraiseRemarkCell.xib; sourceTree = "<group>"; };
 		13FD79B91FCD43CC006FE649 /* ZDXStoreShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDXStoreShopModel.h; sourceTree = "<group>"; };
 		13FD79BA1FCD43CC006FE649 /* ZDXStoreShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDXStoreShopModel.m; sourceTree = "<group>"; };
 		13FDBB6B1F9EE485005A68B8 /* shopcart.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = shopcart.plist; sourceTree = "<group>"; };
@@ -1372,6 +1380,8 @@
 				13EE31AE1FECADD200FD3C42 /* ZDXStoreMyorderViewController.m */,
 				131A9BC61FFCD969003D10BB /* ZDXStoreRefundViewController.h */,
 				131A9BC71FFCD969003D10BB /* ZDXStoreRefundViewController.m */,
+				13F9A2A81FFF57BE00041016 /* ZDXStoreOrderAppraiseViewController.h */,
+				13F9A2A91FFF57BE00041016 /* ZDXStoreOrderAppraiseViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1405,6 +1415,9 @@
 				133036F71FFE1BF900ED0209 /* ZDXStoreRefundMoneyOrTypeCell.xib */,
 				133036FA1FFE220700ED0209 /* ZDXStoreRefundReasonCell.h */,
 				133036FB1FFE220700ED0209 /* ZDXStoreRefundReasonCell.m */,
+				13F9A2AE1FFF630100041016 /* ZDXStoreAppraiseRemarkCell.h */,
+				13F9A2AF1FFF630100041016 /* ZDXStoreAppraiseRemarkCell.m */,
+				13F9A2B01FFF630100041016 /* ZDXStoreAppraiseRemarkCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1608,6 +1621,7 @@
 				1315C8841FB554EF008C65A7 /* MBProgressHUD.bundle in Resources */,
 				1341C51C1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.xib in Resources */,
 				13D592381FD7BE5200BE2C7E /* ZDXStoreOrderGoodsCountTableViewCell.xib in Resources */,
+				13F9A2B21FFF630100041016 /* ZDXStoreAppraiseRemarkCell.xib in Resources */,
 				13D53F631FA86F520080B563 /* ZDXStoreCommdityCommentCell.xib in Resources */,
 				132721D51FCEADEB0081F065 /* ZDXStoreAddressRemakeCell.xib in Resources */,
 				1307A2DA1FAD4B440019D8F5 /* ZDXStoreCommdityClassifyBannerCell.xib in Resources */,
@@ -1695,10 +1709,12 @@
 				132721B71FCE8CBD0081F065 /* ZDXStoreOrderGoodsShowCell.m in Sources */,
 				13EE31B61FECC80700FD3C42 /* ZDXStoreMyOrderCell.m in Sources */,
 				1341C51B1FE0C6660067BE37 /* ZDXStoreFiltrateNoGoodsCell.m in Sources */,
+				13F9A2B11FFF630100041016 /* ZDXStoreAppraiseRemarkCell.m in Sources */,
 				131FC1321FA0737A00476D63 /* ZDXStoreBrandCollectionViewCell.m in Sources */,
 				13065B8E1FA70FAE009BC964 /* UIBarButtonItem+Item.m in Sources */,
 				1315C88C1FB57DCC008C65A7 /* ZDXStoreGoodsClassifyModel.m in Sources */,
 				13FEDBD91F9998D400538177 /* ZDXStoreHomeViewController.m in Sources */,
+				13F9A2AA1FFF57BE00041016 /* ZDXStoreOrderAppraiseViewController.m in Sources */,
 				1307A2DF1FAD4B990019D8F5 /* ZDXStoreCommdityDetailController.m in Sources */,
 				13FEDBD31F99980300538177 /* ZDXStoreRecylingInNewViewController.m in Sources */,
 				1321AF8B1FDE5785007505D0 /* ZDXStoreMeCollectionViewController.m in Sources */,

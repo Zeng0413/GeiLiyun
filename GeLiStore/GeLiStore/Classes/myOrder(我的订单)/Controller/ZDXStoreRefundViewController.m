@@ -12,14 +12,16 @@
 #import "ZDXStoreOrderDetailModel.h"
 #import "ZDXStoreRefundMoneyOrTypeCell.h"
 #import "ZDXStoreRefundReasonCell.h"
-
+#import "ZDXStoreUserModel.h"
 static NSString *refundMoneyOrTypeCellID = @"RefundMoneyOrTypeCell";
 static NSString *refundGoodsCellID = @"RefundGoodsCell";
-@interface ZDXStoreRefundViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ZDXStoreRefundViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreRefundReasonCellDelegate>
 
 @property (weak, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) ZDXStoreRefundReasonCell *refundReasonCell;
+
+@property (assign, nonatomic) NSInteger reasonTag;
 @end
 
 @implementation ZDXStoreRefundViewController
@@ -30,6 +32,12 @@ static NSString *refundGoodsCellID = @"RefundGoodsCell";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.title = @"退款";
+    
+    // 注册通知，监听键盘弹出事件
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    //注册通知,监听键盘消失事件
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHidden:) name:UIKeyboardWillHideNotification object:nil];
+
     
     // 设置tableView
     [self setupTableView];
@@ -53,6 +61,26 @@ static NSString *refundGoodsCellID = @"RefundGoodsCell";
 
 // 提交
 -(void)submit{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"orderId"] = @(self.orderDetailModel.orderId);
+    params[@"reasonId"] = @(self.reasonTag);
+    params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
+    params[@"refundRemark"] = self.refundReasonCell.textView.text;
+    if (!self.reasonTag) {
+        UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:@"请选择取消原因" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [warnningVC show];
+        return;
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/cancellation",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"code"] integerValue] == 1) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
     
 }
 
@@ -62,7 +90,7 @@ static NSString *refundGoodsCellID = @"RefundGoodsCell";
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    
+    tableView.showsVerticalScrollIndicator = NO;
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreRefundGoodsCell" bundle:nil] forCellReuseIdentifier:refundGoodsCellID];
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreRefundMoneyOrTypeCell" bundle:nil] forCellReuseIdentifier:refundMoneyOrTypeCellID];
     
@@ -71,6 +99,46 @@ static NSString *refundGoodsCellID = @"RefundGoodsCell";
     
 }
 
+#pragma mark - 键盘监听
+-(void)keyboardDidShow:(NSNotification *)notification{
+    // 获取键盘高度
+    NSValue *keyboardObject = [[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+    NSLog(@"%@",keyboardObject);
+    
+    CGRect keyboardRect;
+    [keyboardObject getValue:&keyboardRect];
+    
+    // 取得键盘的动画时间，这样可以在视图上移的时候更连贯
+    double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    //设置view的frame，往上平移
+    CGRect frame = self.view.frame;
+    if (!(frame.origin.y < 0)) {
+        frame.origin.y -= keyboardRect.size.height - 44;
+        [UIView animateWithDuration:duration animations:^{
+            self.view.frame = frame;
+        }];
+    }
+   
+}
+
+-(void)keyboardDidHidden:(NSNotification *)notification{
+    // 获取键盘高度
+    NSValue *keyboardObject = [[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+    NSLog(@"%@",keyboardObject);
+    
+    CGRect keyboardRect;
+    [keyboardObject getValue:&keyboardRect];
+    
+    // 取得键盘的动画时间，这样可以在视图上移的时候更连贯
+    double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    CGRect frame = self.view.frame;
+    frame.origin.y +=keyboardRect.size.height - 44;
+    [UIView animateWithDuration:duration animations:^{
+        self.view.frame = frame;
+    }];
+}
 #pragma mark - tableView Delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 3;
@@ -96,6 +164,7 @@ static NSString *refundGoodsCellID = @"RefundGoodsCell";
     }
     if (indexPath.section == 2) {
         ZDXStoreRefundReasonCell *cell = [ZDXStoreRefundReasonCell initWithRefundReasonTableView:tableView cellForRowAtIndexPAth:indexPath];
+        cell.delegate = self;
         self.refundReasonCell = cell;
         return cell;
     }
@@ -116,6 +185,10 @@ static NSString *refundGoodsCellID = @"RefundGoodsCell";
     }else{
         return self.refundReasonCell.cellH;
     }
-//    return 50;
+}
+
+#pragma mark - cell delegate
+-(void)selectedRefundReasonTag:(NSInteger)reasonTag{
+    self.reasonTag = reasonTag;
 }
 @end

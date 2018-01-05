@@ -23,6 +23,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.goodsName.textColor = [UIColor colorWithHexString:@"#262626"];
     self.goodsDetail.textColor = [UIColor colorWithHexString:@"#8a8a8a"];
     self.orderTime.textColor = [UIColor colorWithHexString:@"#8a8a8a"];

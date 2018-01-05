@@ -19,7 +19,7 @@
 #import "ZDXStoreOrderStatusViewController.h"
 #import "ZDXStoreOrderDetailModel.h"
 #import "ZDXStoreRefundViewController.h"
-
+#import "ZDXStoreOrderAppraiseViewController.h"
 static NSString *noCellID = @"noCellID";
 static NSString *myOrderCellID = @"MyOrderCell";
 @interface ZDXStoreMyorderViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreOrderFooterViewDelegate>
@@ -220,6 +220,31 @@ static NSString *myOrderCellID = @"MyOrderCell";
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.orderArr.count>0) {
+        ZDXStoreOrderModel *orderModel = self.orderArr[indexPath.section];
+        [MBProgressHUD showMessage:@""];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"id"] = @(orderModel.orderId);
+        params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/detail",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [MBProgressHUD hideHUD];
+            ZDXStoreOrderDetailModel *model = [ZDXStoreOrderDetailModel mj_objectWithKeyValues:responseObject[@"data"]];
+            ZDXStoreOrderStatusViewController *vc = [[ZDXStoreOrderStatusViewController alloc] init];
+            vc.isBatch = 0;
+            vc.orderDetailModel = model;
+            vc.type = 1;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
+    }
+    
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.orderArr.count > 0) {
         return 128;
@@ -300,17 +325,24 @@ static NSString *myOrderCellID = @"MyOrderCell";
         if (model.orderStatus == 0) { // 待发货
             ZDXStoreRefundViewController *vc = [[ZDXStoreRefundViewController alloc] init];
             vc.orderDetailModel = model;
+         
             [self.navigationController pushViewController:vc animated:YES];
         }else if (model.orderStatus == 1){ // 待收货
             [self confirmGoods:model];
             NSLog(@"aa");
             
-        }else{
+        }else if (model.orderStatus == -2){
             ZDXStoreOrderStatusViewController *vc = [[ZDXStoreOrderStatusViewController alloc] init];
             vc.isBatch = 0;
             vc.orderDetailModel = model;
             vc.type = 1;
             [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            if (model.isAppraise == 0) {
+                ZDXStoreOrderAppraiseViewController *vc = [[ZDXStoreOrderAppraiseViewController alloc] init];
+                vc.orderDetailModel = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -319,6 +351,11 @@ static NSString *myOrderCellID = @"MyOrderCell";
     }];
     
     
+    
+}
+
+// 获取订单详细信息
+-(void)reloadOrderDetailInfo:(ZDXStoreOrderModel *)orderModel{
     
 }
 

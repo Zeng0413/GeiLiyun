@@ -40,7 +40,8 @@
 @property (copy, nonatomic) NSString *shopQQ;
 @property (strong, nonatomic) NSArray *goods;
 
-
+@property (assign, nonatomic) NSInteger isAppraise; // 评价
+@property (assign, nonatomic) NSInteger isRefund; // 退款
 
 
 @end
