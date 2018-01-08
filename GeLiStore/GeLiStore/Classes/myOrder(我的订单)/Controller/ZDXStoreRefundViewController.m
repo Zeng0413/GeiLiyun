@@ -160,6 +160,7 @@ static NSString *refundGoodsCellID = @"RefundGoodsCell";
     
     if (indexPath.section == 1) {
         ZDXStoreRefundMoneyOrTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:refundMoneyOrTypeCellID];
+        cell.refundMoney.text = [NSString stringWithFormat:@"¥%@",self.orderDetailModel.totalMoney];
         return cell;
     }
     if (indexPath.section == 2) {

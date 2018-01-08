@@ -47,7 +47,25 @@
             [startBtn setImage:[UIImage imageNamed:@"星星评分前"] forState:UIControlStateNormal];
         }
     }
+    
+    if (self.block) {
+        self.block(sender.tag);
+    }
 }
 
+#pragma mark - UITextView Delegate Methods
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.contentView endEditing:YES];
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
 @end
+

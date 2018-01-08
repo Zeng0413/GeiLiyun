@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ZDXStoreGoodsModel;
 @class ZDXStoreOrderModel;
 
 @interface ZDXStoreMyOrderCell : UITableViewCell
 
 @property (strong, nonatomic) ZDXStoreOrderModel *orderModel;
+@property (strong, nonatomic) ZDXStoreGoodsModel *goodsModel;
 
+@property (assign, nonatomic) BOOL isAppraise;
+
+@property (assign, nonatomic) NSInteger row;
 @end

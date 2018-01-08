@@ -116,7 +116,7 @@
                 <outlet property="lineView1" destination="sDH-oI-8E2" id="U7e-wH-9AL"/>
                 <outlet property="lineView2" destination="1UG-so-zrc" id="6UD-ss-Iea"/>
                 <outlet property="money" destination="3gT-9E-ziy" id="Ize-Yb-QL0"/>
-                <outlet property="refundMoney" destination="7a1-8L-NPf" id="fR9-3j-NTw"/>
+                <outlet property="refundMoney" destination="3gT-9E-ziy" id="gIM-ig-8Fy"/>
                 <outlet property="refundTypeDec" destination="Ty3-4k-VE2" id="sqH-iS-Ycj"/>
                 <outlet property="refundTypeL" destination="UxT-Y8-VF1" id="vCU-Jc-3TO"/>
                 <outlet property="refundTypeR" destination="mbO-33-hVr" id="wuT-P9-imQ"/>

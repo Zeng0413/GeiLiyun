@@ -16,6 +16,12 @@
 @property (assign, nonatomic) NSInteger shopId;
 @property (copy, nonatomic) NSString *shopQQ;
 @property (copy, nonatomic) NSString *goodsMoney;
+@property (copy, nonatomic) NSString *goodsName;
+@property (copy, nonatomic) NSString *goodsImg;
+@property (assign, nonatomic) NSInteger goodsId;
+@property (assign, nonatomic) NSInteger goodsNum;
+
+
 @property (copy, nonatomic) NSString *totalMoney;
 @property (copy, nonatomic) NSString *realTotalMoney;
 @property (assign, nonatomic) NSInteger orderStatus;

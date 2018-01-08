@@ -63,7 +63,12 @@
     [self renderWithTotalPrice:[NSString stringWithFormat:@"￥%.f", totalPrice]];
     
     [self.settleButton setTitle:[NSString stringWithFormat:@"结算(%ld)", totalCount] forState:UIControlStateNormal];
-    self.settleButton.enabled = totalCount && totalPrice;
+    if (totalCount > 0) {
+        self.settleButton.enabled = YES;
+    }else{
+        self.settleButton.enabled = NO;
+    }
+//    self.settleButton.enabled = totalCount && totalPrice;
     self.starButton.enabled = totalCount && totalPrice;
     self.deleteButton.enabled = totalCount && totalPrice;
     if (self.settleButton.isEnabled) { // 能点击结算按钮

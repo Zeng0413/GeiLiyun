@@ -10,7 +10,7 @@
 #import "UIColor+ColorChange.h"
 @interface ZDXStoreRefundMoneyOrTypeCell ()
 @property (weak, nonatomic) IBOutlet UIView *topView;
-@property (weak, nonatomic) IBOutlet UILabel *refundMoney;
+
 @property (weak, nonatomic) IBOutlet UILabel *refundTypeL;
 @property (weak, nonatomic) IBOutlet UILabel *refundTypeR;
 

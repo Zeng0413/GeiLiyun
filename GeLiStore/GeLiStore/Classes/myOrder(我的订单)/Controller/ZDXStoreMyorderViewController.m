@@ -35,6 +35,8 @@ static NSString *myOrderCellID = @"MyOrderCell";
 @property (assign, nonatomic) NSInteger page;
 
 @property (copy, nonatomic) NSString *urlStr;
+
+@property (assign, nonatomic) BOOL isAppraise;
 @end
 
 @implementation ZDXStoreMyorderViewController
@@ -59,7 +61,8 @@ static NSString *myOrderCellID = @"MyOrderCell";
         __weak typeof(self) selfVc = self;
         _topView.block = ^(NSInteger tag) {
             [selfVc.tableView.mj_header beginRefreshing];
-
+            
+            selfVc.isAppraise = NO;
             if (tag == 0) { // 加载全部订单
                 selfVc.urlStr = @"api/v1.Orders/allOrders";
             }else if (tag == 1){ // 待付款
@@ -69,6 +72,7 @@ static NSString *myOrderCellID = @"MyOrderCell";
             }else if (tag == 3){ // 待收货
                 selfVc.urlStr = @"api/v1.Orders/waitReceiptByPage";
             }else if (tag == 4){ // 待评价
+                selfVc.isAppraise = YES;
                 selfVc.urlStr = @"api/v1.Orders/waitAppraiseByPage";
             }
             [selfVc reloadOrder];
@@ -199,8 +203,13 @@ static NSString *myOrderCellID = @"MyOrderCell";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.orderArr.count > 0) {
-        ZDXStoreOrderModel *orderModel = self.orderArr[section];
-        return orderModel.list.count;
+        if (self.isAppraise) {
+            return 1;
+        }else{
+            ZDXStoreOrderModel *orderModel = self.orderArr[section];
+            return orderModel.list.count;
+        }
+        
     }
     return 1;
 }
@@ -209,6 +218,8 @@ static NSString *myOrderCellID = @"MyOrderCell";
     
     if (self.orderArr.count>0) {
         ZDXStoreMyOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:myOrderCellID];
+        cell.isAppraise = self.isAppraise;
+        cell.row = indexPath.row;
         cell.orderModel = self.orderArr[indexPath.section];
         return cell;
     }

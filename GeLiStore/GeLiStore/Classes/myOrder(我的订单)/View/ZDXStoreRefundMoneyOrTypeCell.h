@@ -10,4 +10,5 @@
 
 @interface ZDXStoreRefundMoneyOrTypeCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *refundMoney;
 @end

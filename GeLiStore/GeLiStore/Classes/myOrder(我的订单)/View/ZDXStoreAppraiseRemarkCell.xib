@@ -37,7 +37,7 @@
                                     <constraint firstAttribute="width" constant="15" id="QCR-L1-vyF"/>
                                     <constraint firstAttribute="height" constant="15" id="Wtn-Zh-HnS"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="星星评分前"/>
+                                <state key="normal" title="Button" image="星星评分后"/>
                                 <connections>
                                     <action selector="startBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mi3-qW-zmo"/>
                                 </connections>
@@ -48,7 +48,7 @@
                                     <constraint firstAttribute="height" constant="15" id="oNl-sR-3Ox"/>
                                     <constraint firstAttribute="width" constant="15" id="u0b-9j-5h6"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="星星评分前"/>
+                                <state key="normal" title="Button" image="星星评分后"/>
                                 <connections>
                                     <action selector="startBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bnd-co-2hD"/>
                                 </connections>
@@ -59,7 +59,7 @@
                                     <constraint firstAttribute="width" constant="15" id="9fV-h4-7HL"/>
                                     <constraint firstAttribute="height" constant="15" id="GJF-2T-B7Z"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="星星评分前"/>
+                                <state key="normal" title="Button" image="星星评分后"/>
                                 <connections>
                                     <action selector="startBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="to8-cY-1X2"/>
                                 </connections>
@@ -70,7 +70,7 @@
                                     <constraint firstAttribute="width" constant="15" id="NH1-gj-7p1"/>
                                     <constraint firstAttribute="height" constant="15" id="W5c-ID-nVk"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="星星评分前"/>
+                                <state key="normal" title="Button" image="星星评分后"/>
                                 <connections>
                                     <action selector="startBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="THK-Sp-K7p"/>
                                 </connections>
@@ -81,7 +81,7 @@
                                     <constraint firstAttribute="height" constant="15" id="0p5-DU-eFD"/>
                                     <constraint firstAttribute="width" constant="15" id="ahd-fB-l54"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="星星评分前"/>
+                                <state key="normal" title="Button" image="星星评分后"/>
                                 <connections>
                                     <action selector="startBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ESj-Jh-YVf"/>
                                 </connections>
@@ -118,6 +118,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="星星评分前" width="15" height="15"/>
+        <image name="星星评分后" width="15" height="15"/>
     </resources>
 </document>

@@ -106,6 +106,7 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
         params[@"goodsId"] = ids;
         params[@"num"] = @(self.dataList.count);
         params[@"orderSrc"] = @4;
+        params[@"isInvoice"] = @0;
         
         NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/submit",hostUrl];
         [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

@@ -36,17 +36,32 @@
 
 -(void)setOrderModel:(ZDXStoreOrderModel *)orderModel{
     _orderModel = orderModel;
-    ZDXStoreGoodsModel *goodsModel = [orderModel.list firstObject];
+    if (!self.isAppraise) {
+        ZDXStoreGoodsModel *goodsModel = orderModel.list[self.row];
+        
+        [self.goodsImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,goodsModel.goodsImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
+        
+        self.goodsName.text = goodsModel.goodsName;
+        self.goodsDetail.text = orderModel.deliverType;
+        self.goodsPrice.text = [NSString stringWithFormat:@"¥%@",goodsModel.goodsPrice];
+        
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"\" "];
+        NSArray *strList = [orderModel.createTime componentsSeparatedByCharactersInSet:set];
+        self.orderTime.text = strList[0];
+    }else{
+        
+        
+        [self.goodsImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,orderModel.goodsImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
+        
+        self.goodsName.text = orderModel.goodsName;
+        self.goodsDetail.text = orderModel.deliverType;
+        self.goodsPrice.text = [NSString stringWithFormat:@"¥%@",orderModel.goodsMoney];
+        
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"\" "];
+        NSArray *strList = [orderModel.createTime componentsSeparatedByCharactersInSet:set];
+        self.orderTime.text = strList[0];
+    }
     
-    [self.goodsImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,goodsModel.goodsImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
-    
-    self.goodsName.text = goodsModel.goodsName;
-    self.goodsDetail.text = orderModel.deliverType;
-    self.goodsPrice.text = [NSString stringWithFormat:@"¥%@",goodsModel.goodsPrice];
-    
-    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"\" "];
-    NSArray *strList = [orderModel.createTime componentsSeparatedByCharactersInSet:set];
-    self.orderTime.text = strList[0];
     
         
 }

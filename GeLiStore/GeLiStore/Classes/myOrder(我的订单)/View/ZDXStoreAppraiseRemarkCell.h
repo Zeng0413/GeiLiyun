@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ZDXTextView.h"
 
+typedef void(^appraiseRemarkCellBlock)(NSInteger goodsScore);
 @interface ZDXStoreAppraiseRemarkCell : UITableViewCell
 @property (strong, nonatomic) ZDXTextView *textView;
 @property (assign, nonatomic) NSInteger cellH;
+
+@property (copy, nonatomic) appraiseRemarkCellBlock block;
 @end
