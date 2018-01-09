@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZDXStoreGoodsAppraiseBottomViewDelegate <NSObject>
+
+-(void)submitAppraiseClick;
+
+@end
+
 @interface ZDXStoreGoodsAppraiseBottomView : UIView
 
+@property (weak, nonatomic) id<ZDXStoreGoodsAppraiseBottomViewDelegate>delegate;
 @end

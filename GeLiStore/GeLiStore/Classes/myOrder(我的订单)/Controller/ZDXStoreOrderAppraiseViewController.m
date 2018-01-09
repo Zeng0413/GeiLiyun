@@ -8,6 +8,7 @@
 
 #import "ZDXStoreOrderAppraiseViewController.h"
 #import "ZDXComnous.h"
+#import "ZDXStoreGoodsModel.h"
 #import "ZDXStoreOrderDetailModel.h"
 #import "ZDXStoreRefundGoodsCell.h"
 #import "ZDXStoreAppraiseRemarkCell.h"
@@ -23,7 +24,7 @@ static NSString *refundGoodsCellID = @"RefundGoodsCell";
 static NSString *goodsAppraiseDescCellID = @"goodsAppraiseDescCell";
 static NSString *appraiseScoreCellID = @"AppraiseScoreCell";
 
-@interface ZDXStoreOrderAppraiseViewController ()<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIActionSheetDelegate, MShowAllGroupDelegate, ZDXStoreAppraiseScoreCellDelegate>
+@interface ZDXStoreOrderAppraiseViewController ()<UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UIActionSheetDelegate, MShowAllGroupDelegate, ZDXStoreAppraiseScoreCellDelegate, ZDXStoreGoodsAppraiseBottomViewDelegate>
 
 @property (weak, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) ZDXStoreAppraiseRemarkCell *appraiseRemarkCell;
@@ -61,7 +62,11 @@ static NSString *appraiseScoreCellID = @"AppraiseScoreCell";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.goodsScore = 5;
+    self.deliverGoodsSpeedScore = 1;
+    self.WlSpeedScore = 1;
+    self.serviceAttitudeScore = 1;
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -94,10 +99,83 @@ static NSString *appraiseScoreCellID = @"AppraiseScoreCell";
 
 -(void)setupBottomView{
     ZDXStoreGoodsAppraiseBottomView *bottomView = [[ZDXStoreGoodsAppraiseBottomView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 106, SCREEN_WIDTH, 106)];
+    bottomView.delegate = self;
     [self.view addSubview:bottomView];
 }
 
--(void)submit{
+#pragma mark - 提交评价
+-(void)submitAppraiseClick{
+    [MBProgressHUD showMessage:@""];
+    // 上传图片
+    [self uploadImg];
+}
+
+// 上传图片
+-(void)uploadImg{
+    if (self.photoArray.count>0) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSDictionary *params = @{@"dir" : @"appraises"};
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Uploads/uploadPics",hostUrl];
+        [manager POST:urlStr parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            for (int i = 0; i<self.photoArray.count; i++) {
+                UIImage *image = _photoArray[i];
+                NSData *photoData = [NSData imageData:image];
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                formatter.dateFormat =@"yyyyMMddHHmmss";
+                NSString *str = [formatter stringFromDate:[NSDate date]];
+                NSString *fileName = [NSString stringWithFormat:@"%@.jpg",str];
+                // 注意：这个name（我的后台给的字段是file）一定要和后台的参数字段一样 否则不成功
+                [formData appendPartWithFileData:photoData name:@"file[]" fileName:fileName mimeType:@"image/jpg"];
+            }
+            
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            NSLog(@"uploadProgress = %@",uploadProgress);
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"code"] integerValue] == 1) {
+                [MBProgressHUD hideHUD];
+                [self orderAppraiseSubmit:responseObject[@"data"][@"savePath"]];
+            }else{
+                [MBProgressHUD showError:@"图片上传失败"];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+            UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:@"网络请求失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [warnningVC show];
+        }];
+    }
+}
+
+-(void)orderAppraiseSubmit:(NSArray *)savePaths{
+    NSString *imagesStr = @"";
+    
+    for (NSString *imgStr in savePaths) {
+        imagesStr = [imagesStr stringByAppendingString:[NSString stringWithFormat:@"%@,",imgStr]];
+    }
+    
+    imagesStr = [imagesStr substringToIndex:([imagesStr length] - 1)];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    ZDXStoreGoodsModel *goodsModel = [self.orderDetailModel.goods firstObject];
+    params[@"orderId"] = @(self.orderDetailModel.orderId);
+    params[@"goodsId"] = @(goodsModel.goodsId);
+    params[@"userId"] = @([ZDXStoreUserModelTool userModel].userId);
+    params[@"goodsScore"] = @(self.goodsScore);
+    params[@"timeScore"] = @(self.deliverGoodsSpeedScore);
+    params[@"serviceScore"] = @(self.serviceAttitudeScore);
+    params[@"content"] = self.appraiseRemarkCell.textView.text;
+    params[@"images"] = imagesStr;
+    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.GoodsAppraises/add",hostUrl];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [MBProgressHUD hideHUD];
+        if ([responseObject[@"code"] integerValue] == 1) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
+        UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:@"网络请求失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [warnningVC show];
+    }];
     
 }
 

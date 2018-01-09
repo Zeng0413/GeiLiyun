@@ -61,6 +61,8 @@
 }
 
 -(void)submit{
-    
+    if ([self.delegate respondsToSelector:@selector(submitAppraiseClick)]) {
+        [self.delegate submitAppraiseClick];
+    }
 }
 @end

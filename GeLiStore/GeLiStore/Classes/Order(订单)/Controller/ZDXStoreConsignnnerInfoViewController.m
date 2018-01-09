@@ -151,6 +151,7 @@ static NSString *NoConsigneeInfoCellID = @"NoConsigneeInfoCell";
 }
 
 
+
 -(void)addNewAddress{
     ZDXStoreEditAddressViewController *vc = [[ZDXStoreEditAddressViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -182,7 +183,9 @@ static NSString *NoConsigneeInfoCellID = @"NoConsigneeInfoCell";
         }];
         
     }else if ([typeStr isEqualToString:@"编辑"]){
-        
+        ZDXStoreEditAddressViewController *vc = [[ZDXStoreEditAddressViewController alloc] init];
+        vc.consigneeInfoModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
         [MBProgressHUD showMessage:@""];
         

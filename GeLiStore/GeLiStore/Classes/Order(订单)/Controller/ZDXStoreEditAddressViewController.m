@@ -106,21 +106,37 @@ static NSString *setupDefaultAddressCellID = @"setupDefaultAddressCell";
             return;
         }
     }
-    
     [MBProgressHUD showMessage:@"正在保存..."];
     ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"areaId"] = @(self.areaId);
+    
+    if (self.areaId) {
+        params[@"areaId"] = @(self.areaId);
+    }else{
+        params[@"areaId"] = @(self.consigneeInfoModel.areaId);
+    }
     params[@"userId"] = @(userModel.userId);
     params[@"userAddress"] = self.remakeCell.textView.text;
     params[@"userName"] = self.editAddressFirstCell.conginnerTextField.text;
     params[@"userPhone"] = self.editAddressFirstCell.phoneNumTextField.text;
     params[@"isDefault"] = @(self.isDefault);
     
-    NSLog(@"%@",params);
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Useraddress/add",hostUrl];
+    NSString *urlStr = @"";
+    if (self.consigneeInfoModel) {
+        urlStr = [NSString stringWithFormat:@"%@api/v1.Useraddress/toEdit",hostUrl];
+    }else{
+        urlStr = [NSString stringWithFormat:@"%@api/v1.Useraddress/add",hostUrl];
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD hideHUD];
         if ([responseObject[@"code"] integerValue] == 1) {
@@ -142,12 +158,20 @@ static NSString *setupDefaultAddressCellID = @"setupDefaultAddressCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         ZDXStoreEditAddressFirstCell *cell = [tableView dequeueReusableCellWithIdentifier:EditAddressFirstCellID];
+        if (self.consigneeInfoModel) {
+            cell.conginnerTextField.text = self.consigneeInfoModel.userName;
+            cell.phoneNumTextField.text = self.consigneeInfoModel.userPhone;
+            cell.addressLabel.text = self.consigneeInfoModel.areaName;
+        }
         cell.delegate = self;
         self.editAddressFirstCell = cell;
         return cell;
     }
     if (indexPath.row == 1) {
         ZDXStoreAddressRemakeCell *cell = [tableView dequeueReusableCellWithIdentifier:addressRemakeCellID];
+        if (self.consigneeInfoModel) {
+            cell.textView.text = self.consigneeInfoModel.userAddress;
+        }
         self.remakeCell = cell;
         return cell;
     }

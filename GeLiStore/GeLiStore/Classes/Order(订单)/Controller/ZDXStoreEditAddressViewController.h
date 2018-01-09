@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZDXStoreConsigneeInfoModel.h"
 
 @interface ZDXStoreEditAddressViewController : UIViewController
 
+@property (strong, nonatomic) ZDXStoreConsigneeInfoModel *consigneeInfoModel;
 @end

@@ -39,4 +39,19 @@
     self.tableView = tableView;
     
 }
+
+#pragma mark - tableView delegate
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 20;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *indenitifer = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:indenitifer];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:indenitifer];
+    }
+    cell.textLabel.text = @"zdx";
+    return cell;
+}
 @end
