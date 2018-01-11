@@ -179,7 +179,8 @@ static NSString *goodsDescCellID = @"goodsDescCell";
     }else if (indexPath.row == 1){
         return 155;
     }else if (indexPath.row == 2){
-        return self.goodsDescCell.cellH;
+//        return self.goodsDescCell.cellH;
+        return self.goodsDescCell.goodsDescWebView.height + 40;
     }
     return 0;
 }

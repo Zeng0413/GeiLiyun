@@ -45,38 +45,29 @@
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4m-ZF-jyM">
-                        <rect key="frame" x="0.0" y="41" width="320" height="454.5"/>
-                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </webView>
                 </subviews>
                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="nFF-3c-VcB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="1vX-Af-x6P"/>
-                    <constraint firstAttribute="trailing" secondItem="T4m-ZF-jyM" secondAttribute="trailing" id="44U-1d-3cb"/>
                     <constraint firstItem="tuQ-zn-UXh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6qL-Bs-GWc"/>
                     <constraint firstItem="SE2-W5-SRc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="7Qp-8c-RJl"/>
                     <constraint firstItem="SE2-W5-SRc" firstAttribute="top" secondItem="x6l-kk-HwA" secondAttribute="bottom" id="BWk-cu-xyN"/>
                     <constraint firstAttribute="trailing" secondItem="x6l-kk-HwA" secondAttribute="trailing" id="M2N-La-j7S"/>
                     <constraint firstItem="SE2-W5-SRc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Qbu-yE-4h0"/>
-                    <constraint firstAttribute="bottom" secondItem="T4m-ZF-jyM" secondAttribute="bottom" id="RA1-H4-yFQ"/>
                     <constraint firstItem="x6l-kk-HwA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="VNk-5n-oGJ"/>
                     <constraint firstAttribute="trailing" secondItem="SE2-W5-SRc" secondAttribute="trailing" id="WBG-DU-Alx"/>
-                    <constraint firstItem="T4m-ZF-jyM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Wzl-Vm-vCU"/>
                     <constraint firstItem="nFF-3c-VcB" firstAttribute="leading" secondItem="tuQ-zn-UXh" secondAttribute="trailing" id="ctI-4Q-C1H"/>
                     <constraint firstItem="x6l-kk-HwA" firstAttribute="leading" secondItem="nFF-3c-VcB" secondAttribute="trailing" id="dGK-cV-wrj"/>
                     <constraint firstItem="SE2-W5-SRc" firstAttribute="top" secondItem="tuQ-zn-UXh" secondAttribute="bottom" id="ggq-wg-3le"/>
                     <constraint firstItem="nFF-3c-VcB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jKO-oH-r3h"/>
                     <constraint firstItem="tuQ-zn-UXh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mT5-7x-z0r"/>
-                    <constraint firstItem="T4m-ZF-jyM" firstAttribute="top" secondItem="SE2-W5-SRc" secondAttribute="bottom" id="uZe-zB-88O"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="goodsDescBtn" destination="tuQ-zn-UXh" id="s9e-iJ-NQt"/>
-                <outlet property="goodsDescWebView" destination="T4m-ZF-jyM" id="c20-eM-qUf"/>
                 <outlet property="goodsParameterBtn" destination="x6l-kk-HwA" id="EHm-Pb-aEO"/>
             </connections>
-            <point key="canvasLocation" x="-284" y="-228"/>
+            <point key="canvasLocation" x="-420" y="-406"/>
         </tableViewCell>
     </objects>
 </document>

@@ -13,4 +13,5 @@
 @property (copy, nonatomic) NSString *htmlStr;
 
 @property (assign, nonatomic) NSInteger cellH;
+@property (strong, nonatomic) UIWebView *goodsDescWebView;
 @end

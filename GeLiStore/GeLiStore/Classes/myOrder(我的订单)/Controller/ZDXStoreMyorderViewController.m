@@ -225,7 +225,7 @@ static NSString *myOrderCellID = @"MyOrderCell";
     }
     ZDXStoreNoCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:noCellID];
     cell.Img.image = [UIImage imageNamed:@"无订单"];
-    cell.title.text = @"您还没有订单";
+    cell.title.text = @"您还没有订单～";
     cell.ImgW.constant = 187;
     cell.ImgH.constant = 180;
     return cell;

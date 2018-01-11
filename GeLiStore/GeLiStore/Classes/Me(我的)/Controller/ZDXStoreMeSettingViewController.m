@@ -1,27 +1,26 @@
 //
-//  ZDXStoreSettingViewController.m
+//  ZDXStoreMeSettingViewController.m
 //  GeLiStore
 //
-//  Created by user99 on 2017/11/6.
-//  Copyright © 2017年 user99. All rights reserved.
+//  Created by user99 on 2018/1/10.
+//  Copyright © 2018年 user99. All rights reserved.
 //
 
-#import "ZDXStoreSettingViewController.h"
+#import "ZDXStoreMeSettingViewController.h"
 #import "ZDXComnous.h"
 #import "ZDXStoreSettingCell.h"
 
 static NSString *settingCellID = @"settingCell";
-@interface ZDXStoreSettingViewController ()
-
+@interface ZDXStoreMeSettingViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSArray *array1;
 @property (strong, nonatomic) NSArray *array2;
+@property (weak, nonatomic) UITableView *tableView;
 @end
 
-@implementation ZDXStoreSettingViewController
+@implementation ZDXStoreMeSettingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.title = @"设置";
     NSMutableDictionary *dict =[NSMutableDictionary dictionary];
     dict[@"image"] = @"地址图标";
@@ -36,22 +35,11 @@ static NSString *settingCellID = @"settingCell";
     dict2[@"image"] = @"联系我们图标";
     dict2[@"title"] = @"联系我们";
     self.array2 = @[dict1, dict2];
-
-    self.tableView.backgroundColor = colorWithString(@"#f4f4f4");
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"ZDXStoreSettingCell" bundle:nil] forCellReuseIdentifier:settingCellID];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    btn.frame = CGRectMake(0, 0, 80, 40);
-//    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [btn setTitle:@"退出登录" forState:UIControlStateNormal];
-//    btn.titleLabel.font = [UIFont systemFontOfSize:15];
-//    [btn addTarget:self action:@selector(editButtonAction) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-//    self.navigationItem.rightBarButtonItem=item;
+    [self setupTableView];
     
     [self setupBottomView];
+
 }
 
 -(void)setupBottomView{
@@ -65,25 +53,32 @@ static NSString *settingCellID = @"settingCell";
     bottomBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bottomBtn addTarget:self action:@selector(loginOut) forControlEvents:UIControlEventTouchUpInside];
-    [self.tableView addSubview:bottomBtn];
+    [self.view addSubview:bottomBtn];
 }
 
 // 退出登陆
 -(void)loginOut{
+    [MBProgressHUD showMessage:@""];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUD];
         [ZDXStoreUserModelTool deleteFile];
         [self.navigationController popViewControllerAnimated:YES];
     });
-
+    
 }
-//-(void)editButtonAction{
-//    [ZDXStoreUserModelTool deleteFile];
-//    
-//}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)setupTableView{
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 44) style:UITableViewStylePlain];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.showsVerticalScrollIndicator = NO;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = colorWithString(@"#f4f4f4");
+    
+    [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreSettingCell" bundle:nil] forCellReuseIdentifier:settingCellID];
+    [self.view addSubview:tableView];
+    self.tableView = tableView;
 }
 
 #pragma mark - Table view data source
@@ -93,7 +88,7 @@ static NSString *settingCellID = @"settingCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     if (section == 0) {
         return self.array1.count;
     }else{
@@ -129,5 +124,4 @@ static NSString *settingCellID = @"settingCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 21;
 }
-
 @end

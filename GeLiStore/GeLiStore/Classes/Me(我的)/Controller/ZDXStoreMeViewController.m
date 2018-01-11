@@ -11,12 +11,14 @@
 #import "ZDXStoreMeHeaderView.h"
 #import "ZDXStoreMeOrderAndServiceCell.h"
 #import "ZDXStoreMeInfoViewController.h"
-#import "ZDXStoreSettingViewController.h"
+#import "ZDXStoreMeSettingViewController.h"
 #import "ZDXStoreLoginViewController.h"
 #import "ZDXStoreMeCollectionViewController.h"
 #import "ZDXStoreMyorderViewController.h"
 #import "ZDXStoreDeductionTicketViewController.h"
 #import "ZDXStoreMyShareViewController.h"
+#import "ZDXStoreMyAppraiseViewController.h"
+
 static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 @interface ZDXStoreMeViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreMeHeaderViewDelegate, ZDXStoreMeOrderAndServiceCellDelegate>
 
@@ -148,7 +150,7 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 }
 
 -(void)settingClick{
-    [self.navigationController pushViewController:[[ZDXStoreSettingViewController alloc] init] animated:YES];
+    [self.navigationController pushViewController:[[ZDXStoreMeSettingViewController alloc] init] animated:YES];
 }
 
 #pragma mark - cell delegate
@@ -194,6 +196,9 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
             [self.navigationController pushViewController:vc animated:YES];
         }else if ([str isEqualToString:@"我的共享"]){
             ZDXStoreMyShareViewController *vc = [[ZDXStoreMyShareViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if ([str isEqualToString:@"我的评价"]){
+            ZDXStoreMyAppraiseViewController *vc = [[ZDXStoreMyAppraiseViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

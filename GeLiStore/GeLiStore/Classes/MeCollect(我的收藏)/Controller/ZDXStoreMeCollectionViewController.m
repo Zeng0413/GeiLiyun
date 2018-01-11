@@ -228,7 +228,7 @@ static NSString *collectionStoreCellID = @"CollectionStoreCell";
     
     ZDXStoreNoCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:noCollectionCellID];
     cell.Img.image = [UIImage imageNamed:@"收藏为空"];
-    cell.title.text = @"您还没有收藏商品";
+    cell.title.text = @"您还没有收藏商品～";
     return cell;
     
 }
