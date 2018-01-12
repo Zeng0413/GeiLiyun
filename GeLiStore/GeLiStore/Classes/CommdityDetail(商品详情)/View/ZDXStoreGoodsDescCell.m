@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *goodsDescBtn;  // 商品详情按钮
 @property (weak, nonatomic) IBOutlet UIButton *goodsParameterBtn; // 规格参数按钮
 
-
+@property (assign, nonatomic) NSInteger num;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewH;
 
 @end
@@ -77,12 +77,16 @@
 //    self.cellH = contentSize.height + 40;
 //    
 //    self.webViewH.constant = contentSize.height;
+    self.num++;
     //获取到webview的高度
     CGFloat height = [[self.goodsDescWebView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
     self.goodsDescWebView.frame = CGRectMake(self.goodsDescWebView.frame.origin.x,self.goodsDescWebView.frame.origin.y, SCREEN_WIDTH, height);
     
-    // 发出通知
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"NSNotificationWebViewDidFinishLoad" object:nil];
+    if (self.num==2) {
+        // 发出通知
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"NSNotificationWebViewDidFinishLoad" object:nil];
+    }
+    
 }
 
 @end
