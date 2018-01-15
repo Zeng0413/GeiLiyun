@@ -59,8 +59,8 @@
 -(void)setupShopCarBottomViewWithTotalPrice:(CGFloat)totalPrice totalCount:(NSInteger)totalCount isAllSelected:(BOOL)isAllSelected{
     self.allSelectButton.selected = isAllSelected;
     
-    self.totalPriceLable.text = [NSString stringWithFormat:@"合计：￥%.f",totalPrice];
-    [self renderWithTotalPrice:[NSString stringWithFormat:@"￥%.f", totalPrice]];
+    self.totalPriceLable.text = [NSString stringWithFormat:@"合计：￥%.2f",totalPrice];
+    [self renderWithTotalPrice:[NSString stringWithFormat:@"￥%.2f", totalPrice]];
     
     [self.settleButton setTitle:[NSString stringWithFormat:@"结算(%ld)", totalCount] forState:UIControlStateNormal];
     if (totalCount > 0) {

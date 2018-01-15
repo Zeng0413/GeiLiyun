@@ -32,10 +32,10 @@
     
 }
 
--(void)setPayPrice:(NSInteger)payPrice{
+-(void)setPayPrice:(CGFloat)payPrice{
     _payPrice = payPrice;
     
-    self.price.text = [NSString stringWithFormat:@"¥ %ld",payPrice];
+    self.price.text = [NSString stringWithFormat:@"¥ %.2f",payPrice];
 }
 
 // 支付宝支付

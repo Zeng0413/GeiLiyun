@@ -13,7 +13,8 @@
 #import "ZDXStoreShopModel.h"
 #import "ZDXStoreSelectedTopView.h"
 #import "ZDXStoreShopGoodsCell.h"
-
+#import "ZDXStoreLoginViewController.h"
+#import "ZDXStoreCommdityDetailController.h"
 @interface ZDXStoreShopViewController ()<UITableViewDelegate, UITableViewDataSource, ZDXStoreSelectedTopViewDelegate, ZDXStoreShopGoodsCellDelegate, ZDXStoreShopHeaderViewDelegate>
 @property (weak, nonatomic) UITableView *tableView;
 
@@ -44,6 +45,7 @@
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
 }
 
 
@@ -51,7 +53,17 @@
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [self setStatusBarBackgroundColor:ZDXColor(23, 16, 30)];
+}
 
+//设置状态栏颜色
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 - (void)viewDidLoad {
@@ -197,6 +209,7 @@
     return self.shopGoodsCell.cellH;
 }
 
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     ZDXStoreSelectedTopView *topView = [[ZDXStoreSelectedTopView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 55)];
     topView.list = @[@"所有",@"新品",@"热销",@"促销"];
@@ -235,12 +248,18 @@
             }];
             
         }
+    }else{
+        ZDXStoreLoginViewController *vc = [[ZDXStoreLoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
 #pragma mark 商品选择
 -(void)selectedClickGoodsModel:(ZDXStoreGoodsModel *)goodsModel{
-
+    ZDXStoreCommdityDetailController *vc = [[ZDXStoreCommdityDetailController alloc] init];
+    vc.goodsModel = goodsModel;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - topView delegate
 -(void)selectedTopViewSelected:(NSInteger)type{

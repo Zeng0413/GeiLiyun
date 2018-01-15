@@ -35,7 +35,7 @@
     headerView.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, headerView.width, headerView.height) delegate:headerView placeholderImage:nil];
     headerView.cycleScrollView.backgroundColor = [UIColor whiteColor];
     headerView.cycleScrollView.placeholderImage = [UIImage imageNamed:@"首页-顶部banner-加载"];
-    headerView.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+    headerView.cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
     headerView.cycleScrollView.autoScrollTimeInterval = 2.5;
     headerView.cycleScrollView.currentPageDotColor = colorWithString(@"#e93644");
     headerView.cycleScrollView.pageDotColor = [UIColor whiteColor];
@@ -166,6 +166,4 @@
 //-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
 //    [self initTimer];
 //}
-
-
 @end

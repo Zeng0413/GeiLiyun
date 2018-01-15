@@ -46,7 +46,7 @@
             NSString *productName = [NSString stringWithFormat:@"%@%@", brandModel.shopName, productModel.goodsName];
             NSString *productSize = [NSString stringWithFormat:@"库存：%ld", productModel.goodsStock];
             
-            [cell setupShopCarCellWithProductURL:productModel.goodsImg productName:productName productSize:productSize productPrice:productModel.shopPrice.integerValue productCount:productModel.cartNum productStock:productModel.cartNum productSelected:productModel.isSelected];
+            [cell setupShopCarCellWithProductURL:productModel.goodsImg productName:productName productSize:productSize productPrice:productModel.shopPrice.floatValue productCount:productModel.cartNum productStock:productModel.cartNum productSelected:productModel.isSelected];
             
         }
         

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,13 +19,14 @@
                     <rect key="frame" x="70" y="260" width="235" height="130"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="提交成功" translatesAutoresizingMaskIntoConstraints="NO" id="5i8-WY-fFs">
-                            <rect key="frame" x="95" y="25" width="45" height="45"/>
+                            <rect key="frame" x="92.5" y="25" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="45" id="xqm-6G-q6S"/>
+                                <constraint firstAttribute="width" constant="50" id="Wwv-6D-O71"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="jYO-9l-fwH"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提交成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLl-tU-fbi">
-                            <rect key="frame" x="0.0" y="90" width="235" height="20"/>
+                            <rect key="frame" x="0.0" y="95" width="235" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="YWn-5u-gHb"/>
                             </constraints>
@@ -41,8 +42,7 @@
                         <constraint firstItem="5i8-WY-fFs" firstAttribute="top" secondItem="RK8-qn-Wtt" secondAttribute="top" constant="25" id="Y8N-dt-paS"/>
                         <constraint firstItem="DLl-tU-fbi" firstAttribute="top" secondItem="5i8-WY-fFs" secondAttribute="bottom" constant="20" id="fMc-hM-aJo"/>
                         <constraint firstItem="DLl-tU-fbi" firstAttribute="leading" secondItem="RK8-qn-Wtt" secondAttribute="leading" id="p8V-Rg-1lw"/>
-                        <constraint firstItem="5i8-WY-fFs" firstAttribute="leading" secondItem="RK8-qn-Wtt" secondAttribute="leading" constant="95" id="qnU-TS-270"/>
-                        <constraint firstAttribute="trailing" secondItem="5i8-WY-fFs" secondAttribute="trailing" constant="95" id="qzN-31-cI2"/>
+                        <constraint firstItem="5i8-WY-fFs" firstAttribute="centerX" secondItem="RK8-qn-Wtt" secondAttribute="centerX" id="wWP-9l-wSc"/>
                     </constraints>
                 </view>
             </subviews>

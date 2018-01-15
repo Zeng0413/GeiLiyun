@@ -19,6 +19,7 @@ static NSString *noCellID = @"noCellID";
 @property (weak, nonatomic) UITableView *tableView;
 @property (assign, nonatomic) NSInteger page;
 
+@property (strong, nonatomic) ZDXStoreMyAppraiseCell *appraiseCell;
 @property (strong, nonatomic) NSMutableArray *dataList;
 @end
 
@@ -53,12 +54,26 @@ static NSString *noCellID = @"noCellID";
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.GoodsAppraises/userAppraise",hostUrl];
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        self.dataList = [ZDXStoreAppraiseModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"data"]];
+        NSArray *appraiseArr = [ZDXStoreAppraiseModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"data"]];
+        
+        // 将appraise数组 转为appraiseFrames数组
+        self.dataList = [self appraiseFrameWithAppraiseModel:appraiseArr];
+        
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+}
+
+-(NSMutableArray *)appraiseFrameWithAppraiseModel:(NSArray *)appraiseArr{
+    NSMutableArray *frames = [NSMutableArray array];
+    for (ZDXStoreAppraiseModel *appraise in appraiseArr) {
+        ZDXStoreMyAppraiseFrames *f = [[ZDXStoreMyAppraiseFrames alloc] init];
+        f.appraiseModel = appraise;
+        [frames addObject:f];
+    }
+    return frames;
 }
 
 -(void)setupTableView{
@@ -99,6 +114,8 @@ static NSString *noCellID = @"noCellID";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataList.count > 0) {
         ZDXStoreMyAppraiseCell *cell = [ZDXStoreMyAppraiseCell cellWithAppraiseTableView:tableView];
+        cell.myAppraiseFrames = self.dataList[indexPath.row];
+        self.appraiseCell = cell;
         return cell;
     }
     
@@ -119,7 +136,8 @@ static NSString *noCellID = @"noCellID";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataList.count>0) {
-        
+        ZDXStoreMyAppraiseFrames *model = self.dataList[indexPath.row];
+        return model.cellH;
     }
     return SCREEN_HEIGHT - 64 - 55;
 }

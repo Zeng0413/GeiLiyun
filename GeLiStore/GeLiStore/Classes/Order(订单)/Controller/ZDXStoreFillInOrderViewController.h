@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) NSArray *dataList;
 
-@property (assign, nonatomic) NSInteger goodsTotalMoney;
+@property (assign, nonatomic) CGFloat goodsTotalMoney;
 
 @property (assign, nonatomic) NSInteger isCarts;
 @end

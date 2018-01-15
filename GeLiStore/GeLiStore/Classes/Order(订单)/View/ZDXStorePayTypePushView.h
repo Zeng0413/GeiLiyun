@@ -21,5 +21,5 @@
 
 @property (weak, nonatomic) id<ZDXStorePayTypePushViewDelegate> delegate;
 
-@property (assign, nonatomic) NSInteger payPrice;
+@property (assign, nonatomic) CGFloat payPrice;
 @end

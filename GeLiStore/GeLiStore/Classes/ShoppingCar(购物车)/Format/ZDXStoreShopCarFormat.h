@@ -18,7 +18,7 @@
 
 -(void)shopCarFormatSettleForSelectedProduct:(NSArray *)selectedProducts;
 
--(void)shopCarFormatWillDeleteSelectedProducts:(NSArray *)selectedProducts;
+-(void)shopcartFormatWillDeleteSelectedProducts:(NSArray *)selectedProducts;
 
 -(void)shopCartFormatHasDeleteAllProduct;
 

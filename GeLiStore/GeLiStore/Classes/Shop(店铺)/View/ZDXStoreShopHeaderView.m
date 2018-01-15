@@ -9,7 +9,7 @@
 #import "ZDXStoreShopHeaderView.h"
 #import "ZDXComnous.h"
 #import "ZDXStoreShopModel.h"
-
+#import "ZDXStoreUserModel.h"
 @interface ZDXStoreShopHeaderView ()
 
 @property (weak, nonatomic) UIImageView *shopImg;
@@ -194,19 +194,23 @@
 }
 
 -(void)shopCollectionClick:(UIButton *)button{
-    self.isSelected = !self.isSelected;
-    self.shopCollectionBtn.selected = self.isSelected;
-    if (self.isSelected) {
-        self.shopCollectionBtn.backgroundColor = [UIColor whiteColor];
-        [self.shopCollectionBtn setTitle:@"已收藏" forState:UIControlStateNormal];
-        [self.shopCollectionBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
-    }else{
-        [self.shopCollectionBtn setBackgroundColor:colorWithString(@"#e63944")];
+    ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
+    if (userModel) {
+        self.isSelected = !self.isSelected;
+        self.shopCollectionBtn.selected = self.isSelected;
+        if (self.isSelected) {
+            self.shopCollectionBtn.backgroundColor = [UIColor whiteColor];
+            [self.shopCollectionBtn setTitle:@"已收藏" forState:UIControlStateNormal];
+            [self.shopCollectionBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
+        }else{
+            [self.shopCollectionBtn setBackgroundColor:colorWithString(@"#e63944")];
+            
+            [self.shopCollectionBtn setTitle:@"收藏店铺" forState:UIControlStateNormal];
+            [self.shopCollectionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
         
-        [self.shopCollectionBtn setTitle:@"收藏店铺" forState:UIControlStateNormal];
-        [self.shopCollectionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+       
     }
-    
     if ([self.delegate respondsToSelector:@selector(addCollectionShopIsSelected:)]) {
         [self.delegate addCollectionShopIsSelected:self.isSelected];
     }

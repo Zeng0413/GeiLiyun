@@ -10,4 +10,7 @@
 
 @interface ZDXStoreStartView : UIView
 
+@property (assign, nonatomic) CGFloat ViewW;
+
+@property (assign, nonatomic) NSInteger score;
 @end

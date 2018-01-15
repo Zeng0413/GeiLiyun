@@ -8,7 +8,7 @@
 
 #import "ZDXStoreFooterView.h"
 #import "ZDXComnous.h"
-
+#import "ZDXStoreUserModel.h"
 @interface ZDXStoreFooterView ()
 
 @end
@@ -108,13 +108,18 @@
 }
 
 -(void)btnClick:(UIButton *)button{
-    self.btnSelected = !self.btnSelected;
     if (button.tag == 3) {
-        NSString *imageStr = self.btnSelected ? @"收藏后" : @"收藏前";
-        self.classifyView.imageView.image = [UIImage imageNamed:imageStr];
+        ZDXStoreUserModel *userModel = [ZDXStoreUserModelTool userModel];
+        if (userModel) {
+            self.btnSelected = !self.btnSelected;
+
+            NSString *imageStr = self.btnSelected ? @"收藏后" : @"收藏前";
+            self.classifyView.imageView.image = [UIImage imageNamed:imageStr];
+            
+            NSString *str = self.btnSelected ? @"已收藏" : @"收藏";
+            self.classifyView.titleStr = str;
+        }
         
-        NSString *str = self.btnSelected ? @"已收藏" : @"收藏";
-        self.classifyView.titleStr = str;
     }
     
     if ([self.delegate respondsToSelector:@selector(footerViewLeftClickType:collectIsSelected:)]) {

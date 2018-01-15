@@ -41,13 +41,25 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     self.navigationController.navigationBar.hidden = NO;
+    [self setStatusBarBackgroundColor:[UIColor clearColor]];
 }
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
+    [self setStatusBarBackgroundColor:ZDXColor(228, 71, 84)];
+}
+
+//设置状态栏颜色
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -156,52 +168,61 @@ static NSString *meOrderAndServiceCellID = @"meOrderAndServiceCell";
 #pragma mark - cell delegate
 
 -(void)toLookMoreOrderWithCell:(UITableViewCell *)cell{
-    if (cell == self.meOrderCell) {
-        ZDXStoreMyorderViewController *vc = [[ZDXStoreMyorderViewController alloc] init];
-        vc.index = 0;
-        [self.navigationController pushViewController:vc animated:YES];
+    if (self.userModel) {
+        if (cell == self.meOrderCell) {
+            ZDXStoreMyorderViewController *vc = [[ZDXStoreMyorderViewController alloc] init];
+            vc.index = 0;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }else{
+        [self.navigationController pushViewController:[[ZDXStoreLoginViewController alloc] init] animated:YES];
     }
+    
 }
 
 -(void)cellSelectedTypeStr:(NSString *)str orderAndService:(ZDXStoreMeOrderAndServiceCell *)cell{
-    
-    if (cell == self.meOrderCell) {
-        CGFloat index;
-    
-        if ([str isEqualToString:@"退货／售后"]) {
-            NSLog(@"%@",str);
-        }else{
-            if ([str isEqualToString:@"待发货"]) {
-                index = 2;
-            }else if ([str isEqualToString:@"待付款"]){
-                index = 1;
-            }else if ([str isEqualToString:@"待收货"]){
-                index = 3;
-            }else {
-                index = 4;
+    if (self.userModel) {
+        if (cell == self.meOrderCell) {
+            CGFloat index;
+            
+            if ([str isEqualToString:@"退货／售后"]) {
+                NSLog(@"%@",str);
+            }else{
+                if ([str isEqualToString:@"待发货"]) {
+                    index = 2;
+                }else if ([str isEqualToString:@"待付款"]){
+                    index = 1;
+                }else if ([str isEqualToString:@"待收货"]){
+                    index = 3;
+                }else {
+                    index = 4;
+                }
+                ZDXStoreMyorderViewController *vc = [[ZDXStoreMyorderViewController alloc] init];
+                vc.index = index;
+                [self.navigationController pushViewController:vc animated:YES];
             }
-            ZDXStoreMyorderViewController *vc = [[ZDXStoreMyorderViewController alloc] init];
-            vc.index = index;
-            [self.navigationController pushViewController:vc animated:YES];
+            
+            
+            
+        }else if (cell == self.meServiceCell){
+            if ([str isEqualToString:@"我的收藏"]) {
+                ZDXStoreMeCollectionViewController *vc = [[ZDXStoreMeCollectionViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }else if ([str isEqualToString:@"现金券"]){
+                ZDXStoreDeductionTicketViewController *vc = [[ZDXStoreDeductionTicketViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }else if ([str isEqualToString:@"我的共享"]){
+                ZDXStoreMyShareViewController *vc = [[ZDXStoreMyShareViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }else if ([str isEqualToString:@"我的评价"]){
+                ZDXStoreMyAppraiseViewController *vc = [[ZDXStoreMyAppraiseViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
-        
-        
-        
-    }else if (cell == self.meServiceCell){
-        if ([str isEqualToString:@"我的收藏"]) {
-            ZDXStoreMeCollectionViewController *vc = [[ZDXStoreMeCollectionViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }else if ([str isEqualToString:@"现金券"]){
-            ZDXStoreDeductionTicketViewController *vc = [[ZDXStoreDeductionTicketViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }else if ([str isEqualToString:@"我的共享"]){
-            ZDXStoreMyShareViewController *vc = [[ZDXStoreMyShareViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }else if ([str isEqualToString:@"我的评价"]){
-            ZDXStoreMyAppraiseViewController *vc = [[ZDXStoreMyAppraiseViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+    }else{
+        [self.navigationController pushViewController:[[ZDXStoreLoginViewController alloc] init] animated:YES];
     }
+    
     
 }
 

@@ -109,6 +109,11 @@
             [weakSelf.shopcartFormat settleSelectedProducts];
         };
         
+        // 删除
+        _shopcartBottomView.shopcartBotttomViewDeleteBlock = ^{
+            [weakSelf.shopcartFormat beginToDeleteSelectedProducts];
+        };
+        
     }
     return _shopcartBottomView;
 }
@@ -127,6 +132,20 @@
 }
 
 #pragma mark - shopCarFormat delegate
+
+-(void)shopCartFormatHasDeleteAllProduct{
+    [self realodData];
+}
+
+-(void)shopcartFormatWillDeleteSelectedProducts:(NSArray *)selectedProducts{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"确认要删除这%ld个宝贝吗？", selectedProducts.count] preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.shopcartFormat deleteSelectedProducts:selectedProducts];
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 -(void)shopCarFormatRequestProductListDidSuccessWithArray:(NSMutableArray *)dataArray{
     [self.shopCartNoGoodsView removeFromSuperview];
     self.shopcartTableViewProxy.dataArray = dataArray;
@@ -170,7 +189,7 @@
         
         NSArray *arr = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"carts"][@"carts"]];
         ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
-        vc.goodsTotalMoney = [responseObject[@"data"][@"carts"][@"goodsTotalMoney"] integerValue];
+        vc.goodsTotalMoney = [responseObject[@"data"][@"carts"][@"goodsTotalMoney"] floatValue];
         vc.dataList = arr;
         vc.isCarts = 1;
         [self.navigationController pushViewController:vc animated:YES];

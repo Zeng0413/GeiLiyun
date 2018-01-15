@@ -66,7 +66,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 // 加载数据
 -(void)reloadData{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSDictionary *params = @{@"goodsId" : [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId], @"userId" : @([ZDXStoreUserModelTool userModel].userId)};
+    NSDictionary *params = @{@"goodsId" : [NSString stringWithFormat:@"%ld",self.goodsModel.goodsId]};
     
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Goods/goodsDetails",hostUrl];
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -189,6 +189,7 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 // 加入购物车
 -(void)addShopcar{
     if (self.userModel) {
+        [MBProgressHUD showMessage:@"正在加入购物车..."];
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"userId"] = [NSString stringWithFormat:@"%ld",self.userModel.userId];
@@ -196,10 +197,14 @@ static NSString *goodsDescCellID = @"goodsDescCell";
         params[@"buyNum"] = @1;
         
         NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/addCart",hostUrl];
-        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"%@",responseObject);
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+         {
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showSuccess:@"加入购物车成功"];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"加入购物车失败"];
+
         }];
     }else{
         ZDXStoreLoginViewController *vc = [[ZDXStoreLoginViewController alloc] init];
@@ -211,29 +216,35 @@ static NSString *goodsDescCellID = @"goodsDescCell";
 
 // 立即购买
 -(void)buyGoods{
-    [MBProgressHUD showMessage:@"正在提交"];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-
-    NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
-    parmas[@"userId"] = @(self.userModel.userId);
-    parmas[@"num"] = @1;
-    parmas[@"goodsId"] = @(self.goodsModel.goodsId);
-    
-    NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Goods/purchaseImmediately",hostUrl];
-    [manager POST:urlStr parameters:parmas progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [MBProgressHUD hideHUD];
-        NSLog(@"%@",responseObject);
-        NSArray *arr = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"carts"][@"carts"]];
-        ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
-        vc.dataList = arr;
-        vc.isCarts = 0;
-        vc.goodsTotalMoney = [responseObject[@"data"][@"carts"][@"goodsTotalMoney"] integerValue];
-        [self.navigationController pushViewController:vc animated:YES];
+    if (self.userModel) {
+        [MBProgressHUD showMessage:@"正在提交"];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUD];
-
-    }];
+        NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
+        parmas[@"userId"] = @(self.userModel.userId);
+        parmas[@"num"] = @1;
+        parmas[@"goodsId"] = @(self.goodsModel.goodsId);
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Goods/purchaseImmediately",hostUrl];
+        [manager POST:urlStr parameters:parmas progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [MBProgressHUD hideHUD];
+            NSLog(@"%@",responseObject);
+            NSArray *arr = [ZDXStoreShopModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"carts"][@"carts"]];
+            ZDXStoreFillInOrderViewController *vc = [[ZDXStoreFillInOrderViewController alloc] init];
+            vc.dataList = arr;
+            vc.isCarts = 0;
+            vc.goodsTotalMoney = [responseObject[@"data"][@"carts"][@"goodsTotalMoney"] floatValue];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+            
+        }];
+    }else{
+        ZDXStoreLoginViewController *vc = [[ZDXStoreLoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
     
     
 }
@@ -264,6 +275,9 @@ static NSString *goodsDescCellID = @"goodsDescCell";
                 
             }];
         }
+    }else{
+        ZDXStoreLoginViewController *vc = [[ZDXStoreLoginViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
 }

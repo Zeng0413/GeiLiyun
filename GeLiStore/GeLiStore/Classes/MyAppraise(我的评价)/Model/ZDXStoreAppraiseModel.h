@@ -21,4 +21,8 @@
 @property (copy, nonatomic) NSString *shopName;
 @property (copy, nonatomic) NSString *userName;
 @property (copy, nonatomic) NSString *orderNo;
+@property (copy, nonatomic) NSString *userPhoto;
+@property (assign, nonatomic) NSArray *imagesArray;
+
+@property (copy, nonatomic) NSString *createTime;
 @end

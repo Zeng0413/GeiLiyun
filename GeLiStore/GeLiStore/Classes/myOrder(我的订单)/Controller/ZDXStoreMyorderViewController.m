@@ -135,7 +135,7 @@ static NSString *myOrderCellID = @"MyOrderCell";
     [tableView registerNib:[UINib nibWithNibName:@"ZDXStoreNoCollectionCell" bundle:nil] forCellReuseIdentifier:noCellID];
     [tableView registerClass:[ZDXStoreMyOrderHeaderView class] forHeaderFooterViewReuseIdentifier:@"ZDXStoreMyOrderHeaderView"];
     [tableView registerClass:[ZDXStoreOrderFooterView class] forHeaderFooterViewReuseIdentifier:@"ZDXStoreOrderFooterView"];
-    tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
+//    tableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
 
     // 下拉刷新
     MJRefreshHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadOrder)];
@@ -250,7 +250,8 @@ static NSString *myOrderCellID = @"MyOrderCell";
             vc.type = 1;
             [self.navigationController pushViewController:vc animated:YES];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
+            [MBProgressHUD hideHUD];
+
         }];
     }
     
@@ -376,6 +377,7 @@ static NSString *myOrderCellID = @"MyOrderCell";
     NSDictionary *params = @{@"orderId" : @(model.orderId), @"userId" : @([ZDXStoreUserModelTool userModel].userId)};
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/receive",hostUrl];
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self reloadOrder];
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

@@ -112,6 +112,11 @@
             [self.btn2 setTitle:@"查看物流" forState:UIControlStateNormal];
             [self.btn3 setTitle:@"去评价" forState:UIControlStateNormal];
         }
+        if (orderModel.isAppraise == 1) { // 已评价
+            self.btn1.hidden = YES;
+            self.btn2.hidden = YES;
+            self.btn3.hidden = YES;
+        }
     }
 }
 

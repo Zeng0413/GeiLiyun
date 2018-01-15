@@ -21,7 +21,9 @@
 
 -(NSArray *)dataList{
     if (!_dataList) {
-        _dataList = @[@"homeTabBar",@"shareTabBar",@"recyclingTabBar",@"shopingCarTabBar",@"meTabBar"];
+//        _dataList = @[@"homeTabBar",@"shareTabBar",@"recyclingTabBar",@"shopingCarTabBar",@"meTabBar"];
+        _dataList = @[@"homeTabBar",@"shopingCarTabBar",@"meTabBar"];
+        
     }
     return _dataList;
 }
@@ -32,7 +34,8 @@
         self.backgroundColor = [UIColor whiteColor];
         
         NSInteger count = self.dataList.count;
-        NSArray *titleArr = @[@"电器商城",@"共享",@"回收换新",@"购物车",@"我的"];
+//        NSArray *titleArr = @[@"电器商城",@"共享",@"回收换新",@"购物车",@"我的"];
+        NSArray *titleArr = @[@"电器商城",@"购物车",@"我的"];
         for (int i = 0; i<count; i++) {
             ZDXStoreTabBarButton *item = [ZDXStoreTabBarButton buttonWithType:UIButtonTypeCustom];
             [item setImage:[UIImage imageNamed:self.dataList[i]] forState:UIControlStateNormal];

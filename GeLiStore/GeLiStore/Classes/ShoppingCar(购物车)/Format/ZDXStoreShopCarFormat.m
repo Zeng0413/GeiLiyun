@@ -17,7 +17,7 @@
 @interface ZDXStoreShopCarFormat ()
 
 @property (nonatomic, strong) NSMutableArray *shopcartListArray;    /**< 购物车数据源 */
-
+@property (assign, nonatomic) NSInteger num;
 @end
 
 @implementation ZDXStoreShopCarFormat
@@ -51,6 +51,67 @@
 //    //在这里请求数据 当然我直接用本地数据模拟的
 //    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"shopcart" ofType:@"plist"];
 //    NSMutableArray *dataArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
+    
+}
+
+-(void)beginToDeleteSelectedProducts{
+    NSMutableArray *selectedArray = [NSMutableArray array];
+    for (ZDXStoreShopModel *shopModel in self.shopcartListArray) {
+        for (ZDXStoreGoodsModel *goodsModel in shopModel.list) {
+            if (goodsModel.isSelected) {
+                [selectedArray addObject:goodsModel];
+            }
+        }
+    }
+    
+    [self.delegate shopcartFormatWillDeleteSelectedProducts:selectedArray];
+}
+
+
+-(void)deleteSelectedProducts:(NSArray *)selectedArray{
+    
+    [MBProgressHUD showMessage:@""];
+    self.num = 0;
+    for (ZDXStoreGoodsModel *goodsModel in selectedArray) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSDictionary *params = @{@"userId" : @([ZDXStoreUserModelTool userModel].userId), @"id" : @(goodsModel.cartId)};
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Carts/delCart",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self deleteSelectedGoods:selectedArray count:self.num];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+            return;
+        }];
+    }
+    
+    
+}
+
+-(void)deleteSelectedGoods:(NSArray *)selectedArray count:(NSInteger)num{
+    
+    self.num++;
+    if (self.num == selectedArray.count) {
+        [MBProgressHUD hideHUD];
+        
+        NSMutableArray *emptyArray = [[NSMutableArray alloc] init];
+        for (ZDXStoreShopModel *shopModel in self.shopcartListArray) {
+            [shopModel.list removeObjectsInArray:selectedArray];
+            
+            if (shopModel.list.count == 0) {
+                [emptyArray addObject:shopModel];
+            }
+        }
+        
+        if (emptyArray.count) {
+            [self.shopcartListArray removeObjectsInArray:emptyArray];
+        }
+        
+        [self.delegate shopcartFormatAccountForTotalPrice:[self accountTotalPrice] totalCount:[self accountTotalCount] isAllSelected:[self isAllSelected]];
+        
+        if (self.shopcartListArray.count == 0) {
+            [self.delegate shopCartFormatHasDeleteAllProduct];
+        }
+    }
     
 }
 
@@ -186,6 +247,10 @@
         [MBProgressHUD hideHUD];
     }];
     [self.delegate shopcartFormatAccountForTotalPrice:[self accountTotalPrice] totalCount:[self accountTotalCount] isAllSelected:[self isAllSelected]];
+    
+    if (self.shopcartListArray.count == 0) {
+        [self.delegate shopCartFormatHasDeleteAllProduct];
+    }
 }
 
 #pragma mark - private methods
@@ -194,7 +259,8 @@
     for (ZDXStoreShopModel *brandModel in self.shopcartListArray) {
         for (ZDXStoreGoodsModel *productModel in brandModel.list) {
             if (productModel.isSelected) {
-                totalPrice += productModel.shopPrice.integerValue * productModel.cartNum;
+                totalPrice +=  productModel.shopPrice.floatValue * productModel.cartNum;
+                
             }
         }
     }

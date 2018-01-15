@@ -82,7 +82,7 @@
     CGFloat height = [[self.goodsDescWebView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
     self.goodsDescWebView.frame = CGRectMake(self.goodsDescWebView.frame.origin.x,self.goodsDescWebView.frame.origin.y, SCREEN_WIDTH, height);
     
-    if (self.num==2) {
+    if (height>50) {
         // 发出通知
         [[NSNotificationCenter defaultCenter]postNotificationName:@"NSNotificationWebViewDidFinishLoad" object:nil];
     }

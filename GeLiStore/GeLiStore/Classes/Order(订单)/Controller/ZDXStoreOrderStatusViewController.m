@@ -61,7 +61,7 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     self.pushView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 212);
     self.pushView.delegate = self;
     if (self.orderDetailModel) {
-        self.pushView.payPrice = self.orderDetailModel.totalMoney.integerValue;
+        self.pushView.payPrice = [self.orderDetailModel.totalMoney floatValue];
     }else{
         self.pushView.payPrice = self.totalMoney;
     }
@@ -122,6 +122,7 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
             UIButton *confirmCargoBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW, 1, btnW, bottomView.height)];
             confirmCargoBtn.backgroundColor = colorWithString(@"#f95865");
             [confirmCargoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [confirmCargoBtn addTarget:self action:@selector(confirmSH) forControlEvents:UIControlEventTouchUpInside];
             [confirmCargoBtn setTitle:@"确认收货" forState:UIControlStateNormal];
             confirmCargoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
 //            [confirmCargoBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
@@ -153,13 +154,6 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
         payBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
         [bottomView addSubview:payBtn];
-        
-        UIButton *cancelOrderBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - btnW * 2, 1, btnW, bottomView.height)];
-        cancelOrderBtn.backgroundColor = colorWithString(@"#f4f4f4");
-        [cancelOrderBtn setTitleColor:colorWithString(@"#262626") forState:UIControlStateNormal];
-        [cancelOrderBtn setTitle:@"取消订单" forState:UIControlStateNormal];
-        cancelOrderBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        [bottomView addSubview:cancelOrderBtn];
     }
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
     lineView.backgroundColor = colorWithString(@"#f6f6f6");
@@ -342,6 +336,28 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
     }];
 }
 
+-(void)confirmSH{
+    if (self.orderDetailModel) {
+        [MBProgressHUD showMessage:@""];
+
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSDictionary *params = @{@"orderId" : @(self.orderDetailModel.orderId), @"userId" : @([ZDXStoreUserModelTool userModel].userId)};
+        NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.Orders/receive",hostUrl];
+        [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"code"] integerValue] == 1) {
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+            [MBProgressHUD hideHUD];
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [MBProgressHUD hideHUD];
+
+        }];
+    }
+    
+}
+
 -(void)cancelOrderClick{
     if (self.orderDetailModel) {
         [MBProgressHUD showMessage:@""];
@@ -423,7 +439,7 @@ static NSString *paySendTypeCellID = @"PaySendTypeCell";
             cell.price.text = [NSString stringWithFormat:@"¥%@",self.orderDetailModel.totalMoney];
         }else{
             cell.orderId.text = [NSString stringWithFormat:@"订单编号：%@",self.orderId];
-            cell.price.text = [NSString stringWithFormat:@"¥%ld",self.totalMoney];
+            cell.price.text = [NSString stringWithFormat:@"¥%.2f",self.totalMoney];
         }
         
         return cell;

@@ -83,7 +83,7 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
 -(void)setupBottomView{
     ZDXStoreSubmitOrderBottomView *view = [ZDXStoreSubmitOrderBottomView view];
     view.frame = CGRectMake(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH, 50);
-    view.goodsPrice = [NSString stringWithFormat:@"%ld",self.goodsTotalMoney];
+    view.goodsPrice = [NSString stringWithFormat:@"%.2f",self.goodsTotalMoney];
     
     view.block = ^{
         [MBProgressHUD showMessage:@"正在提交..."];
@@ -169,8 +169,12 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
         if ([responseObject[@"code"] integerValue] == 1) {
             self.bottomView.submitBtnIsSelected = YES;
             self.consigneeInfoModel = [ZDXStoreConsigneeInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
-            [self.tableView reloadData];
+        }else{
+            self.bottomView.submitBtnIsSelected = NO;
+            self.consigneeInfoModel = nil;
         }
+        [self.tableView reloadData];
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
@@ -218,8 +222,8 @@ static NSString *orderGoodsCountCellID = @"orderGoodsCountCell";
     
     if (indexPath.section == 4) {
         ZDXStoreOrderGoodsCountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:orderGoodsCountCellID];
-        cell.goodsPrice = [NSString stringWithFormat:@"%ld件 ¥%ld",self.goodsArr.count,self.goodsTotalMoney];
-        cell.originPrice = [NSString stringWithFormat:@"¥%ld",self.goodsTotalMoney];
+        cell.goodsPrice = [NSString stringWithFormat:@"%ld件 ¥%.2f",self.goodsArr.count,self.goodsTotalMoney];
+        cell.originPrice = [NSString stringWithFormat:@"¥%.2f",self.goodsTotalMoney];
         return cell;
     }
     

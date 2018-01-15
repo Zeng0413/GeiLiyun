@@ -53,6 +53,7 @@
         UILabel *goodsName = [[UILabel alloc] init];
         goodsName.font = [UIFont systemFontOfSize:13];
         goodsName.textColor = colorWithString(@"#8a8a8a");
+        goodsName.numberOfLines = 2;
         [self.contentView addSubview:goodsName];
         self.goodsName = goodsName;
         
@@ -84,19 +85,32 @@
     self.goodsImg.frame = CGRectMake(10, CGRectGetMaxY(self.shopName.frame) + 7, 80, 80);
     [self.goodsImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,goodsModel.goodsImg]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
     
-    CGSize goodsNameSize = [goodsModel.goodsName sizeWithFont:[UIFont systemFontOfSize:13] maxW:SCREEN_WIDTH - CGRectGetMaxX(self.goodsImg.frame) + 18 - 150];
+    CGSize goodsNameSize = [goodsModel.goodsName sizeWithFont:[UIFont systemFontOfSize:13] maxW:SCREEN_WIDTH - CGRectGetMaxX(self.goodsImg.frame) + 18 - 100];
     self.goodsName.x = CGRectGetMaxX(self.goodsImg.frame) + 18;
     self.goodsName.width = goodsNameSize.width;
     self.goodsName.height = goodsNameSize.height;
     self.goodsName.centerY = self.goodsImg.centerY;
     self.goodsName.text = goodsModel.goodsName;
     
-    NSString *goodsPrice = [NSString stringWithFormat:@"¥%@",goodsModel.shopPrice];
+    NSString *price = @"";
+    if (goodsModel.goodsPrice) {
+        price = goodsModel.goodsPrice;
+    }else{
+        price = goodsModel.shopPrice;
+    }
+    NSString *goodsPrice = [NSString stringWithFormat:@"¥%@",price];
     CGSize priceSize = [goodsPrice sizeWithFont:[UIFont systemFontOfSize:13]];
     self.goodsPrice.frame = CGRectMake(SCREEN_WIDTH - 10 - priceSize.width, self.goodsName.y + 3, priceSize.width, priceSize.height);
     self.goodsPrice.text = goodsPrice;
     
-    NSString *count = [NSString stringWithFormat:@"X %ld",goodsModel.cartNum];
+    NSInteger num;
+    if (goodsModel.goodsNum != 0) {
+        num = goodsModel.goodsNum;
+    }else{
+        num = goodsModel.cartNum;
+
+    }
+    NSString *count = [NSString stringWithFormat:@"X %ld",num];
     CGSize cartNumSize = [count sizeWithFont:[UIFont systemFontOfSize:13]];
     self.goodsCount.frame = CGRectMake(SCREEN_WIDTH - 10 - cartNumSize.width, CGRectGetMaxY(self.goodsPrice.frame) + 9, cartNumSize.width, cartNumSize.height);
     self.goodsCount.text = count;

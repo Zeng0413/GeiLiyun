@@ -19,7 +19,7 @@ typedef void(^ShopcartCellEditBlock)(NSInteger count);
 -(void)setupShopCarCellWithProductURL:(NSString *)productURL
                           productName:(NSString *)productName
                           productSize:(NSString *)productSize
-                         productPrice:(NSInteger)productPrice
+                         productPrice:(CGFloat)productPrice
                          productCount:(NSInteger)productCount
                          productStock:(NSInteger)productStock
                       productSelected:(BOOL)productSelected;

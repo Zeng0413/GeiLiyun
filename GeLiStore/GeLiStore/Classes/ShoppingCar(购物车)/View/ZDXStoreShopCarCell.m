@@ -53,7 +53,7 @@
 -(void)setupShopCarCellWithProductURL:(NSString *)productURL
                           productName:(NSString *)productName
                           productSize:(NSString *)productSize
-                         productPrice:(NSInteger)productPrice
+                         productPrice:(CGFloat)productPrice
                          productCount:(NSInteger)productCount
                          productStock:(NSInteger)productStock
                       productSelected:(BOOL)productSelected{
@@ -62,7 +62,7 @@
     [self.productImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",hostUrl,productURL]] placeholderImage:[UIImage imageNamed:@"商品图加载"]];
     self.productNameLable.text = productName;
     self.productSizeLable.text = productSize;
-    self.productPriceLable.text = [NSString stringWithFormat:@"￥%ld", productPrice];
+    self.productPriceLable.text = [NSString stringWithFormat:@"￥%.2f", productPrice];
     self.productSelectedBtn.selected = productSelected;
     self.count.text = [NSString stringWithFormat:@"X %ld",productCount];
     [self.shopcartCountView setupShopCarCountViewWithProductCount:productCount productStock:productStock];

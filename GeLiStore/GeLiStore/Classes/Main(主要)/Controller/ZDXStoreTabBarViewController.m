@@ -45,8 +45,9 @@
 }
 
 -(void)configViewControllers{
-    NSMutableArray *array = [NSMutableArray arrayWithArray:@[@"ZDXStoreHomeViewController",@"ZDXStoreShareViewController",@"ZDXStoreRecylingInNewViewController",@"ZDXStoreShoppingCarViewController",@"ZDXStoreMeViewController"]];
-    
+//    NSMutableArray *array = [NSMutableArray arrayWithArray:@[@"ZDXStoreHomeViewController",@"ZDXStoreShareViewController",@"ZDXStoreRecylingInNewViewController",@"ZDXStoreShoppingCarViewController",@"ZDXStoreMeViewController"]];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:@[@"ZDXStoreHomeViewController",@"ZDXStoreShoppingCarViewController",@"ZDXStoreMeViewController"]];
+
     for (int i = 0; i<array.count; i++) {
         UIViewController *vc = [[NSClassFromString(array[i]) alloc] init];
         ZDXStoreNavigationViewController *nav = [[ZDXStoreNavigationViewController alloc] initWithRootViewController:vc];

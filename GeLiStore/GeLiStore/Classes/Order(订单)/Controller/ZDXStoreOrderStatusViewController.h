@@ -19,7 +19,7 @@
 
 @property (strong, nonatomic) ZDXStoreConsigneeInfoModel *consigneeInfoModel;
 
-@property (assign, nonatomic) NSInteger totalMoney;
+@property (assign, nonatomic) CGFloat totalMoney;
 
 @property (assign, nonatomic) NSInteger type; // 支付类别
 @property (assign, nonatomic) NSInteger isBatch; // 是否连贯支付 （1-是 0-否）

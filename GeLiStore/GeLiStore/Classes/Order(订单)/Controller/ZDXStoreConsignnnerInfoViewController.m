@@ -75,13 +75,14 @@ static NSString *NoConsigneeInfoCellID = @"NoConsigneeInfoCell";
         [MBProgressHUD hideHUD];
         
         if ([responseObject[@"code"] integerValue] == 1) {
-            self.dataList = [ZDXStoreConsigneeInfoModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-            [self.tableView reloadData];
+            
             self.bottomBtn.hidden = NO;
         }else{
             self.bottomBtn.hidden = YES;
         }
-        
+        self.dataList = [ZDXStoreConsigneeInfoModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        [self.tableView reloadData];
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];

@@ -143,6 +143,8 @@ static NSString *appraiseScoreCellID = @"AppraiseScoreCell";
             UIAlertView * warnningVC = [[UIAlertView alloc]initWithTitle:nil message:@"网络请求失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [warnningVC show];
         }];
+    }else{
+        [self orderAppraiseSubmit:nil];
     }
 }
 
@@ -153,7 +155,10 @@ static NSString *appraiseScoreCellID = @"AppraiseScoreCell";
         imagesStr = [imagesStr stringByAppendingString:[NSString stringWithFormat:@"%@,",imgStr]];
     }
     
-    imagesStr = [imagesStr substringToIndex:([imagesStr length] - 1)];
+    if (imagesStr.length > 0) {
+        imagesStr = [imagesStr substringToIndex:([imagesStr length] - 1)];
+    }
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     ZDXStoreGoodsModel *goodsModel = [self.orderDetailModel.goods firstObject];
@@ -164,7 +169,10 @@ static NSString *appraiseScoreCellID = @"AppraiseScoreCell";
     params[@"timeScore"] = @(self.deliverGoodsSpeedScore);
     params[@"serviceScore"] = @(self.serviceAttitudeScore);
     params[@"content"] = self.appraiseRemarkCell.textView.text;
-    params[@"images"] = imagesStr;
+    
+    if (imagesStr.length>0) {
+        params[@"images"] = imagesStr;
+    }
     NSString *urlStr = [NSString stringWithFormat:@"%@api/v1.GoodsAppraises/add",hostUrl];
     [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD hideHUD];
